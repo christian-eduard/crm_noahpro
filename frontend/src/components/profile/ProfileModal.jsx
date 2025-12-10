@@ -32,7 +32,7 @@ const ProfileModal = ({ isOpen, onClose, onUpdate }) => {
         setLoading(true);
         try {
             const token = localStorage.getItem('crm_token');
-            const response = await fetch(`${import.meta.env.VITE_API_URL || SOCKET_URL}/api/users/profile`, {
+            const response = await fetch(`${API_URL}/users/profile`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             if (response.ok) {
@@ -96,7 +96,7 @@ const ProfileModal = ({ isOpen, onClose, onUpdate }) => {
 
             const token = localStorage.getItem('crm_token');
             // ... (resto del submit)
-            const response = await fetch(`${import.meta.env.VITE_API_URL || SOCKET_URL}/api/users/profile`, {
+            const response = await fetch(`${API_URL}/users/profile`, {
                 method: 'PUT',
                 headers: { 'Authorization': `Bearer ${token}` },
                 body: formData

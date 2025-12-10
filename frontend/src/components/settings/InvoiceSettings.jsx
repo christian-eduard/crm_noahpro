@@ -23,7 +23,7 @@ const InvoiceSettings = () => {
     const fetchSettings = async () => {
         try {
             const token = localStorage.getItem('crm_token');
-            const response = await fetch(`${import.meta.env.VITE_API_URL || SOCKET_URL}/api/settings`, {
+            const response = await fetch(`${API_URL}/settings`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -59,7 +59,7 @@ const InvoiceSettings = () => {
 
         try {
             const token = localStorage.getItem('crm_token');
-            const response = await fetch(`${import.meta.env.VITE_API_URL || SOCKET_URL}/api/settings`, {
+            const response = await fetch(`${API_URL}/settings`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

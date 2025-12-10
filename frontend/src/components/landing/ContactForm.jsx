@@ -29,7 +29,7 @@ const ContactForm = ({ onClose }) => {
         setError('');
 
         try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL || SOCKET_URL}/api/leads`, {
+            const response = await fetch(`${API_URL}/leads`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

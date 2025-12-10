@@ -58,7 +58,6 @@ const CommercialDashboard = ({ activeSection = 'home' }) => {
         fetchStats();
     };
 
-    const API_URL = import.meta.env.VITE_API_URL || SOCKET_URL;
     const token = localStorage.getItem('crm_token');
 
     useEffect(() => {
@@ -377,8 +376,8 @@ const CommercialDashboard = ({ activeSection = 'home' }) => {
                             <div className="bg-gray-50 dark:bg-gray-700/50 p-3 rounded-lg">
                                 <label className="text-xs text-gray-400 uppercase font-semibold">Estado</label>
                                 <span className={`inline-block px-2 py-0.5 rounded text-xs mt-1 ${selectedLead.status === 'won' ? 'bg-green-100 text-green-800' :
-                                        selectedLead.status === 'new' ? 'bg-orange-100 text-orange-800' :
-                                            'bg-gray-100 text-gray-800'
+                                    selectedLead.status === 'new' ? 'bg-orange-100 text-orange-800' :
+                                        'bg-gray-100 text-gray-800'
                                     }`}>
                                     {selectedLead.status}
                                 </span>

@@ -16,7 +16,6 @@ const CrmLogin = () => {
         setError('');
 
         try {
-            const API_URL = import.meta.env.VITE_API_URL || API_URL;
             const response = await fetch(`${API_URL}/auth/login`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },

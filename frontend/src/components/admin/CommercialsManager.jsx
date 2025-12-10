@@ -45,7 +45,6 @@ const CommercialsManager = () => {
 
     const [selectedFile, setSelectedFile] = useState(null);
 
-    const API_URL = import.meta.env.VITE_API_URL || SOCKET_URL;
     const token = localStorage.getItem('crm_token');
 
     useEffect(() => {
