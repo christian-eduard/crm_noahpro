@@ -10,7 +10,7 @@ const getLeads = async (req, res) => {
         let query = `
             SELECT 
                 l.*,
-                u.username as assigned_user_name,
+                u.name as assigned_user_name,
                 COALESCE(
                     json_agg(
                         json_build_object('id', t.id, 'name', t.name, 'color', t.color)
@@ -43,7 +43,7 @@ const getLeads = async (req, res) => {
             params.push(`%${search}%`);
         }
 
-        query += ' GROUP BY l.id, u.username ORDER BY l.created_at DESC';
+        query += ' GROUP BY l.id, u.name ORDER BY l.created_at DESC';
 
         const result = await db.query(query, params);
         res.json(result.rows);
