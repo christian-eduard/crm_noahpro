@@ -29,6 +29,11 @@ chatHandler(io);
 
 const PORT = process.env.PORT || 3002;
 
+// Trust proxy for production (behind Nginx/load balancer)
+if (process.env.NODE_ENV === 'production') {
+    app.set('trust proxy', 1);
+}
+
 // Standard Middleware
 app.use(cors());
 app.use(express.json());
