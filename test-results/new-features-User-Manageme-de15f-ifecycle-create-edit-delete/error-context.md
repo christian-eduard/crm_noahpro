@@ -1,0 +1,287 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - complementary [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - generic [ref=e8]: "N"
+        - generic [ref=e9]:
+          - heading "NoahPro" [level=1] [ref=e10]
+          - paragraph [ref=e11]: CRM Pro
+      - button [ref=e12] [cursor=pointer]:
+        - img [ref=e13]
+    - navigation [ref=e15]:
+      - button "Dashboard Panel principal" [ref=e16] [cursor=pointer]:
+        - img [ref=e18]
+        - generic [ref=e21]:
+          - paragraph [ref=e22]: Dashboard
+          - paragraph [ref=e23]: Panel principal
+      - button "Leads Gestión de leads" [ref=e24] [cursor=pointer]:
+        - img [ref=e26]
+        - generic [ref=e31]:
+          - paragraph [ref=e32]: Leads
+          - paragraph [ref=e33]: Gestión de leads
+      - button "Clientes Cartera de clientes" [ref=e34] [cursor=pointer]:
+        - img [ref=e36]
+        - generic [ref=e41]:
+          - paragraph [ref=e42]: Clientes
+          - paragraph [ref=e43]: Cartera de clientes
+      - button "Propuestas Gestión de propuestas" [ref=e44] [cursor=pointer]:
+        - img [ref=e46]
+        - generic [ref=e49]:
+          - paragraph [ref=e50]: Propuestas
+          - paragraph [ref=e51]: Gestión de propuestas
+      - button "Chat Conversaciones" [ref=e52] [cursor=pointer]:
+        - img [ref=e54]
+        - generic [ref=e56]:
+          - paragraph [ref=e57]: Chat
+          - paragraph [ref=e58]: Conversaciones
+      - button "Analytics Métricas y reportes" [ref=e59] [cursor=pointer]:
+        - img [ref=e61]
+        - generic [ref=e63]:
+          - paragraph [ref=e64]: Analytics
+          - paragraph [ref=e65]: Métricas y reportes
+      - button "Configuración Ajustes del sistema" [ref=e66] [cursor=pointer]:
+        - img [ref=e68]
+        - generic [ref=e71]:
+          - paragraph [ref=e72]: Configuración
+          - paragraph [ref=e73]: Ajustes del sistema
+  - generic [ref=e74]:
+    - banner [ref=e75]:
+      - generic [ref=e76]:
+        - generic [ref=e78]:
+          - textbox "Buscar leads, propuestas, contactos..." [ref=e79]
+          - img [ref=e80]
+        - generic [ref=e82]:
+          - button "Ayuda" [ref=e83] [cursor=pointer]:
+            - img [ref=e84]
+          - button [ref=e87] [cursor=pointer]:
+            - img [ref=e88]
+          - button "Modo Oscuro" [ref=e90] [cursor=pointer]:
+            - img [ref=e91]
+          - button "+ Nuevo" [ref=e94] [cursor=pointer]:
+            - generic [ref=e95]: + Nuevo
+            - img [ref=e96]
+          - button "A Admin admin@noahpro.com" [ref=e99] [cursor=pointer]:
+            - generic [ref=e100]: A
+            - generic [ref=e101]:
+              - paragraph [ref=e102]: Admin
+              - paragraph [ref=e103]: admin@noahpro.com
+            - img [ref=e104]
+    - main [ref=e106]:
+      - generic [ref=e107]:
+        - generic [ref=e108]:
+          - generic [ref=e109]:
+            - heading "Dashboard" [level=1] [ref=e110]
+            - paragraph [ref=e111]: Vista general de tu CRM
+          - button "Editar Layout" [ref=e113] [cursor=pointer]:
+            - img [ref=e114]
+            - generic [ref=e116]: Editar Layout
+        - generic [ref=e117]:
+          - generic [ref=e119]:
+            - generic [ref=e120]:
+              - generic [ref=e121]:
+                - img [ref=e123]
+                - generic [ref=e128]: +12%
+              - generic [ref=e129]:
+                - paragraph [ref=e130]: Total Leads
+                - paragraph [ref=e131]: "0"
+            - generic [ref=e134]:
+              - generic [ref=e135]:
+                - img [ref=e137]
+                - generic [ref=e140]: +5%
+              - generic [ref=e141]:
+                - paragraph [ref=e142]: Nuevos
+                - paragraph [ref=e143]: "0"
+            - generic [ref=e146]:
+              - generic [ref=e147]:
+                - img [ref=e149]
+                - generic [ref=e152]: +8%
+              - generic [ref=e153]:
+                - paragraph [ref=e154]: Propuestas Activas
+                - paragraph [ref=e155]: "0"
+            - generic [ref=e158]:
+              - generic [ref=e159]:
+                - img [ref=e161]
+                - generic [ref=e167]: +3%
+              - generic [ref=e168]:
+                - paragraph [ref=e169]: Deals Ganados
+                - paragraph [ref=e170]: "0"
+          - generic [ref=e173]:
+            - heading "Tasa de Conversión" [level=3] [ref=e175]
+            - generic [ref=e177]:
+              - generic [ref=e178]: 0%
+              - paragraph [ref=e179]: Leads convertidos a clientes
+          - generic [ref=e181]:
+            - heading "Ingresos Estimados" [level=3] [ref=e183]
+            - generic [ref=e185]:
+              - generic [ref=e186]: €0
+              - paragraph [ref=e187]: De 0 deals ganados
+              - generic [ref=e188]:
+                - generic [ref=e189]: ↗
+                - generic [ref=e190]: +15% vs mes anterior
+          - heading "Actividad Reciente" [level=3] [ref=e193]
+          - generic [ref=e195]:
+            - generic [ref=e196]:
+              - heading "Tareas Pendientes" [level=3] [ref=e197]
+              - button [ref=e198] [cursor=pointer]:
+                - img [ref=e199]
+            - paragraph [ref=e201]: No hay tareas pendientes
+          - generic [ref=e202]:
+            - heading "Calendario" [level=3] [ref=e204]
+            - generic [ref=e206]:
+              - generic [ref=e207]:
+                - generic [ref=e208]:
+                  - heading "Calendario" [level=1] [ref=e209]
+                  - paragraph [ref=e210]: Gestiona tus reuniones y eventos
+                - button "Nuevo Evento" [ref=e211] [cursor=pointer]:
+                  - img [ref=e212]
+                  - generic [ref=e213]: Nuevo Evento
+              - generic [ref=e214]:
+                - generic [ref=e215]:
+                  - generic [ref=e216]:
+                    - heading "diciembre de 2025" [level=2] [ref=e217]
+                    - generic [ref=e218]:
+                      - button [ref=e219] [cursor=pointer]:
+                        - img [ref=e220]
+                      - button [ref=e222] [cursor=pointer]:
+                        - img [ref=e223]
+                  - generic [ref=e225]:
+                    - generic [ref=e226]: Domingo
+                    - generic [ref=e227]: Lunes
+                    - generic [ref=e228]: Martes
+                    - generic [ref=e229]: Miércoles
+                    - generic [ref=e230]: Jueves
+                    - generic [ref=e231]: Viernes
+                    - generic [ref=e232]: Sábado
+                    - generic [ref=e235]:
+                      - generic [ref=e236]: "1"
+                      - button [ref=e237] [cursor=pointer]:
+                        - img [ref=e238]
+                    - generic [ref=e240]:
+                      - generic [ref=e241]: "2"
+                      - button [ref=e242] [cursor=pointer]:
+                        - img [ref=e243]
+                    - generic [ref=e245]:
+                      - generic [ref=e246]: "3"
+                      - button [ref=e247] [cursor=pointer]:
+                        - img [ref=e248]
+                    - generic [ref=e250]:
+                      - generic [ref=e251]: "4"
+                      - button [ref=e252] [cursor=pointer]:
+                        - img [ref=e253]
+                    - generic [ref=e255]:
+                      - generic [ref=e256]: "5"
+                      - button [ref=e257] [cursor=pointer]:
+                        - img [ref=e258]
+                    - generic [ref=e260]:
+                      - generic [ref=e261]: "6"
+                      - button [ref=e262] [cursor=pointer]:
+                        - img [ref=e263]
+                    - generic [ref=e265]:
+                      - generic [ref=e266]: "7"
+                      - button [ref=e267] [cursor=pointer]:
+                        - img [ref=e268]
+                    - generic [ref=e270]:
+                      - generic [ref=e271]: "8"
+                      - button [ref=e272] [cursor=pointer]:
+                        - img [ref=e273]
+                    - generic [ref=e275]:
+                      - generic [ref=e276]: "9"
+                      - button [ref=e277] [cursor=pointer]:
+                        - img [ref=e278]
+                    - generic [ref=e280]:
+                      - generic [ref=e281]: "10"
+                      - button [ref=e282] [cursor=pointer]:
+                        - img [ref=e283]
+                    - generic [ref=e285]:
+                      - generic [ref=e286]: "11"
+                      - button [ref=e287] [cursor=pointer]:
+                        - img [ref=e288]
+                    - generic [ref=e290]:
+                      - generic [ref=e291]: "12"
+                      - button [ref=e292] [cursor=pointer]:
+                        - img [ref=e293]
+                    - generic [ref=e295]:
+                      - generic [ref=e296]: "13"
+                      - button [ref=e297] [cursor=pointer]:
+                        - img [ref=e298]
+                    - generic [ref=e300]:
+                      - generic [ref=e301]: "14"
+                      - button [ref=e302] [cursor=pointer]:
+                        - img [ref=e303]
+                    - generic [ref=e305]:
+                      - generic [ref=e306]: "15"
+                      - button [ref=e307] [cursor=pointer]:
+                        - img [ref=e308]
+                    - generic [ref=e310]:
+                      - generic [ref=e311]: "16"
+                      - button [ref=e312] [cursor=pointer]:
+                        - img [ref=e313]
+                    - generic [ref=e315]:
+                      - generic [ref=e316]: "17"
+                      - button [ref=e317] [cursor=pointer]:
+                        - img [ref=e318]
+                    - generic [ref=e320]:
+                      - generic [ref=e321]: "18"
+                      - button [ref=e322] [cursor=pointer]:
+                        - img [ref=e323]
+                    - generic [ref=e325]:
+                      - generic [ref=e326]: "19"
+                      - button [ref=e327] [cursor=pointer]:
+                        - img [ref=e328]
+                    - generic [ref=e330]:
+                      - generic [ref=e331]: "20"
+                      - button [ref=e332] [cursor=pointer]:
+                        - img [ref=e333]
+                    - generic [ref=e335]:
+                      - generic [ref=e336]: "21"
+                      - button [ref=e337] [cursor=pointer]:
+                        - img [ref=e338]
+                    - generic [ref=e340]:
+                      - generic [ref=e341]: "22"
+                      - button [ref=e342] [cursor=pointer]:
+                        - img [ref=e343]
+                    - generic [ref=e345]:
+                      - generic [ref=e346]: "23"
+                      - button [ref=e347] [cursor=pointer]:
+                        - img [ref=e348]
+                    - generic [ref=e350]:
+                      - generic [ref=e351]: "24"
+                      - button [ref=e352] [cursor=pointer]:
+                        - img [ref=e353]
+                    - generic [ref=e355]:
+                      - generic [ref=e356]: "25"
+                      - button [ref=e357] [cursor=pointer]:
+                        - img [ref=e358]
+                    - generic [ref=e360]:
+                      - generic [ref=e361]: "26"
+                      - button [ref=e362] [cursor=pointer]:
+                        - img [ref=e363]
+                    - generic [ref=e365]:
+                      - generic [ref=e366]: "27"
+                      - button [ref=e367] [cursor=pointer]:
+                        - img [ref=e368]
+                    - generic [ref=e370]:
+                      - generic [ref=e371]: "28"
+                      - button [ref=e372] [cursor=pointer]:
+                        - img [ref=e373]
+                    - generic [ref=e375]:
+                      - generic [ref=e376]: "29"
+                      - button [ref=e377] [cursor=pointer]:
+                        - img [ref=e378]
+                    - generic [ref=e380]:
+                      - generic [ref=e381]: "30"
+                      - button [ref=e382] [cursor=pointer]:
+                        - img [ref=e383]
+                    - generic [ref=e385]:
+                      - generic [ref=e386]: "31"
+                      - button [ref=e387] [cursor=pointer]:
+                        - img [ref=e388]
+                - heading "Próximos Eventos 0 total" [level=3] [ref=e390]:
+                  - generic [ref=e391]: Próximos Eventos
+                  - generic [ref=e392]: 0 total
+  - button [ref=e394] [cursor=pointer]:
+    - img [ref=e395]
+```

@@ -1,0 +1,55 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e4]:
+    - generic [ref=e7]:
+      - generic [ref=e8]:
+        - img [ref=e10]
+        - heading "NoahPro TPV" [level=1] [ref=e12]
+      - generic [ref=e13]:
+        - heading "Panel de Gestión Comercial Interno" [level=2] [ref=e14]:
+          - text: Panel de Gestión
+          - text: Comercial Interno
+        - paragraph [ref=e15]: Sistema de gestión centralizada para administrar leads, propuestas y clientes de NoahPro TPV.
+    - generic [ref=e17]:
+      - generic [ref=e18]:
+        - generic [ref=e19]: CRM
+        - generic [ref=e20]: Gestión Interna
+      - generic [ref=e21]:
+        - generic [ref=e22]: TPV
+        - generic [ref=e23]: NoahPro
+      - generic [ref=e24]:
+        - generic [ref=e25]: 24/7
+        - generic [ref=e26]: Acceso
+  - generic [ref=e28]:
+    - generic [ref=e29]:
+      - heading "Acceso al Panel CRM" [level=2] [ref=e30]
+      - paragraph [ref=e31]: Portal de gestión interna para equipo comercial
+    - generic [ref=e32]:
+      - generic [ref=e33]:
+        - generic [ref=e34]: Usuario
+        - generic [ref=e35]:
+          - generic:
+            - img
+          - textbox "Usuario corporativo" [ref=e36]: wronguser
+      - generic [ref=e37]:
+        - generic [ref=e38]: Contraseña
+        - generic [ref=e39]:
+          - generic:
+            - img
+          - textbox "••••••••" [ref=e40]: wrongpass
+      - generic [ref=e41]:
+        - img [ref=e42]
+        - generic [ref=e44]: Credenciales inválidas
+      - button "Acceder al Panel" [ref=e45] [cursor=pointer]:
+        - generic [ref=e46]: Acceder al Panel
+        - img [ref=e47]
+    - link "Volver a la App Principal" [ref=e50] [cursor=pointer]:
+      - /url: /
+      - img [ref=e51]
+      - generic [ref=e53]: Volver a la App Principal
+    - generic [ref=e55]:
+      - img [ref=e56]
+      - generic [ref=e59]: Conexión segura y encriptada
+```

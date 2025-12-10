@@ -1,0 +1,15 @@
+{
+  "name": "crm-app-tpv",
+  "version": "1.0.0",
+  "description": "Sistema CRM profesional para gestión de leads, propuestas comerciales, chat en tiempo real y análisis de conversión.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.57.0"
+  }
+}

@@ -1,0 +1,107 @@
+<!-- E2E Test Comment --><!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propuesta Comercial - NoahPro CRM</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f5;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #f97316 0%, #dc2626 100%);
+            padding: 40px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .content {
+            padding: 40px 30px;
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        .proposal-box {
+            background-color: #fff7ed;
+            border-left: 4px solid #f97316;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 4px;
+        }
+
+        .footer {
+            background-color: #f7fafc;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #e2e8f0;
+            color: #a0aec0;
+            font-size: 12px;
+        }
+
+        .button {
+            display: inline-block;
+            background: linear-gradient(135deg, #f97316 0%, #dc2626 100%);
+            color: white;
+            padding: 14px 28px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 16px;
+            box-shadow: 0 4px 6px rgba(249, 115, 22, 0.25);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 style="margin: 0; font-size: 24px;">📋 Nueva Propuesta Comercial</h1>
+            <p style="color: rgba(255,255,255,0.9); margin-top: 10px;">Especialmente preparada para {{businessName}}</p>
+        </div>
+
+        <div class="content">
+            <p>Hola <strong>{{name}}</strong>,</p>
+
+            <p>Hemos preparado una propuesta detallada para la digitalización de tu negocio con nuestro sistema TPV y
+                Verifactu.</p>
+
+            <div class="proposal-box">
+                <h3 style="margin: 0 0 10px 0; color: #2d3748;">{{proposalTitle}}</h3>
+                <p style="margin: 0; color: #718096;">Inversión Total: <strong
+                        style="color: #f97316;">{{proposalPrice}}</strong></p>
+            </div>
+
+            <p>Puedes revisar la propuesta completa, descargarla y aceptarla directamente en el siguiente enlace:</p>
+
+            <div style="text-align: center; margin: 40px 0;">
+                <a href="{{proposalUrl}}" class="button">Ver Propuesta Online</a>
+            </div>
+
+            <p style="color: #718096; font-size: 14px; text-align: center;">
+                Este enlace es único y seguro. Si tienes alguna pregunta, puedes responder a este correo o usar el chat
+                en la propuesta.
+            </p>
+        </div>
+
+        <div class="footer">
+            <p>© {{year}} NoahPro CRM. Todos los derechos reservados.</p>
+            <p style="margin-top: 10px;">Sistema de Gestión de Leads y TPV</p>
+        </div>
+    </div>
+</body>
+
+</html>

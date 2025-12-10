@@ -1,0 +1,150 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - complementary [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - generic [ref=e8]: "N"
+        - generic [ref=e9]:
+          - heading "NoahPro" [level=1] [ref=e10]
+          - paragraph [ref=e11]: CRM Pro
+      - button [ref=e12] [cursor=pointer]:
+        - img [ref=e13]
+    - navigation [ref=e15]:
+      - button "Dashboard Panel principal" [ref=e16] [cursor=pointer]:
+        - img [ref=e18]
+        - generic [ref=e21]:
+          - paragraph [ref=e22]: Dashboard
+          - paragraph [ref=e23]: Panel principal
+      - button "Leads Gestión de leads" [ref=e24] [cursor=pointer]:
+        - img [ref=e26]
+        - generic [ref=e31]:
+          - paragraph [ref=e32]: Leads
+          - paragraph [ref=e33]: Gestión de leads
+      - button "Clientes Cartera de clientes" [ref=e34] [cursor=pointer]:
+        - img [ref=e36]
+        - generic [ref=e41]:
+          - paragraph [ref=e42]: Clientes
+          - paragraph [ref=e43]: Cartera de clientes
+      - button "Propuestas Gestión de propuestas" [ref=e44] [cursor=pointer]:
+        - img [ref=e46]
+        - generic [ref=e49]:
+          - paragraph [ref=e50]: Propuestas
+          - paragraph [ref=e51]: Gestión de propuestas
+      - button "Chat Conversaciones" [ref=e52] [cursor=pointer]:
+        - img [ref=e54]
+        - generic [ref=e56]:
+          - paragraph [ref=e57]: Chat
+          - paragraph [ref=e58]: Conversaciones
+      - button "Analytics Métricas y reportes" [ref=e59] [cursor=pointer]:
+        - img [ref=e61]
+        - generic [ref=e63]:
+          - paragraph [ref=e64]: Analytics
+          - paragraph [ref=e65]: Métricas y reportes
+      - button "Configuración Ajustes del sistema" [ref=e66] [cursor=pointer]:
+        - img [ref=e68]
+        - generic [ref=e71]:
+          - paragraph [ref=e72]: Configuración
+          - paragraph [ref=e73]: Ajustes del sistema
+  - generic [ref=e74]:
+    - banner [ref=e75]:
+      - generic [ref=e76]:
+        - generic [ref=e78]:
+          - textbox "Buscar leads, propuestas, contactos..." [ref=e79]
+          - img [ref=e80]
+        - generic [ref=e82]:
+          - button "Ayuda" [ref=e83] [cursor=pointer]:
+            - img [ref=e84]
+          - button [ref=e87] [cursor=pointer]:
+            - img [ref=e88]
+          - button "Modo Oscuro" [ref=e90] [cursor=pointer]:
+            - img [ref=e91]
+          - button "+ Nuevo" [ref=e94] [cursor=pointer]:
+            - generic [ref=e95]: + Nuevo
+            - img [ref=e96]
+          - button "A Admin admin@noahpro.com" [ref=e99] [cursor=pointer]:
+            - generic [ref=e100]: A
+            - generic [ref=e101]:
+              - paragraph [ref=e102]: Admin
+              - paragraph [ref=e103]: admin@noahpro.com
+            - img [ref=e104]
+    - main [ref=e106]:
+      - generic [ref=e107]:
+        - generic [ref=e108]:
+          - generic [ref=e109]:
+            - heading "Propuestas" [level=1] [ref=e110]:
+              - img [ref=e112]
+              - text: Propuestas
+            - paragraph [ref=e115]: Gestiona todas tus propuestas comerciales
+          - button "Nueva Propuesta" [active] [ref=e116] [cursor=pointer]:
+            - img [ref=e117]
+            - generic [ref=e120]: Nueva Propuesta
+        - generic [ref=e121]:
+          - generic [ref=e123]:
+            - generic [ref=e124]:
+              - paragraph [ref=e125]: Total
+              - paragraph [ref=e126]: "0"
+            - img [ref=e128]
+          - generic [ref=e132]:
+            - generic [ref=e133]:
+              - paragraph [ref=e134]: Pendientes
+              - paragraph [ref=e135]: "0"
+            - img [ref=e137]
+          - generic [ref=e141]:
+            - generic [ref=e142]:
+              - paragraph [ref=e143]: Aceptadas
+              - paragraph [ref=e144]: "0"
+            - img [ref=e146]
+          - generic [ref=e150]:
+            - generic [ref=e151]:
+              - paragraph [ref=e152]: Rechazadas
+              - paragraph [ref=e153]: "0"
+            - img [ref=e155]
+          - generic [ref=e160]:
+            - generic [ref=e161]:
+              - paragraph [ref=e162]: Vistas Totales
+              - paragraph [ref=e163]: "0"
+            - img [ref=e165]
+        - generic [ref=e169]:
+          - generic [ref=e171]:
+            - img [ref=e172]
+            - textbox "Buscar por título o lead..." [ref=e175]
+          - generic [ref=e176]:
+            - img [ref=e177]
+            - combobox [ref=e179] [cursor=pointer]:
+              - option "Todos los estados" [selected]
+              - option "Pendientes"
+              - option "Aceptadas"
+              - option "Rechazadas"
+              - option "Expiradas"
+          - button "Exportar" [ref=e180] [cursor=pointer]:
+            - img [ref=e181]
+            - generic [ref=e184]: Exportar
+        - generic [ref=e185]:
+          - table [ref=e187]:
+            - rowgroup [ref=e188]:
+              - row "Lead Título Estado Creada Enviada Engagement Acciones" [ref=e189]:
+                - columnheader "Lead" [ref=e190]
+                - columnheader "Título" [ref=e191]
+                - columnheader "Estado" [ref=e192]
+                - columnheader "Creada" [ref=e193]
+                - columnheader "Enviada" [ref=e194]
+                - columnheader "Engagement" [ref=e195]
+                - columnheader "Acciones" [ref=e196]
+            - rowgroup
+          - generic [ref=e197]:
+            - img [ref=e199]
+            - heading "No se encontraron propuestas" [level=3] [ref=e202]
+            - paragraph [ref=e203]: Prueba ajustando los filtros o crea una nueva propuesta.
+        - generic [ref=e205]:
+          - generic [ref=e206]:
+            - heading "Crear Nueva Propuesta" [level=3] [ref=e207]
+            - button [ref=e208] [cursor=pointer]:
+              - img [ref=e209]
+          - generic [ref=e214]:
+            - generic [ref=e215]: Seleccionar Lead
+            - paragraph [ref=e217]: ⚠️ Todos los leads ya tienen propuestas asignadas. Crea un nuevo lead desde el Pipeline de Ventas para poder crear más propuestas.
+  - button [ref=e218] [cursor=pointer]:
+    - img [ref=e219]
+```

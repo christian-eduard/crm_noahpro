@@ -1,0 +1,160 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - complementary [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - generic [ref=e8]: "N"
+        - generic [ref=e9]:
+          - heading "NoahPro" [level=1] [ref=e10]
+          - paragraph [ref=e11]: CRM Pro
+      - button [ref=e12] [cursor=pointer]:
+        - img [ref=e13]
+    - navigation [ref=e15]:
+      - button "Dashboard Panel principal" [ref=e16] [cursor=pointer]:
+        - img [ref=e18]
+        - generic [ref=e21]:
+          - paragraph [ref=e22]: Dashboard
+          - paragraph [ref=e23]: Panel principal
+      - button "Leads Gestión de leads" [ref=e24] [cursor=pointer]:
+        - img [ref=e26]
+        - generic [ref=e31]:
+          - paragraph [ref=e32]: Leads
+          - paragraph [ref=e33]: Gestión de leads
+      - button "Clientes Cartera de clientes" [ref=e34] [cursor=pointer]:
+        - img [ref=e36]
+        - generic [ref=e41]:
+          - paragraph [ref=e42]: Clientes
+          - paragraph [ref=e43]: Cartera de clientes
+      - button "Propuestas Gestión de propuestas" [ref=e44] [cursor=pointer]:
+        - img [ref=e46]
+        - generic [ref=e49]:
+          - paragraph [ref=e50]: Propuestas
+          - paragraph [ref=e51]: Gestión de propuestas
+      - button "Chat Conversaciones" [ref=e52] [cursor=pointer]:
+        - img [ref=e54]
+        - generic [ref=e56]:
+          - paragraph [ref=e57]: Chat
+          - paragraph [ref=e58]: Conversaciones
+      - button "Analytics Métricas y reportes" [ref=e59] [cursor=pointer]:
+        - img [ref=e61]
+        - generic [ref=e63]:
+          - paragraph [ref=e64]: Analytics
+          - paragraph [ref=e65]: Métricas y reportes
+      - button "Configuración Ajustes del sistema" [ref=e66] [cursor=pointer]:
+        - img [ref=e68]
+        - generic [ref=e71]:
+          - paragraph [ref=e72]: Configuración
+          - paragraph [ref=e73]: Ajustes del sistema
+  - generic [ref=e74]:
+    - banner [ref=e75]:
+      - generic [ref=e76]:
+        - generic [ref=e78]:
+          - textbox "Buscar leads, propuestas, contactos..." [ref=e79]
+          - img [ref=e80]
+        - generic [ref=e82]:
+          - button "Ayuda" [ref=e83] [cursor=pointer]:
+            - img [ref=e84]
+          - button [ref=e87] [cursor=pointer]:
+            - img [ref=e88]
+          - button "Modo Oscuro" [ref=e90] [cursor=pointer]:
+            - img [ref=e91]
+          - button "+ Nuevo" [ref=e94] [cursor=pointer]:
+            - generic [ref=e95]: + Nuevo
+            - img [ref=e96]
+          - button "A Admin admin@noahpro.com" [ref=e99] [cursor=pointer]:
+            - generic [ref=e100]: A
+            - generic [ref=e101]:
+              - paragraph [ref=e102]: Admin
+              - paragraph [ref=e103]: admin@noahpro.com
+            - img [ref=e104]
+    - main [ref=e106]:
+      - generic [ref=e107]:
+        - generic [ref=e109]:
+          - heading "Configuración" [level=3] [ref=e111]
+          - navigation [ref=e112]:
+            - button "General" [ref=e113] [cursor=pointer]:
+              - img [ref=e114]
+              - generic [ref=e117]: General
+            - button "Usuarios" [ref=e118] [cursor=pointer]:
+              - img [ref=e119]
+              - generic [ref=e122]: Usuarios
+            - button "Estados" [ref=e123] [cursor=pointer]:
+              - img [ref=e124]
+              - generic [ref=e126]: Estados
+            - button "Automatización" [ref=e127] [cursor=pointer]:
+              - img [ref=e128]
+              - generic [ref=e131]: Automatización
+            - button "Integraciones" [ref=e132] [cursor=pointer]:
+              - img [ref=e133]
+              - generic [ref=e135]: Integraciones
+            - button "Plantillas Email" [ref=e136] [cursor=pointer]:
+              - img [ref=e137]
+              - generic [ref=e140]: Plantillas Email
+            - button "Plantillas Propuestas" [ref=e141] [cursor=pointer]:
+              - img [ref=e142]
+              - generic [ref=e145]: Plantillas Propuestas
+            - button "Email (SMTP)" [active] [ref=e146] [cursor=pointer]:
+              - img [ref=e147]
+              - generic [ref=e150]: Email (SMTP)
+            - button "Notificaciones" [ref=e151] [cursor=pointer]:
+              - img [ref=e152]
+              - generic [ref=e155]: Notificaciones
+        - generic [ref=e159]:
+          - generic [ref=e160]:
+            - heading "Configuración SMTP" [level=2] [ref=e161]
+            - paragraph [ref=e162]: Configura el servidor de correo para enviar propuestas y notificaciones
+          - generic [ref=e163]:
+            - generic [ref=e164]:
+              - heading "Servidor SMTP" [level=3] [ref=e165]
+              - generic [ref=e166]:
+                - generic [ref=e167]:
+                  - generic [ref=e168]: Host SMTP
+                  - textbox "smtp.gmail.com" [ref=e169]: noahpro.es
+                - generic [ref=e170]:
+                  - generic [ref=e171]: Puerto
+                  - spinbutton [ref=e172]: "25"
+                - generic [ref=e173]:
+                  - generic [ref=e174]: Usuario
+                  - textbox "tu@email.com" [ref=e175]: crm@noahpro.es
+                - generic [ref=e176]:
+                  - generic [ref=e177]: Contraseña
+                  - textbox "••••••••" [ref=e178]
+                  - paragraph [ref=e179]: Deja en blanco para mantener la contraseña actual
+              - generic [ref=e181]:
+                - checkbox "Usar conexión segura (TLS/SSL)" [ref=e182]
+                - generic [ref=e183]: Usar conexión segura (TLS/SSL)
+            - generic [ref=e184]:
+              - heading "Remitente" [level=3] [ref=e185]
+              - generic [ref=e186]:
+                - generic [ref=e187]:
+                  - generic [ref=e188]: Nombre del remitente
+                  - textbox "Stormsboys CRM" [ref=e189]: Noahpro Tpv
+                - generic [ref=e190]:
+                  - generic [ref=e191]: Email del remitente
+                  - textbox "noreply@stormsboys.com" [ref=e192]: crm@noahpro.es
+            - generic [ref=e193]:
+              - heading "📧 Proveedores comunes" [level=4] [ref=e194]
+              - generic [ref=e195]:
+                - paragraph [ref=e196]:
+                  - strong [ref=e197]: "Gmail:"
+                  - text: smtp.gmail.com:587 (requiere contraseña de aplicación)
+                - paragraph [ref=e198]:
+                  - strong [ref=e199]: "Outlook:"
+                  - text: smtp-mail.outlook.com:587
+                - paragraph [ref=e200]:
+                  - strong [ref=e201]: "SendGrid:"
+                  - text: smtp.sendgrid.net:587
+            - generic [ref=e202]:
+              - heading "Probar Configuración" [level=3] [ref=e203]
+              - generic [ref=e204]:
+                - generic [ref=e205]: Email de Prueba
+                - textbox "destinatario@ejemplo.com" [ref=e206]
+                - paragraph [ref=e207]: Enviaremos un correo de prueba a esta dirección
+            - generic [ref=e208]:
+              - button "🔍 Probar Conexión" [ref=e209] [cursor=pointer]
+              - button "💾 Guardar Configuración" [ref=e210] [cursor=pointer]
+  - button [ref=e211] [cursor=pointer]:
+    - img [ref=e212]
+```

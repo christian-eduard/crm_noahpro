@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido a NoahPro CRM</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f5;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #f97316 0%, #dc2626 100%);
+            padding: 40px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .content {
+            padding: 40px 30px;
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        .footer {
+            background-color: #f7fafc;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #e2e8f0;
+            color: #a0aec0;
+            font-size: 12px;
+        }
+
+        .button {
+            display: inline-block;
+            background: linear-gradient(135deg, #f97316 0%, #dc2626 100%);
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            margin-top: 20px;
+            box-shadow: 0 4px 6px rgba(249, 115, 22, 0.25);
+        }
+
+        .highlight {
+            color: #f97316;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 style="margin: 0; font-size: 24px;">✅ ¡Gracias por tu interés!</h1>
+            <p style="margin-top: 10px; opacity: 0.9;">Hemos recibido tu solicitud correctamente</p>
+        </div>
+        <div class="content">
+            <p>Hola <strong>{{name}}</strong>,</p>
+            <p>Gracias por contactar con <strong>NoahPro CRM</strong>. Hemos recibido tu solicitud de información para
+                <span class="highlight">{{businessName}}</span>.
+            </p>
+
+            <p>Nuestro equipo comercial ya está revisando tu caso y te contactará en <strong>menos de 2 horas</strong>
+                (en horario laboral) para ofrecerte una demostración personalizada y resolver todas tus dudas sobre la
+                Ley Antifraude y Verifactu.</p>
+
+            <p>Mientras tanto, te invitamos a explorar nuestra demo online:</p>
+
+            <div style="text-align: center;">
+                <a href="{{frontendUrl}}/landing" class="button">Ver Demo Online</a>
+            </div>
+
+            <p style="margin-top: 30px;">Si tienes alguna urgencia, puedes responder directamente a este correo.</p>
+
+            <p>Atentamente,<br><strong>El Equipo de NoahPro CRM</strong></p>
+        </div>
+        <div class="footer">
+            <p>© {{year}} NoahPro CRM. Todos los derechos reservados.</p>
+            <p style="margin-top: 10px;">Sistema de Gestión de Leads y TPV</p>
+        </div>
+    </div>
+</body>
+
+</html>

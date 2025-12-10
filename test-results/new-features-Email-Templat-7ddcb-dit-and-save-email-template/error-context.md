@@ -1,0 +1,139 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - complementary [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - generic [ref=e8]: "N"
+        - generic [ref=e9]:
+          - heading "NoahPro" [level=1] [ref=e10]
+          - paragraph [ref=e11]: CRM Pro
+      - button [ref=e12] [cursor=pointer]:
+        - img [ref=e13]
+    - navigation [ref=e15]:
+      - button "Dashboard Panel principal" [ref=e16] [cursor=pointer]:
+        - img [ref=e18]
+        - generic [ref=e21]:
+          - paragraph [ref=e22]: Dashboard
+          - paragraph [ref=e23]: Panel principal
+      - button "Leads Gestión de leads" [ref=e24] [cursor=pointer]:
+        - img [ref=e26]
+        - generic [ref=e31]:
+          - paragraph [ref=e32]: Leads
+          - paragraph [ref=e33]: Gestión de leads
+      - button "Clientes Cartera de clientes" [ref=e34] [cursor=pointer]:
+        - img [ref=e36]
+        - generic [ref=e41]:
+          - paragraph [ref=e42]: Clientes
+          - paragraph [ref=e43]: Cartera de clientes
+      - button "Propuestas Gestión de propuestas" [ref=e44] [cursor=pointer]:
+        - img [ref=e46]
+        - generic [ref=e49]:
+          - paragraph [ref=e50]: Propuestas
+          - paragraph [ref=e51]: Gestión de propuestas
+      - button "Chat Conversaciones" [ref=e52] [cursor=pointer]:
+        - img [ref=e54]
+        - generic [ref=e56]:
+          - paragraph [ref=e57]: Chat
+          - paragraph [ref=e58]: Conversaciones
+      - button "Analytics Métricas y reportes" [ref=e59] [cursor=pointer]:
+        - img [ref=e61]
+        - generic [ref=e63]:
+          - paragraph [ref=e64]: Analytics
+          - paragraph [ref=e65]: Métricas y reportes
+      - button "Configuración Ajustes del sistema" [ref=e66] [cursor=pointer]:
+        - img [ref=e68]
+        - generic [ref=e71]:
+          - paragraph [ref=e72]: Configuración
+          - paragraph [ref=e73]: Ajustes del sistema
+  - generic [ref=e74]:
+    - banner [ref=e75]:
+      - generic [ref=e76]:
+        - generic [ref=e78]:
+          - textbox "Buscar leads, propuestas, contactos..." [ref=e79]
+          - img [ref=e80]
+        - generic [ref=e82]:
+          - button "Ayuda" [ref=e83] [cursor=pointer]:
+            - img [ref=e84]
+          - button [ref=e87] [cursor=pointer]:
+            - img [ref=e88]
+          - button "Modo Oscuro" [ref=e90] [cursor=pointer]:
+            - img [ref=e91]
+          - button "+ Nuevo" [ref=e94] [cursor=pointer]:
+            - generic [ref=e95]: + Nuevo
+            - img [ref=e96]
+          - button "A Admin admin@noahpro.com" [ref=e99] [cursor=pointer]:
+            - generic [ref=e100]: A
+            - generic [ref=e101]:
+              - paragraph [ref=e102]: Admin
+              - paragraph [ref=e103]: admin@noahpro.com
+            - img [ref=e104]
+    - main [ref=e106]:
+      - generic [ref=e107]:
+        - generic [ref=e109]:
+          - heading "Configuración" [level=3] [ref=e111]
+          - navigation [ref=e112]:
+            - button "General" [ref=e113] [cursor=pointer]:
+              - img [ref=e114]
+              - generic [ref=e117]: General
+            - button "Usuarios" [ref=e118] [cursor=pointer]:
+              - img [ref=e119]
+              - generic [ref=e122]: Usuarios
+            - button "Estados" [ref=e123] [cursor=pointer]:
+              - img [ref=e124]
+              - generic [ref=e126]: Estados
+            - button "Automatización" [ref=e127] [cursor=pointer]:
+              - img [ref=e128]
+              - generic [ref=e131]: Automatización
+            - button "Integraciones" [ref=e132] [cursor=pointer]:
+              - img [ref=e133]
+              - generic [ref=e135]: Integraciones
+            - button "Plantillas Email" [ref=e136] [cursor=pointer]:
+              - img [ref=e137]
+              - generic [ref=e140]: Plantillas Email
+            - button "Plantillas Propuestas" [ref=e141] [cursor=pointer]:
+              - img [ref=e142]
+              - generic [ref=e145]: Plantillas Propuestas
+            - button "Email (SMTP)" [ref=e146] [cursor=pointer]:
+              - img [ref=e147]
+              - generic [ref=e150]: Email (SMTP)
+            - button "Notificaciones" [ref=e151] [cursor=pointer]:
+              - img [ref=e152]
+              - generic [ref=e155]: Notificaciones
+        - generic [ref=e160]:
+          - generic [ref=e161]:
+            - generic [ref=e162]:
+              - button [ref=e163] [cursor=pointer]:
+                - img [ref=e164]
+              - generic [ref=e166]:
+                - heading "📧 Plantilla de Propuesta" [level=3] [ref=e167]
+                - paragraph [ref=e168]: Editor HTML con Vista Previa
+            - generic [ref=e169]:
+              - generic [ref=e170]:
+                - button "Código" [ref=e171] [cursor=pointer]:
+                  - img [ref=e172]
+                  - generic [ref=e175]: Código
+                - button "Dividido" [ref=e176] [cursor=pointer]:
+                  - img [ref=e177]
+                  - generic [ref=e182]: Dividido
+                - button "Vista Previa" [ref=e183] [cursor=pointer]:
+                  - img [ref=e184]
+                  - generic [ref=e187]: Vista Previa
+              - button "Guardar" [ref=e188] [cursor=pointer]:
+                - img [ref=e189]
+                - generic [ref=e193]: Guardar
+          - generic [ref=e195]:
+            - 'button "{{name}}" [ref=e196] [cursor=pointer]'
+            - 'button "{{businessName}}" [ref=e197] [cursor=pointer]'
+            - 'button "{{proposalTitle}}" [ref=e198] [cursor=pointer]'
+            - 'button "{{proposalPrice}}" [ref=e199] [cursor=pointer]'
+            - 'button "{{proposalUrl}}" [ref=e200] [cursor=pointer]'
+            - 'button "{{frontendUrl}}" [ref=e201] [cursor=pointer]'
+            - 'button "{{year}}" [ref=e202] [cursor=pointer]'
+          - generic [ref=e204]:
+            - generic [ref=e205]: HTML SOURCE
+            - textbox [ref=e206]: "<!-- E2E Test Comment --><!DOCTYPE html> <html> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"> <title>Propuesta Comercial - NoahPro CRM</title> <style> body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: #f4f4f5; } .container { max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); } .header { background: linear-gradient(135deg, #f97316 0%, #dc2626 100%); padding: 40px 20px; text-align: center; color: white; } .content { padding: 40px 30px; color: #4a5568; line-height: 1.6; } .proposal-box { background-color: #fff7ed; border-left: 4px solid #f97316; padding: 20px; margin: 30px 0; border-radius: 4px; } .footer { background-color: #f7fafc; padding: 20px; text-align: center; border-top: 1px solid #e2e8f0; color: #a0aec0; font-size: 12px; } .button { display: inline-block; background: linear-gradient(135deg, #f97316 0%, #dc2626 100%); color: white; padding: 14px 28px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 16px; box-shadow: 0 4px 6px rgba(249, 115, 22, 0.25); } </style> </head> <body> <div class=\"container\"> <div class=\"header\"> <h1 style=\"margin: 0; font-size: 24px;\">📋 Nueva Propuesta Comercial</h1> <p style=\"color: rgba(255,255,255,0.9); margin-top: 10px;\">Especialmente preparada para {{businessName}}</p> </div> <div class=\"content\"> <p>Hola <strong>{{name}}</strong>,</p> <p>Hemos preparado una propuesta detallada para la digitalización de tu negocio con nuestro sistema TPV y Verifactu.</p> <div class=\"proposal-box\"> <h3 style=\"margin: 0 0 10px 0; color: #2d3748;\">{{proposalTitle}}</h3> <p style=\"margin: 0; color: #718096;\">Inversión Total: <strong style=\"color: #f97316;\">{{proposalPrice}}</strong></p> </div> <p>Puedes revisar la propuesta completa, descargarla y aceptarla directamente en el siguiente enlace:</p> <div style=\"text-align: center; margin: 40px 0;\"> <a href=\"{{proposalUrl}}\" class=\"button\">Ver Propuesta Online</a> </div> <p style=\"color: #718096; font-size: 14px; text-align: center;\"> Este enlace es único y seguro. Si tienes alguna pregunta, puedes responder a este correo o usar el chat en la propuesta. </p> </div> <div class=\"footer\"> <p>© {{year}} NoahPro CRM. Todos los derechos reservados.</p> <p style=\"margin-top: 10px;\">Sistema de Gestión de Leads y TPV</p> </div> </div> </body> </html>"
+  - button [ref=e207] [cursor=pointer]:
+    - img [ref=e208]
+```

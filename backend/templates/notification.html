@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f4f4f5;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .header {
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+
+        .header h2 {
+            color: #1f2937;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .field {
+            margin-bottom: 15px;
+        }
+
+        .label {
+            font-weight: bold;
+            color: #6b7280;
+            font-size: 0.9em;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .value {
+            color: #1f2937;
+            font-size: 1.1em;
+        }
+
+        .message-box {
+            background: #fff7ed;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #f97316;
+            margin-top: 20px;
+            color: #4b5563;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #f97316 0%, #dc2626 100%);
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 6px;
+            margin-top: 20px;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(249, 115, 22, 0.25);
+        }
+
+        a {
+            color: #f97316;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <div class="header">
+            <h2>🎯 Nuevo Lead Captado</h2>
+            <p style="color: #6b7280; margin: 5px 0 0 0;">Origen: <strong style="color: #f97316;">{{source}}</strong>
+            </p>
+        </div>
+
+        <div class="field">
+            <span class="label">Nombre del Contacto</span>
+            <div class="value">{{name}}</div>
+        </div>
+
+        <div class="field">
+            <span class="label">Email</span>
+            <div class="value"><a href="mailto:{{email}}">{{email}}</a></div>
+        </div>
+
+        <div class="field">
+            <span class="label">Teléfono</span>
+            <div class="value"><a href="tel:{{phone}}">{{phone}}</a></div>
+        </div>
+
+        <div class="field">
+            <span class="label">Nombre del Negocio</span>
+            <div class="value">{{businessName}}</div>
+        </div>
+
+        <div class="field">
+            <span class="label">Mensaje Inicial</span>
+            <div class="message-box">
+                {{message}}
+            </div>
+        </div>
+
+        <div style="text-align: center;">
+            <a href="{{dashboardUrl}}" class="btn">Ver en CRM Dashboard</a>
+        </div>
+    </div>
+</body>
+
+</html>

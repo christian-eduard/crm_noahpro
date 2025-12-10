@@ -1,0 +1,160 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - complementary [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - generic [ref=e8]: "N"
+        - generic [ref=e9]:
+          - heading "NoahPro" [level=1] [ref=e10]
+          - paragraph [ref=e11]: CRM Pro
+      - button [ref=e12] [cursor=pointer]:
+        - img [ref=e13]
+    - navigation [ref=e15]:
+      - button "Dashboard Panel principal" [ref=e16] [cursor=pointer]:
+        - img [ref=e18]
+        - generic [ref=e21]:
+          - paragraph [ref=e22]: Dashboard
+          - paragraph [ref=e23]: Panel principal
+      - button "Leads Gestión de leads" [ref=e24] [cursor=pointer]:
+        - img [ref=e26]
+        - generic [ref=e31]:
+          - paragraph [ref=e32]: Leads
+          - paragraph [ref=e33]: Gestión de leads
+      - button "Clientes Cartera de clientes" [ref=e34] [cursor=pointer]:
+        - img [ref=e36]
+        - generic [ref=e41]:
+          - paragraph [ref=e42]: Clientes
+          - paragraph [ref=e43]: Cartera de clientes
+      - button "Propuestas Gestión de propuestas" [ref=e44] [cursor=pointer]:
+        - img [ref=e46]
+        - generic [ref=e49]:
+          - paragraph [ref=e50]: Propuestas
+          - paragraph [ref=e51]: Gestión de propuestas
+      - button "Chat Conversaciones" [ref=e52] [cursor=pointer]:
+        - img [ref=e54]
+        - generic [ref=e56]:
+          - paragraph [ref=e57]: Chat
+          - paragraph [ref=e58]: Conversaciones
+      - button "Analytics Métricas y reportes" [ref=e59] [cursor=pointer]:
+        - img [ref=e61]
+        - generic [ref=e63]:
+          - paragraph [ref=e64]: Analytics
+          - paragraph [ref=e65]: Métricas y reportes
+      - button "Configuración Ajustes del sistema" [ref=e66] [cursor=pointer]:
+        - img [ref=e68]
+        - generic [ref=e71]:
+          - paragraph [ref=e72]: Configuración
+          - paragraph [ref=e73]: Ajustes del sistema
+  - generic [ref=e74]:
+    - banner [ref=e75]:
+      - generic [ref=e76]:
+        - generic [ref=e78]:
+          - textbox "Buscar leads, propuestas, contactos..." [ref=e79]
+          - img [ref=e80]
+        - generic [ref=e82]:
+          - button "Ayuda" [ref=e83] [cursor=pointer]:
+            - img [ref=e84]
+          - button [ref=e87] [cursor=pointer]:
+            - img [ref=e88]
+          - button "Modo Oscuro" [ref=e90] [cursor=pointer]:
+            - img [ref=e91]
+          - button "+ Nuevo" [ref=e94] [cursor=pointer]:
+            - generic [ref=e95]: + Nuevo
+            - img [ref=e96]
+          - button "A Admin admin@noahpro.com" [ref=e99] [cursor=pointer]:
+            - generic [ref=e100]: A
+            - generic [ref=e101]:
+              - paragraph [ref=e102]: Admin
+              - paragraph [ref=e103]: admin@noahpro.com
+            - img [ref=e104]
+    - main [ref=e106]:
+      - generic [ref=e107]:
+        - generic [ref=e109]:
+          - heading "Configuración" [level=3] [ref=e111]
+          - navigation [ref=e112]:
+            - button "General" [ref=e113] [cursor=pointer]:
+              - img [ref=e114]
+              - generic [ref=e117]: General
+            - button "Usuarios" [active] [ref=e118] [cursor=pointer]:
+              - img [ref=e119]
+              - generic [ref=e122]: Usuarios
+            - button "Estados" [ref=e123] [cursor=pointer]:
+              - img [ref=e124]
+              - generic [ref=e126]: Estados
+            - button "Automatización" [ref=e127] [cursor=pointer]:
+              - img [ref=e128]
+              - generic [ref=e131]: Automatización
+            - button "Integraciones" [ref=e132] [cursor=pointer]:
+              - img [ref=e133]
+              - generic [ref=e135]: Integraciones
+            - button "Plantillas Email" [ref=e136] [cursor=pointer]:
+              - img [ref=e137]
+              - generic [ref=e140]: Plantillas Email
+            - button "Plantillas Propuestas" [ref=e141] [cursor=pointer]:
+              - img [ref=e142]
+              - generic [ref=e145]: Plantillas Propuestas
+            - button "Email (SMTP)" [ref=e146] [cursor=pointer]:
+              - img [ref=e147]
+              - generic [ref=e150]: Email (SMTP)
+            - button "Notificaciones" [ref=e151] [cursor=pointer]:
+              - img [ref=e152]
+              - generic [ref=e155]: Notificaciones
+        - generic [ref=e159]:
+          - generic [ref=e160]:
+            - generic [ref=e161]:
+              - heading "Gestión de Usuarios" [level=3] [ref=e162]:
+                - img [ref=e163]
+                - text: Gestión de Usuarios
+              - paragraph [ref=e166]: Administra los accesos al panel CRM
+            - button "Nuevo Usuario" [ref=e167] [cursor=pointer]:
+              - img [ref=e168]
+              - text: Nuevo Usuario
+          - generic [ref=e169]:
+            - img [ref=e170]
+            - textbox "Buscar usuarios..." [ref=e173]
+          - table [ref=e175]:
+            - rowgroup [ref=e176]:
+              - row "Usuario Email Rol Fecha Creación Acciones" [ref=e177]:
+                - columnheader "Usuario" [ref=e178]
+                - columnheader "Email" [ref=e179]
+                - columnheader "Rol" [ref=e180]
+                - columnheader "Fecha Creación" [ref=e181]
+                - columnheader "Acciones" [ref=e182]
+            - rowgroup [ref=e183]:
+              - row "I Ivan @ivan ivan@noahpro.es admin 12/3/2025" [ref=e184]:
+                - cell "I Ivan @ivan" [ref=e185]:
+                  - generic [ref=e186]:
+                    - generic [ref=e187]: I
+                    - generic [ref=e188]:
+                      - generic [ref=e189]: Ivan
+                      - generic [ref=e190]: "@ivan"
+                - cell "ivan@noahpro.es" [ref=e191]
+                - cell "admin" [ref=e192]
+                - cell "12/3/2025" [ref=e193]
+                - cell [ref=e194]:
+                  - generic [ref=e195]:
+                    - button "Editar" [ref=e196] [cursor=pointer]:
+                      - img [ref=e197]
+                    - button "Eliminar" [ref=e199] [cursor=pointer]:
+                      - img [ref=e200]
+              - row "A admin @admin admin@example.com admin 12/3/2025" [ref=e203]:
+                - cell "A admin @admin" [ref=e204]:
+                  - generic [ref=e205]:
+                    - generic [ref=e206]: A
+                    - generic [ref=e207]:
+                      - generic [ref=e208]: admin
+                      - generic [ref=e209]: "@admin"
+                - cell "admin@example.com" [ref=e210]
+                - cell "admin" [ref=e211]
+                - cell "12/3/2025" [ref=e212]
+                - cell [ref=e213]:
+                  - generic [ref=e214]:
+                    - button "Editar" [ref=e215] [cursor=pointer]:
+                      - img [ref=e216]
+                    - button "Eliminar" [ref=e218] [cursor=pointer]:
+                      - img [ref=e219]
+  - button [ref=e222] [cursor=pointer]:
+    - img [ref=e223]
+```

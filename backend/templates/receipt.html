@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recibo de Pago {{receiptNumber}} - NoahPro CRM</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f5;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            padding: 40px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .content {
+            padding: 40px 30px;
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        .receipt-box {
+            background-color: #ecfdf5;
+            border-left: 4px solid #10b981;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 4px;
+        }
+
+        .payment-details {
+            background-color: #f9fafb;
+            border-radius: 6px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+            font-weight: bold;
+            font-size: 18px;
+            color: #059669;
+            padding-top: 15px;
+        }
+
+        .footer {
+            background-color: #f7fafc;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #e2e8f0;
+            color: #a0aec0;
+            font-size: 12px;
+        }
+
+        .button {
+            display: inline-block;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 14px 28px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 16px;
+            box-shadow: 0 4px 6px rgba(16, 185, 129, 0.25);
+        }
+
+        .icon-container {
+            background-color: rgba(255, 255, 255, 0.2);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="icon-container">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                </svg>
+            </div>
+            <h1 style="margin: 0; font-size: 24px;">Pago Recibido</h1>
+            <p style="color: rgba(255,255,255,0.9); margin-top: 10px;">Recibo {{receiptNumber}}</p>
+        </div>
+
+        <div class="content">
+            <p>Hola <strong>{{clientName}}</strong>,</p>
+
+            <p>Hemos recibido correctamente tu pago de <strong>{{paymentAmount}}</strong> correspondiente a la factura
+                <strong>{{invoiceNumber}}</strong>.
+            </p>
+
+            <div class="receipt-box">
+                <h3 style="margin: 0 0 10px 0; color: #065f46;">Pago Confirmado</h3>
+                <p style="margin: 0; color: #047857;">Tu pago ha sido procesado exitosamente.</p>
+            </div>
+
+            <div class="payment-details">
+                <div class="detail-row">
+                    <span style="color: #6b7280;">Número de Recibo:</span>
+                    <span style="color: #1f2937; font-weight: 600;">{{receiptNumber}}</span>
+                </div>
+                <div class="detail-row">
+                    <span style="color: #6b7280;">Factura Relacionada:</span>
+                    <span style="color: #1f2937;">{{invoiceNumber}}</span>
+                </div>
+                <div class="detail-row">
+                    <span style="color: #6b7280;">Fecha de Pago:</span>
+                    <span style="color: #1f2937;">{{paymentDate}}</span>
+                </div>
+                <div class="detail-row">
+                    <span style="color: #6b7280;">Método de Pago:</span>
+                    <span style="color: #1f2937;">{{paymentMethod}}</span>
+                </div>
+                <div class="detail-row">
+                    <span>Monto Pagado:</span>
+                    <span>{{paymentAmount}}</span>
+                </div>
+            </div>
+
+            <p style="background-color: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #f59e0b;">
+                <strong style="color: #92400e;">Estado de la Factura:</strong><br>
+                <span style="color: #78350f;">{{invoiceStatusMessage}}</span>
+            </p>
+
+            <p>Puedes descargar este recibo y ver el detalle completo de la factura en el siguiente enlace:</p>
+
+            <div style="text-align: center; margin: 40px 0;">
+                <a href="{{invoiceUrl}}" class="button">Ver Factura y Recibo</a>
+            </div>
+
+            <p style="color: #718096; font-size: 14px; text-align: center;">
+                Gracias por tu pago. Si tienes alguna pregunta, puedes responder a este correo.
+            </p>
+        </div>
+
+        <div class="footer">
+            <p>© {{year}} NoahPro CRM. Todos los derechos reservados.</p>
+            <p style="margin-top: 10px;">Sistema de Gestión de Leads y Facturación</p>
+        </div>
+    </div>
+</body>
+
+</html>
