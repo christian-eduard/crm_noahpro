@@ -10,7 +10,7 @@ const getNotifications = async (req, res) => {
         const params = [userId];
 
         if (unreadOnly === 'true') {
-            query += ' AND is_read = FALSE';
+            query += ' AND read = FALSE';
         }
 
         query += ' ORDER BY created_at DESC LIMIT $2';
@@ -31,7 +31,7 @@ const markAsRead = async (req, res) => {
         const userId = req.user?.userId || req.user?.id || 1;
 
         const result = await db.query(
-            'UPDATE notifications SET is_read = TRUE WHERE id = $1 AND user_id = $2 RETURNING *',
+            'UPDATE notifications SET read = TRUE WHERE id = $1 AND user_id = $2 RETURNING *',
             [id, userId]
         );
 
@@ -52,7 +52,7 @@ const markAllAsRead = async (req, res) => {
         const userId = req.user?.userId || req.user?.id || 1;
 
         await db.query(
-            'UPDATE notifications SET is_read = TRUE WHERE user_id = $1 AND is_read = FALSE',
+            'UPDATE notifications SET read = TRUE WHERE user_id = $1 AND read = FALSE',
             [userId]
         );
 
@@ -69,7 +69,7 @@ const getUnreadCount = async (req, res) => {
         const userId = req.user?.userId || req.user?.id || 1;
 
         const result = await db.query(
-            'SELECT COUNT(*) as count FROM notifications WHERE user_id = $1 AND is_read = FALSE',
+            'SELECT COUNT(*) as count FROM notifications WHERE user_id = $1 AND read = FALSE',
             [userId]
         );
 
