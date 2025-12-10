@@ -3,7 +3,10 @@ const path = require('path');
 const fs = require('fs');
 
 // Ensure directory exists
-const uploadDir = path.join(__dirname, '../uploads/avatars');
+const uploadDir = process.env.NODE_ENV === 'production'
+    ? '/var/www/vhosts/noahpro.es/httpdocs/uploads/avatars'
+    : path.join(__dirname, '../uploads/avatars');
+
 if (!fs.existsSync(uploadDir)) {
     fs.mkdirSync(uploadDir, { recursive: true });
 }
