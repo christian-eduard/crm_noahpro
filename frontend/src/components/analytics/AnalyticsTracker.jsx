@@ -1,3 +1,4 @@
+import { API_URL, SOCKET_URL } from '../../config';
 import React, { useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -13,7 +14,7 @@ const AnalyticsTracker = () => {
         // Track page view
         const trackPageView = async () => {
             try {
-                await fetch('http://localhost:3002/api/analytics/track', {
+                await fetch(`${API_URL}/analytics/track`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({

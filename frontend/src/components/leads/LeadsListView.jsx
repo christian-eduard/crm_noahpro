@@ -1,3 +1,4 @@
+import { API_URL, SOCKET_URL } from '../../config';
 import React, { useState } from 'react';
 import { Eye, UserPlus, Trash2 } from 'lucide-react';
 import ConfirmModal from '../shared/ConfirmModal';
@@ -20,7 +21,7 @@ const LeadsListView = ({ leads, onLeadClick, onStatusChange, onDeleteLead }) => 
         if (!convertModal.lead) return;
 
         try {
-            const response = await fetch('http://localhost:3002/api/clients/convert-lead', {
+            const response = await fetch(`${API_URL}/clients/convert-lead`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -58,7 +59,7 @@ const LeadsListView = ({ leads, onLeadClick, onStatusChange, onDeleteLead }) => 
         if (!confirmDialog.leadToDelete) return;
 
         try {
-            const response = await fetch(`http://localhost:3002/api/leads/${confirmDialog.leadToDelete.id}`, {
+            const response = await fetch(`${API_URL}/leads/${confirmDialog.leadToDelete.id}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('crm_token')}`

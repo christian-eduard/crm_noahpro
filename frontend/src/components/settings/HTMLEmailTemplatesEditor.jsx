@@ -1,3 +1,4 @@
+import { API_URL, SOCKET_URL } from '../../config';
 import React, { useState, useEffect, useRef } from 'react';
 import { Mail, Code, Eye, Save, ArrowLeft, Loader, Copy, RefreshCw } from 'lucide-react';
 import { useToast } from '../../contexts/ToastContext';
@@ -18,7 +19,7 @@ const HTMLEmailTemplatesEditor = () => {
 
     const fetchTemplates = async () => {
         try {
-            const response = await fetch('http://localhost:3002/api/email-templates', {
+            const response = await fetch(`${API_URL}/email-templates`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('crm_token')}`
                 }
@@ -49,7 +50,7 @@ const HTMLEmailTemplatesEditor = () => {
 
         setSaving(true);
         try {
-            const response = await fetch(`http://localhost:3002/api/email-templates/${selectedTemplate.id}`, {
+            const response = await fetch(`${API_URL}/email-templates/${selectedTemplate.id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

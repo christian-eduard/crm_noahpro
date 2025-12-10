@@ -1,3 +1,4 @@
+import { API_URL, SOCKET_URL } from '../../config';
 import React, { useState, useEffect } from 'react';
 import { Calendar, Check, X, ExternalLink } from 'lucide-react';
 
@@ -14,7 +15,7 @@ const GoogleCalendarSettings = () => {
     const checkConnection = async () => {
         try {
             // Simulated API call
-            // const response = await fetch('http://localhost:3002/api/calendar/status');
+            // const response = await fetch(`${API_URL}/calendar/status`);
             // const data = await response.json();
 
             // Mock data
@@ -30,7 +31,7 @@ const GoogleCalendarSettings = () => {
 
     const handleConnect = () => {
         // Redirect to Google OAuth
-        window.location.href = 'http://localhost:3002/api/auth/google';
+        window.location.href = `${API_URL}/auth/google`;
     };
 
     const handleDisconnect = async () => {

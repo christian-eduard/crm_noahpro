@@ -1,3 +1,4 @@
+import { API_URL, SOCKET_URL } from '../../config';
 import React, { useState, useEffect } from 'react';
 
 const NotificationBell = () => {
@@ -24,7 +25,7 @@ const NotificationBell = () => {
 
     const fetchNotifications = async () => {
         try {
-            const response = await fetch('http://localhost:3002/api/notifications?limit=10');
+            const response = await fetch(`${API_URL}/notifications?limit=10`);
             if (response.ok) {
                 const data = await response.json();
                 setNotifications(data);
@@ -36,7 +37,7 @@ const NotificationBell = () => {
 
     const fetchUnreadCount = async () => {
         try {
-            const response = await fetch('http://localhost:3002/api/notifications/unread-count');
+            const response = await fetch(`${API_URL}/notifications/unread-count`);
             if (response.ok) {
                 const data = await response.json();
                 setUnreadCount(data.count);
@@ -48,7 +49,7 @@ const NotificationBell = () => {
 
     const markAsRead = async (id) => {
         try {
-            await fetch(`http://localhost:3002/api/notifications/${id}/read`, {
+            await fetch(`${API_URL}/notifications/${id}/read`, {
                 method: 'PUT'
             });
             setNotifications(prev =>
@@ -62,7 +63,7 @@ const NotificationBell = () => {
 
     const markAllAsRead = async () => {
         try {
-            await fetch('http://localhost:3002/api/notifications/mark-all-read', {
+            await fetch(`${API_URL}/notifications/mark-all-read`, {
                 method: 'PUT'
             });
             setNotifications(prev => prev.map(n => ({ ...n, is_read: true })));

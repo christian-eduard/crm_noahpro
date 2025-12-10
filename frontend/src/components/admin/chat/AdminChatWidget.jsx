@@ -1,3 +1,4 @@
+import { API_URL, SOCKET_URL } from '../../../config';
 import React, { useState, useEffect, useRef } from 'react';
 import { MessageSquare, X, Send, Minimize2, Maximize2 } from 'lucide-react';
 import { usePusher } from '../../../contexts/PusherContext';
@@ -55,7 +56,7 @@ const AdminChatWidget = () => {
 
     const fetchConversations = async () => {
         try {
-            const response = await fetch('http://localhost:3002/api/chat/conversations');
+            const response = await fetch(`${API_URL}/chat/conversations`);
             if (response.ok) {
                 const data = await response.json();
                 setConversations(data);
@@ -70,7 +71,7 @@ const AdminChatWidget = () => {
 
     const fetchMessages = async (sessionId) => {
         try {
-            const response = await fetch(`http://localhost:3002/api/chat/conversations/${sessionId}/messages`);
+            const response = await fetch(`${API_URL}/chat/conversations/${sessionId}/messages`);
             if (response.ok) {
                 const data = await response.json();
                 setMessages(data);
@@ -92,7 +93,7 @@ const AdminChatWidget = () => {
         };
 
         try {
-            const response = await fetch('http://localhost:3002/api/chat/message', {
+            const response = await fetch(`${API_URL}/chat/message`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

@@ -1,3 +1,4 @@
+import { API_URL, SOCKET_URL } from '../../config';
 import React, { useState, useEffect } from 'react';
 
 const ContactForm = ({ onClose }) => {
@@ -28,7 +29,7 @@ const ContactForm = ({ onClose }) => {
         setError('');
 
         try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3002'}/api/leads`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || SOCKET_URL}/api/leads`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

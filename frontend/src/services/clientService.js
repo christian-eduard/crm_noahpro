@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:3002/api';
+import { API_URL } from '../config';
 
 const getAuthHeaders = () => {
     const token = localStorage.getItem('crm_token');

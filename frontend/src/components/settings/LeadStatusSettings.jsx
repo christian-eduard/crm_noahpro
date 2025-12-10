@@ -1,3 +1,4 @@
+import { API_URL, SOCKET_URL } from '../../config';
 import React, { useState, useEffect } from 'react';
 import {
     Plus, Edit, Trash2, GripVertical, Save,
@@ -48,7 +49,7 @@ const LeadStatusSettings = () => {
 
     const fetchStatuses = async () => {
         try {
-            const response = await fetch('http://localhost:3002/api/settings/lead-statuses', {
+            const response = await fetch(`${API_URL}/settings/lead-statuses`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('crm_token')}`
                 }
@@ -282,7 +283,7 @@ const LeadStatusSettings = () => {
                 <button
                     onClick={async () => {
                         try {
-                            const response = await fetch('http://localhost:3002/api/settings/lead-statuses', {
+                            const response = await fetch(`${API_URL}/settings/lead-statuses`, {
                                 method: 'PUT',
                                 headers: {
                                     'Content-Type': 'application/json',

@@ -1,3 +1,4 @@
+import { API_URL, SOCKET_URL } from '../../config';
 import React, { useState } from 'react';
 import { Lock, User, ArrowRight, Zap, Eye, EyeOff } from 'lucide-react';
 import Button from '../shared/Button';
@@ -15,7 +16,7 @@ const CrmLogin = () => {
         setError('');
 
         try {
-            const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3002/api';
+            const API_URL = import.meta.env.VITE_API_URL || API_URL;
             const response = await fetch(`${API_URL}/auth/login`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },

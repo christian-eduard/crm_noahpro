@@ -1,3 +1,4 @@
+import { API_URL, SOCKET_URL } from '../../config';
 import React, { useState, useEffect } from 'react';
 import Button from './Button';
 import TagBadge from './TagBadge';
@@ -15,7 +16,7 @@ const TagManager = ({ leadId, currentTags = [], onClose, onUpdate }) => {
 
     const fetchAvailableTags = async () => {
         try {
-            const response = await fetch('http://localhost:3002/api/tags');
+            const response = await fetch(`${API_URL}/tags`);
             if (response.ok) {
                 const tags = await response.json();
                 setAvailableTags(tags);
@@ -27,7 +28,7 @@ const TagManager = ({ leadId, currentTags = [], onClose, onUpdate }) => {
 
     const createTag = async () => {
         try {
-            const response = await fetch('http://localhost:3002/api/tags', {
+            const response = await fetch(`${API_URL}/tags`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ name: newTagName, color: newTagColor })
@@ -47,7 +48,7 @@ const TagManager = ({ leadId, currentTags = [], onClose, onUpdate }) => {
 
     const addTagToLead = async (tag) => {
         try {
-            const response = await fetch(`http://localhost:3002/api/tags/lead/${leadId}`, {
+            const response = await fetch(`${API_URL}/tags/lead/${leadId}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ tagId: tag.id })
@@ -64,7 +65,7 @@ const TagManager = ({ leadId, currentTags = [], onClose, onUpdate }) => {
 
     const removeTagFromLead = async (tagId) => {
         try {
-            const response = await fetch(`http://localhost:3002/api/tags/lead/${leadId}/${tagId}`, {
+            const response = await fetch(`${API_URL}/tags/lead/${leadId}/${tagId}`, {
                 method: 'DELETE'
             });
 

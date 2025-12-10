@@ -1,3 +1,4 @@
+import { API_URL, SOCKET_URL } from '../../config';
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { ChevronLeft, ChevronRight, Plus, Calendar as CalendarIcon } from 'lucide-react';
@@ -19,7 +20,7 @@ const DashboardCalendar = ({ compact = false }) => {
     const fetchEvents = async () => {
         try {
             const token = localStorage.getItem('crm_token');
-            const response = await fetch('http://localhost:3002/api/calendar/events', {
+            const response = await fetch(`${API_URL}/calendar/events`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -44,7 +45,7 @@ const DashboardCalendar = ({ compact = false }) => {
     const fetchLeads = async () => {
         try {
             const token = localStorage.getItem('crm_token');
-            const response = await fetch('http://localhost:3002/api/leads', {
+            const response = await fetch(`${API_URL}/leads`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -61,8 +62,8 @@ const DashboardCalendar = ({ compact = false }) => {
     const handleSaveEvent = async (eventData) => {
         try {
             const url = editingEvent
-                ? `http://localhost:3002/api/calendar/events/${editingEvent.id}`
-                : 'http://localhost:3002/api/calendar/events';
+                ? `${API_URL}/calendar/events/${editingEvent.id}`
+                : `${API_URL}/calendar/events`;
 
             const method = editingEvent ? 'PUT' : 'POST';
             const token = localStorage.getItem('crm_token');
@@ -88,7 +89,7 @@ const DashboardCalendar = ({ compact = false }) => {
     const handleDeleteEvent = async (eventId) => {
         try {
             const token = localStorage.getItem('crm_token');
-            const response = await fetch(`http://localhost:3002/api/calendar/events/${eventId}`, {
+            const response = await fetch(`${API_URL}/calendar/events/${eventId}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`

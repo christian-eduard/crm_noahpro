@@ -1,3 +1,4 @@
+import { API_URL, SOCKET_URL } from '../../config';
 import React, { useState, useEffect } from 'react';
 import { useToast } from '../../contexts/ToastContext';
 
@@ -22,7 +23,7 @@ const SMTPSettings = () => {
 
     const fetchSettings = async () => {
         try {
-            const response = await fetch('http://localhost:3002/api/settings/smtp');
+            const response = await fetch(`${API_URL}/settings/smtp`);
             if (response.ok) {
                 const data = await response.json();
                 setSettings({
@@ -45,7 +46,7 @@ const SMTPSettings = () => {
         setLoading(true);
 
         try {
-            const response = await fetch('http://localhost:3002/api/settings/smtp', {
+            const response = await fetch(`${API_URL}/settings/smtp`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(settings)
@@ -73,7 +74,7 @@ const SMTPSettings = () => {
         setTesting(true);
 
         try {
-            const response = await fetch('http://localhost:3002/api/settings/smtp/test', {
+            const response = await fetch(`${API_URL}/settings/smtp/test`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ ...settings, testEmail })

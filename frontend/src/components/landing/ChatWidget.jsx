@@ -1,3 +1,4 @@
+import { API_URL, SOCKET_URL } from '../../config';
 import React, { useState, useEffect, useRef } from 'react';
 import Pusher from 'pusher-js';
 import { v4 as uuidv4 } from 'uuid';
@@ -14,7 +15,7 @@ const ChatWidget = () => {
 
     useEffect(() => {
         // Load config
-        fetch('http://localhost:3002/api/settings/public')
+        fetch(`${API_URL}/settings/public`)
             .then(res => res.json())
             .then(data => {
                 if (data.chat_enabled) {
@@ -40,7 +41,7 @@ const ChatWidget = () => {
         setSessionId(storedSession);
 
         // Load previous messages
-        fetch(`http://localhost:3002/api/chat/conversations/${storedSession}/messages`)
+        fetch(`${API_URL}/chat/conversations/${storedSession}/messages`)
             .then(res => {
                 if (res.ok) return res.json();
                 return [];
@@ -85,7 +86,7 @@ const ChatWidget = () => {
         };
 
         try {
-            const response = await fetch('http://localhost:3002/api/chat/message', {
+            const response = await fetch(`${API_URL}/chat/message`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

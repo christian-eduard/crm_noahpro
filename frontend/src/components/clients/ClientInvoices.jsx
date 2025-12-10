@@ -1,3 +1,4 @@
+import { API_URL, SOCKET_URL } from '../../config';
 import React, { useState, useEffect } from 'react';
 import { FiFileText, FiDownload, FiEye, FiSearch, FiFilter, FiArrowLeft } from 'react-icons/fi';
 import { useToast } from '../../contexts/ToastContext';
@@ -18,7 +19,7 @@ const ClientInvoices = ({ clientId }) => {
         try {
             setLoading(true);
             const token = localStorage.getItem('crm_token');
-            const response = await fetch(`http://localhost:3002/api/invoices?client_id=${clientId}`, {
+            const response = await fetch(`${API_URL}/invoices?client_id=${clientId}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }

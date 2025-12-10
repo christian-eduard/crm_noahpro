@@ -1,3 +1,4 @@
+import { API_URL, SOCKET_URL } from '../../config';
 import React, { useState, useEffect } from 'react';
 import { Settings, BarChart3, Bot, Plug, Mail, Bell, Save, MessageSquare, Radio, Key, Server, Globe, FileText, User, Building2, Phone, MapPin, CreditCard } from 'lucide-react';
 import Button from '../shared/Button';
@@ -67,7 +68,7 @@ const SettingsPanel = () => {
     const fetchSettings = async () => {
         try {
             const token = localStorage.getItem('crm_token');
-            const response = await fetch('http://localhost:3002/api/settings', {
+            const response = await fetch(`${API_URL}/settings`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -124,7 +125,7 @@ const SettingsPanel = () => {
 
         try {
             const token = localStorage.getItem('crm_token');
-            const response = await fetch('http://localhost:3002/api/settings', {
+            const response = await fetch(`${API_URL}/settings`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

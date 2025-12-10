@@ -1,3 +1,4 @@
+import { API_URL, SOCKET_URL } from '../../config';
 import React, { useState, useEffect } from 'react';
 import { Save, FileText, Hash, Percent, Calendar, CheckCircle, Building2, Phone, Mail, Globe, MapPin, CreditCard } from 'lucide-react';
 import Input from '../shared/Input';
@@ -22,7 +23,7 @@ const InvoiceSettings = () => {
     const fetchSettings = async () => {
         try {
             const token = localStorage.getItem('crm_token');
-            const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3002'}/api/settings`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || SOCKET_URL}/api/settings`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -58,7 +59,7 @@ const InvoiceSettings = () => {
 
         try {
             const token = localStorage.getItem('crm_token');
-            const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3002'}/api/settings`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || SOCKET_URL}/api/settings`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

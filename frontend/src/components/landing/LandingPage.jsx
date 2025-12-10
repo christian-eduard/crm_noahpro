@@ -1,3 +1,4 @@
+import { API_URL, SOCKET_URL } from '../../config';
 import React, { useState, useEffect } from 'react';
 import ContactForm from './ContactForm';
 import ChatWidget from './ChatWidget';
@@ -19,7 +20,7 @@ const LandingPage = () => {
     }, []);
 
     useEffect(() => {
-        fetch('http://localhost:3002/api/settings/public')
+        fetch(`${API_URL}/settings/public`)
             .then(res => res.json())
             .then(data => {
                 setDemoUrl(data.demo_url || 'http://localhost:5173/demo');

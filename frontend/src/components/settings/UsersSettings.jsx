@@ -1,3 +1,4 @@
+import { API_URL, SOCKET_URL } from '../../config';
 import React, { useState, useEffect } from 'react';
 import { User, Mail, Shield, Plus, Edit2, Trash2, X, Check, Search, Lock } from 'lucide-react';
 import Button from '../shared/Button';
@@ -36,7 +37,7 @@ const UsersSettings = () => {
 
     const fetchUsers = async () => {
         try {
-            const response = await fetch('http://localhost:3002/api/users', {
+            const response = await fetch(`${API_URL}/users`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('crm_token')} `
                 }
@@ -78,8 +79,8 @@ const UsersSettings = () => {
 
         try {
             const url = editingUser
-                ? `http://localhost:3002/api/users/${editingUser.id}`
-                : 'http://localhost:3002/api/users';
+                ? `${API_URL}/users/${editingUser.id}`
+                : `${API_URL}/users`;
 
             const method = editingUser ? 'PUT' : 'POST';
 
@@ -137,7 +138,7 @@ const UsersSettings = () => {
             message: `¿Estás seguro de que deseas eliminar al usuario "${user.username}"? Esta acción no se puede deshacer.`,
             onConfirm: async () => {
                 try {
-                    const response = await fetch(`http://localhost:3002/api/users/${user.id}`, {
+                    const response = await fetch(`${API_URL}/users/${user.id}`, {
                         method: 'DELETE',
                         headers: {
                             'Authorization': `Bearer ${localStorage.getItem('crm_token')}`

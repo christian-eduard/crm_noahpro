@@ -1,3 +1,4 @@
+import { API_URL, SOCKET_URL } from '../../config';
 import React, { useState, useEffect } from 'react';
 import { ArrowLeft, Save, Server, Globe, Lock, Eye, EyeOff, Database, User, Key, FileText, Edit2, X } from 'lucide-react';
 import { useToast } from '../../contexts/ToastContext';
@@ -24,7 +25,7 @@ const ClientDetailView = ({ clientId, onBack }) => {
 
     const fetchClientDetails = async () => {
         try {
-            const response = await fetch(`http://localhost:3002/api/clients/${clientId}`, {
+            const response = await fetch(`${API_URL}/clients/${clientId}`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('crm_token')}`
                 }
@@ -73,7 +74,7 @@ const ClientDetailView = ({ clientId, onBack }) => {
 
     const handleSaveClient = async () => {
         try {
-            const response = await fetch(`http://localhost:3002/api/clients/${clientId}`, {
+            const response = await fetch(`${API_URL}/clients/${clientId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -101,7 +102,7 @@ const ClientDetailView = ({ clientId, onBack }) => {
 
     const handleSaveInstallation = async () => {
         try {
-            const response = await fetch(`http://localhost:3002/api/clients/${clientId}/installation`, {
+            const response = await fetch(`${API_URL}/clients/${clientId}/installation`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

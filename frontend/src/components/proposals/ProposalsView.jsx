@@ -1,3 +1,4 @@
+import { API_URL, SOCKET_URL } from '../../config';
 import React, { useState, useEffect } from 'react';
 import {
     FileText, Eye, Mail, Calendar, Filter, Download, Search,
@@ -23,7 +24,7 @@ const ProposalsView = () => {
 
     const fetchProposals = async () => {
         try {
-            const response = await fetch('http://localhost:3002/api/proposals', {
+            const response = await fetch(`${API_URL}/proposals`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('crm_token')}`
                 }
@@ -42,10 +43,10 @@ const ProposalsView = () => {
     const fetchLeadsWithoutProposals = async () => {
         try {
             const [leadsRes, proposalsRes] = await Promise.all([
-                fetch('http://localhost:3002/api/leads', {
+                fetch(`${API_URL}/leads`, {
                     headers: { 'Authorization': `Bearer ${localStorage.getItem('crm_token')}` }
                 }),
-                fetch('http://localhost:3002/api/proposals', {
+                fetch(`${API_URL}/proposals`, {
                     headers: { 'Authorization': `Bearer ${localStorage.getItem('crm_token')}` }
                 })
             ]);
@@ -77,7 +78,7 @@ const ProposalsView = () => {
 
         setCreating(true);
         try {
-            const response = await fetch('http://localhost:3002/api/proposals', {
+            const response = await fetch(`${API_URL}/proposals`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -108,7 +109,7 @@ const ProposalsView = () => {
 
     const handleResendEmail = async (proposalId) => {
         try {
-            const response = await fetch(`http://localhost:3002/api/proposals/${proposalId}/resend-email`, {
+            const response = await fetch(`${API_URL}/proposals/${proposalId}/resend-email`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('crm_token')}`

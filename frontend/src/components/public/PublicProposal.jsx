@@ -1,3 +1,4 @@
+import { API_URL, SOCKET_URL } from '../../config';
 import React, { useState, useEffect } from 'react';
 import { useToast } from '../../contexts/ToastContext';
 import Button from '../shared/Button';
@@ -33,7 +34,7 @@ const PublicProposal = () => {
 
     const fetchProposal = async () => {
         try {
-            const response = await fetch(`http://localhost:3002/api/proposals/public/${token}`);
+            const response = await fetch(`${API_URL}/proposals/public/${token}`);
             if (!response.ok) {
                 throw new Error('Propuesta no encontrada o expirada');
             }
@@ -53,7 +54,7 @@ const PublicProposal = () => {
     // Track proposal view
     const trackProposalView = async (proposalToken) => {
         try {
-            await fetch(`http://localhost:3002/api/tracking/proposals/${proposalToken}/view`, {
+            await fetch(`${API_URL}/tracking/proposals/${proposalToken}/view`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ duration: 0 })
@@ -66,7 +67,7 @@ const PublicProposal = () => {
     const fetchComments = async () => {
         if (!proposal) return;
         try {
-            const response = await fetch(`http://localhost:3002/api/proposals/${proposal.id}/comments`);
+            const response = await fetch(`${API_URL}/proposals/${proposal.id}/comments`);
             if (response.ok) {
                 const data = await response.json();
                 setComments(Array.isArray(data) ? data : []);
@@ -83,7 +84,7 @@ const PublicProposal = () => {
 
         setSubmittingComment(true);
         try {
-            const response = await fetch(`http://localhost:3002/api/proposals/${proposal.id}/comments`, {
+            const response = await fetch(`${API_URL}/proposals/${proposal.id}/comments`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -116,7 +117,7 @@ const PublicProposal = () => {
     const handleSignatureSubmit = async (signatureData) => {
         setAccepting(true);
         try {
-            const response = await fetch(`http://localhost:3002/api/proposals/${proposal.id}/accept`, {
+            const response = await fetch(`${API_URL}/proposals/${proposal.id}/accept`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(signatureData)
@@ -318,7 +319,7 @@ const PublicProposal = () => {
                                         const date = new Date(e.target.value);
                                         if (confirm(`¿Confirmar reunión para el ${date.toLocaleString()}?`)) {
                                             try {
-                                                const response = await fetch('http://localhost:3002/api/meetings', {
+                                                const response = await fetch(`${API_URL}/meetings`, {
                                                     method: 'POST',
                                                     headers: { 'Content-Type': 'application/json' },
                                                     body: JSON.stringify({

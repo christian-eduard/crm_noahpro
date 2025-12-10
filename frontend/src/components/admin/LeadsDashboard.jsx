@@ -1,3 +1,4 @@
+import { API_URL, SOCKET_URL } from '../../config';
 import React, { useState, useEffect } from 'react';
 import { useToast } from '../../contexts/ToastContext';
 import { Users, Target, Zap, CheckCircle, Mail, Phone, Building2, X, Plus, RefreshCw, MessageSquare, Trash2, LayoutGrid, List, Calendar, Download, BarChart3 } from 'lucide-react';
@@ -53,7 +54,7 @@ const LeadsDashboard = ({ activeSection }) => {
         try {
             // In a real app, this would be an API call
             // For now, we simulate the default statuses if API fails or returns empty
-            const response = await fetch('http://localhost:3002/api/settings/lead-statuses', {
+            const response = await fetch(`${API_URL}/settings/lead-statuses`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('crm_token')}`
                 }
@@ -69,7 +70,7 @@ const LeadsDashboard = ({ activeSection }) => {
 
     useEffect(() => {
         if (showProposalModal) {
-            fetch('http://localhost:3002/api/proposal-templates', {
+            fetch(`${API_URL}/proposal-templates`, {
                 headers: { 'Authorization': `Bearer ${localStorage.getItem('crm_token')}` }
             })
                 .then(res => res.json())
@@ -123,7 +124,7 @@ const LeadsDashboard = ({ activeSection }) => {
     const fetchLeadStats = async () => {
         try {
             const token = localStorage.getItem('crm_token');
-            const response = await fetch('http://localhost:3002/api/leads/stats', {
+            const response = await fetch(`${API_URL}/leads/stats`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -140,7 +141,7 @@ const LeadsDashboard = ({ activeSection }) => {
     const fetchLeads = async () => {
         try {
             const token = localStorage.getItem('crm_token');
-            const response = await fetch('http://localhost:3002/api/leads', {
+            const response = await fetch(`${API_URL}/leads`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -160,7 +161,7 @@ const LeadsDashboard = ({ activeSection }) => {
     const fetchProposalAndComments = async (leadId) => {
         try {
             const token = localStorage.getItem('crm_token');
-            const response = await fetch(`http://localhost:3002/api/proposals/lead/${leadId}`, {
+            const response = await fetch(`${API_URL}/proposals/lead/${leadId}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -171,7 +172,7 @@ const LeadsDashboard = ({ activeSection }) => {
                     const latestProposal = proposals[0];
                     setActiveProposal(latestProposal);
 
-                    const commentsResponse = await fetch(`http://localhost:3002/api/proposals/${latestProposal.id}/comments`, {
+                    const commentsResponse = await fetch(`${API_URL}/proposals/${latestProposal.id}/comments`, {
                         headers: { 'Authorization': `Bearer ${localStorage.getItem('crm_token')}` }
                     });
                     if (commentsResponse.ok) {
@@ -208,7 +209,7 @@ const LeadsDashboard = ({ activeSection }) => {
         if (!newAdminComment.trim() || !activeProposal) return;
 
         try {
-            const response = await fetch(`http://localhost:3002/api/proposals/${activeProposal.id}/comments`, {
+            const response = await fetch(`${API_URL}/proposals/${activeProposal.id}/comments`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -223,7 +224,7 @@ const LeadsDashboard = ({ activeSection }) => {
 
             if (response.ok) {
                 setNewAdminComment('');
-                const commentsResponse = await fetch(`http://localhost:3002/api/proposals/${activeProposal.id}/comments`, {
+                const commentsResponse = await fetch(`${API_URL}/proposals/${activeProposal.id}/comments`, {
                     headers: { 'Authorization': `Bearer ${localStorage.getItem('crm_token')}` }
                 });
                 if (commentsResponse.ok) {
@@ -241,7 +242,7 @@ const LeadsDashboard = ({ activeSection }) => {
 
     const updateLeadStatus = async (id, newStatus) => {
         try {
-            const response = await fetch(`http://localhost:3002/api/leads/${id}`, {
+            const response = await fetch(`${API_URL}/leads/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -288,7 +289,7 @@ const LeadsDashboard = ({ activeSection }) => {
     const createLead = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://localhost:3002/api/leads', {
+            const response = await fetch(`${API_URL}/leads`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -334,7 +335,7 @@ const LeadsDashboard = ({ activeSection }) => {
         if (!pendingProposal) return;
 
         try {
-            const response = await fetch('http://localhost:3002/api/proposals', {
+            const response = await fetch(`${API_URL}/proposals`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -367,7 +368,7 @@ const LeadsDashboard = ({ activeSection }) => {
             message: '¿Estás seguro de eliminar esta propuesta? Esta acción no se puede deshacer.',
             onConfirm: async () => {
                 try {
-                    const response = await fetch(`http://localhost:3002/api/proposals/${activeProposal.id}`, {
+                    const response = await fetch(`${API_URL}/proposals/${activeProposal.id}`, {
                         method: 'DELETE',
                         headers: {
                             'Authorization': `Bearer ${localStorage.getItem('crm_token')}`
@@ -639,7 +640,7 @@ const LeadsDashboard = ({ activeSection }) => {
                         <Button
                             variant="secondary"
                             onClick={() => {
-                                const url = `http://localhost:3002/api/export/leads/excel?status=${filterStatus}&search=${searchTerm}`;
+                                const url = `${API_URL}/export/leads/excel?status=${filterStatus}&search=${searchTerm}`;
                                 window.open(url, '_blank');
                             }}
                             size="sm"

@@ -1,3 +1,4 @@
+import { API_URL, SOCKET_URL } from '../../config';
 import React, { useState, useEffect } from 'react';
 import { Search, Plus, Filter, Eye, Trash2, Server, ExternalLink, Database, Users, CheckCircle, X } from 'lucide-react';
 import ConfirmModal from '../shared/ConfirmModal';
@@ -28,7 +29,7 @@ const ClientsListView = ({ onClientSelect }) => {
 
     const fetchClients = async () => {
         try {
-            const response = await fetch('http://localhost:3002/api/clients', {
+            const response = await fetch(`${API_URL}/clients`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('crm_token')}`
                 }
@@ -49,7 +50,7 @@ const ClientsListView = ({ onClientSelect }) => {
         e.preventDefault();
         setCreating(true);
         try {
-            const response = await fetch('http://localhost:3002/api/clients', {
+            const response = await fetch(`${API_URL}/clients`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -98,7 +99,7 @@ const ClientsListView = ({ onClientSelect }) => {
         if (!confirmDialog.clientToDelete) return;
 
         try {
-            const response = await fetch(`http://localhost:3002/api/clients/${confirmDialog.clientToDelete.id}`, {
+            const response = await fetch(`${API_URL}/clients/${confirmDialog.clientToDelete.id}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('crm_token')}`

@@ -1,3 +1,4 @@
+import { API_URL, SOCKET_URL } from '../../config';
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { Users, Sparkles, FileText, Trophy, Plus } from 'lucide-react';
@@ -66,7 +67,7 @@ const DashboardHome = () => {
     const fetchTasks = async () => {
         try {
             const token = localStorage.getItem('crm_token');
-            const response = await fetch('http://localhost:3002/api/tasks?completed=false', {
+            const response = await fetch(`${API_URL}/tasks?completed=false`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -83,8 +84,8 @@ const DashboardHome = () => {
     const handleSaveTask = async (taskData) => {
         try {
             const url = editingTask
-                ? `http://localhost:3002/api/tasks/${editingTask.id}`
-                : 'http://localhost:3002/api/tasks';
+                ? `${API_URL}/tasks/${editingTask.id}`
+                : `${API_URL}/tasks`;
 
             const method = editingTask ? 'PUT' : 'POST';
             const token = localStorage.getItem('crm_token');
@@ -110,7 +111,7 @@ const DashboardHome = () => {
     const handleToggleTask = async (taskId) => {
         try {
             const token = localStorage.getItem('crm_token');
-            const response = await fetch(`http://localhost:3002/api/tasks/${taskId}/toggle`, {
+            const response = await fetch(`${API_URL}/tasks/${taskId}/toggle`, {
                 method: 'PATCH',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -128,7 +129,7 @@ const DashboardHome = () => {
     const handleDeleteTask = async (taskId) => {
         try {
             const token = localStorage.getItem('crm_token');
-            const response = await fetch(`http://localhost:3002/api/tasks/${taskId}`, {
+            const response = await fetch(`${API_URL}/tasks/${taskId}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -146,7 +147,7 @@ const DashboardHome = () => {
     const fetchDashboardData = async () => {
         try {
             const token = localStorage.getItem('crm_token');
-            const response = await fetch('http://localhost:3002/api/leads', {
+            const response = await fetch(`${API_URL}/leads`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }

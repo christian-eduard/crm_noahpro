@@ -1,3 +1,4 @@
+import { API_URL, SOCKET_URL } from '../../config';
 import React, { useState, useEffect } from 'react';
 import { BarChart3 } from 'lucide-react';
 
@@ -14,7 +15,7 @@ const AnalyticsDashboard = () => {
 
     const fetchAnalytics = async () => {
         try {
-            const response = await fetch(`http://localhost:3002/api/analytics/stats?period=${period}`);
+            const response = await fetch(`${API_URL}/analytics/stats?period=${period}`);
             const data = await response.json();
             setAnalytics(data);
         } catch (error) {
@@ -26,7 +27,7 @@ const AnalyticsDashboard = () => {
 
     const fetchFunnel = async () => {
         try {
-            const response = await fetch(`http://localhost:3002/api/analytics/funnel?period=30`);
+            const response = await fetch(`${API_URL}/analytics/funnel?period=30`);
             const data = await response.json();
             setFunnel(data);
         } catch (error) {

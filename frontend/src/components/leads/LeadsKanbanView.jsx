@@ -1,3 +1,4 @@
+import { API_URL, SOCKET_URL } from '../../config';
 import React, { useState } from 'react';
 import { useToast } from '../../contexts/ToastContext';
 import {
@@ -27,7 +28,7 @@ const LeadsKanbanView = ({ leads, onLeadClick, onStatusChange, statuses, onDelet
         if (!confirmDialog.leadToDelete) return;
 
         try {
-            const response = await fetch(`http://localhost:3002/api/leads/${confirmDialog.leadToDelete.id}`, {
+            const response = await fetch(`${API_URL}/leads/${confirmDialog.leadToDelete.id}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('crm_token')}`

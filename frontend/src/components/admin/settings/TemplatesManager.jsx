@@ -1,3 +1,4 @@
+import { API_URL, SOCKET_URL } from '../../../config';
 import React, { useState, useEffect } from 'react';
 import { Plus, Edit, Trash2, FileText, DollarSign, Check, X } from 'lucide-react';
 import Button from '../../shared/Button';
@@ -24,7 +25,7 @@ const TemplatesManager = () => {
 
     const fetchTemplates = async () => {
         try {
-            const response = await fetch('http://localhost:3002/api/proposal-templates');
+            const response = await fetch(`${API_URL}/proposal-templates`);
             if (response.ok) {
                 const data = await response.json();
                 setTemplates(data);
@@ -53,8 +54,8 @@ const TemplatesManager = () => {
 
         try {
             const url = editingTemplate
-                ? `http://localhost:3002/api/proposal-templates/${editingTemplate.id}`
-                : 'http://localhost:3002/api/proposal-templates';
+                ? `${API_URL}/proposal-templates/${editingTemplate.id}`
+                : `${API_URL}/proposal-templates`;
 
             const method = editingTemplate ? 'PUT' : 'POST';
 
@@ -77,7 +78,7 @@ const TemplatesManager = () => {
         if (!confirm('¿Estás seguro de eliminar esta plantilla?')) return;
 
         try {
-            await fetch(`http://localhost:3002/api/proposal-templates/${id}`, {
+            await fetch(`${API_URL}/proposal-templates/${id}`, {
                 method: 'DELETE'
             });
             fetchTemplates();

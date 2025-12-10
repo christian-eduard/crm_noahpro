@@ -1,3 +1,4 @@
+import { API_URL, SOCKET_URL } from '../../config';
 import React, { useState, useEffect } from 'react';
 import { useToast } from '../../contexts/ToastContext';
 import Button from '../shared/Button';
@@ -57,7 +58,7 @@ const CommercialDashboard = ({ activeSection = 'home' }) => {
         fetchStats();
     };
 
-    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3002';
+    const API_URL = import.meta.env.VITE_API_URL || SOCKET_URL;
     const token = localStorage.getItem('crm_token');
 
     useEffect(() => {

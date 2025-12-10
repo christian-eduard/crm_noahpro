@@ -1,3 +1,4 @@
+import { API_URL, SOCKET_URL } from '../config';
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import Pusher from 'pusher-js';
 
@@ -9,7 +10,7 @@ export const PusherProvider = ({ children }) => {
     useEffect(() => {
         const initPusher = async () => {
             try {
-                const response = await fetch('http://localhost:3002/api/settings/public');
+                const response = await fetch(`${API_URL}/settings/public`);
                 const settings = await response.json();
 
                 if (settings.pusher_key && settings.pusher_cluster) {
