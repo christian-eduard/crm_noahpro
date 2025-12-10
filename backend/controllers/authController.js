@@ -4,15 +4,17 @@ const jwt = require('jsonwebtoken');
 
 const login = async (req, res) => {
     try {
-        const { username, password } = req.body;
+        const { email, username, password } = req.body;
+        const loginIdentifier = email || username;
 
-        if (!username || !password) {
+        if (!loginIdentifier || !password) {
             return res.status(400).json({ error: 'Usuario y contraseña requeridos' });
         }
 
+        // Try to find user by email or username
         const result = await db.query(
-            'SELECT * FROM users WHERE username = $1',
-            [username]
+            'SELECT * FROM users WHERE email = $1 OR name = $1',
+            [loginIdentifier]
         );
 
         if (result.rows.length === 0) {
@@ -27,7 +29,7 @@ const login = async (req, res) => {
         }
 
         const token = jwt.sign(
-            { userId: user.id, username: user.username, role: user.role, type: 'crm_user' },
+            { userId: user.id, username: user.name, email: user.email, role: user.role, type: 'crm_user' },
             process.env.JWT_SECRET || 'crm_secret_key',
             { expiresIn: '24h' }
         );
@@ -36,12 +38,13 @@ const login = async (req, res) => {
             token,
             user: {
                 id: user.id,
-                username: user.username,
+                username: user.name,
+                name: user.name,
                 role: user.role,
-                full_name: user.full_name,
+                full_name: user.name,
                 email: user.email,
-                avatar_url: user.avatar_url,
-                notifications_enabled: user.notifications_enabled
+                avatar_url: user.avatar,
+                notifications_enabled: true
             }
         });
     } catch (error) {
