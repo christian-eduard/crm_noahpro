@@ -18,7 +18,7 @@ const getLeads = async (req, res) => {
                     '[]'
                 ) as tags
             FROM leads l
-            LEFT JOIN crm_users u ON (l.assigned_to ~ '^[0-9]+$' AND l.assigned_to::integer = u.id)
+            LEFT JOIN users u ON (l.assigned_to ~ '^[0-9]+$' AND l.assigned_to::integer = u.id)
             LEFT JOIN lead_tags lt ON l.id = lt.lead_id
             LEFT JOIN tags t ON lt.tag_id = t.id
             WHERE 1=1

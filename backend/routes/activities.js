@@ -24,7 +24,7 @@ router.get('/:leadId', async (req, res) => {
         const result = await db.query(
             `SELECT a.*, u.username as user_name
              FROM activities a
-             LEFT JOIN crm_users u ON a.user_id = u.id
+             LEFT JOIN users u ON a.user_id = u.id
              WHERE a.lead_id = $1
              ORDER BY a.created_at DESC`,
             [leadId]

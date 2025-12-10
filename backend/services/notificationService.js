@@ -39,7 +39,7 @@ const createNotification = async (userId, type, title, message, link = null) => 
 const createNotificationForAllAdmins = async (type, title, message, link = null) => {
     try {
         // Get all admin users
-        const adminsResult = await db.query('SELECT id FROM crm_users WHERE role = $1', ['admin']);
+        const adminsResult = await db.query('SELECT id FROM users WHERE role = $1', ['admin']);
         const adminIds = adminsResult.rows.map(row => row.id);
 
         const notifications = [];
