@@ -29,6 +29,9 @@ const SettingsPanel = () => {
     ];
 
     const [settings, setSettings] = useState({
+        // System URLs
+        api_url: '',
+        frontend_url: '',
         demo_url: '',
         chat_title: 'Soporte NoahPro',
         chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
@@ -598,145 +601,216 @@ const SettingsPanel = () => {
                         {activeTab === 'general' && (
                             <div className="space-y-8">
                                 <form onSubmit={handleSave}>
-                                    {/* General Section */}
+                                    {/* System URLs Section */}
                                     <div className="space-y-6">
                                         <div>
                                             <h3 className="text-lg font-semibold text-gray-900 dark:text-white flex items-center space-x-2 mb-4">
-                                                <Globe className="w-5 h-5 text-gray-500" />
-                                                <span>Configuración Web</span>
+                                                <Server className="w-5 h-5 text-gray-500" />
+                                                <span>URLs del Sistema</span>
                                             </h3>
-                                            <div className="grid gap-6">
+                                            <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">
+                                                Configura las URLs de la API y del frontend. Estas URLs se usan para la comunicación entre el frontend y el backend.
+                                            </p>
+                                            <div className="grid gap-6 md:grid-cols-2">
                                                 <div>
                                                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                                                        URL del Botón "Ver Demo"
+                                                        URL de la API
+                                                    </label>
+                                                    <div className="flex space-x-2">
+                                                        <Input
+                                                            name="api_url"
+                                                            type="url"
+                                                            value={settings.api_url || API_URL}
+                                                            onChange={handleChange}
+                                                            placeholder="https://noahpro.es/api"
+                                                            className="flex-1"
+                                                        />
+                                                    </div>
+                                                    <p className="text-xs text-gray-400 mt-1">URL actual: {API_URL}</p>
+                                                </div>
+                                                <div>
+                                                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                                        URL del Frontend
                                                     </label>
                                                     <Input
-                                                        name="demo_url"
+                                                        name="frontend_url"
                                                         type="url"
-                                                        value={settings.demo_url}
+                                                        value={settings.frontend_url || window.location.origin}
                                                         onChange={handleChange}
-                                                        placeholder="https://tu-dominio.com/demo"
-                                                        required
+                                                        placeholder="https://noahpro.es"
+                                                    />
+                                                    <p className="text-xs text-gray-400 mt-1">URL actual: {window.location.origin}</p>
+                                                </div>
+                                            </div>
+
+                                            {/* Test Connection Button */}
+                                            <div className="mt-4">
+                                                <button
+                                                    type="button"
+                                                    onClick={async () => {
+                                                        setMessage({ type: '', text: '' });
+                                                        try {
+                                                            const apiToTest = settings.api_url || API_URL;
+                                                            const response = await fetch(`${apiToTest}/settings/public`);
+                                                            if (response.ok) {
+                                                                const data = await response.json();
+                                                                setMessage({
+                                                                    type: 'success',
+                                                                    text: `✅ Conexión exitosa! API respondió correctamente. Chat: ${data.chat_enabled ? 'Habilitado' : 'Deshabilitado'}`
+                                                                });
+                                                            } else {
+                                                                setMessage({ type: 'error', text: `❌ Error: La API respondió con código ${response.status}` });
+                                                            }
+                                                        } catch (error) {
+                                                            setMessage({ type: 'error', text: `❌ Error de conexión: ${error.message}. Verifica que la URL de la API sea correcta.` });
+                                                        }
+                                                    }}
+                                                    className="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors space-x-2"
+                                                >
+                                                    <Radio className="w-4 h-4" />
+                                                    <span>Probar Conexión</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* URL Demo Section */}
+                                    <div className="border-t border-gray-200 dark:border-gray-700 pt-6 mt-6">
+                                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white flex items-center space-x-2 mb-4">
+                                            <Globe className="w-5 h-5 text-gray-500" />
+                                            <span>Configuración Web</span>
+                                        </h3>
+                                        <div className="grid gap-6">
+                                            <div>
+                                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                                    URL del Botón "Ver Demo"
+                                                </label>
+                                                <Input
+                                                    name="demo_url"
+                                                    type="url"
+                                                    value={settings.demo_url}
+                                                    onChange={handleChange}
+                                                    placeholder="https://tu-dominio.com/demo"
+                                                    required
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="border-t border-gray-200 dark:border-gray-700 pt-6">
+                                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white flex items-center space-x-2 mb-4">
+                                            <MessageSquare className="w-5 h-5 text-gray-500" />
+                                            <span>Chat en Vivo</span>
+                                        </h3>
+
+                                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                                            <div className="space-y-4">
+                                                <div className="flex items-center p-4 bg-gray-50 dark:bg-gray-700/30 rounded-lg border border-gray-200 dark:border-gray-700">
+                                                    <input
+                                                        type="checkbox"
+                                                        id="chat_enabled"
+                                                        name="chat_enabled"
+                                                        checked={settings.chat_enabled}
+                                                        onChange={handleChange}
+                                                        className="h-4 w-4 text-orange-600 focus:ring-orange-500 border-gray-300 rounded"
+                                                    />
+                                                    <label htmlFor="chat_enabled" className="ml-3 block text-sm font-medium text-gray-900 dark:text-white">
+                                                        Habilitar Chat en Landing Page
+                                                    </label>
+                                                </div>
+
+                                                <div>
+                                                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                                        Título del Chat
+                                                    </label>
+                                                    <Input
+                                                        name="chat_title"
+                                                        value={settings.chat_title}
+                                                        onChange={handleChange}
+                                                        placeholder="Soporte"
                                                     />
                                                 </div>
-                                            </div>
-                                        </div>
 
-                                        <div className="border-t border-gray-200 dark:border-gray-700 pt-6">
-                                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white flex items-center space-x-2 mb-4">
-                                                <MessageSquare className="w-5 h-5 text-gray-500" />
-                                                <span>Chat en Vivo</span>
-                                            </h3>
+                                                <div>
+                                                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                                        Mensaje de Bienvenida
+                                                    </label>
+                                                    <textarea
+                                                        name="chat_welcome_message"
+                                                        value={settings.chat_welcome_message}
+                                                        onChange={handleChange}
+                                                        rows="3"
+                                                        className="w-full rounded-lg border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-4 py-2 text-gray-900 dark:text-white focus:ring-2 focus:ring-orange-500"
+                                                    />
+                                                </div>
 
-                                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                                                <div className="space-y-4">
-                                                    <div className="flex items-center p-4 bg-gray-50 dark:bg-gray-700/30 rounded-lg border border-gray-200 dark:border-gray-700">
+                                                <div>
+                                                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                                        Color Principal
+                                                    </label>
+                                                    <div className="flex items-center space-x-3">
                                                         <input
-                                                            type="checkbox"
-                                                            id="chat_enabled"
-                                                            name="chat_enabled"
-                                                            checked={settings.chat_enabled}
+                                                            type="color"
+                                                            name="chat_primary_color"
+                                                            value={settings.chat_primary_color}
                                                             onChange={handleChange}
-                                                            className="h-4 w-4 text-orange-600 focus:ring-orange-500 border-gray-300 rounded"
+                                                            className="h-10 w-20 rounded border border-gray-300 cursor-pointer"
                                                         />
-                                                        <label htmlFor="chat_enabled" className="ml-3 block text-sm font-medium text-gray-900 dark:text-white">
-                                                            Habilitar Chat en Landing Page
-                                                        </label>
-                                                    </div>
-
-                                                    <div>
-                                                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                                                            Título del Chat
-                                                        </label>
-                                                        <Input
-                                                            name="chat_title"
-                                                            value={settings.chat_title}
-                                                            onChange={handleChange}
-                                                            placeholder="Soporte"
-                                                        />
-                                                    </div>
-
-                                                    <div>
-                                                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                                                            Mensaje de Bienvenida
-                                                        </label>
-                                                        <textarea
-                                                            name="chat_welcome_message"
-                                                            value={settings.chat_welcome_message}
-                                                            onChange={handleChange}
-                                                            rows="3"
-                                                            className="w-full rounded-lg border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-4 py-2 text-gray-900 dark:text-white focus:ring-2 focus:ring-orange-500"
-                                                        />
-                                                    </div>
-
-                                                    <div>
-                                                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                                                            Color Principal
-                                                        </label>
-                                                        <div className="flex items-center space-x-3">
-                                                            <input
-                                                                type="color"
-                                                                name="chat_primary_color"
-                                                                value={settings.chat_primary_color}
-                                                                onChange={handleChange}
-                                                                className="h-10 w-20 rounded border border-gray-300 cursor-pointer"
-                                                            />
-                                                            <span className="text-sm font-mono text-gray-500">{settings.chat_primary_color}</span>
-                                                        </div>
+                                                        <span className="text-sm font-mono text-gray-500">{settings.chat_primary_color}</span>
                                                     </div>
                                                 </div>
+                                            </div>
 
-                                                {/* Chat Preview */}
-                                                <div className="bg-gray-100 dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700 p-6 flex items-center justify-center relative overflow-hidden">
-                                                    <div className="absolute top-2 left-2 text-xs font-bold text-gray-400 uppercase tracking-wider">Vista Previa</div>
-                                                    {settings.chat_enabled ? (
-                                                        <div className="w-72 bg-white dark:bg-gray-800 rounded-t-xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden mt-8">
-                                                            <div
-                                                                className="p-3 flex justify-between items-center text-white"
-                                                                style={{ backgroundColor: settings.chat_primary_color }}
-                                                            >
-                                                                <span className="font-bold text-sm">{settings.chat_title}</span>
-                                                                <span className="text-xs opacity-80">✕</span>
+                                            {/* Chat Preview */}
+                                            <div className="bg-gray-100 dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700 p-6 flex items-center justify-center relative overflow-hidden">
+                                                <div className="absolute top-2 left-2 text-xs font-bold text-gray-400 uppercase tracking-wider">Vista Previa</div>
+                                                {settings.chat_enabled ? (
+                                                    <div className="w-72 bg-white dark:bg-gray-800 rounded-t-xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden mt-8">
+                                                        <div
+                                                            className="p-3 flex justify-between items-center text-white"
+                                                            style={{ backgroundColor: settings.chat_primary_color }}
+                                                        >
+                                                            <span className="font-bold text-sm">{settings.chat_title}</span>
+                                                            <span className="text-xs opacity-80">✕</span>
+                                                        </div>
+                                                        <div className="h-48 bg-gray-50 dark:bg-gray-900 p-3 flex flex-col">
+                                                            <div className="bg-white dark:bg-gray-800 p-2 rounded-lg rounded-tl-none shadow-sm max-w-[85%] self-start mb-3">
+                                                                <p className="text-xs text-gray-800 dark:text-gray-200">{settings.chat_welcome_message}</p>
                                                             </div>
-                                                            <div className="h-48 bg-gray-50 dark:bg-gray-900 p-3 flex flex-col">
-                                                                <div className="bg-white dark:bg-gray-800 p-2 rounded-lg rounded-tl-none shadow-sm max-w-[85%] self-start mb-3">
-                                                                    <p className="text-xs text-gray-800 dark:text-gray-200">{settings.chat_welcome_message}</p>
-                                                                </div>
-                                                                <div className="bg-orange-100 dark:bg-orange-900/30 p-2 rounded-lg rounded-tr-none shadow-sm max-w-[85%] self-end mb-3">
-                                                                    <p className="text-xs text-gray-800 dark:text-gray-200">Hola, me gustaría saber más...</p>
-                                                                </div>
-                                                            </div>
-                                                            <div className="p-2 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
-                                                                <div className="h-8 bg-gray-100 dark:bg-gray-700 rounded-full w-full"></div>
+                                                            <div className="bg-orange-100 dark:bg-orange-900/30 p-2 rounded-lg rounded-tr-none shadow-sm max-w-[85%] self-end mb-3">
+                                                                <p className="text-xs text-gray-800 dark:text-gray-200">Hola, me gustaría saber más...</p>
                                                             </div>
                                                         </div>
-                                                    ) : (
-                                                        <div className="text-gray-400 text-sm italic">Chat deshabilitado</div>
-                                                    )}
-                                                </div>
+                                                        <div className="p-2 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+                                                            <div className="h-8 bg-gray-100 dark:bg-gray-700 rounded-full w-full"></div>
+                                                        </div>
+                                                    </div>
+                                                ) : (
+                                                    <div className="text-gray-400 text-sm italic">Chat deshabilitado</div>
+                                                )}
                                             </div>
                                         </div>
+                                    </div>
 
-                                        {message.text && (
-                                            <div className={`p-4 rounded-lg flex items-center space-x-2 ${message.type === 'success'
-                                                ? 'bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-300'
-                                                : 'bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-300'
-                                                }`}>
-                                                {message.type === 'success' ? <div className="w-2 h-2 bg-green-500 rounded-full" /> : <div className="w-2 h-2 bg-red-500 rounded-full" />}
-                                                <span>{message.text}</span>
-                                            </div>
-                                        )}
-
-                                        <div className="flex justify-end pt-4 sticky bottom-0 bg-white dark:bg-gray-800 p-4 border-t border-gray-100 dark:border-gray-700 -mx-6 -mb-6 rounded-b-xl">
-                                            <button
-                                                type="submit"
-                                                disabled={saving}
-                                                className="px-6 py-2 bg-gradient-to-r from-orange-500 to-red-600 text-white rounded-lg hover:shadow-lg hover:shadow-orange-500/30 transition-all flex items-center space-x-2 disabled:opacity-50"
-                                            >
-                                                <Save className="w-4 h-4" />
-                                                <span>{saving ? 'Guardando...' : 'Guardar Cambios'}</span>
-                                            </button>
+                                    {message.text && (
+                                        <div className={`p-4 rounded-lg flex items-center space-x-2 ${message.type === 'success'
+                                            ? 'bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-300'
+                                            : 'bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-300'
+                                            }`}>
+                                            {message.type === 'success' ? <div className="w-2 h-2 bg-green-500 rounded-full" /> : <div className="w-2 h-2 bg-red-500 rounded-full" />}
+                                            <span>{message.text}</span>
                                         </div>
+                                    )}
+
+                                    <div className="flex justify-end pt-4 sticky bottom-0 bg-white dark:bg-gray-800 p-4 border-t border-gray-100 dark:border-gray-700 -mx-6 -mb-6 rounded-b-xl">
+                                        <button
+                                            type="submit"
+                                            disabled={saving}
+                                            className="px-6 py-2 bg-gradient-to-r from-orange-500 to-red-600 text-white rounded-lg hover:shadow-lg hover:shadow-orange-500/30 transition-all flex items-center space-x-2 disabled:opacity-50"
+                                        >
+                                            <Save className="w-4 h-4" />
+                                            <span>{saving ? 'Guardando...' : 'Guardar Cambios'}</span>
+                                        </button>
                                     </div>
                                 </form>
                             </div>
