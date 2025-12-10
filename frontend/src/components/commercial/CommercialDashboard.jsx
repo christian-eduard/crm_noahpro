@@ -41,7 +41,7 @@ const CommercialDashboard = ({ activeSection = 'home' }) => {
 
     const fetchLeads = async () => {
         try {
-            const response = await fetch(`${API_URL}/api/leads`, {
+            const response = await fetch(`${API_URL}/leads`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             if (response.ok) setLeads(await response.json());
@@ -69,7 +69,7 @@ const CommercialDashboard = ({ activeSection = 'home' }) => {
 
     const fetchStats = async () => {
         try {
-            const response = await fetch(`${API_URL}/api/commercials/stats`, {
+            const response = await fetch(`${API_URL}/commercials/stats`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             if (response.ok) setStats(await response.json());
@@ -78,7 +78,7 @@ const CommercialDashboard = ({ activeSection = 'home' }) => {
 
     const fetchMaterials = async () => {
         try {
-            const response = await fetch(`${API_URL}/api/training/my`, {
+            const response = await fetch(`${API_URL}/training/my`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             if (response.ok) setMaterials(await response.json());
@@ -87,7 +87,7 @@ const CommercialDashboard = ({ activeSection = 'home' }) => {
 
     const fetchTickets = async () => {
         try {
-            const response = await fetch(`${API_URL}/api/support/my`, {
+            const response = await fetch(`${API_URL}/support/my`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             if (response.ok) setTickets(await response.json());
@@ -97,7 +97,7 @@ const CommercialDashboard = ({ activeSection = 'home' }) => {
     const handleCreateTicket = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch(`${API_URL}/api/support`, {
+            const response = await fetch(`${API_URL}/support`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
                 body: JSON.stringify(newTicket)
@@ -112,7 +112,7 @@ const CommercialDashboard = ({ activeSection = 'home' }) => {
 
     const handleViewTicket = async (ticket) => {
         try {
-            const response = await fetch(`${API_URL}/api/support/${ticket.id}`, {
+            const response = await fetch(`${API_URL}/support/${ticket.id}`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             if (response.ok) {
@@ -127,7 +127,7 @@ const CommercialDashboard = ({ activeSection = 'home' }) => {
     const handleReplyTicket = async () => {
         if (!newReply.trim()) return;
         try {
-            await fetch(`${API_URL}/api/support/${selectedTicket.id}/reply`, {
+            await fetch(`${API_URL}/support/${selectedTicket.id}/reply`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
                 body: JSON.stringify({ message: newReply })

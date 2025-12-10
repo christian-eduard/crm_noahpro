@@ -58,7 +58,7 @@ const CommercialsManager = () => {
     const fetchCommercials = async () => {
         try {
             console.log('Fetching commercials with token:', token);
-            const response = await fetch(`${API_URL}/api/commercials`, {
+            const response = await fetch(`${API_URL}/commercials`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             console.log('Fetch response status:', response.status);
@@ -83,8 +83,8 @@ const CommercialsManager = () => {
             const timeoutId = setTimeout(() => controller.abort(), 30000); // 30s timeout
 
             const url = isEditing
-                ? `${API_URL}/api/commercials/${editId}`
-                : `${API_URL}/api/commercials`;
+                ? `${API_URL}/commercials/${editId}`
+                : `${API_URL}/commercials`;
 
             const method = isEditing ? 'PUT' : 'POST';
 
@@ -141,7 +141,7 @@ const CommercialsManager = () => {
     const handleViewDetails = async (comm) => {
         // ... (existing code)
         try {
-            const response = await fetch(`${API_URL}/api/commercials/${comm.id}`, {
+            const response = await fetch(`${API_URL}/commercials/${comm.id}`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             if (response.ok) {
@@ -161,7 +161,7 @@ const CommercialsManager = () => {
             onConfirm: async () => {
                 setIsDeleting(id);
                 try {
-                    const response = await fetch(`${API_URL}/api/commercials/${id}`, {
+                    const response = await fetch(`${API_URL}/commercials/${id}`, {
                         method: 'DELETE', headers: { 'Authorization': `Bearer ${token}` }
                     });
                     if (!response.ok) throw new Error('Error al eliminar');
@@ -175,7 +175,7 @@ const CommercialsManager = () => {
 
     const handleResendWelcomeEmail = async (commercialId) => {
         try {
-            const response = await fetch(`${API_URL}/api/commercials/${commercialId}/resend-welcome`, {
+            const response = await fetch(`${API_URL}/commercials/${commercialId}/resend-welcome`, {
                 method: 'POST',
                 headers: { 'Authorization': `Bearer ${token}` }
             });
@@ -189,7 +189,7 @@ const CommercialsManager = () => {
     // ==================== MATERIALES ====================
     const fetchMaterials = async () => {
         try {
-            const response = await fetch(`${API_URL}/api/training`, {
+            const response = await fetch(`${API_URL}/training`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             if (response.ok) setMaterials(await response.json());
@@ -204,7 +204,7 @@ const CommercialsManager = () => {
             Object.entries(materialFormData).forEach(([k, v]) => formDataToSend.append(k, v));
             if (selectedFile) formDataToSend.append('file', selectedFile);
 
-            const response = await fetch(`${API_URL}/api/training`, {
+            const response = await fetch(`${API_URL}/training`, {
                 method: 'POST',
                 headers: { 'Authorization': `Bearer ${token}` },
                 body: formDataToSend
@@ -228,7 +228,7 @@ const CommercialsManager = () => {
             type: 'danger',
             onConfirm: async () => {
                 try {
-                    await fetch(`${API_URL}/api/training/${id}`, {
+                    await fetch(`${API_URL}/training/${id}`, {
                         method: 'DELETE', headers: { 'Authorization': `Bearer ${token}` }
                     });
                     toast.success('Material eliminado');
@@ -241,7 +241,7 @@ const CommercialsManager = () => {
     // ==================== SOPORTE ====================
     const fetchTickets = async () => {
         try {
-            const response = await fetch(`${API_URL}/api/support`, {
+            const response = await fetch(`${API_URL}/support`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             if (response.ok) setTickets(await response.json());
@@ -250,7 +250,7 @@ const CommercialsManager = () => {
 
     const handleViewTicket = async (ticket) => {
         try {
-            const response = await fetch(`${API_URL}/api/support/${ticket.id}`, {
+            const response = await fetch(`${API_URL}/support/${ticket.id}`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             if (response.ok) {
@@ -265,7 +265,7 @@ const CommercialsManager = () => {
     const handleReplyTicket = async () => {
         if (!newReply.trim()) return;
         try {
-            const response = await fetch(`${API_URL}/api/support/${selectedTicket.id}/reply`, {
+            const response = await fetch(`${API_URL}/support/${selectedTicket.id}/reply`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
                 body: JSON.stringify({ message: newReply })
@@ -279,7 +279,7 @@ const CommercialsManager = () => {
 
     const updateTicketStatus = async (status) => {
         try {
-            await fetch(`${API_URL}/api/support/${selectedTicket.id}/status`, {
+            await fetch(`${API_URL}/support/${selectedTicket.id}/status`, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
                 body: JSON.stringify({ status })

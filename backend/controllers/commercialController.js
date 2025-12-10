@@ -74,7 +74,7 @@ const createCommercial = async (req, res) => {
 const getAllCommercials = async (req, res) => {
     try {
         const result = await db.query(`
-            SELECT u.id, u.email, u.name, u.created_at,
+            SELECT u.id, u.username, u.email, u.full_name, u.created_at,
                    cp.commercial_code, cp.phone, cp.qr_code_url
             FROM users u
             LEFT JOIN commercial_profiles cp ON u.id = cp.user_id
@@ -215,7 +215,7 @@ const resendWelcomeEmail = async (req, res) => {
     try {
         // Obtener datos del comercial
         const result = await db.query(`
-            SELECT u.email, u.name, cp.commercial_code
+            SELECT u.email, u.full_name, u.username, cp.commercial_code
             FROM users u
             JOIN commercial_profiles cp ON u.id = cp.user_id
             WHERE u.id = $1 AND u.role = 'commercial'

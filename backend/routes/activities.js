@@ -22,7 +22,7 @@ router.get('/:leadId', async (req, res) => {
     try {
         const { leadId } = req.params;
         const result = await db.query(
-            `SELECT a.*, u.name as user_name
+            `SELECT a.*, u.username as user_name
              FROM activities a
              LEFT JOIN users u ON a.user_id = u.id
              WHERE a.lead_id = $1
