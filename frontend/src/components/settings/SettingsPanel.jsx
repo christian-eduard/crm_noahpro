@@ -323,6 +323,71 @@ const SettingsPanel = () => {
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            {/* Sección de prueba de correo */}
+                                            <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+                                                <h4 className="text-sm font-semibold text-blue-800 dark:text-blue-300 mb-3 flex items-center space-x-2">
+                                                    <Mail className="w-4 h-4" />
+                                                    <span>Probar Configuración SMTP</span>
+                                                </h4>
+                                                <div className="flex flex-col md:flex-row gap-3">
+                                                    <div className="flex-1">
+                                                        <Input
+                                                            type="email"
+                                                            name="test_email"
+                                                            value={settings.test_email || ''}
+                                                            onChange={handleChange}
+                                                            placeholder="correo@ejemplo.com"
+                                                        />
+                                                    </div>
+                                                    <button
+                                                        type="button"
+                                                        onClick={async () => {
+                                                            if (!settings.test_email) {
+                                                                alert('Introduce un correo para enviar la prueba');
+                                                                return;
+                                                            }
+                                                            try {
+                                                                const token = localStorage.getItem('crm_token');
+                                                                const response = await fetch(`${API_URL}/settings/test-email`, {
+                                                                    method: 'POST',
+                                                                    headers: {
+                                                                        'Content-Type': 'application/json',
+                                                                        'Authorization': `Bearer ${token}`
+                                                                    },
+                                                                    body: JSON.stringify({
+                                                                        email: settings.test_email,
+                                                                        smtp_config: {
+                                                                            host: settings.smtp_host,
+                                                                            port: settings.smtp_port,
+                                                                            secure: settings.smtp_secure,
+                                                                            user: settings.smtp_user,
+                                                                            password: settings.smtp_password,
+                                                                            from_name: settings.smtp_from_name,
+                                                                            from_email: settings.smtp_from_email
+                                                                        }
+                                                                    })
+                                                                });
+                                                                const data = await response.json();
+                                                                if (response.ok) {
+                                                                    alert('✅ Correo de prueba enviado correctamente');
+                                                                } else {
+                                                                    alert('❌ Error: ' + (data.error || 'No se pudo enviar el correo'));
+                                                                }
+                                                            } catch (error) {
+                                                                alert('❌ Error de conexión: ' + error.message);
+                                                            }
+                                                        }}
+                                                        className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center space-x-2 whitespace-nowrap"
+                                                    >
+                                                        <Mail className="w-4 h-4" />
+                                                        <span>Enviar Correo de Prueba</span>
+                                                    </button>
+                                                </div>
+                                                <p className="text-xs text-blue-600 dark:text-blue-400 mt-2">
+                                                    Envía un correo de prueba para verificar que la configuración SMTP es correcta.
+                                                </p>
+                                            </div>
                                         </div>
 
                                         <div className="flex justify-end pt-4 sticky bottom-0 bg-white dark:bg-gray-800 p-4 border-t border-gray-100 dark:border-gray-700 -mx-6 -mb-6 rounded-b-xl">

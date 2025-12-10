@@ -19,5 +19,6 @@ router.put('/lead-statuses', protect, updateLeadStatuses);
 router.get('/smtp', smtpController.getSMTPSettings);
 router.put('/smtp', smtpController.updateSMTPSettings);
 router.post('/smtp/test', smtpController.testSMTPConnection);
+router.post('/test-email', protect, smtpController.sendTestEmail);
 
 module.exports = router;

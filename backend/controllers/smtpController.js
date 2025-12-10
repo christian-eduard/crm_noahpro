@@ -220,8 +220,89 @@ ${new Date().toLocaleString('es-ES')}
     }
 };
 
+// Send a test email using the provided SMTP config
+const sendTestEmail = async (req, res) => {
+    try {
+        const { email, smtp_config } = req.body;
+
+        if (!email) {
+            return res.status(400).json({ error: 'Se requiere un email de destino' });
+        }
+
+        const nodemailer = require('nodemailer');
+
+        // Get SMTP config from request or database
+        let config = smtp_config || {};
+
+        // If config is incomplete, fetch from database
+        if (!config.host || !config.user) {
+            const result = await db.query(
+                'SELECT smtp_host, smtp_port, smtp_user, smtp_password, smtp_secure, smtp_from_name, smtp_from_email FROM crm_settings LIMIT 1'
+            );
+            if (result.rows.length > 0) {
+                const dbConfig = result.rows[0];
+                config = {
+                    host: config.host || dbConfig.smtp_host,
+                    port: config.port || dbConfig.smtp_port || 587,
+                    secure: config.secure !== undefined ? config.secure : dbConfig.smtp_secure,
+                    user: config.user || dbConfig.smtp_user,
+                    password: config.password || dbConfig.smtp_password,
+                    from_name: config.from_name || dbConfig.smtp_from_name || 'NoahPro CRM',
+                    from_email: config.from_email || dbConfig.smtp_from_email
+                };
+            }
+        }
+
+        if (!config.host || !config.user || !config.password) {
+            return res.status(400).json({ error: 'Configuración SMTP incompleta. Guarda primero la configuración.' });
+        }
+
+        const transporter = nodemailer.createTransport({
+            host: config.host,
+            port: config.port,
+            secure: config.secure,
+            auth: {
+                user: config.user,
+                pass: config.password
+            }
+        });
+
+        await transporter.verify();
+
+        const mailOptions = {
+            from: `"${config.from_name}" <${config.from_email || config.user}>`,
+            to: email,
+            subject: '✅ Prueba de Configuración SMTP - NoahPro CRM',
+            html: `
+                <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+                    <div style="background: linear-gradient(135deg, #f97316 0%, #dc2626 100%); padding: 30px; border-radius: 10px 10px 0 0; text-align: center;">
+                        <h1 style="color: white; margin: 0; font-size: 24px;">✅ Correo de Prueba Exitoso</h1>
+                    </div>
+                    <div style="background: #f9fafb; padding: 30px; border-radius: 0 0 10px 10px; border: 1px solid #e5e7eb;">
+                        <p style="color: #374151; font-size: 16px;">
+                            Tu configuración SMTP está funcionando correctamente.
+                        </p>
+                        <div style="background: white; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #f97316;">
+                            <p><strong>Servidor:</strong> ${config.host}:${config.port}</p>
+                            <p><strong>Conexión Segura:</strong> ${config.secure ? 'Sí' : 'No'}</p>
+                            <p><strong>Fecha:</strong> ${new Date().toLocaleString('es-ES')}</p>
+                        </div>
+                    </div>
+                </div>
+            `
+        };
+
+        await transporter.sendMail(mailOptions);
+        res.json({ success: true, message: `Correo enviado a ${email}` });
+    } catch (error) {
+        console.error('Error sending test email:', error);
+        res.status(500).json({ error: error.message });
+    }
+};
+
 module.exports = {
     getSMTPSettings,
     updateSMTPSettings,
-    testSMTPConnection
+    testSMTPConnection,
+    sendTestEmail
 };
