@@ -117,22 +117,22 @@ const LandingPage = () => {
                 </div>
 
                 <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-20">
-                    <div className="inline-flex items-center space-x-2 bg-green-500/20 backdrop-blur-md border border-green-400/30 px-4 py-1.5 rounded-full text-sm font-semibold text-green-300 mb-8 animate-fade-in-up">
+                    <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-1.5 rounded-full text-sm font-semibold text-orange-300 mb-8 animate-fade-in-up">
                         <span className="relative flex h-2 w-2">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
                         </span>
-                        <span>✓ Verifactu Aplazado hasta 2027 - Adáptate Ahora sin Prisas</span>
+                        <span>Actualizado Normativa 2025</span>
                     </div>
 
                     <h1 className="text-5xl md:text-7xl font-extrabold text-white mb-6 tracking-tight leading-tight drop-shadow-lg">
-                        El Software que tu Negocio <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-500">Necesita para Crecer</span>
+                        Multiplica tus Ventas, <br />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-500">Olvida el Papeleo</span>
                     </h1>
 
                     <p className="text-xl md:text-2xl text-gray-200 mb-10 max-w-3xl mx-auto leading-relaxed font-light">
-                        Vende más, controla mejor y olvídate del papeleo. <strong>Todo tu negocio en una sola plataforma</strong> que se adapta a ti.
-                        Legal, rápido y profesional desde el primer día.
+                        La solución TPV definitiva que automatiza <strong>Verifactu</strong> y te da el control total de tu negocio.
+                        Más tiempo para tus clientes, cero preocupaciones legales.
                     </p>
 
                     <div className="flex flex-col sm:flex-row justify-center gap-4 mb-16">
@@ -158,40 +158,40 @@ const LandingPage = () => {
             <section id="beneficios" className="py-24 bg-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center max-w-3xl mx-auto mb-20">
-                        <h2 className="text-4xl font-bold text-slate-900 mb-6">Gestión Profesional para Cualquier Negocio</h2>
+                        <h2 className="text-4xl font-bold text-slate-900 mb-6">No es solo un TPV, es tu socio de crecimiento</h2>
                         <p className="text-xl text-slate-600">
-                            Vendas lo que vendas, NoahPro te da las herramientas para facturar, controlar y crecer. Legal, rápido y profesional.
+                            Deja de perder tiempo con sistemas obsoletos. NoahPro está diseñado para aumentar tu rentabilidad desde el primer día.
                         </p>
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-12 items-center mb-24">
                         <div className="relative rounded-2xl overflow-hidden shadow-2xl group">
                             <img
-                                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop"
+                                src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?q=80&w=2070&auto=format&fit=crop"
                                 alt="Gestión eficiente"
                                 className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent flex items-end p-8">
-                                <h3 className="text-2xl font-bold text-white">Control Total de tu Negocio</h3>
+                                <h3 className="text-2xl font-bold text-white">Gestión de Sala en Tiempo Real</h3>
                             </div>
                         </div>
                         <div className="space-y-8">
                             <div className="flex items-start">
                                 <div className="flex-shrink-0 h-12 w-12 rounded-xl bg-orange-100 text-orange-600 flex items-center justify-center">
-                                    <Zap size={24} />
+                                    <Clock size={24} />
                                 </div>
                                 <div className="ml-6">
-                                    <h4 className="text-xl font-bold text-slate-900 mb-2">Venta Ágil y Universal</h4>
-                                    <p className="text-slate-600">Un TPV rápido para mostrador, servicios profesionales o mesas. Tú decides cómo vendes, nosotros lo hacemos fácil.</p>
+                                    <h4 className="text-xl font-bold text-slate-900 mb-2">Reduce tiempos de espera</h4>
+                                    <p className="text-slate-600">Optimiza la rotación de mesas. Sirve a más clientes en menos tiempo con nuestra interfaz de comanda rápida.</p>
                                 </div>
                             </div>
                             <div className="flex items-start">
                                 <div className="flex-shrink-0 h-12 w-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center">
-                                    <Users size={24} />
+                                    <Smartphone size={24} />
                                 </div>
                                 <div className="ml-6">
-                                    <h4 className="text-xl font-bold text-slate-900 mb-2">Gestión de Clientes</h4>
-                                    <p className="text-slate-600">Registra clientes, historial de compras y fideliza. Convierte ventas puntuales en relaciones duraderas.</p>
+                                    <h4 className="text-xl font-bold text-slate-900 mb-2">Comanda Móvil Integrada</h4>
+                                    <p className="text-slate-600">Tus camareros envían los pedidos directamente a cocina desde la mesa. Cero errores, máxima velocidad.</p>
                                 </div>
                             </div>
                             <div className="flex items-start">
@@ -199,126 +199,11 @@ const LandingPage = () => {
                                     <BarChart3 size={24} />
                                 </div>
                                 <div className="ml-6">
-                                    <h4 className="text-xl font-bold text-slate-900 mb-2">Control de Negocio 360º</h4>
-                                    <p className="text-slate-600">Stock, facturación, presupuestos y gastos. Todo tu negocio bajo control en un solo lugar.</p>
+                                    <h4 className="text-xl font-bold text-slate-900 mb-2">Control Total de Costes</h4>
+                                    <p className="text-slate-600">Conoce el margen de cada plato. Identifica mermas y optimiza tu stock automáticamente.</p>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Multi-Industry Section - Versatility */}
-            <section className="py-24 bg-gradient-to-br from-slate-900 to-slate-800 text-white relative overflow-hidden">
-                <div className="absolute inset-0 opacity-10">
-                    <div className="absolute top-0 left-0 w-96 h-96 bg-orange-500 rounded-full blur-3xl"></div>
-                    <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-500 rounded-full blur-3xl"></div>
-                </div>
-
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                    <div className="text-center mb-16">
-                        <h2 className="text-4xl font-bold mb-4">Un Sistema Flexible para Cualquier Negocio</h2>
-                        <p className="text-xl text-slate-300 max-w-3xl mx-auto">
-                            No importa tu sector. NoahPro se adapta a tu forma de trabajar, no al revés.
-                        </p>
-                    </div>
-
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                        {/* Hostelería */}
-                        <div className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20 hover:bg-white/15 transition-all">
-                            <div className="h-12 w-12 bg-orange-500 rounded-xl flex items-center justify-center mb-4">
-                                <ChefHat size={24} className="text-white" />
-                            </div>
-                            <h3 className="text-xl font-bold mb-3">Hostelería</h3>
-                            <p className="text-slate-300 text-sm mb-4">
-                                Restaurantes, bares, cafeterías. Gestión de mesas, comandas y cocina en tiempo real.
-                            </p>
-                            <ul className="space-y-2 text-sm text-slate-400">
-                                <li className="flex items-center">
-                                    <CheckCircle size={16} className="text-green-400 mr-2" />
-                                    Control de mesas
-                                </li>
-                                <li className="flex items-center">
-                                    <CheckCircle size={16} className="text-green-400 mr-2" />
-                                    Comanda móvil
-                                </li>
-                            </ul>
-                        </div>
-
-                        {/* Retail */}
-                        <div className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20 hover:bg-white/15 transition-all">
-                            <div className="h-12 w-12 bg-blue-500 rounded-xl flex items-center justify-center mb-4">
-                                <Layout size={24} className="text-white" />
-                            </div>
-                            <h3 className="text-xl font-bold mb-3">Comercio Retail</h3>
-                            <p className="text-slate-300 text-sm mb-4">
-                                Tiendas, boutiques, supermercados. Stock, código de barras y ventas rápidas.
-                            </p>
-                            <ul className="space-y-2 text-sm text-slate-400">
-                                <li className="flex items-center">
-                                    <CheckCircle size={16} className="text-green-400 mr-2" />
-                                    Gestión de inventario
-                                </li>
-                                <li className="flex items-center">
-                                    <CheckCircle size={16} className="text-green-400 mr-2" />
-                                    Lector de códigos
-                                </li>
-                            </ul>
-                        </div>
-
-                        {/* Estética y Salud */}
-                        <div className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20 hover:bg-white/15 transition-all">
-                            <div className="h-12 w-12 bg-pink-500 rounded-xl flex items-center justify-center mb-4">
-                                <Star size={24} className="text-white" />
-                            </div>
-                            <h3 className="text-xl font-bold mb-3">Clínicas y Estética</h3>
-                            <p className="text-slate-300 text-sm mb-4">
-                                Centros de belleza, spas, clínicas. Citas, tratamientos y facturación de servicios.
-                            </p>
-                            <ul className="space-y-2 text-sm text-slate-400">
-                                <li className="flex items-center">
-                                    <CheckCircle size={16} className="text-green-400 mr-2" />
-                                    Agenda de citas
-                                </li>
-                                <li className="flex items-center">
-                                    <CheckCircle size={16} className="text-green-400 mr-2" />
-                                    Historial de clientes
-                                </li>
-                            </ul>
-                        </div>
-
-                        {/* Servicios Profesionales */}
-                        <div className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20 hover:bg-white/15 transition-all">
-                            <div className="h-12 w-12 bg-purple-500 rounded-xl flex items-center justify-center mb-4">
-                                <Users size={24} className="text-white" />
-                            </div>
-                            <h3 className="text-xl font-bold mb-3">Servicios</h3>
-                            <p className="text-slate-300 text-sm mb-4">
-                                Consultorías, talleres, autónomos. Presupuestos, facturación y seguimiento.
-                            </p>
-                            <ul className="space-y-2 text-sm text-slate-400">
-                                <li className="flex items-center">
-                                    <CheckCircle size={16} className="text-green-400 mr-2" />
-                                    Presupuestos digitales
-                                </li>
-                                <li className="flex items-center">
-                                    <CheckCircle size={16} className="text-green-400 mr-2" />
-                                    Facturación recurrente
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div className="text-center mt-12">
-                        <p className="text-lg text-slate-300 mb-6">
-                            ¿Tu negocio es diferente? <strong className="text-white">Personalizamos NoahPro para ti.</strong>
-                        </p>
-                        <button
-                            onClick={() => setShowContactForm(true)}
-                            className="px-8 py-3 bg-orange-600 text-white rounded-xl font-bold hover:bg-orange-700 transition-all shadow-lg"
-                        >
-                            Hablar con un Experto
-                        </button>
                     </div>
                 </div>
             </section>
@@ -377,28 +262,10 @@ const LandingPage = () => {
                             <h3 className="text-4xl font-bold text-slate-900 mb-6 leading-tight">
                                 Cumple la ley sin mover un dedo
                             </h3>
-                            <p className="text-lg text-slate-600 mb-6 leading-relaxed">
+                            <p className="text-lg text-slate-600 mb-8 leading-relaxed">
                                 La normativa Antifraude puede suponer multas de hasta <strong>50.000€</strong> por usar software no certificado.
-                                Con NoahPro, la tranquilidad viene de serie. Ideal para autónomos y PYMES de cualquier sector.
+                                Con NoahPro, la tranquilidad viene de serie.
                             </p>
-
-                            {/* Callout Aplazamiento */}
-                            <div className="bg-green-50 border-l-4 border-green-500 p-4 mb-8 rounded-r-lg">
-                                <div className="flex items-start">
-                                    <div className="flex-shrink-0">
-                                        <CheckCircle className="h-5 w-5 text-green-500 mt-0.5" />
-                                    </div>
-                                    <div className="ml-3">
-                                        <p className="text-sm font-semibold text-green-800 mb-1">
-                                            Buenas noticias: Verifactu se aplaza hasta 2027
-                                        </p>
-                                        <p className="text-sm text-green-700">
-                                            El gobierno ha prorrogado la obligatoriedad hasta <strong>enero 2027</strong> (empresas) y <strong>julio 2027</strong> (autónomos).
-                                            Tienes tiempo para adaptarte sin estrés, pero <strong>los que se adelanten evitarán la saturación de proveedores en 2026</strong>.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
                                 <div className="flex items-center space-x-2 text-slate-700">
                                     <CheckCircle className="text-green-500" size={20} />
@@ -432,11 +299,11 @@ const LandingPage = () => {
 
                 <div className="relative z-10 max-w-5xl mx-auto px-4 text-center">
                     <h3 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
-                        "La tecnología debe impulsar tu empresa, <br />no complicarla."
+                        "La tecnología debe servir al restaurante, <br />no al revés."
                     </h3>
                     <div className="w-24 h-1 bg-orange-500 mx-auto rounded-full mb-8"></div>
                     <div className="flex justify-center opacity-20">
-                        <TrendingUp size={100} className="text-white" />
+                        <ChefHat size={100} className="text-white" />
                     </div>
                 </div>
             </section>
@@ -453,12 +320,12 @@ const LandingPage = () => {
                         <div className="p-6">
                             <div className="w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-6 text-orange-600 font-bold text-2xl">1</div>
                             <h3 className="text-xl font-bold text-slate-900 mb-3">Solicita Información</h3>
-                            <p className="text-slate-600">Déjanos tus datos y analizaremos las necesidades de tu negocio sin compromiso.</p>
+                            <p className="text-slate-600">Déjanos tus datos y analizaremos las necesidades de tu local sin compromiso.</p>
                         </div>
                         <div className="p-6">
                             <div className="w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-6 text-orange-600 font-bold text-2xl">2</div>
-                            <h3 className="text-xl font-bold text-slate-900 mb-3">Configuración Personalizada</h3>
-                            <p className="text-slate-600">Adaptamos el sistema a tu negocio, importamos tus datos y formamos a tu equipo.</p>
+                            <h3 className="text-xl font-bold text-slate-900 mb-3">Instalación y Migración</h3>
+                            <p className="text-slate-600">Configuramos tu carta, importamos tus datos y formamos a tu equipo.</p>
                         </div>
                         <div className="p-6">
                             <div className="w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-6 text-orange-600 font-bold text-2xl">3</div>
@@ -484,10 +351,10 @@ const LandingPage = () => {
                     <div className="grid md:grid-cols-2 gap-12 items-center">
                         <div>
                             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
-                                Control total desde cualquier lugar
+                                Control total, estés donde estés
                             </h2>
                             <p className="text-lg text-slate-600 mb-6">
-                                Accede a las métricas de tu negocio desde tu móvil, tablet o ordenador. NoahPro está en la nube para que tú tengas libertad total.
+                                Accede a las métricas de tu negocio desde tu móvil, tablet o casa. NoahPro está en la nube para que tú tengas libertad.
                             </p>
                             <ul className="space-y-4 mb-8">
                                 <li className="flex items-center space-x-3">
@@ -500,7 +367,7 @@ const LandingPage = () => {
                                 </li>
                                 <li className="flex items-center space-x-3">
                                     <div className="h-2 w-2 bg-orange-500 rounded-full"></div>
-                                    <span className="text-slate-700">Informes de rendimiento y análisis</span>
+                                    <span className="text-slate-700">Informes de rendimiento de personal</span>
                                 </li>
                             </ul>
                         </div>
@@ -524,27 +391,27 @@ const LandingPage = () => {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <div className="text-center mb-16">
                         <h2 className="text-4xl font-bold mb-4">Confían en NoahPro</h2>
-                        <p className="text-xl text-slate-400">Más de 500 negocios ya duermen tranquilos.</p>
+                        <p className="text-xl text-slate-400">Más de 500 restaurantes ya duermen tranquilos.</p>
                     </div>
 
                     <div className="grid md:grid-cols-3 gap-8">
                         {[
                             {
-                                quote: "Desde que instalamos NoahPro, facturamos el doble y cumplimos con Verifactu sin preocupaciones.",
+                                quote: "Desde que instalamos NoahPro, la rotación de mesas ha subido un 20%. La cocina vuela.",
                                 author: "Carlos Ruiz",
-                                role: "Dueño, Comercio Retail",
+                                role: "Dueño, Asador Central",
                                 stars: 5
                             },
                             {
-                                quote: "Me preocupaba mucho la ley Verifactu. Con NoahPro me he olvidado del tema. Todo automático.",
+                                quote: "Me preocupaba mucho la ley Verifactu. Con esto me he olvidado del tema. Todo automático.",
                                 author: "Elena M.",
-                                role: "Autónoma, Servicios Profesionales",
+                                role: "Gerente, Café del Mar",
                                 stars: 5
                             },
                             {
-                                quote: "El soporte es increíble. Nos configuraron todo en una tarde y al día siguiente estábamos funcionando.",
+                                quote: "El soporte es increíble. Nos configuraron la carta en una tarde y al día siguiente estábamos funcionando.",
                                 author: "Javier T.",
-                                role: "Gerente, Restaurante",
+                                role: "Chef, GastroBar 21",
                                 stars: 5
                             }
                         ].map((testimonial, idx) => (
@@ -573,7 +440,7 @@ const LandingPage = () => {
                 <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
                     <h2 className="text-4xl md:text-5xl font-bold mb-6">¿Hablamos de tu negocio?</h2>
                     <p className="text-xl text-orange-100 mb-10 max-w-2xl mx-auto">
-                        Nuestros expertos te prepararán una propuesta a medida para digitalizar tu negocio y cumplir con la ley.
+                        Nuestros expertos te prepararán una propuesta a medida para digitalizar tu restaurante y cumplir con la ley.
                     </p>
                     <div className="flex flex-col sm:flex-row justify-center gap-4">
                         <button
@@ -601,7 +468,7 @@ const LandingPage = () => {
                                 <span className="text-xl font-bold text-white">NoahPro Tpv</span>
                             </div>
                             <p className="max-w-xs mb-4">
-                                Software TPV profesional para cualquier negocio. Tecnología avanzada para empresas que quieren crecer seguros.
+                                Software TPV líder para hostelería. Tecnología avanzada para negocios que quieren crecer seguros.
                             </p>
                             <div className="flex space-x-4">
                                 {/* Social Icons Placeholders */}
