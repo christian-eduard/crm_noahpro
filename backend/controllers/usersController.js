@@ -1,11 +1,12 @@
 const bcrypt = require('bcryptjs');
 const db = require('../config/database');
+const QRCode = require('qrcode');
 
 // Get all users (excluding passwords and commercials - they have their own management)
 const getUsers = async (req, res) => {
     try {
         const { rows } = await db.query(
-            `SELECT id, username, email, full_name, role, created_at 
+            `SELECT id, username, email, full_name, role, created_at, referral_code, qr_code_url 
              FROM users 
              WHERE role != 'commercial'
              ORDER BY created_at DESC`
@@ -250,11 +251,53 @@ const updateProfile = async (req, res) => {
     }
 };
 
+// Generate referral code and QR for a user
+const generateReferralCode = async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        // Check if user exists
+        const { rows: users } = await db.query('SELECT id, username, referral_code FROM users WHERE id = $1', [id]);
+        if (users.length === 0) {
+            return res.status(404).json({ error: 'Usuario no encontrado' });
+        }
+
+        // Check if already has a code
+        if (users[0].referral_code) {
+            return res.status(400).json({ error: 'El usuario ya tiene un código de referido' });
+        }
+
+        // Generate unique code: USR-{id}-{timestamp last 4 digits}
+        const referralCode = `USR-${id}-${Date.now().toString().slice(-4)}`;
+
+        // Generate QR pointing to demo page with ref parameter
+        const qrData = `${process.env.FRONTEND_URL || 'http://localhost:5174'}/demo?ref=${referralCode}`;
+        const qrCodeUrl = await QRCode.toDataURL(qrData);
+
+        // Update user with code and QR
+        await db.query(
+            'UPDATE users SET referral_code = $1, qr_code_url = $2 WHERE id = $3',
+            [referralCode, qrCodeUrl, id]
+        );
+
+        res.json({
+            message: 'Código de referido generado exitosamente',
+            referral_code: referralCode,
+            qr_code_url: qrCodeUrl
+        });
+
+    } catch (error) {
+        console.error('Error generating referral code:', error);
+        res.status(500).json({ error: 'Error al generar código de referido' });
+    }
+};
+
 module.exports = {
     getUsers,
     createUser,
     updateUser,
     deleteUser,
     getProfile,
-    updateProfile
+    updateProfile,
+    generateReferralCode
 };

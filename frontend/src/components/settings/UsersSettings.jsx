@@ -1,6 +1,6 @@
 import { API_URL, SOCKET_URL } from '../../config';
 import React, { useState, useEffect } from 'react';
-import { User, Mail, Shield, Plus, Edit2, Trash2, X, Check, Search, Lock } from 'lucide-react';
+import { User, Mail, Shield, Plus, Edit2, Trash2, X, Check, Search, Lock, Copy, QrCode } from 'lucide-react';
 import Button from '../shared/Button';
 import Input from '../shared/Input';
 import ConfirmModal from '../shared/ConfirmModal';
@@ -223,6 +223,7 @@ const UsersSettings = () => {
                             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Usuario</th>
                             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Email</th>
                             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Rol</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Código Referido</th>
                             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Fecha Creación</th>
                             <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Acciones</th>
                         </tr>
@@ -252,6 +253,64 @@ const UsersSettings = () => {
                                     <span className="px-2 py-1 text-xs font-medium rounded-full bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">
                                         {user.role}
                                     </span>
+                                </td>
+                                <td className="px-6 py-4">
+                                    {user.referral_code ? (
+                                        <div className="space-y-2">
+                                            <div className="flex items-center gap-2">
+                                                {user.qr_code_url && (
+                                                    <img src={user.qr_code_url} alt="QR" className="w-10 h-10 rounded" />
+                                                )}
+                                                <span className="font-mono text-xs bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">
+                                                    {user.referral_code}
+                                                </span>
+                                            </div>
+                                            <div className="flex items-center gap-1">
+                                                <input
+                                                    type="text"
+                                                    readOnly
+                                                    value={`${window.location.origin}/demo?ref=${user.referral_code}`}
+                                                    className="text-xs bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded px-2 py-1 w-40 truncate"
+                                                />
+                                                <button
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        navigator.clipboard.writeText(`${window.location.origin}/demo?ref=${user.referral_code}`);
+                                                        toast.success('Enlace copiado');
+                                                    }}
+                                                    className="p-1 text-gray-500 hover:text-orange-600 transition-colors"
+                                                    title="Copiar enlace"
+                                                >
+                                                    <Copy className="w-3 h-3" />
+                                                </button>
+                                            </div>
+                                        </div>
+                                    ) : (
+                                        <button
+                                            onClick={async (e) => {
+                                                e.stopPropagation();
+                                                try {
+                                                    const response = await fetch(`${API_URL}/users/${user.id}/generate-referral`, {
+                                                        method: 'POST',
+                                                        headers: { 'Authorization': `Bearer ${localStorage.getItem('crm_token')}` }
+                                                    });
+                                                    if (response.ok) {
+                                                        toast.success('Código generado');
+                                                        fetchUsers();
+                                                    } else {
+                                                        const data = await response.json();
+                                                        toast.error(data.error || 'Error al generar código');
+                                                    }
+                                                } catch (error) {
+                                                    toast.error('Error de conexión');
+                                                }
+                                            }}
+                                            className="flex items-center gap-1 px-3 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 rounded-lg text-xs font-medium hover:bg-orange-200 dark:hover:bg-orange-900/50 transition-colors"
+                                        >
+                                            <QrCode className="w-3 h-3" />
+                                            Generar Código
+                                        </button>
+                                    )}
                                 </td>
                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
                                     {new Date(user.created_at).toLocaleDateString()}

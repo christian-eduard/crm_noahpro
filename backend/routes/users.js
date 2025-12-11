@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getUsers, createUser, updateUser, deleteUser, getProfile, updateProfile } = require('../controllers/usersController');
+const { getUsers, createUser, updateUser, deleteUser, getProfile, updateProfile, generateReferralCode } = require('../controllers/usersController');
 const { protect } = require('../middleware/authMiddleware');
 const upload = require('../middleware/uploadMiddleware');
 
@@ -20,6 +20,9 @@ router.get('/', getUsers);
 // Create new user
 router.post('/', createUser);
 
+// Generate referral code for user
+router.post('/:id/generate-referral', generateReferralCode);
+
 // Update user
 router.put('/:id', updateUser);
 
@@ -27,3 +30,4 @@ router.put('/:id', updateUser);
 router.delete('/:id', deleteUser);
 
 module.exports = router;
+

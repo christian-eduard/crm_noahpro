@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useToast } from '../../contexts/ToastContext';
 import Button from '../shared/Button';
 import Modal from '../shared/Modal';
-import { User, TrendingUp, QrCode, BookOpen, HeadphonesIcon, Video, FileText, Link as LinkIcon, ExternalLink, MessageSquare, Plus, Clock, CheckCircle, AlertCircle, X } from 'lucide-react';
+import { User, TrendingUp, QrCode, BookOpen, HeadphonesIcon, Video, FileText, Link as LinkIcon, ExternalLink, MessageSquare, Plus, Clock, CheckCircle, AlertCircle, X, Copy } from 'lucide-react';
 import LeadsListView from '../leads/LeadsListView';
 import ClientsListView from '../clients/ClientsListView';
 import ClientDetailView from '../clients/ClientDetailView';
@@ -231,13 +231,38 @@ const CommercialDashboard = ({ activeSection = 'home' }) => {
                             <h3 className="text-lg font-bold mb-2">Mi Código QR</h3>
                             <p className="text-indigo-100 text-sm mb-4">Los clientes que escaneen este código quedarán asignados a ti.</p>
                             {stats.profile?.qr_code_url && (
-                                <div className="flex items-center gap-4">
-                                    <div className="bg-white p-2 rounded-lg">
-                                        <img src={stats.profile.qr_code_url} alt="QR" className="w-20 h-20" />
+                                <div className="space-y-4">
+                                    <div className="flex items-center gap-4">
+                                        <div className="bg-white p-2 rounded-lg">
+                                            <img src={stats.profile.qr_code_url} alt="QR" className="w-20 h-20" />
+                                        </div>
+                                        <div>
+                                            <p className="text-xs text-indigo-200">Tu código:</p>
+                                            <p className="font-mono font-bold text-lg">{stats.profile?.commercial_code || 'N/A'}</p>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <p className="text-xs text-indigo-200">Tu código:</p>
-                                        <p className="font-mono font-bold">{stats.profile?.commercial_code || 'N/A'}</p>
+                                    {/* Referral Link */}
+                                    <div className="bg-white/10 rounded-lg p-3">
+                                        <p className="text-xs text-indigo-200 mb-2">Tu enlace de referido:</p>
+                                        <div className="flex items-center gap-2">
+                                            <input
+                                                type="text"
+                                                readOnly
+                                                value={`${window.location.origin}/demo?ref=${stats.profile?.commercial_code}`}
+                                                className="flex-1 bg-white/20 text-white text-sm font-mono px-3 py-2 rounded-lg border border-white/30 focus:outline-none"
+                                            />
+                                            <button
+                                                onClick={() => {
+                                                    const link = `${window.location.origin}/demo?ref=${stats.profile?.commercial_code}`;
+                                                    navigator.clipboard.writeText(link);
+                                                    toast.success('¡Enlace copiado al portapapeles!');
+                                                }}
+                                                className="p-2 bg-white/20 hover:bg-white/30 rounded-lg transition-colors"
+                                                title="Copiar enlace"
+                                            >
+                                                <Copy className="w-5 h-5" />
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             )}
