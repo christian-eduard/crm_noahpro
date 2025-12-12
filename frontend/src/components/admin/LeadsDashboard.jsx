@@ -111,7 +111,23 @@ const LeadsDashboard = ({ activeSection }) => {
         };
 
         window.addEventListener('keydown', handleKeyPress);
-        return () => window.removeEventListener('keydown', handleKeyPress);
+
+        // Listener para acciones rápidas desde el layout
+        const handleQuickAction = (e) => {
+            const { action } = e.detail;
+            if (action === 'new_lead') {
+                setShowLeadModal(true);
+            } else if (action === 'new_meeting') {
+                // TODO: Implementar modal de meeting
+                toast.info('Próximamente: Crear reunión');
+            }
+        };
+        window.addEventListener('crm_quick_action', handleQuickAction);
+
+        return () => {
+            window.removeEventListener('keydown', handleKeyPress);
+            window.removeEventListener('crm_quick_action', handleQuickAction);
+        };
     }, []);
 
     useEffect(() => {

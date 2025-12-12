@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Home, Users, MessageSquare, BarChart3, Settings, FileText, Mail, LogOut, User, Moon, Sun, ChevronDown, BookOpen, HeadphonesIcon, Menu, X } from 'lucide-react';
+import { Home, Users, MessageSquare, BarChart3, Settings, FileText, Mail, LogOut, User, Moon, Sun, ChevronDown, BookOpen, HeadphonesIcon, Menu, X, UserPlus, CalendarPlus } from 'lucide-react';
 import NotificationBell from '../notifications/NotificationBell';
 import AdminChatWidget from '../admin/chat/AdminChatWidget';
 import ProfileModal from '../profile/ProfileModal';
@@ -351,7 +351,9 @@ const CrmLayout = ({ children, onLogout, activeSection = 'leads', onSectionChang
                                                         }}
                                                         className="w-full text-left px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors flex items-center space-x-3"
                                                     >
-                                                        <span className="text-2xl">📝</span>
+                                                        <div className="w-10 h-10 bg-orange-100 dark:bg-orange-900/30 rounded-xl flex items-center justify-center">
+                                                            <UserPlus className="w-5 h-5 text-orange-600 dark:text-orange-400" />
+                                                        </div>
                                                         <div>
                                                             <p className="font-medium text-gray-900 dark:text-white">Nuevo Lead</p>
                                                             <p className="text-xs text-gray-500 dark:text-gray-400">Crear contacto manual</p>
@@ -364,7 +366,9 @@ const CrmLayout = ({ children, onLogout, activeSection = 'leads', onSectionChang
                                                         }}
                                                         className="w-full text-left px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors flex items-center space-x-3"
                                                     >
-                                                        <span className="text-2xl">📄</span>
+                                                        <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center">
+                                                            <FileText className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                                                        </div>
                                                         <div>
                                                             <p className="font-medium text-gray-900 dark:text-white">Nueva Propuesta</p>
                                                             <p className="text-xs text-gray-500 dark:text-gray-400">Crear oferta comercial</p>
@@ -377,7 +381,9 @@ const CrmLayout = ({ children, onLogout, activeSection = 'leads', onSectionChang
                                                         }}
                                                         className="w-full text-left px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors flex items-center space-x-3"
                                                     >
-                                                        <span className="text-2xl">📅</span>
+                                                        <div className="w-10 h-10 bg-green-100 dark:bg-green-900/30 rounded-xl flex items-center justify-center">
+                                                            <CalendarPlus className="w-5 h-5 text-green-600 dark:text-green-400" />
+                                                        </div>
                                                         <div>
                                                             <p className="font-medium text-gray-900 dark:text-white">Nueva Reunión</p>
                                                             <p className="text-xs text-gray-500 dark:text-gray-400">Agendar videollamada</p>

@@ -253,9 +253,9 @@ const DashboardCalendar = ({ compact = false }) => {
     }
 
     return (
-        <div className="space-y-6">
+        <div className="p-4 pb-24">
             {/* Header */}
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between items-center mb-6">
                 <div>
                     <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Calendario</h1>
                     <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
@@ -274,88 +274,112 @@ const DashboardCalendar = ({ compact = false }) => {
                 </button>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                {/* Calendar */}
-                <div className="lg:col-span-2 bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
-                    <div className="flex items-center justify-between mb-6">
-                        <h2 className="text-xl font-bold text-gray-900 dark:text-white capitalize">
-                            {monthName}
-                        </h2>
-                        <div className="flex items-center space-x-2">
-                            <button
-                                onClick={previousMonth}
-                                className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
-                            >
-                                <ChevronLeft className="w-5 h-5 text-gray-600 dark:text-gray-400" />
-                            </button>
-                            <button
-                                onClick={nextMonth}
-                                className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
-                            >
-                                <ChevronRight className="w-5 h-5 text-gray-600 dark:text-gray-400" />
-                            </button>
+            <div className="flex flex-col gap-6 h-[600px]">
+                <div className="flex-1 flex flex-col lg:grid lg:grid-cols-3 gap-6 min-h-0">
+                    {/* Calendar Grid */}
+                    <div className="lg:col-span-2 bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden flex flex-col">
+                        <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+                            <h2 className="text-xl font-bold text-gray-900 dark:text-white capitalize">
+                                {monthName}
+                            </h2>
+                            <div className="flex items-center space-x-2">
+                                <button
+                                    onClick={previousMonth}
+                                    className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+                                >
+                                    <ChevronLeft className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+                                </button>
+                                <button
+                                    onClick={nextMonth}
+                                    className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+                                >
+                                    <ChevronRight className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+                                </button>
+                            </div>
+                        </div>
+
+                        <div className="grid grid-cols-7 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50">
+                            {['Dum', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'].map(day => (
+                                <div key={day} className="text-center font-semibold text-xs sm:text-sm text-gray-600 dark:text-gray-400 p-2 sm:p-3 border-r last:border-r-0 border-gray-200 dark:border-gray-700">
+                                    {day}
+                                </div>
+                            ))}
+                        </div>
+                        <div className="flex-1 grid grid-cols-7 auto-rows-fr bg-white dark:bg-gray-800 min-h-[300px]">
+                            {renderCalendarDays()}
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-7 border-l border-t border-gray-200 dark:border-gray-700">
-                        {['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'].map(day => (
-                            <div key={day} className="text-center font-semibold text-sm text-gray-600 dark:text-gray-400 p-3 border-b border-r border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50">
-                                {day}
-                            </div>
-                        ))}
-                        {renderCalendarDays()}
+                    {/* Events List Side Panel */}
+                    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-4 sm:p-6 flex flex-col h-64 lg:h-auto">
+                        <div className="flex justify-between items-center mb-4">
+                            <h3 className="font-semibold text-gray-900 dark:text-white">Próximos Eventos</h3>
+                            <span className="text-xs font-normal text-gray-500 bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded-full">
+                                {events.length} total
+                            </span>
+                        </div>
+                        <div className="space-y-3 overflow-y-auto flex-1 pr-2 custom-scrollbar">
+                            {events.length === 0 ? (
+                                <div className="text-center py-8 text-gray-500 text-sm">
+                                    No hay eventos próximos
+                                </div>
+                            ) : (
+                                events.slice(0, 5).map(event => (
+                                    <div
+                                        key={event.id}
+                                        className="p-3 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors cursor-pointer border border-gray-100 dark:border-gray-600"
+                                        onClick={() => {
+                                            setEditingEvent(event);
+                                            setShowEventModal(true);
+                                        }}
+                                    >
+                                        <div className="flex justify-between items-start">
+                                            <p className="font-medium text-gray-900 dark:text-white text-sm line-clamp-1">
+                                                {event.title}
+                                            </p>
+                                        </div>
+                                        <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 flex items-center gap-1">
+                                            <CalendarIcon className="w-3 h-3" />
+                                            {new Date(event.date).toLocaleString('es-ES', {
+                                                day: 'numeric',
+                                                month: 'short',
+                                                hour: '2-digit',
+                                                minute: '2-digit'
+                                            })}
+                                        </p>
+                                    </div>
+                                ))
+                            )}
+                        </div>
+
+                        <button
+                            onClick={() => {
+                                setEditingEvent(null);
+                                setShowEventModal(true);
+                            }}
+                            className="mt-4 w-full py-2 bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 text-gray-600 dark:text-gray-300 rounded-lg text-sm font-medium transition-colors flex items-center justify-center gap-2"
+                        >
+                            <Plus className="w-4 h-4" />
+                            Nuevo Evento
+                        </button>
                     </div>
                 </div>
 
-                {/* Events List Side Panel */}
-                <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 flex flex-col">
-                    <h3 className="font-semibold text-gray-900 dark:text-white mb-4 flex items-center justify-between">
-                        <span>Próximos Eventos</span>
-                        <span className="text-xs font-normal text-gray-500 bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded-full">
-                            {events.length} total
-                        </span>
-                    </h3>
-                    <div className="space-y-3 overflow-y-auto flex-1 pr-2 custom-scrollbar" style={{ maxHeight: '500px' }}>
-                        {events.slice(0, 5).map(event => (
-                            <div
-                                key={event.id}
-                                className="p-3 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors cursor-pointer"
-                                onClick={() => {
-                                    setEditingEvent(event);
-                                    setShowEventModal(true);
-                                }}
-                            >
-                                <p className="font-medium text-gray-900 dark:text-white text-sm">
-                                    {event.title}
-                                </p>
-                                <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                                    {new Date(event.date).toLocaleString('es-ES', {
-                                        day: 'numeric',
-                                        month: 'short',
-                                        hour: '2-digit',
-                                        minute: '2-digit'
-                                    })}
-                                </p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
+                {/* Event Modal - Rendered via Portal */}
+                {showEventModal && ReactDOM.createPortal(
+                    <EventModal
+                        isOpen={showEventModal}
+                        onClose={() => {
+                            setShowEventModal(false);
+                            setEditingEvent(null);
+                        }}
+                        onSave={handleSaveEvent}
+                        event={editingEvent}
+                        leads={leads}
+                    />,
+                    document.body
+                )}
             </div>
-
-            {/* Event Modal - Rendered via Portal */}
-            {ReactDOM.createPortal(
-                <EventModal
-                    isOpen={showEventModal}
-                    onClose={() => {
-                        setShowEventModal(false);
-                        setEditingEvent(null);
-                    }}
-                    onSave={handleSaveEvent}
-                    event={editingEvent}
-                    leads={leads}
-                />,
-                document.body
-            )}
         </div>
     );
 };

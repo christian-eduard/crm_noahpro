@@ -125,10 +125,10 @@ const NotificationBell = () => {
             {showDropdown && (
                 <>
                     <div
-                        className="fixed inset-0 z-10"
+                        className="fixed inset-0 z-40"
                         onClick={() => setShowDropdown(false)}
                     />
-                    <div className="absolute right-0 mt-2 w-96 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 z-20 max-h-[500px] overflow-hidden flex flex-col">
+                    <div className="fixed md:absolute left-2 right-2 md:left-auto md:right-0 top-16 md:top-auto md:mt-2 w-auto md:w-96 bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 z-50 max-h-[70vh] md:max-h-[500px] overflow-hidden flex flex-col">
                         <div className="p-4 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
                             <h3 className="font-semibold text-gray-900 dark:text-white">Notificaciones</h3>
                             {unreadCount > 0 && (

@@ -60,10 +60,33 @@ const CommercialDashboard = ({ activeSection = 'home' }) => {
 
     const token = localStorage.getItem('crm_token');
 
+
+
     useEffect(() => {
         fetchStats();
         fetchMaterials();
         fetchTickets();
+
+        // Listener para acciones rápidas desde el layout
+        const handleQuickAction = (e) => {
+            const { action } = e.detail;
+            if (action === 'new_lead') {
+                setActiveTab('leads');
+                // Esperar a que cambie el tab y luego abrir modal (implementación simplificada)
+                // En una implementación ideal, pasaríamos un prop o usaríamos un contexto
+                setTimeout(() => {
+                    const addButton = document.querySelector('[data-action="new-lead"]');
+                    if (addButton) addButton.click();
+                }, 100);
+            } else if (action === 'new_meeting') {
+                toast.info('Próximamente: Crear reunión');
+            }
+        };
+        window.addEventListener('crm_quick_action', handleQuickAction);
+
+        return () => {
+            window.removeEventListener('crm_quick_action', handleQuickAction);
+        };
     }, []);
 
     const fetchStats = async () => {

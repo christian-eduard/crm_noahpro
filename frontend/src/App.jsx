@@ -16,6 +16,20 @@ function App() {
     const [currentRoute, setCurrentRoute] = useState('/');
     const [loading, setLoading] = useState(true);
     const [activeSection, setActiveSection] = useState('home');
+    const [quickActionModal, setQuickActionModal] = useState(null); // 'lead' | 'proposal' | 'meeting' | null
+
+    const handleQuickAction = (action) => {
+        if (action === 'lead') {
+            setActiveSection('leads');
+            // Dispatch event to open lead modal in LeadsDashboard
+            window.dispatchEvent(new CustomEvent('crm_quick_action', { detail: { action: 'new_lead' } }));
+        } else if (action === 'proposal') {
+            setActiveSection('proposals');
+        } else if (action === 'meeting') {
+            // For now, show toast about meeting feature
+            window.dispatchEvent(new CustomEvent('crm_quick_action', { detail: { action: 'new_meeting' } }));
+        }
+    };
 
     useEffect(() => {
         const updateRoute = () => {
@@ -90,6 +104,7 @@ function App() {
 
             if (user.role === 'commercial') {
                 return (
+
                     <CrmLayout
                         onLogout={() => {
                             localStorage.removeItem('crm_token');
@@ -98,6 +113,7 @@ function App() {
                         }}
                         activeSection={activeSection}
                         onSectionChange={setActiveSection}
+                        onQuickAction={handleQuickAction}
                     >
                         <CommercialDashboard activeSection={activeSection} />
                     </CrmLayout>
@@ -113,6 +129,7 @@ function App() {
                     }}
                     activeSection={activeSection}
                     onSectionChange={setActiveSection}
+                    onQuickAction={handleQuickAction}
                 >
                     <LeadsDashboard activeSection={activeSection} />
                 </CrmLayout>
