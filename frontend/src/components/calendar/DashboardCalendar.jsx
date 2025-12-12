@@ -274,8 +274,8 @@ const DashboardCalendar = ({ compact = false }) => {
                 </button>
             </div>
 
-            <div className="flex flex-col gap-6 h-[600px]">
-                <div className="flex-1 flex flex-col lg:grid lg:grid-cols-3 gap-6 min-h-0">
+            <div className="flex flex-col gap-6 h-auto lg:h-[600px]">
+                <div className="flex-1 flex flex-col lg:grid lg:grid-cols-3 gap-6 h-auto lg:min-h-0">
                     {/* Calendar Grid */}
                     <div className="lg:col-span-2 bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden flex flex-col">
                         <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
