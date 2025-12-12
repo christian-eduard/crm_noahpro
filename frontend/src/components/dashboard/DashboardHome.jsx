@@ -50,7 +50,7 @@ const DashboardHome = () => {
             { i: 'revenue', x: 0, y: 5, w: 12, h: 3, minW: 12, minH: 3 },
             { i: 'activity', x: 0, y: 8, w: 12, h: 4, minW: 12, minH: 3 },
             { i: 'tasks', x: 0, y: 12, w: 12, h: 4, minW: 12, minH: 4 },
-            { i: 'calendar', x: 0, y: 16, w: 12, h: 6, minW: 12, minH: 5 }
+            { i: 'calendar', x: 0, y: 16, w: 12, h: 18, minW: 12, minH: 15 }
         ]
     };
 
