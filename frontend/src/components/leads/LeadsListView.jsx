@@ -113,12 +113,12 @@ const LeadsListView = ({ leads, onLeadClick, onStatusChange, onDeleteLead }) => 
     return (
         <div className="space-y-4">
             {/* Filters */}
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <div className="flex items-center space-x-2">
                     <select
                         value={filterStatus}
                         onChange={(e) => setFilterStatus(e.target.value)}
-                        className="px-3 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg text-sm text-gray-900 dark:text-white"
+                        className="px-3 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg text-sm text-gray-900 dark:text-white w-full sm:w-auto"
                     >
                         <option value="all">Todos los estados</option>
                         <option value="new">Nuevos</option>

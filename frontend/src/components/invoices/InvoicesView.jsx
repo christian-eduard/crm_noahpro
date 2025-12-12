@@ -84,12 +84,12 @@ const InvoicesView = () => {
     };
 
     return (
-        <div className="p-6">
+        <div className="p-3 md:p-6">
             {/* Header */}
-            <div className="flex justify-between items-center mb-6">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
                 <div>
-                    <h1 className="text-2xl font-bold text-gray-900">Facturas</h1>
-                    <p className="text-gray-600 mt-1">Gestiona las facturas de tus clientes</p>
+                    <h1 className="text-xl md:text-2xl font-bold text-gray-900">Facturas</h1>
+                    <p className="text-gray-600 mt-1 text-sm md:text-base">Gestiona las facturas de tus clientes</p>
                 </div>
                 {view === 'list' && (
                     <button

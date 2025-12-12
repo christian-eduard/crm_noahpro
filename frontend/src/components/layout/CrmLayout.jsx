@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Home, Users, MessageSquare, BarChart3, Settings, FileText, Mail, LogOut, User, Moon, Sun, ChevronDown, BookOpen, HeadphonesIcon } from 'lucide-react';
+import { Home, Users, MessageSquare, BarChart3, Settings, FileText, Mail, LogOut, User, Moon, Sun, ChevronDown, BookOpen, HeadphonesIcon, Menu, X } from 'lucide-react';
 import NotificationBell from '../notifications/NotificationBell';
 import AdminChatWidget from '../admin/chat/AdminChatWidget';
 import ProfileModal from '../profile/ProfileModal';
@@ -14,6 +14,7 @@ const CrmLayout = ({ children, onLogout, activeSection = 'leads', onSectionChang
     const [showQuickActions, setShowQuickActions] = useState(false);
     const [showUserMenu, setShowUserMenu] = useState(false);
     const [showProfileModal, setShowProfileModal] = useState(false);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const userMenuRef = useRef(null);
     const [user, setUser] = useState(() => JSON.parse(localStorage.getItem('user') || '{}'));
 
@@ -160,9 +161,16 @@ const CrmLayout = ({ children, onLogout, activeSection = 'leads', onSectionChang
 
     return (
         <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex">
-            {/* Sidebar */}
-            <aside className={`fixed left-0 top-0 h-full bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 transition-all duration-300 z-40 ${sidebarCollapsed ? 'w-20' : 'w-64'
-                }`}>
+            {/* Mobile Menu Overlay */}
+            {mobileMenuOpen && (
+                <div
+                    className="fixed inset-0 bg-black/50 z-40 md:hidden"
+                    onClick={() => setMobileMenuOpen(false)}
+                />
+            )}
+
+            {/* Sidebar - Hidden on mobile, shown on md+ */}
+            <aside className={`fixed left-0 top-0 h-full bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 transition-all duration-300 z-50 ${sidebarCollapsed ? 'w-20' : 'w-64'} hidden md:block`}>
                 {/* Logo Section */}
                 <div className="h-16 flex items-center justify-between px-4 border-b border-gray-200 dark:border-gray-700">
                     {!sidebarCollapsed && (
@@ -221,13 +229,68 @@ const CrmLayout = ({ children, onLogout, activeSection = 'leads', onSectionChang
 
             </aside>
 
+            {/* Mobile Sidebar */}
+            <aside className={`fixed left-0 top-0 h-full w-64 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 z-50 transform transition-transform duration-300 md:hidden ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+                {/* Logo Section */}
+                <div className="h-16 flex items-center justify-between px-4 border-b border-gray-200 dark:border-gray-700">
+                    <div className="flex items-center space-x-3">
+                        <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl flex items-center justify-center shadow-lg shadow-orange-500/20">
+                            <span className="text-white font-bold text-lg">N</span>
+                        </div>
+                        <div>
+                            <h1 className="text-sm font-bold text-gray-900 dark:text-white">NoahPro</h1>
+                            <p className="text-xs text-gray-500 dark:text-gray-400">CRM Pro</p>
+                        </div>
+                    </div>
+                    <button
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+                    >
+                        <X className="w-5 h-5 text-gray-600 dark:text-gray-300" />
+                    </button>
+                </div>
+
+                {/* Mobile Navigation Menu */}
+                <nav className="p-3 space-y-1">
+                    {filteredMenuItems.map(item => (
+                        <button
+                            key={item.id}
+                            onClick={() => {
+                                item.onClick ? item.onClick() : onSectionChange && onSectionChange(item.id);
+                                setMobileMenuOpen(false);
+                            }}
+                            className={`w-full flex items-center space-x-3 px-3 py-3 rounded-xl transition-all group ${activeSection === item.id
+                                ? 'bg-gradient-to-r from-orange-500 to-red-600 text-white shadow-lg shadow-orange-500/30'
+                                : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                                }`}
+                        >
+                            <span className="text-2xl">{item.icon}</span>
+                            <div className="flex-1 text-left">
+                                <p className="font-medium text-sm">{item.label}</p>
+                                <p className={`text-xs ${activeSection === item.id ? 'text-orange-100' : 'text-gray-500 dark:text-gray-400'}`}>
+                                    {item.description}
+                                </p>
+                            </div>
+                        </button>
+                    ))}
+                </nav>
+            </aside>
+
             {/* Main Content Area */}
-            <div className={`flex-1 min-w-0 transition-all duration-300 ${sidebarCollapsed ? 'ml-20' : 'ml-64'}`}>
+            <div className={`flex-1 min-w-0 transition-all duration-300 ml-0 ${sidebarCollapsed ? 'md:ml-20' : 'md:ml-64'}`}>
                 {/* Top Bar */}
-                <header className={`h-16 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 fixed top-0 right-0 z-50 shadow-sm transition-all duration-300 ${sidebarCollapsed ? 'left-20' : 'left-64'}`}>
-                    <div className="h-full px-6 flex items-center justify-between">
+                <header className={`h-16 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 fixed top-0 right-0 z-30 shadow-sm transition-all duration-300 left-0 ${sidebarCollapsed ? 'md:left-20' : 'md:left-64'}`}>
+                    <div className="h-full px-3 md:px-6 flex items-center justify-between">
+                        {/* Mobile Menu Button */}
+                        <button
+                            onClick={() => setMobileMenuOpen(true)}
+                            className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors md:hidden"
+                        >
+                            <Menu className="w-6 h-6 text-gray-600 dark:text-gray-300" />
+                        </button>
+
                         {/* Search Bar */}
-                        <div className="flex-1 max-w-2xl">
+                        <div className="flex-1 max-w-2xl hidden md:block">
                             <div className="relative">
                                 <input
                                     type="text"
@@ -380,7 +443,7 @@ const CrmLayout = ({ children, onLogout, activeSection = 'leads', onSectionChang
                 </header>
 
                 {/* Main Content */}
-                <main className={`transition-all duration-300 pt-20 p-6`}>
+                <main className={`transition-all duration-300 pt-20 p-3 md:p-6`}>
                     {children}
                 </main>
             </div>
