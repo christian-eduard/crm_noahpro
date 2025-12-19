@@ -434,20 +434,22 @@ Impresionar al cliente con una web que le haga pensar "¡Yo quiero esto para mi 
 ${imageInstruction}
 
 REQUISITOS DE DISEÑO PREMIUM:
-1. HERO SECTION: 
+1. HERO SECTION (**MÁXIMO 80vh - NO 100vh**): 
    - Imagen de fondo a pantalla completa con overlay oscuro semitransparente
+   - **IMPORTANTE: max-height: 80vh para que se vean las secciones debajo**
    - Efecto parallax o gradient animado
    - Título grande y llamativo con el nombre del negocio
    - Subtítulo persuasivo
    - CTA prominente con animación de hover
+   - **CRITICAL: position: relative (not fixed/absolute que tape contenido)**
 
-2. SECCIONES OBLIGATORIAS:
-   - Hero espectacular
-   - "Sobre Nosotros" con historia ficticia profesional
-   - Servicios/Productos (3-4 items con iconos SVG)
-   - Galería de imágenes (grid moderno con hover effects)
-   - Testimonios (3 reseñas ficticias positivas con avatares)
-   - FORMULARIO DE CONTACTO (¡IMPORTANTE!)
+2. SECCIONES OBLIGATORIAS (TODAS DEBEN SER VISIBLES AL SCROLLEAR):
+   - Hero espectacular (80vh)
+   - "Sobre Nosotros" con historia ficticia profesional + IMAGEN
+   - Servicios/Productos (3-4 items con iconos SVG + miniatura de imagen cada uno)
+   - Galería de imágenes (4-6 imágenes en grid moderno con hover effects)
+   - Testimonios (3 reseñas ficticias positivas con avatares de imagen)
+   - FORMULARIO DE CONTACTO (¡IMPORTANTE! Con fondo contrastante)
    - Footer con info de contacto y AÑO DINÁMICO (usar <script>document.write(new Date().getFullYear())</script>)
 
 3. FORMULARIO DE CONTACTO (CRÍTICO):
@@ -464,7 +466,7 @@ REQUISITOS DE DISEÑO PREMIUM:
    - Hover effects en botones y cards
    - Transiciones suaves en todo
 
-5. ESTILO VISUAL (TIPO: ${demoType.toUpperCase()}):
+5.ESTILO VISUAL (TIPO: ${demoType.toUpperCase()}):
    ${styleToUse}
 
 6. COLORES Y TIPOGRAFÍA:
@@ -479,8 +481,16 @@ REQUISITOS DE DISEÑO PREMIUM:
    - 100% responsive (Mobile First)
    - Meta tags SEO básicos
 
+8. CSS CRITICO - EVITAR ERRORES COMUNES:
+   - [NO] uses height: 100vh o min-height: 100vh en hero (usa max 80vh)
+   - [NO] uses position: fixed que oculte contenido
+   - [NO] uses overflow: hidden en body
+   - [SI] TODAS las secciones deben tener padding visible (min 60px)
+   - [SI] TODAS las imagenes deben tener src con URLs de Unsplash reales
+   - [SI] Footer debe ser el ultimo elemento visible
+
 ${customPrompt ? `
-8. INSTRUCCIONES PERSONALIZADAS DEL USUARIO (PRIORIDAD ALTA):
+9. INSTRUCCIONES PERSONALIZADAS DEL USUARIO (PRIORIDAD ALTA):
 ${customPrompt}
 ` : ''}
 
