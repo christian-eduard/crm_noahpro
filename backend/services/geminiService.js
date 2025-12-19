@@ -368,49 +368,39 @@ SALIDA: Solo el texto mejorado. Sin comillas ni explicaciones extra.
 
         const styleToUse = passedStyleInstructions || defaultStyles[demoType] || defaultStyles.modern;
 
+        // USAR PICSUM PHOTOS - siempre funciona, nunca da 404
         let imageInstruction = `
-IMÁGENES (Usa estas fuentes - IMPORTANTE: las imágenes son OBLIGATORIAS):
-1. Unsplash (imágenes de alta calidad libres de derechos): 
-   - Hero: "https://source.unsplash.com/1920x1080/?${businessKeywords},interior,modern"
-   - Galería: "https://source.unsplash.com/800x600/?${businessKeywords},detail,quality" (usa diferentes queries)
-   - Testimonios: "https://source.unsplash.com/200x200/?portrait,professional"
-2. Placeholder si falla: "${this.unsplashFallback}"`;
+IMAGENES - USA EXACTAMENTE ESTAS URLs (NUNCA DAN 404):
+1. HERO PRINCIPAL (1920x1080): https://picsum.photos/1920/1080?random=1
+2. SECCION SOBRE NOSOTROS (800x600): https://picsum.photos/800/600?random=2
+3. SERVICIO 1 (400x300): https://picsum.photos/400/300?random=3
+4. SERVICIO 2 (400x300): https://picsum.photos/400/300?random=4
+5. SERVICIO 3 (400x300): https://picsum.photos/400/300?random=5
+6. GALERIA 1 (500x400): https://picsum.photos/500/400?random=6
+7. GALERIA 2 (500x400): https://picsum.photos/500/400?random=7
+8. GALERIA 3 (500x400): https://picsum.photos/500/400?random=8
+9. GALERIA 4 (500x400): https://picsum.photos/500/400?random=9
+10. TESTIMONIAL 1 (200x200): https://picsum.photos/200/200?random=10
+11. TESTIMONIAL 2 (200x200): https://picsum.photos/200/200?random=11
+12. TESTIMONIAL 3 (200x200): https://picsum.photos/200/200?random=12
+
+CRITICO: 
+- SOLO usa picsum.photos como arriba
+- NO inventes otras URLs
+- NO uses unsplash (da 404)
+- Si necesitas mas: picsum.photos/WIDTHxHEIGHT?random=NUMBER
+`;
 
         if (prospect.photos && prospect.photos.length > 0) {
             const photoUrls = prospect.photos.slice(0, 6).map((p, i) => `   ${i + 1}. ${p.url || p}`).join('\n');
             imageInstruction = `
-IMÁGENES REALES DEL NEGOCIO (PRIORIDAD MÁXIMA - USA ESTAS):
+FOTOS REALES DEL NEGOCIO (PRIORIDAD MAXIMA):
 ${photoUrls}
 
-IMÁGENES COMPLEMENTARIAS de Unsplash (USA SIEMPRE para completar si faltan reales):
-- Fondo hero (Alta Calidad): "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&q=80&w=1920" (Solo si no hay mejor opción real)
-- O usa keywords dinámicas: "https://source.unsplash.com/1600x900/?${businessKeywords}" (deprecated, PREFIERE USAR IMAGENES REALES SI EXISTEN)
-- DETALLE: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800"
-`;
-        } else {
-            // FALLBACK ROBUSTO: URLs fijas de alta calidad por industria para evitar errores 404/negro
-            const fallbackImages = {
-                restaurant: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1920&q=80",
-                cafe: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1920&q=80",
-                gym: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1920&q=80",
-                store: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1920&q=80",
-                generic: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1920&q=80"
-            };
-
-            let heroImage = fallbackImages.generic;
-            if (businessKeywords.includes('restauran') || businessKeywords.includes('food')) heroImage = fallbackImages.restaurant;
-            if (businessKeywords.includes('cafe') || businessKeywords.includes('coffee')) heroImage = fallbackImages.cafe;
-            if (businessKeywords.includes('gym') || businessKeywords.includes('fitness')) heroImage = fallbackImages.gym;
-            if (businessKeywords.includes('shop') || businessKeywords.includes('store')) heroImage = fallbackImages.store;
-
-            imageInstruction = `
-NO TENEMOS FOTOS REALES. USA ESTAS IMÁGENES DE ALTA CALIDAD OBLIGATORIAMENTE:
-1. HERO BACKGROUND: "${heroImage}"
-2. SECCIÓN INFO: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=800&q=80"
-3. AVATAR 1: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=200"
-4. AVATAR 2: "https://images.unsplash.com/photo-1573496359-136d47558363?auto=format&fit=crop&w=200"
-
-IMPORTANTE: NO inventes URLs de imágenes. Usa las proporcionadas o URLs de Unsplash https://images.unsplash.com/photo-... reales que conozcas. NO uses source.unsplash.com ya que falla.
+COMPLEMENTARIAS (solo si faltan reales):
+https://picsum.photos/1920/1080?random=20
+https://picsum.photos/800/600?random=21
+https://picsum.photos/500/400?random=22
 `;
         }
 
@@ -433,46 +423,75 @@ Impresionar al cliente con una web que le haga pensar "¡Yo quiero esto para mi 
 
 ${imageInstruction}
 
-REQUISITOS DE DISEÑO PREMIUM:
-1. HERO SECTION (**MÁXIMO 80vh - NO 100vh**): 
-   - Imagen de fondo a pantalla completa con overlay oscuro semitransparente
-   - **IMPORTANTE: max-height: 80vh para que se vean las secciones debajo**
-   - Efecto parallax o gradient animado
-   - Título grande y llamativo con el nombre del negocio
-   - Subtítulo persuasivo
-   - CTA prominente con animación de hover
-   - **CRITICAL: position: relative (not fixed/absolute que tape contenido)**
+OBJETIVO: Crear una landing page que haga decir WOW al cliente
 
-2. SECCIONES OBLIGATORIAS (TODAS DEBEN SER VISIBLES AL SCROLLEAR):
-   - Hero espectacular (80vh)
-   - "Sobre Nosotros" con historia ficticia profesional + IMAGEN
-   - Servicios/Productos (3-4 items con iconos SVG + miniatura de imagen cada uno)
-   - Galería de imágenes (4-6 imágenes en grid moderno con hover effects)
-   - Testimonios (3 reseñas ficticias positivas con avatares de imagen)
-   - FORMULARIO DE CONTACTO (¡IMPORTANTE! Con fondo contrastante)
-   - Footer con info de contacto y AÑO DINÁMICO (usar <script>document.write(new Date().getFullYear())</script>)
+REQUISITOS DE DISEÑO ULTRA PREMIUM:
 
-3. FORMULARIO DE CONTACTO (CRÍTICO):
-   - Título: "¿Te interesa una web como esta?"
-   - Campos: Nombre, Email, Teléfono, Mensaje
-   - Botón de envío estilizado
-   - Al enviar, hacer POST a "/api/hunter/demos/contact" con JSON: { prospectId: "${demoToken}", name, email, phone, message }
-   - Mostrar alert de éxito al enviar
-   - Diseño moderno, campos con iconos
+1. HERO IMPACTANTE (max-height: 80vh):
+   - Imagen de fondo GRANDE con overlay gradiente oscuro
+   - Titulo ENORME (min 3rem) con fuente bold moderna
+   - Subtitulo persuasivo con gancho emocional
+   - CTA button GRANDE (min 18px padding) con gradiente vibrante
+   - Efectos: parallax sutil, fade-in animado
+   - position: relative (NO fixed)
 
-4. EFECTOS Y ANIMACIONES:
-   - Scroll suave (smooth scroll)
-   - Efectos fade-in al hacer scroll (IntersectionObserver simple)
-   - Hover effects en botones y cards
-   - Transiciones suaves en todo
+2. SECCION SOBRE NOSOTROS - Storytelling Premium:
+   - Imagen grande a la izquierda (500x400px minimo)
+   - Texto a la derecha con historia CONVINCENTE del negocio
+   - Usar metaforas y lenguaje vendedor
+   - Stats cards: años experiencia, clientes satisfechos, proyectos
+   - Background con patron sutil o gradiente suave
 
-5.ESTILO VISUAL (TIPO: ${demoType.toUpperCase()}):
+3. SERVICIOS/PRODUCTOS - Grid Impactante:
+   - 3-4 cards grandes con IMAGENES (400x300px cada una)
+   - Iconos SVG modernos y grandes (64px+)
+   - Hover effect: elevacion, cambio color, escala 1.05
+   - Cada card con titulo, descripcion corta, precio sugerido
+   - Background cards: blanco con sombra suave o glassmorphism
+
+4. GALERIA VISUAL - Grid Moderno:
+   - Minimo 4 imagenes en grid responsive (2x2 o 3x2)
+   - Hover: overlay oscuro con icono zoom
+   - Bordes redondeados (border-radius: 12px)
+   - Gap entre imagenes (20px)
+   - Lightbox simple al click (opcional)
+
+5. TESTIMONIOS - Social Proof Fuerte:
+   - 3 testimonios con avatares GRANDES (200x200px)
+   - Nombres ficticios + cargo/empresa
+   - Citas LARGAS y convincentes
+   - 5 estrellas doradas visible
+   - Background alternado o cards elevados
+
+6. FORMULARIO CONTACTO - Conversion Optimizado:
+   - Titulo gancho: ¿Te imaginas tu negocio asi?
+   - Campos grandes con mucho padding
+   - Iconos left en cada input
+   - Boton CTA ENORME con gradiente
+   - Background: color contrastante o imagen con overlay
+
+7. FOOTER COMPLETO:
+   - Info contacto: telefono, email, direccion
+   - Redes sociales con iconos
+   - Copyright dinamico
+   - Background oscuro elegante
+
+8. EFECTOS WOW:
+   - Fade-in sections on scroll (IntersectionObserver)
+   - Smooth scroll suave
+   - Parallax sutil en hero
+   - Hover effects en TODO
+   - Gradientes vibrantes en CTAs
+   - Sombras sutiles (box-shadow)
+
+9. COLORES Y TIPOGRAFIA:
+   - Paleta: 1 color principal vibrante + neutros
+   - Google Fonts: Poppins o Montserrat (body) + Playfair Display (titulos)
+   - Tamaños: h1(3-4rem), h2(2.5rem), body(1.1rem)
+   - Line-height: 1.6 para legibilidad
+
+10. ESTILO SEGUN TIPO (${demoType}):
    ${styleToUse}
-
-6. COLORES Y TIPOGRAFÍA:
-   - Paleta profesional según el estilo
-   - Google Fonts (Inter o Montserrat + Playfair Display para títulos)
-   - Jerarquía visual clara
 
 7. TÉCNICO:
    - HTML5 único archivo autónomo
