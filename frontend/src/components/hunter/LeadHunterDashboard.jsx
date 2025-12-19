@@ -850,8 +850,9 @@ const LeadHunterDashboard = ({ onNavigateSettings }) => {
             setDemoGenerationStage('done');
 
             if (data.html && data.publicToken) {
-                // Abrir demo usando el token público
-                const demoUrl = `/demo/${data.publicToken}`;
+                //Abrir demo usando el token público
+                const API_BASE = API_URL.replace('/api', ''); // http://localhost:3002
+                const demoUrl = `${API_BASE}/api/hunter/public/demo/${data.publicToken}`;
                 const newWindow = window.open(demoUrl, '_blank');
 
                 if (newWindow) {
