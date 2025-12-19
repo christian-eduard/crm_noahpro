@@ -2778,6 +2778,31 @@ const LeadHunterDashboard = ({ onNavigateSettings }) => {
                                         {/* TAB: AUDITORÍA DIGITAL */}
                                         {modalActiveTab === 'audit' && (
                                             <div className="space-y-6 animate-fadeIn">
+                                                {/* Header with Regenerate Button */}
+                                                <div className="flex justify-between items-center bg-gray-50 dark:bg-gray-800/50 p-4 rounded-xl">
+                                                    <div>
+                                                        <h4 className="font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                                                            <BarChart className="w-5 h-5 text-indigo-600" />
+                                                            Auditoría Digital 360º
+                                                        </h4>
+                                                        <p className="text-xs text-gray-500">Análisis completo de presencia digital</p>
+                                                    </div>
+                                                    {selectedProspect.digital_audit && (
+                                                        <Button
+                                                            size="sm"
+                                                            onClick={() => handleDeepAnalyze(selectedProspect.id)}
+                                                            disabled={analyzingId === selectedProspect.id}
+                                                            className="bg-indigo-600 hover:bg-indigo-700 text-white"
+                                                        >
+                                                            {analyzingId === selectedProspect.id ? (
+                                                                <><RefreshCw className="w-4 h-4 mr-2 animate-spin" /> Regenerando...</>
+                                                            ) : (
+                                                                <><RefreshCw className="w-4 h-4 mr-2" /> Regenerar</>
+                                                            )}
+                                                        </Button>
+                                                    )}
+                                                </div>
+
                                                 {/* Quality Score */}
                                                 {selectedProspect.quality_score !== undefined && (
                                                     <div className="bg-gradient-to-r from-emerald-500 to-cyan-600 p-6 rounded-2xl text-white shadow-xl">
@@ -2820,8 +2845,8 @@ const LeadHunterDashboard = ({ onNavigateSettings }) => {
                                                             </div>
                                                             {selectedProspect.social_stats?.is_active !== undefined && (
                                                                 <span className={`px-3 py-1 rounded-full text-xs font-bold ${selectedProspect.social_stats.is_active
-                                                                        ? 'bg-green-100 text-green-700'
-                                                                        : 'bg-red-100 text-red-700'
+                                                                    ? 'bg-green-100 text-green-700'
+                                                                    : 'bg-red-100 text-red-700'
                                                                     }`}>
                                                                     {selectedProspect.social_stats.is_active ? '✓ Activa' : '✗ Inactiva'}
                                                                 </span>
@@ -2891,8 +2916,8 @@ const LeadHunterDashboard = ({ onNavigateSettings }) => {
                                                                 <div className="p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
                                                                     <div className="text-xs text-gray-500 mb-1">Web</div>
                                                                     <div className={`font-bold text-sm ${selectedProspect.digital_audit.web_status === 'modern' ? 'text-green-600' :
-                                                                            selectedProspect.digital_audit.web_status === 'outdated' ? 'text-orange-600' :
-                                                                                'text-red-600'
+                                                                        selectedProspect.digital_audit.web_status === 'outdated' ? 'text-orange-600' :
+                                                                            'text-red-600'
                                                                         }`}>
                                                                         {selectedProspect.digital_audit.web_status === 'modern' && '✓ Moderna'}
                                                                         {selectedProspect.digital_audit.web_status === 'outdated' && '⚠ Obsoleta'}
@@ -2903,9 +2928,9 @@ const LeadHunterDashboard = ({ onNavigateSettings }) => {
                                                                 <div className="p-3 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
                                                                     <div className="text-xs text-gray-500 mb-1">Redes Sociales</div>
                                                                     <div className={`font-bold text-sm ${selectedProspect.digital_audit.social_health === 'healthy' ? 'text-green-600' :
-                                                                            selectedProspect.digital_audit.social_health === 'inactive' ? 'text-orange-600' :
-                                                                                selectedProspect.digital_audit.social_health === 'critical' ? 'text-red-600' :
-                                                                                    'text-gray-500'
+                                                                        selectedProspect.digital_audit.social_health === 'inactive' ? 'text-orange-600' :
+                                                                            selectedProspect.digital_audit.social_health === 'critical' ? 'text-red-600' :
+                                                                                'text-gray-500'
                                                                         }`}>
                                                                         {selectedProspect.digital_audit.social_health === 'healthy' && '✓ Activas'}
                                                                         {selectedProspect.digital_audit.social_health === 'inactive' && '⚠ Inactivas'}
@@ -2917,9 +2942,9 @@ const LeadHunterDashboard = ({ onNavigateSettings }) => {
                                                                 <div className="p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
                                                                     <div className="text-xs text-gray-500 mb-1">Reputación</div>
                                                                     <div className={`font-bold text-sm ${selectedProspect.digital_audit.reputation === 'excellent' ? 'text-green-600' :
-                                                                            selectedProspect.digital_audit.reputation === 'good' ? 'text-blue-600' :
-                                                                                selectedProspect.digital_audit.reputation === 'fair' ? 'text-yellow-600' :
-                                                                                    'text-red-600'
+                                                                        selectedProspect.digital_audit.reputation === 'good' ? 'text-blue-600' :
+                                                                            selectedProspect.digital_audit.reputation === 'fair' ? 'text-yellow-600' :
+                                                                                'text-red-600'
                                                                         }`}>
                                                                         {selectedProspect.digital_audit.reputation === 'excellent' && '⭐ Excelente'}
                                                                         {selectedProspect.digital_audit.reputation === 'good' && '✓ Buena'}
@@ -3134,7 +3159,7 @@ const LeadHunterDashboard = ({ onNavigateSettings }) => {
                                     </div>
 
                                     {/* Column: Right Sidebar (Inteligencia de Cierre) */}
-                                    <div className={(modalActiveTab === 'summary' || modalActiveTab === 'analysis') ? 'lg:col-span-1' : 'hidden'}>
+                                    <div className={(modalActiveTab === 'summary' || modalActiveTab === 'analysis' || modalActiveTab === 'audit') ? 'lg:col-span-1' : 'hidden'}>
                                         <div className="space-y-6 animate-fadeIn sticky top-0">
                                             <div className="bg-gradient-to-r from-purple-500 to-indigo-600 p-5 rounded-2xl text-white shadow-lg relative overflow-hidden">
                                                 <div className="absolute -right-4 -bottom-4 opacity-10">
@@ -3142,13 +3167,76 @@ const LeadHunterDashboard = ({ onNavigateSettings }) => {
                                                 </div>
                                                 <div className="relative z-10">
                                                     <h4 className="font-bold flex items-center gap-2 mb-1">
-                                                        <Sparkles className="w-4 h-4" /> Inteligencia Noah
+                                                        <Sparkles className="w-4 h-4" /> Inteligencia de Venta
                                                     </h4>
-                                                    <p className="text-indigo-100 text-xs">Estrategias personalizadas</p>
+                                                    <p className="text-indigo-100 text-xs">Análisis personalizado con IA</p>
                                                 </div>
                                             </div>
 
-                                            {selectedProspect.ai_analysis ? (
+                                            {selectedProspect.sales_intelligence ? (
+                                                <div className="space-y-4">
+                                                    {/* Pain Point */}
+                                                    <div className="bg-white dark:bg-gray-800 p-4 rounded-xl border border-orange-200 dark:border-orange-700 shadow-sm">
+                                                        <span className="text-[10px] font-bold text-orange-600 uppercase tracking-widest">Punto de Dolor</span>
+                                                        <p className="text-xs text-gray-700 dark:text-gray-300 mt-2 font-medium">
+                                                            {selectedProspect.sales_intelligence.primary_pain_point}
+                                                        </p>
+                                                    </div>
+
+                                                    {/* Estrategia */}
+                                                    <div className="bg-indigo-50 dark:bg-indigo-900/10 p-4 rounded-xl border border-indigo-100 dark:border-indigo-800">
+                                                        <span className="text-[10px] font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-widest">Estrategia Recomendada</span>
+                                                        <p className="text-sm font-bold text-gray-900 dark:text-white mt-2">
+                                                            {selectedProspect.sales_intelligence.recommended_strategy}
+                                                        </p>
+                                                        <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
+                                                            {selectedProspect.sales_intelligence.suggested_product}
+                                                        </p>
+                                                    </div>
+
+                                                    {/* Mensaje de Apertura */}
+                                                    <div className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 p-4 rounded-xl border border-green-200 dark:border-green-800">
+                                                        <span className="text-[10px] font-bold text-green-600 dark:text-green-400 uppercase tracking-widest">Primer Contacto</span>
+                                                        <p className="text-xs text-gray-700 dark:text-gray-300 mt-2 italic leading-relaxed">
+                                                            "{selectedProspect.sales_intelligence.opening_message}"
+                                                        </p>
+                                                        <Button
+                                                            size="xs"
+                                                            className="mt-3 bg-green-600 hover:bg-green-700 text-white w-full font-bold"
+                                                            onClick={() => {
+                                                                navigator.clipboard.writeText(selectedProspect.sales_intelligence.opening_message);
+                                                                toast.success('Mensaje copiado');
+                                                            }}
+                                                        >
+                                                            <Copy className="w-3 h-3 mr-1" />
+                                                            Copiar Mensaje
+                                                        </Button>
+                                                    </div>
+
+                                                    {/* Métricas */}
+                                                    {(selectedProspect.sales_intelligence.estimated_value || selectedProspect.sales_intelligence.close_probability) && (
+                                                        <div className="grid grid-cols-2 gap-2">
+                                                            {selectedProspect.sales_intelligence.estimated_value && (
+                                                                <div className="bg-white dark:bg-gray-800 p-3 rounded-lg border border-gray-200 dark:border-gray-700 text-center">
+                                                                    <div className="text-[10px] text-gray-500 mb-1">Valor</div>
+                                                                    <div className="font-bold text-sm text-green-600">
+                                                                        €{selectedProspect.sales_intelligence.estimated_value.toLocaleString()}
+                                                                    </div>
+                                                                </div>
+                                                            )}
+                                                            {selectedProspect.sales_intelligence.close_probability && (
+                                                                <div className="bg-white dark:bg-gray-800 p-3 rounded-lg border border-gray-200 dark:border-gray-700 text-center">
+                                                                    <div className="text-[10px] text-gray-500 mb-1">Prob. Cierre</div>
+                                                                    <div className="font-bold text-sm text-blue-600">
+                                                                        {(selectedProspect.sales_intelligence.close_probability * 100).toFixed(0)}%
+                                                                    </div>
+                                                                </div>
+                                                            )}
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            ) : selectedProspect.ai_analysis ? (
+                                                // Fallback a ai_analysis antiguo si existe
                                                 <div className="space-y-4">
                                                     <div className="bg-white dark:bg-gray-800 p-4 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
                                                         <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Oportunidad</span>
@@ -3166,8 +3254,19 @@ const LeadHunterDashboard = ({ onNavigateSettings }) => {
                                             ) : (
                                                 <div className="text-center py-10 bg-gray-50 dark:bg-gray-800/50 rounded-2xl border-2 border-dashed border-gray-200 dark:border-gray-700">
                                                     <BrainCircuit className="w-10 h-10 text-gray-300 mx-auto mb-3" />
-                                                    <p className="text-xs text-gray-400 px-4 leading-relaxed">Analiza este prospecto para desbloquear el poder de la IA</p>
-                                                    <Button size="sm" variant="outline" className="mt-4 border-indigo-200 text-indigo-600" onClick={() => handleAnalyze(selectedProspect.id)}>Ejecutar IA</Button>
+                                                    <p className="text-xs text-gray-400 px-4 leading-relaxed mb-4">Ejecuta un análisis profundo para obtener insights de venta</p>
+                                                    <Button
+                                                        size="sm"
+                                                        className="bg-indigo-600 hover:bg-indigo-700 text-white"
+                                                        onClick={() => handleDeepAnalyze(selectedProspect.id)}
+                                                        disabled={analyzingId === selectedProspect.id}
+                                                    >
+                                                        {analyzingId === selectedProspect.id ? (
+                                                            <><RefreshCw className="w-4 h-4 mr-2 animate-spin" /> Analizando...</>
+                                                        ) : (
+                                                            <><Sparkles className="w-4 h-4 mr-2" /> Análisis Profundo</>
+                                                        )}
+                                                    </Button>
                                                 </div>
                                             )}
                                         </div>

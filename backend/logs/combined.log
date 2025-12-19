@@ -20213,3 +20213,42 @@
 {"level":"info","message":"🚀 Leads Backend running on port 3002","timestamp":"2025-12-19T11:43:49.203Z"}
 {"level":"info","message":"📊 Database: Not configured","timestamp":"2025-12-19T11:43:49.205Z"}
 {"level":"info","message":"💬 Socket.io initialized","timestamp":"2025-12-19T11:43:49.205Z"}
+{"level":"info","message":"GET /api/hunter/public/demo/undefined ","timestamp":"2025-12-19T11:44:05.862Z"}
+{"level":"info","message":"GET /api/hunter/public/demo/undefined ","timestamp":"2025-12-19T11:44:05.866Z"}
+{"level":"info","message":"GET /api/settings/public ","timestamp":"2025-12-19T11:44:05.867Z"}
+{"level":"info","message":"GET /api/settings/public ","timestamp":"2025-12-19T11:44:05.871Z"}
+{"level":"info","message":"GET /api/settings/public ","timestamp":"2025-12-19T11:44:59.051Z"}
+{"level":"info","message":"GET /api/hunter/public/demo/undefined ","timestamp":"2025-12-19T11:44:59.054Z"}
+{"level":"info","message":"GET /api/hunter/public/demo/undefined ","timestamp":"2025-12-19T11:44:59.057Z"}
+{"level":"info","message":"GET /api/settings/public ","timestamp":"2025-12-19T11:44:59.063Z"}
+{"level":"info","message":"POST /api/hunter/analyze/177 ","timestamp":"2025-12-19T11:45:41.523Z"}
+{"level":"info","message":"GET /api/hunter/prospects/177/notes_list ","timestamp":"2025-12-19T11:45:45.534Z"}
+{"level":"info","message":"GET /api/hunter/prospects/177/demos ","timestamp":"2025-12-19T11:45:45.536Z"}
+{"level":"info","message":"🚀 Leads Backend running on port 3002","timestamp":"2025-12-19T11:46:19.730Z"}
+{"level":"info","message":"📊 Database: Not configured","timestamp":"2025-12-19T11:46:19.732Z"}
+{"level":"info","message":"💬 Socket.io initialized","timestamp":"2025-12-19T11:46:19.732Z"}
+{"level":"info","message":"GET /api/hunter/public/demo/undefined ","timestamp":"2025-12-19T11:48:17.646Z"}
+{"level":"info","message":"GET /api/hunter/public/demo/undefined ","timestamp":"2025-12-19T11:48:17.657Z"}
+{"level":"info","message":"GET /api/settings/public ","timestamp":"2025-12-19T11:48:17.659Z"}
+{"level":"info","message":"GET /api/settings/public ","timestamp":"2025-12-19T11:48:17.679Z"}
+{"level":"info","message":"DELETE /api/hunter/demos/9 ","timestamp":"2025-12-19T11:48:26.103Z"}
+{"level":"info","message":"POST /api/hunter/prospects/177/demo ","timestamp":"2025-12-19T11:48:50.293Z"}
+{"level":"info","message":"GET /api/hunter/prospects/177/demos ","timestamp":"2025-12-19T11:49:19.281Z"}
+{"level":"info","message":"GET /api/hunter/searches ","timestamp":"2025-12-19T11:49:40.834Z"}
+{"level":"info","message":"GET /api/hunter/prospects/177/notes_list ","timestamp":"2025-12-19T11:49:40.835Z"}
+{"level":"info","message":"GET /api/hunter/access ","timestamp":"2025-12-19T11:49:40.836Z"}
+{"level":"info","message":"GET /api/hunter/stats ","timestamp":"2025-12-19T11:49:40.836Z"}
+{"level":"info","message":"GET /api/business-types ","timestamp":"2025-12-19T11:49:40.836Z"}
+{"level":"info","message":"GET /api/hunter/prospects/177/demos ","timestamp":"2025-12-19T11:49:40.837Z"}
+{"level":"info","message":"GET /api/hunter-strategies ","timestamp":"2025-12-19T11:49:40.839Z"}
+{"level":"info","message":"GET /api/settings/public ","timestamp":"2025-12-19T11:49:46.553Z"}
+{"level":"info","message":"GET /api/hunter/public/demo/undefined ","timestamp":"2025-12-19T11:49:46.555Z"}
+{"level":"info","message":"GET /api/hunter/public/demo/undefined ","timestamp":"2025-12-19T11:49:46.557Z"}
+{"level":"info","message":"GET /api/settings/public ","timestamp":"2025-12-19T11:49:46.559Z"}
+{"level":"info","message":"GET /api/hunter/access ","timestamp":"2025-12-19T11:50:19.846Z"}
+{"level":"info","message":"GET /api/hunter/stats ","timestamp":"2025-12-19T11:50:19.852Z"}
+{"level":"info","message":"GET /api/business-types ","timestamp":"2025-12-19T11:50:19.857Z"}
+{"level":"info","message":"GET /api/hunter/prospects/177/demos ","timestamp":"2025-12-19T11:50:19.864Z"}
+{"level":"info","message":"GET /api/hunter/searches ","timestamp":"2025-12-19T11:50:19.871Z"}
+{"level":"info","message":"GET /api/hunter-strategies ","timestamp":"2025-12-19T11:50:19.875Z"}
+{"level":"info","message":"GET /api/hunter/prospects/177/notes_list ","timestamp":"2025-12-19T11:50:19.879Z"}
