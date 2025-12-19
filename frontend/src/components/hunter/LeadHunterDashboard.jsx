@@ -849,8 +849,25 @@ const LeadHunterDashboard = ({ onNavigateSettings }) => {
             const data = await res.json();
             setDemoGenerationStage('done');
 
-            if (data.html) {
-                // Open demo immediately
+            if (data.html && data.publicToken) {
+                // Abrir demo usando el token público
+                const demoUrl = `/demo/${data.publicToken}`;
+                const newWindow = window.open(demoUrl, '_blank');
+
+                if (newWindow) {
+                    toast.success('¡Demo generada exitosamente!');
+                } else {
+                    toast.error('Ventana emergente bloqueada. Permite popups para ver la demo.');
+                }
+
+                // Refresh demo history
+                if (selectedProspect && selectedProspect.id === prospectId) {
+                    fetchDemoHistory(prospectId);
+                }
+
+                setIsDemoConfigOpen(false);
+            } else if (data.html) {
+                // Fallback para demos antiguas sin token
                 const newWindow = window.open();
                 if (newWindow) {
                     newWindow.document.write(data.html);
