@@ -2205,6 +2205,7 @@ const LeadHunterDashboard = ({ onNavigateSettings }) => {
                                 {[
                                     { id: 'summary', label: 'Resumen', icon: FileText },
                                     { id: 'analysis', label: 'Análisis IA', icon: BrainCircuit },
+                                    { id: 'audit', label: 'Auditoría Digital', icon: BarChart },
                                     { id: 'notes', label: 'Notas + CRM', icon: MessageSquare },
                                     { id: 'inbox', label: 'Inbox Demo', icon: Mail, badge: demoContactRequests.length > 0 ? demoContactRequests.length : null },
                                     { id: 'activity', label: 'Actividad', icon: Clock },
@@ -2771,6 +2772,266 @@ const LeadHunterDashboard = ({ onNavigateSettings }) => {
                                                         </div>
                                                     </Button>
                                                 </div>
+                                            </div>
+                                        )}
+
+                                        {/* TAB: AUDITORÍA DIGITAL */}
+                                        {modalActiveTab === 'audit' && (
+                                            <div className="space-y-6 animate-fadeIn">
+                                                {/* Quality Score */}
+                                                {selectedProspect.quality_score !== undefined && (
+                                                    <div className="bg-gradient-to-r from-emerald-500 to-cyan-600 p-6 rounded-2xl text-white shadow-xl">
+                                                        <div className="flex items-center justify-between mb-4">
+                                                            <div className="flex items-center gap-3">
+                                                                <div className="bg-white/20 p-3 rounded-xl">
+                                                                    <BarChart className="w-6 h-6" />
+                                                                </div>
+                                                                <div>
+                                                                    <h4 className="font-bold text-lg">Quality Score</h4>
+                                                                    <p className="text-emerald-100 text-xs">Puntuación de calidad del prospecto</p>
+                                                                </div>
+                                                            </div>
+                                                            <div className="text-right">
+                                                                <div className="text-4xl font-black">{selectedProspect.quality_score}</div>
+                                                                <div className="text-xs text-emerald-100">/ 100</div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="bg-white/10 rounded-full h-3 overflow-hidden">
+                                                            <div
+                                                                className="bg-white h-full transition-all duration-1000 ease-out rounded-full"
+                                                                style={{ width: `${selectedProspect.quality_score}%` }}
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                )}
+
+                                                {/* Social Media Stats */}
+                                                {selectedProspect.social_handle && (
+                                                    <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl border-2 border-gray-200 dark:border-gray-700 shadow-lg">
+                                                        <div className="flex items-center justify-between mb-4">
+                                                            <div className="flex items-center gap-3">
+                                                                <div className="bg-gradient-to-r from-pink-500 to-purple-600 p-3 rounded-xl">
+                                                                    <Instagram className="w-5 h-5 text-white" />
+                                                                </div>
+                                                                <div>
+                                                                    <h4 className="font-bold text-gray-900 dark:text-white">@{selectedProspect.social_handle}</h4>
+                                                                    <p className="text-xs text-gray-500 capitalize">{selectedProspect.social_platform || 'instagram'}</p>
+                                                                </div>
+                                                            </div>
+                                                            {selectedProspect.social_stats?.is_active !== undefined && (
+                                                                <span className={`px-3 py-1 rounded-full text-xs font-bold ${selectedProspect.social_stats.is_active
+                                                                        ? 'bg-green-100 text-green-700'
+                                                                        : 'bg-red-100 text-red-700'
+                                                                    }`}>
+                                                                    {selectedProspect.social_stats.is_active ? '✓ Activa' : '✗ Inactiva'}
+                                                                </span>
+                                                            )}
+                                                        </div>
+
+                                                        {selectedProspect.social_stats && (
+                                                            <div className="grid grid-cols-2 gap-4 mt-4">
+                                                                {selectedProspect.social_stats.followers_count !== undefined && (
+                                                                    <div className="text-center p-4 bg-gray-50 dark:bg-gray-900/50 rounded-xl">
+                                                                        <div className="text-2xl font-bold text-gray-900 dark:text-white">
+                                                                            {selectedProspect.social_stats.followers_count.toLocaleString()}
+                                                                        </div>
+                                                                        <div className="text-xs text-gray-500">Seguidores</div>
+                                                                    </div>
+                                                                )}
+                                                                {selectedProspect.social_stats.media_count !== undefined && (
+                                                                    <div className="text-center p-4 bg-gray-50 dark:bg-gray-900/50 rounded-xl">
+                                                                        <div className="text-2xl font-bold text-gray-900 dark:text-white">
+                                                                            {selectedProspect.social_stats.media_count}
+                                                                        </div>
+                                                                        <div className="text-xs text-gray-500">Publicaciones</div>
+                                                                    </div>
+                                                                )}
+                                                                {selectedProspect.social_stats.engagement_rate !== undefined && (
+                                                                    <div className="text-center p-4 bg-gray-50 dark:bg-gray-900/50 rounded-xl">
+                                                                        <div className="text-2xl font-bold text-gray-900 dark:text-white">
+                                                                            {selectedProspect.social_stats.engagement_rate}%
+                                                                        </div>
+                                                                        <div className="text-xs text-gray-500">Engagement</div>
+                                                                    </div>
+                                                                )}
+                                                                {selectedProspect.social_stats.last_post_date && (
+                                                                    <div className="text-center p-4 bg-gray-50 dark:bg-gray-900/50 rounded-xl">
+                                                                        <div className="text-sm font-bold text-gray-900 dark:text-white">
+                                                                            {selectedProspect.social_stats.last_post_date}
+                                                                        </div>
+                                                                        <div className="text-xs text-gray-500">Último post</div>
+                                                                    </div>
+                                                                )}
+                                                            </div>
+                                                        )}
+
+                                                        {selectedProspect.social_stats?.fetch_method && (
+                                                            <div className="mt-3 text-xs text-gray-400 flex items-center gap-2">
+                                                                <span>Método: {selectedProspect.social_stats.fetch_method === 'api' ? 'Instagram Graph API' : 'Web Scraping'}</span>
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                )}
+
+                                                {/* Digital Audit */}
+                                                {selectedProspect.digital_audit && (
+                                                    <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl border-2 border-indigo-200 dark:border-indigo-800 shadow-lg">
+                                                        <h4 className="font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                                                            <Target className="w-5 h-5 text-indigo-600" />
+                                                            Madurez Digital
+                                                        </h4>
+
+                                                        <div className="space-y-3">
+                                                            <div className="flex justify-between items-center">
+                                                                <span className="text-sm text-gray-600 dark:text-gray-300">Score Total</span>
+                                                                <span className="text-2xl font-black text-indigo-600">{selectedProspect.digital_audit.score}/100</span>
+                                                            </div>
+
+                                                            <div className="grid grid-cols-2 gap-3 mt-4">
+                                                                <div className="p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+                                                                    <div className="text-xs text-gray-500 mb-1">Web</div>
+                                                                    <div className={`font-bold text-sm ${selectedProspect.digital_audit.web_status === 'modern' ? 'text-green-600' :
+                                                                            selectedProspect.digital_audit.web_status === 'outdated' ? 'text-orange-600' :
+                                                                                'text-red-600'
+                                                                        }`}>
+                                                                        {selectedProspect.digital_audit.web_status === 'modern' && '✓ Moderna'}
+                                                                        {selectedProspect.digital_audit.web_status === 'outdated' && '⚠ Obsoleta'}
+                                                                        {selectedProspect.digital_audit.web_status === 'missing' && '✗ Sin web'}
+                                                                    </div>
+                                                                </div>
+
+                                                                <div className="p-3 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
+                                                                    <div className="text-xs text-gray-500 mb-1">Redes Sociales</div>
+                                                                    <div className={`font-bold text-sm ${selectedProspect.digital_audit.social_health === 'healthy' ? 'text-green-600' :
+                                                                            selectedProspect.digital_audit.social_health === 'inactive' ? 'text-orange-600' :
+                                                                                selectedProspect.digital_audit.social_health === 'critical' ? 'text-red-600' :
+                                                                                    'text-gray-500'
+                                                                        }`}>
+                                                                        {selectedProspect.digital_audit.social_health === 'healthy' && '✓ Activas'}
+                                                                        {selectedProspect.digital_audit.social_health === 'inactive' && '⚠ Inactivas'}
+                                                                        {selectedProspect.digital_audit.social_health === 'critical' && '✗ Crítico'}
+                                                                        {selectedProspect.digital_audit.social_health === 'missing' && '✗ Ausente'}
+                                                                    </div>
+                                                                </div>
+
+                                                                <div className="p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                                                                    <div className="text-xs text-gray-500 mb-1">Reputación</div>
+                                                                    <div className={`font-bold text-sm ${selectedProspect.digital_audit.reputation === 'excellent' ? 'text-green-600' :
+                                                                            selectedProspect.digital_audit.reputation === 'good' ? 'text-blue-600' :
+                                                                                selectedProspect.digital_audit.reputation === 'fair' ? 'text-yellow-600' :
+                                                                                    'text-red-600'
+                                                                        }`}>
+                                                                        {selectedProspect.digital_audit.reputation === 'excellent' && '⭐ Excelente'}
+                                                                        {selectedProspect.digital_audit.reputation === 'good' && '✓ Buena'}
+                                                                        {selectedProspect.digital_audit.reputation === 'fair' && '→ Regular'}
+                                                                        {selectedProspect.digital_audit.reputation === 'poor' && '✗ Pobre'}
+                                                                    </div>
+                                                                </div>
+
+                                                                <div className="p-3 bg-orange-50 dark:bg-orange-900/20 rounded-lg">
+                                                                    <div className="text-xs text-gray-500 mb-1">E-commerce</div>
+                                                                    <div className="font-bold text-sm text-gray-700 dark:text-gray-300">
+                                                                        {selectedProspect.digital_audit.details?.ecommerce_score || 0} pts
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                )}
+
+                                                {/* Sales Intelligence */}
+                                                {selectedProspect.sales_intelligence && (
+                                                    <div className="bg-gradient-to-br from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20 p-6 rounded-2xl border-2 border-orange-200 dark:border-orange-800">
+                                                        <h4 className="font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                                                            <Zap className="w-5 h-5 text-orange-600" />
+                                                            Sales Intelligence
+                                                        </h4>
+
+                                                        {/* Pain Point */}
+                                                        <div className="mb-4 p-4 bg-white dark:bg-gray-800 rounded-xl border border-orange-200 dark:border-orange-700">
+                                                            <div className="text-xs text-gray-500 mb-2 flex items-center gap-2">
+                                                                <AlertCircle className="w-3 h-3" />
+                                                                Punto de Dolor Principal
+                                                            </div>
+                                                            <p className="text-sm font-medium text-gray-900 dark:text-white">
+                                                                {selectedProspect.sales_intelligence.primary_pain_point}
+                                                            </p>
+                                                        </div>
+
+                                                        {/* Opening Message */}
+                                                        <div className="mb-4 p-4 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-xl shadow-lg">
+                                                            <div className="text-xs text-orange-100 mb-2 flex items-center gap-2">
+                                                                <MessageCircle className="w-3 h-3" />
+                                                                Mensaje de Apertura
+                                                            </div>
+                                                            <p className="text-sm font-medium italic mb-3">
+                                                                "{selectedProspect.sales_intelligence.opening_message}"
+                                                            </p>
+                                                            <Button
+                                                                size="xs"
+                                                                className="bg-white text-orange-600 hover:bg-orange-50 font-bold"
+                                                                onClick={() => {
+                                                                    navigator.clipboard.writeText(selectedProspect.sales_intelligence.opening_message);
+                                                                    toast.success('Mensaje copiado al portapapeles');
+                                                                }}
+                                                            >
+                                                                <Copy className="w-3 h-3 mr-1" />
+                                                                Copiar
+                                                            </Button>
+                                                        </div>
+
+                                                        {/* Strategy & Product */}
+                                                        <div className="grid grid-cols-2 gap-3">
+                                                            <div className="p-3 bg-white dark:bg-gray-800 rounded-lg">
+                                                                <div className="text-xs text-gray-500 mb-1">Estrategia</div>
+                                                                <div className="font-bold text-sm text-orange-600">
+                                                                    {selectedProspect.sales_intelligence.recommended_strategy}
+                                                                </div>
+                                                            </div>
+                                                            <div className="p-3 bg-white dark:bg-gray-800 rounded-lg">
+                                                                <div className="text-xs text-gray-500 mb-1">Producto</div>
+                                                                <div className="font-bold text-sm text-gray-900 dark:text-white">
+                                                                    {selectedProspect.sales_intelligence.suggested_product}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        {/* Value & Probability */}
+                                                        {(selectedProspect.sales_intelligence.estimated_value || selectedProspect.sales_intelligence.close_probability) && (
+                                                            <div className="grid grid-cols-2 gap-3 mt-3">
+                                                                {selectedProspect.sales_intelligence.estimated_value && (
+                                                                    <div className="p-3 bg-white dark:bg-gray-800 rounded-lg">
+                                                                        <div className="text-xs text-gray-500 mb-1">Valor Estimado</div>
+                                                                        <div className="font-bold text-lg text-green-600">
+                                                                            €{selectedProspect.sales_intelligence.estimated_value.toLocaleString()}
+                                                                        </div>
+                                                                    </div>
+                                                                )}
+                                                                {selectedProspect.sales_intelligence.close_probability && (
+                                                                    <div className="p-3 bg-white dark:bg-gray-800 rounded-lg">
+                                                                        <div className="text-xs text-gray-500 mb-1">Prob. Cierre</div>
+                                                                        <div className="font-bold text-lg text-blue-600">
+                                                                            {(selectedProspect.sales_intelligence.close_probability * 100).toFixed(0)}%
+                                                                        </div>
+                                                                    </div>
+                                                                )}
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                )}
+
+                                                {/* Empty State */}
+                                                {!selectedProspect.digital_audit && !selectedProspect.sales_intelligence && (
+                                                    <div className="text-center py-12 border-2 border-dashed border-gray-200 dark:border-gray-700 rounded-xl">
+                                                        <BrainCircuit className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+                                                        <p className="text-gray-500 mb-4">Auditoría digital no disponible</p>
+                                                        <p className="text-xs text-gray-400 mb-4">Ejecuta un "Análisis Profundo" para generar la auditoría</p>
+                                                        <Button onClick={() => handleDeepAnalyze(selectedProspect.id)}>
+                                                            <Sparkles className="w-4 h-4 mr-2" />
+                                                            Análisis Profundo
+                                                        </Button>
+                                                    </div>
+                                                )}
                                             </div>
                                         )}
 
