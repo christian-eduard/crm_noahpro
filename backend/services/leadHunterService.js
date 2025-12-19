@@ -306,10 +306,12 @@ class LeadHunterService {
         const publicToken = crypto.randomBytes(16).toString('hex');
 
         // Guardamos en el historial con tipo de demo y token
-        await db.query(
-            'INSERT INTO hunter_demo_history (prospect_id, user_id, html_content, template_name, public_token) VALUES ($1, $2, $3, $4, $5)',
+        const demoResult = await db.query(
+            'INSERT INTO hunter_demo_history (prospect_id, user_id, html_content, template_name, public_token) VALUES ($1, $2, $3, $4, $5) RETURNING id',
             [prospectId, userId, html, demoType, publicToken]
         );
+
+        const demoId = demoResult.rows[0].id;
 
         // Actualizamos last generated timestamp
         await db.query(
@@ -327,7 +329,12 @@ class LeadHunterService {
             [userId, today]
         );
 
-        return { html };
+        return {
+            html,
+            publicToken,
+            demoId,
+            publicUrl: `/demo/${publicToken}`
+        };
     }
 
     /**
