@@ -730,16 +730,32 @@ SALIDA: SOLO el código HTML completo. Sin explicaciones. Sin markdown. Empieza 
     async analyzeProspectDeep(prospect) {
         await this.getConfig();
 
-        // Preparar datos de social media
-        const socialData = prospect.social_stats ?
-            (typeof prospect.social_stats === 'string' ? JSON.parse(prospect.social_stats) : prospect.social_stats)
-            : null;
+        // Preparar datos de social media (puede ser string JSON o objeto)
+        let socialData = null;
+        try {
+            socialData = prospect.social_stats ?
+                (typeof prospect.social_stats === 'string' ? JSON.parse(prospect.social_stats) : prospect.social_stats)
+                : null;
+        } catch (e) {
+            console.warn('Error parsing social_stats:', e.message);
+            socialData = null;
+        }
 
         const hasSocialMedia = !!prospect.social_handle && !!socialData;
         const followers = socialData?.followers_count || 0;
         const isActive = socialData?.is_active || false;
         const lastPost = socialData?.last_post_date || 'Nunca';
         const engagement = socialData?.engagement_rate || 0;
+
+        // Preparar reviews (puede ser string JSON o array)
+        let reviewsText = 'Sin reseñas disponibles para análisis';
+        try {
+            if (prospect.reviews) {
+                reviewsText = this.formatReviewsForAudit(prospect.reviews);
+            }
+        } catch (e) {
+            console.warn('Error formatting reviews:', e.message);
+        }
 
         // Construir prompt de auditoría digital
         const prompt = `
@@ -749,8 +765,8 @@ OBJETIVO: Realizar una Auditoría Digital 360º de este negocio y diseñar la es
 
 DATOS DEL NEGOCIO:
 - Nombre: ${prospect.name}
-- Tipo: ${prospect.business_type}
-- Ubicación: ${prospect.city}
+- Tipo: ${prospect.business_type || 'Negocio'}
+- Ubicación: ${prospect.city || 'No especificada'}
 - Web: ${prospect.website || 'NO TIENE'}
 - Rating Google: ${prospect.rating || 'N/A'}/5 (${prospect.reviews_count || 0} reseñas)
 - Quality Score Preliminar: ${prospect.quality_score || 0}/100
@@ -765,7 +781,7 @@ ${hasSocialMedia ? `
 ` : '- Sin presencia detectada en redes sociales'}
 
 RESEÑAS RECIENTES (Análisis de sentimiento):
-${prospect.reviews ? this.formatReviewsForAudit(prospect.reviews) : 'Sin reseñas disponibles para análisis'}
+${reviewsText}
 
 ANÁLISIS REQUERIDO:
 
