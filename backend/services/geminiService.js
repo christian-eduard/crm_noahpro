@@ -708,7 +708,7 @@ SALIDA: SOLO el código HTML completo. Sin explicaciones. Sin markdown. Empieza 
             if (!text) throw new Error('No se recibió respuesta de IA');
 
             // Limpiar markdown si existe
-            const cleanJson = text.replace(/```json\n?|\n?```/g, '').trim();
+            const cleanJson = text.replace(/```json\\n?|\\n?```/g, '').trim();
             return JSON.parse(cleanJson);
         } catch (error) {
             console.error('Error in deep search:', error);
@@ -721,6 +721,43 @@ SALIDA: SOLO el código HTML completo. Sin explicaciones. Sin markdown. Empieza 
                 winning_strategy: "Contactar ofreciendo una auditoría digital completa."
             };
         }
+    }
+
+    /**
+     * Optimizar un prompt sugerido por el usuario
+     */
+    async refinePrompt(userPrompt) {
+        await this.getConfig();
+        const prompt = `
+            ACTÚA COMO: Experto en Ingeniería de Prompts para IA de Ventas.
+            TAREA: Convertir una idea vaga de búsqueda y análisis en un prompt estructurado y profesional para Gemini.
+            IDEA DEL USUARIO: "${userPrompt}"
+
+            REQUISITOS DEL PROMPT GENERADO:
+            1. Debe instruir a la IA sobre qué buscar específicamente en el negocio (web, reseñas, redes).
+            2. Debe definir el tono de la comunicación (ej: profesional, cercano, directo).
+            3. Debe enfocarse en detectar "puntos de dolor" y ofrecer beneficios claros.
+            4. Debe ser conciso pero potente.
+
+            SALIDA: Solo el texto del prompt generado. Sin "Aquí tienes tu prompt", sin comillas, sin explicaciones.
+        `;
+
+        const url = `${this.baseUrl}/models/${this.model}:generateContent?key=${this.apiKey}`;
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                contents: [{ parts: [{ text: prompt }] }],
+                generationConfig: {
+                    maxOutputTokens: 500,
+                    temperature: 0.7
+                }
+            })
+        });
+
+        if (!response.ok) throw new Error('Error al refinar prompt');
+        const data = await response.json();
+        return data.candidates?.[0]?.content?.parts?.[0]?.text?.trim() || userPrompt;
     }
 }
 

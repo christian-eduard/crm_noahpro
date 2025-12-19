@@ -51,20 +51,32 @@ router.get('/access', async (req, res) => {
 router.post('/search', async (req, res) => {
     try {
         const userId = req.realUserId;
-        const { query, location, radius, strategy } = req.body;
+        const { query, location, radius, strategy, customPrompt, maxResults } = req.body;
 
         if (!query || !location) {
             return res.status(400).json({ error: 'Se requiere query y location' });
         }
 
-        // Fetch strategy logic from DB instead of hardcoded
-        const strategyData = await db.query('SELECT prompt_template FROM hunter_strategies WHERE id = $1', [strategy]);
         let promptTemplate = null;
-        if (strategyData.rows.length > 0) {
-            promptTemplate = strategyData.rows[0].prompt_template;
+        if (strategy === 'custom') {
+            promptTemplate = customPrompt;
+        } else if (strategy) {
+            // Fetch strategy logic from DB instead of hardcoded
+            const strategyData = await db.query('SELECT prompt_template FROM hunter_strategies WHERE id = $1', [strategy]);
+            if (strategyData.rows.length > 0) {
+                promptTemplate = strategyData.rows[0].prompt_template;
+            }
         }
 
-        const results = await leadHunterService.searchProspects(query, location, userId, radius, strategy, promptTemplate, false);
+        const results = await leadHunterService.searchProspects(
+            query,
+            location,
+            userId,
+            radius,
+            strategy,
+            promptTemplate,
+            parseInt(maxResults) || 20
+        );
         res.json(results);
     } catch (error) {
         console.error('Error en búsqueda:', error);
@@ -102,6 +114,22 @@ router.post('/estimate', async (req, res) => {
         console.error('Error en estimación:', error);
         // Don't fail the UI hard, just return 0
         res.json({ count: 0, displayCount: "0" });
+    }
+});
+
+/**
+ * POST /api/hunter/refine-prompt
+ * Optimizar un prompt sugerido por el usuario
+ */
+router.post('/refine-prompt', authenticateToken, async (req, res) => {
+    try {
+        const { prompt } = req.body;
+        if (!prompt) return res.status(400).json({ error: 'Prompt es requerido' });
+
+        const refinedPrompt = await geminiService.refinePrompt(prompt);
+        res.json({ refinedPrompt });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
     }
 });
 
@@ -469,6 +497,18 @@ router.post('/stats/reset', async (req, res) => {
         // Si el usuario quiere "resetear todo", borramos sus entradas en esta tabla
         await db.query(
             'DELETE FROM hunter_usage_stats WHERE user_id = $1',
+            [userId]
+        );
+
+        // 3. Eliminar prospectos encontrados por el usuario (esto reinicia los totales que se basan en realCounts)
+        await db.query(
+            'DELETE FROM maps_prospects WHERE searched_by = $1',
+            [userId]
+        );
+
+        // 4. Eliminar historial de sesiones de búsqueda
+        await db.query(
+            'DELETE FROM hunter_search_history WHERE user_id = $1',
             [userId]
         );
 

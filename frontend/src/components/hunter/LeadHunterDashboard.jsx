@@ -8,6 +8,7 @@ import { API_URL } from '../../config';
 import { useToast } from '../../contexts/ToastContext';
 import Button from '../shared/Button';
 import Modal from '../shared/Modal';
+import ConfirmModal from '../shared/ConfirmModal';
 import LeadHunterMap from './LeadHunterMap';
 import BusinessTypesSettings from '../settings/BusinessTypesSettings';
 import LeadHunterSettings from '../settings/LeadHunterSettings';
@@ -24,7 +25,7 @@ import {
     Trash2, AlertTriangle, ArrowRight, Check, MessageCircle, Instagram, Facebook, Linkedin, Video, Twitter, Users,
     MoreVertical, ChevronLeft, ChevronRight, Loader2, Target, Calendar, DollarSign, Building,
     Brain, BrainCircuit, ImageIcon, Copy, User, HelpCircle, Lightbulb, Share2, FileText, Network, BarChart, Monitor,
-    PenTool, Wand2
+    PenTool, Wand2, MoreHorizontal, Edit, Edit3, Camera, PhoneCall
 } from 'lucide-react';
 
 const LeadHunterDashboard = ({ onNavigateSettings }) => {
@@ -35,7 +36,13 @@ const LeadHunterDashboard = ({ onNavigateSettings }) => {
 
     // Search State
     const [searchQuery, setSearchQuery] = useState('');
+    const [isCustomType, setIsCustomType] = useState(false);
+    const [customTypeQuery, setCustomTypeQuery] = useState('');
+    const [isCustomStrategy, setIsCustomStrategy] = useState(false);
+    const [customStrategyPrompt, setCustomStrategyPrompt] = useState('');
+    const [strategyManagerOpen, setStrategyManagerOpen] = useState(false);
     const [searchLocation, setSearchLocation] = useState('');
+
     const [isMapOpen, setIsMapOpen] = useState(true);
     const [searching, setSearching] = useState(false);
     const [searchResults, setSearchResults] = useState([]); // Resultados de la búsqueda actual (no guardados aun si no se quiere, pero el backend los guarda auto)
@@ -50,6 +57,7 @@ const LeadHunterDashboard = ({ onNavigateSettings }) => {
     const [radius, setRadius] = useState(1000); // Default 1km
     const [strategies, setStrategies] = useState([]); // Loaded from API
     const [strategy, setStrategy] = useState(''); // Selected ID
+    const [searchLimit, setSearchLimit] = useState(20); // 20, 40, 60
 
     // Filters & UI State
     const [filterPriority, setFilterPriority] = useState('all');
@@ -64,7 +72,6 @@ const LeadHunterDashboard = ({ onNavigateSettings }) => {
     const [isManageTypesModalOpen, setIsManageTypesModalOpen] = useState(false);
     const [isAiSettingsModalOpen, setIsAiSettingsModalOpen] = useState(false);
     const [isStrategyModalOpen, setIsStrategyModalOpen] = useState(false);
-    const [isResetModalOpen, setIsResetModalOpen] = useState(false);
     const [mapCenter, setMapCenter] = useState(null);
     const [modalActiveTab, setModalActiveTab] = useState('summary'); // summary, notes, gallery, reviews, contact, demo
 
@@ -156,10 +163,16 @@ const LeadHunterDashboard = ({ onNavigateSettings }) => {
     };
 
     const handleDeleteDemoType = (typeId) => {
-        const updated = customDemoTypes.filter(t => t.id !== typeId);
-        setCustomDemoTypes(updated);
-        localStorage.setItem('hunter_custom_demo_types', JSON.stringify(updated));
-        toast.success('Tipo eliminado');
+        showConfirm(
+            '¿Eliminar tipo de demo?',
+            'Este tipo de demo personalizado se eliminará de tu lista permanentemente.',
+            () => {
+                const updated = customDemoTypes.filter(t => t.id !== typeId);
+                setCustomDemoTypes(updated);
+                localStorage.setItem('hunter_custom_demo_types', JSON.stringify(updated));
+                toast.success('Tipo eliminado');
+            }
+        );
     };
 
     const toast = useToast();
@@ -552,7 +565,9 @@ const LeadHunterDashboard = ({ onNavigateSettings }) => {
     };
 
     const handleSearch = useCallback(async () => {
-        if (!searchQuery || !searchLocation) {
+        const effectiveQuery = isCustomType ? customTypeQuery : searchQuery;
+
+        if (!effectiveQuery || !searchLocation) {
             toast.warning('Completa el tipo de negocio y la ubicación');
             return;
         }
@@ -566,10 +581,12 @@ const LeadHunterDashboard = ({ onNavigateSettings }) => {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    query: searchQuery,
+                    query: effectiveQuery,
                     location: searchLocation,
                     radius,
-                    strategy
+                    strategy: isCustomStrategy ? 'custom' : strategy,
+                    customPrompt: isCustomStrategy ? customStrategyPrompt : null,
+                    maxResults: searchLimit
                 })
             });
 
@@ -591,7 +608,7 @@ const LeadHunterDashboard = ({ onNavigateSettings }) => {
         } finally {
             setSearching(false);
         }
-    }, [API_URL, token, searchQuery, searchLocation, radius, strategy, toast, fetchSearches, checkAccess]);
+    }, [API_URL, token, searchQuery, isCustomType, customTypeQuery, searchLocation, radius, strategy, searchLimit, toast, fetchSearches, checkAccess]);
 
     const handleAnalyze = useCallback(async (prospectId) => {
         setAnalyzingId(prospectId);
@@ -937,22 +954,27 @@ const LeadHunterDashboard = ({ onNavigateSettings }) => {
         }
     }, [API_URL, token, toast]);
 
-    const handleDeleteNote = useCallback(async (noteId) => {
-        if (!window.confirm('¿Eliminar nota?')) return;
-        try {
-            const res = await fetch(`${API_URL}/hunter/notes/${noteId}`, {
-                method: 'DELETE',
-                headers: { 'Authorization': `Bearer ${token}` }
-            });
+    const handleDeleteNote = useCallback((noteId) => {
+        showConfirm(
+            '¿Eliminar nota?',
+            'Esta acción eliminará permanentemente la nota seleccionada.',
+            async () => {
+                try {
+                    const res = await fetch(`${API_URL}/hunter/notes/${noteId}`, {
+                        method: 'DELETE',
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    });
 
-            if (res.ok) {
-                setNotesList(prev => prev.filter(n => n.id !== noteId));
-                toast.success('Nota eliminada');
+                    if (res.ok) {
+                        setNotesList(prev => prev.filter(n => n.id !== noteId));
+                        toast.success('Nota eliminada');
+                    }
+                } catch (e) {
+                    toast.error('Error al eliminar nota');
+                }
             }
-        } catch (e) {
-            toast.error('Error al eliminar nota');
-        }
-    }, [API_URL, token, toast]);
+        );
+    }, [API_URL, token, toast, showConfirm]);
 
     // Helper to add note without clearing input (used by improve)
     const handleAddNoteDirectly = useCallback(async (content) => {
@@ -1060,7 +1082,7 @@ const LeadHunterDashboard = ({ onNavigateSettings }) => {
                 toast.success('Estadísticas reseteadas correctamente');
                 checkAccess();
                 fetchStats();
-                setIsResetModalOpen(false);
+                fetchStats();
             }
         } catch (error) {
             toast.error('Error al resetear estadísticas');
@@ -1291,7 +1313,12 @@ const LeadHunterDashboard = ({ onNavigateSettings }) => {
                             variant="ghost"
                             size="sm"
                             className="bg-white/10 hover:bg-white/20 text-white border-0"
-                            onClick={() => setIsResetModalOpen(true)}
+                            onClick={() => showConfirm(
+                                '¿Resetear contadores?',
+                                'Esto reiniciará el contador de búsquedas diarias. Normalmente se resetea automáticamente a las 00:00.',
+                                handleResetStats,
+                                'warning'
+                            )}
                             title="Resetear contadores diarios"
                         >
                             <RefreshCw className="w-4 h-4" />
@@ -1434,13 +1461,28 @@ const LeadHunterDashboard = ({ onNavigateSettings }) => {
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
                                 <div className="space-y-4">
                                     <div className="flex-1">
-                                        <label className="block text-sm text-gray-600 dark:text-gray-400 mb-1">
+                                        <label className="block text-sm text-gray-600 dark:text-gray-400 mb-1 flex items-center gap-1">
                                             Tipo de Negocio
+                                            <span className="relative group cursor-help">
+                                                <HelpCircle className="w-3.5 h-3.5 text-gray-400" />
+                                                <span className="absolute bottom-full left-0 mb-2 w-64 p-2 bg-gray-900 text-white text-[10px] rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 leading-tight">
+                                                    Selecciona una categoría predefinida o elige "Personalizado" para escribir exactamente lo que buscas (ej: "Empresas de placas solares").
+                                                </span>
+                                            </span>
                                         </label>
                                         <div className="relative">
                                             <select
-                                                value={searchQuery}
-                                                onChange={(e) => setSearchQuery(e.target.value)}
+                                                value={isCustomType ? 'custom' : searchQuery}
+                                                onChange={(e) => {
+                                                    const val = e.target.value;
+                                                    if (val === 'custom') {
+                                                        setIsCustomType(true);
+                                                        setSearchQuery('');
+                                                    } else {
+                                                        setIsCustomType(false);
+                                                        setSearchQuery(val);
+                                                    }
+                                                }}
                                                 className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-900 dark:text-white appearance-none focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none transition-all"
                                             >
                                                 <option value="">Selecciona un tipo...</option>
@@ -1449,9 +1491,11 @@ const LeadHunterDashboard = ({ onNavigateSettings }) => {
                                                         {type.name}
                                                     </option>
                                                 ))}
+                                                <option value="custom">✍️ Personalizado...</option>
                                             </select>
                                             <div className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none">
                                                 {(() => {
+                                                    if (isCustomType) return <Edit3 className="w-5 h-5 text-orange-500" />;
                                                     const selectedType = businessTypes.find(t => t.google_query === searchQuery);
                                                     const Icon = selectedType ? getIconComponent(selectedType.icon) : Store;
                                                     return <Icon className="w-5 h-5 text-gray-400" />;
@@ -1459,11 +1503,36 @@ const LeadHunterDashboard = ({ onNavigateSettings }) => {
                                             </div>
                                             <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
                                         </div>
+
+                                        {isCustomType && (
+                                            <div className="mt-3 animate-in fade-in slide-in-from-top-2 duration-300">
+                                                <label className="block text-xs text-orange-500 font-medium mb-1 ml-1">
+                                                    Escribe el tipo de negocio exacto:
+                                                </label>
+                                                <div className="relative">
+                                                    <Store className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-orange-500" />
+                                                    <input
+                                                        type="text"
+                                                        value={customTypeQuery}
+                                                        onChange={(e) => setCustomTypeQuery(e.target.value)}
+                                                        placeholder="Ej: Talleres mecánicos, Peluquerías..."
+                                                        className="w-full pl-9 pr-4 py-2 border-2 border-orange-100 dark:border-orange-900/30 rounded-xl bg-orange-50/30 dark:bg-orange-900/10 text-gray-900 dark:text-white focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none transition-all"
+                                                        autoFocus
+                                                    />
+                                                </div>
+                                            </div>
+                                        )}
                                     </div>
 
                                     <div className="flex-1">
-                                        <label className="block text-sm text-gray-600 dark:text-gray-400 mb-1">
+                                        <label className="block text-sm text-gray-600 dark:text-gray-400 mb-1 flex items-center gap-1">
                                             Ciudad, Zona o Coordenadas
+                                            <span className="relative group cursor-help">
+                                                <HelpCircle className="w-3.5 h-3.5 text-gray-400" />
+                                                <span className="absolute bottom-full left-0 mb-2 w-64 p-2 bg-gray-900 text-white text-[10px] rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 leading-tight">
+                                                    Indica el lugar donde quieres buscar. Puedes escribir una ciudad, una dirección específica o incluso coordenadas (lat,lng).
+                                                </span>
+                                            </span>
                                         </label>
                                         <div className="relative">
                                             <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
@@ -1478,10 +1547,18 @@ const LeadHunterDashboard = ({ onNavigateSettings }) => {
                                         </div>
                                     </div>
 
-                                    <div className="flex gap-4 mb-4">
+                                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
                                         <div className="flex-1">
-                                            <label className="block text-sm text-gray-600 dark:text-gray-400 mb-1 flex justify-between">
-                                                <span>Radio de Búsqueda</span>
+                                            <label className="block text-sm text-gray-600 dark:text-gray-400 mb-1 flex justify-between items-center">
+                                                <span className="flex items-center gap-1">
+                                                    Radio
+                                                    <span className="relative group cursor-help">
+                                                        <HelpCircle className="w-3.5 h-3.5 text-gray-400" />
+                                                        <span className="absolute bottom-full left-0 mb-2 w-64 p-2 bg-gray-900 text-white text-[10px] rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 leading-tight">
+                                                            Define el área de búsqueda alrededor del punto central. A mayor radio, más negocios potenciales pero la búsqueda será más dispersa.
+                                                        </span>
+                                                    </span>
+                                                </span>
                                                 <span className="text-orange-500 font-bold">{(radius / 1000).toFixed(1)} km</span>
                                             </label>
                                             <input
@@ -1493,19 +1570,30 @@ const LeadHunterDashboard = ({ onNavigateSettings }) => {
                                                 onChange={(e) => setRadius(parseInt(e.target.value))}
                                                 className="w-full accent-orange-500"
                                             />
-                                            <div className="flex justify-between text-xs text-gray-400">
-                                                <span>0.5 km</span>
-                                                <span>10 km</span>
-                                            </div>
                                         </div>
 
                                         <div className="flex-1">
-                                            <label className="block text-sm text-gray-600 dark:text-gray-400 mb-1">
+                                            <label className="block text-sm text-gray-600 dark:text-gray-400 mb-1 flex items-center gap-1">
                                                 Estrategia IA
+                                                <span className="relative group cursor-help">
+                                                    <HelpCircle className="w-3.5 h-3.5 text-gray-400" />
+                                                    <span className="absolute bottom-full left-0 mb-2 w-64 p-2 bg-gray-900 text-white text-[10px] rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 leading-tight">
+                                                        Determina cómo analizará la IA los prospectos encontrados. "Smart General" es ideal para cualquier negocio, pero puedes definir una propia.
+                                                    </span>
+                                                </span>
                                             </label>
                                             <select
-                                                value={strategy}
-                                                onChange={(e) => setStrategy(e.target.value)}
+                                                value={isCustomStrategy ? 'custom' : strategy}
+                                                onChange={(e) => {
+                                                    const val = e.target.value;
+                                                    if (val === 'custom') {
+                                                        setIsCustomStrategy(true);
+                                                        setStrategy('');
+                                                    } else {
+                                                        setIsCustomStrategy(false);
+                                                        setStrategy(val);
+                                                    }
+                                                }}
                                                 className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-orange-500 outline-none text-sm"
                                             >
                                                 {strategies.map(s => (
@@ -1514,6 +1602,79 @@ const LeadHunterDashboard = ({ onNavigateSettings }) => {
                                                     </option>
                                                 ))}
                                                 {strategies.length === 0 && <option value="general">Cargando estrategias...</option>}
+                                                <option value="custom">🧠 Custom Prompt...</option>
+                                            </select>
+                                            <button
+                                                type="button"
+                                                onClick={() => setStrategyManagerOpen(true)}
+                                                className="absolute right-8 top-1/2 -translate-y-1/2 p-1 text-gray-400 hover:text-orange-500 transition-colors"
+                                                title="Gestionar estrategias"
+                                            >
+                                                <Settings className="w-4 h-4" />
+                                            </button>
+
+                                            {isCustomStrategy && (
+                                                <div className="mt-2 animate-in fade-in slide-in-from-top-1 duration-300">
+                                                    <div className="relative">
+                                                        <textarea
+                                                            value={customStrategyPrompt}
+                                                            onChange={(e) => setCustomStrategyPrompt(e.target.value)}
+                                                            placeholder="Instrucciones para la IA: 'Fíjate si tienen Instagram activo', 'Analiza su competencia local'..."
+                                                            className="w-full p-2 pr-10 border border-orange-200 dark:border-orange-900/40 rounded-lg bg-orange-50/20 dark:bg-orange-900/10 text-xs text-gray-900 dark:text-white focus:ring-1 focus:ring-orange-500 outline-none h-20 resize-none"
+                                                            autoFocus
+                                                        />
+                                                        <button
+                                                            type="button"
+                                                            onClick={async () => {
+                                                                if (!customStrategyPrompt.trim()) return;
+                                                                try {
+                                                                    const res = await fetch(`${API_URL}/hunter/refine-prompt`, {
+                                                                        method: 'POST',
+                                                                        headers: {
+                                                                            'Authorization': `Bearer ${token}`,
+                                                                            'Content-Type': 'application/json'
+                                                                        },
+                                                                        body: JSON.stringify({ prompt: customStrategyPrompt })
+                                                                    });
+                                                                    const data = await res.json();
+                                                                    if (data.refinedPrompt) {
+                                                                        setCustomStrategyPrompt(data.refinedPrompt);
+                                                                        toast.success('¡Prompt optimizado!');
+                                                                    }
+                                                                } catch (err) {
+                                                                    toast.error('Error al optimizar');
+                                                                }
+                                                            }}
+                                                            className="absolute right-2 top-2 p-1.5 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg hover:scale-110 transition-transform shadow-lg"
+                                                            title="Optimizar con IA"
+                                                        >
+                                                            <Sparkles className="w-4 h-4" />
+                                                        </button>
+                                                    </div>
+                                                    <p className="text-[10px] text-gray-500 mt-1 ml-1">Pulsa ✨ para que la IA mejore tu prompt</p>
+                                                </div>
+                                            )}
+
+                                        </div>
+
+                                        <div className="flex-1">
+                                            <label className="block text-sm text-gray-600 dark:text-gray-400 mb-1 flex items-center gap-1">
+                                                Límite
+                                                <span className="relative group cursor-help">
+                                                    <HelpCircle className="w-3.5 h-3.5 text-gray-400" />
+                                                    <span className="absolute bottom-full left-0 mb-2 w-64 p-2 bg-gray-900 text-white text-[10px] rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 leading-tight">
+                                                        Controla cuántos negocios descargar de Google. Una búsqueda "Profunda" barrerá un área mayor dentro del radio definido.
+                                                    </span>
+                                                </span>
+                                            </label>
+                                            <select
+                                                value={searchLimit}
+                                                onChange={(e) => setSearchLimit(parseInt(e.target.value))}
+                                                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-orange-500 outline-none text-sm"
+                                            >
+                                                <option value={20}>20 Rápida</option>
+                                                <option value={40}>40 Normal</option>
+                                                <option value={60}>60 Profunda</option>
                                             </select>
                                         </div>
                                     </div>
@@ -1598,6 +1759,32 @@ const LeadHunterDashboard = ({ onNavigateSettings }) => {
                                 </p>
                             </div>
                         </div>
+                    </div>
+                )}
+
+                {/* --- TAB: HISTORIAL --- */}
+                {activeTab === 'history' && (
+                    <div className="animate-fadeIn">
+                        <div className="flex justify-between items-center mb-6">
+                            <h3 className="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                                <History className="w-6 h-6 text-orange-500" />
+                                Historial de Búsquedas
+                            </h3>
+                            <button
+                                onClick={fetchSearches}
+                                className="p-2 text-gray-400 hover:text-orange-500 transition-colors"
+                                title="Refrescar historial"
+                            >
+                                <RefreshCw className="w-5 h-5" />
+                            </button>
+                        </div>
+
+                        <SearchGroupList
+                            searches={searches}
+                            onSelect={handleSearchSelect}
+                            onDelete={handleDeleteSearch}
+                            activeTab="history"
+                        />
                     </div>
                 )}
 
@@ -2299,7 +2486,11 @@ const LeadHunterDashboard = ({ onNavigateSettings }) => {
                                                                     ) : (
                                                                         <div className="text-center py-10 bg-white/50 dark:bg-gray-800/50 rounded-2xl border-2 border-dashed border-purple-200 dark:border-purple-800/50">
                                                                             <Monitor className="w-12 h-12 text-purple-200 mx-auto mb-3" />
-                                                                            <p className="text-sm text-gray-500 font-medium px-6 mb-4">Genera una landing personalizada en 2 clicks para este prospecto</p>
+                                                                            <p className="text-sm text-gray-500 font-medium px-6 mb-4">
+                                                                                - [x] Búsqueda Personalizada: añadida opción para escribir manualmente el tipo de negocio.<br />
+                                                                                - [ ] Ayuda Visual: añadir iconos de interrogación con instrucciones en el formulario.<br />
+                                                                                - [ ] Estrategias Personalizadas: permitir definir un prompt manual para la IA.
+                                                                            </p>
                                                                             <Button
                                                                                 size="sm"
                                                                                 className="bg-purple-600 text-white shadow-lg"
@@ -2923,6 +3114,16 @@ const LeadHunterDashboard = ({ onNavigateSettings }) => {
                     />
                 </Modal >
 
+                {/* Modal: Strategy Manager from Search Form */}
+                <Modal isOpen={strategyManagerOpen} onClose={() => { setStrategyManagerOpen(false); fetchStrategies(); }} title="Gestionar Estrategias IA" size="xl">
+                    <HunterStrategiesSettings
+                        API_URL={API_URL}
+                        token={token}
+                        onClose={() => { setStrategyManagerOpen(false); fetchStrategies(); }}
+                    />
+                </Modal>
+
+
                 {/* Modal: Advanced AI Settings */}
                 < Modal isOpen={isAiSettingsModalOpen} onClose={() => setIsAiSettingsModalOpen(false)} title="Configuración Avanzada" size="xl" >
                     <LeadHunterSettings
@@ -2941,30 +3142,16 @@ const LeadHunterDashboard = ({ onNavigateSettings }) => {
                     />
                 </Modal >
 
-                {/* Modal: Reset Stats Confirmation */}
-                < Modal isOpen={isResetModalOpen} onClose={() => setIsResetModalOpen(false)} title="Resetear Estadísticas" size="md" >
-                    <div className="space-y-4">
-                        <div className="bg-orange-50 dark:bg-orange-900/20 p-4 rounded-xl border border-orange-200 dark:border-orange-700">
-                            <div className="flex items-start gap-3">
-                                <AlertTriangle className="w-6 h-6 text-orange-500 flex-shrink-0 mt-0.5" />
-                                <div>
-                                    <h4 className="font-bold text-orange-800 dark:text-orange-300">¿Resetear contadores?</h4>
-                                    <p className="text-sm text-orange-700 dark:text-orange-400 mt-1">
-                                        Esto reiniciará el contador de búsquedas diarias. Normalmente se resetea automáticamente a las 00:00.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="flex gap-3">
-                            <Button variant="outline" className="flex-1" onClick={() => setIsResetModalOpen(false)}>
-                                Cancelar
-                            </Button>
-                            <Button className="flex-1 bg-orange-500 hover:bg-orange-600" onClick={handleResetStats}>
-                                <RefreshCw className="w-4 h-4 mr-2" /> Resetear
-                            </Button>
-                        </div>
-                    </div>
-                </Modal >
+
+                {/* Custom Confirmation Modal */}
+                <ConfirmModal
+                    isOpen={confirmModal.isOpen}
+                    onClose={() => setConfirmModal(prev => ({ ...prev, isOpen: false }))}
+                    onConfirm={confirmModal.onConfirm}
+                    title={confirmModal.title}
+                    message={confirmModal.message}
+                    type={confirmModal.variant || 'danger'}
+                />
             </div >
         </div >
     );

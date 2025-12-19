@@ -34,10 +34,10 @@ class GooglePlacesService {
      * @param {string} query - Término de búsqueda (ej: "restaurantes")
      * @param {string} location - Ubicación (ej: "Madrid, España")
      * @param {number} radius - Radio en metros (default: 5000)
-     * @param {boolean} limitOnePage - Si es true, solo trae la primera página (para estimaciones)
+     * @param {number} maxResults - Cantidad máxima de resultados deseados (20, 40, 60)
      * @returns {Array} Lista de lugares encontrados
      */
-    async searchPlaces(query, location, radius = 5000, limitOnePage = false) {
+    async searchPlaces(query, location, radius = 5000, maxResults = 20) {
         const apiKey = await this.getApiKey();
         let lat, lng;
 
@@ -63,26 +63,47 @@ class GooglePlacesService {
             lng = loc.lng;
         }
 
-        // Si tenemos coordenadas explícitas, usamos nearbySearch para mayor precisión geográfica
-        // nearbySearch respeta estrictamente el radio y la ubicación
-        let searchUrl;
+        let allResults = [];
+        let nextPageToken = null;
+        let pagesToFetch = Math.ceil(maxResults / 20);
+        let fetchedPages = 0;
 
-        if (match) {
-            // Modo Estricto: nearbySearch
-            searchUrl = `${this.baseUrl}/nearbysearch/json?keyword=${encodeURIComponent(query)}&location=${lat},${lng}&radius=${radius}&key=${apiKey}&language=es`;
-        } else {
-            // Modo Amplio: textsearch (prioriza relevancia sobre distancia exacta)
-            searchUrl = `${this.baseUrl}/textsearch/json?query=${encodeURIComponent(query)}&location=${lat},${lng}&radius=${radius}&key=${apiKey}&language=es`;
-        }
+        do {
+            let searchUrl;
+            if (nextPageToken) {
+                // Modo paginación: Google requiere el token y la API key
+                const searchType = match ? 'nearbysearch' : 'textsearch';
+                searchUrl = `${this.baseUrl}/${searchType}/json?pagetoken=${nextPageToken}&key=${apiKey}`;
 
-        const response = await fetch(searchUrl);
-        const data = await response.json();
+                // CRITICAL: Google requiere una pequeña espera antes de que el token sea usable
+                await new Promise(resolve => setTimeout(resolve, 2000));
+            } else {
+                if (match) {
+                    // Modo Estricto: nearbySearch
+                    searchUrl = `${this.baseUrl}/nearbysearch/json?keyword=${encodeURIComponent(query)}&location=${lat},${lng}&radius=${radius}&key=${apiKey}&language=es`;
+                } else {
+                    // Modo Amplio: textsearch
+                    searchUrl = `${this.baseUrl}/textsearch/json?query=${encodeURIComponent(query)}&location=${lat},${lng}&radius=${radius}&key=${apiKey}&language=es`;
+                }
+            }
 
-        if (data.status !== 'OK' && data.status !== 'ZERO_RESULTS') {
-            throw new Error(`Error de Google Places: ${data.status} - ${data.error_message || ''}`);
-        }
+            const response = await fetch(searchUrl);
+            const data = await response.json();
 
-        return data.results || [];
+            if (data.status !== 'OK' && data.status !== 'ZERO_RESULTS') {
+                throw new Error(`Error de Google Places: ${data.status} - ${data.error_message || ''}`);
+            }
+
+            if (data.results) {
+                allResults = [...allResults, ...data.results];
+            }
+
+            nextPageToken = data.next_page_token;
+            fetchedPages++;
+
+        } while (nextPageToken && fetchedPages < pagesToFetch && allResults.length < maxResults);
+
+        return allResults.slice(0, maxResults);
     }
 
     /**
@@ -191,10 +212,14 @@ class GooglePlacesService {
      * @param {string} query - Término de búsqueda
      * @param {string} location - Ubicación
      * @param {number} userId - ID del usuario que busca
+     * @param {number} searchId - ID de la sesión de búsqueda
+     * @param {number} radius - Radio de búsqueda
+     * @param {string} strategy - Estrategia de IA
+     * @param {number} maxResults - Límite de resultados
      * @returns {Object} Resultados guardados
      */
-    async searchAndSave(query, location, userId, searchId, radius, strategy) {
-        const places = await this.searchPlaces(query, location, radius);
+    async searchAndSave(query, location, userId, searchId, radius, strategy, maxResults = 20) {
+        const places = await this.searchPlaces(query, location, radius, maxResults);
         const saved = [];
         const skipped = [];
 

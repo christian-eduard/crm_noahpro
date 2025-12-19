@@ -55,7 +55,7 @@ class LeadHunterService {
     /**
      * Buscar prospectos en una zona
      */
-    async searchProspects(query, location, userId, radius, strategy, promptTemplate = null) {
+    async searchProspects(query, location, userId, radius, strategy, promptTemplate = null, maxResults = 20) {
         // Verificar acceso
         await this.checkUserAccess(userId);
 
@@ -69,7 +69,7 @@ class LeadHunterService {
         const searchId = historyResult.rows[0].id;
 
         // 2. Buscar y guardar con vinculación al historial
-        const results = await googlePlacesService.searchAndSave(query, location, userId, searchId, radius, strategy, promptTemplate);
+        const results = await googlePlacesService.searchAndSave(query, location, userId, searchId, radius, strategy, maxResults);
 
         // 3. Actualizar contador de resultados en historial
         await db.query(
@@ -77,10 +77,11 @@ class LeadHunterService {
             [results.saved.length, searchId]
         );
 
-        // Actualizar contador del usuario
+        // 4. Descontar una búsqueda diaria del límite del usuario
+        // Nota: Se descuenta 1 búsqueda por cada ejecución del buscador
         await db.query(
-            `UPDATE users SET hunter_prospects_today = hunter_prospects_today + $1 WHERE id = $2`,
-            [results.saved.length, userId]
+            `UPDATE users SET hunter_prospects_today = hunter_prospects_today + 1 WHERE id = $1`,
+            [userId]
         );
 
         return results;

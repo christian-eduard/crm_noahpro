@@ -25,9 +25,7 @@ export const SearchGroupList = ({ searches, onSelect, onDelete, activeTab }) => 
                         <button
                             onClick={(e) => {
                                 e.stopPropagation();
-                                if (window.confirm('¿Estás seguro de eliminar esta búsqueda?')) {
-                                    onDelete(search.id);
-                                }
+                                onDelete(search.id);
                             }}
                             className="p-1.5 text-gray-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors"
                             title="Eliminar búsqueda"
