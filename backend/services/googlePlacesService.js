@@ -143,8 +143,76 @@ class GooglePlacesService {
     }
 
     /**
+     * Calcula score de calidad del prospecto (0-100)
+     * Usado para filtrar "basura" antes de gastar tokens de IA
+     */
+    calculateQualityScore(placeDetails) {
+        let score = 0;
+
+        // Web +20
+        if (placeDetails.website) {
+            score += 20;
+        }
+
+        // Fotos +20 (si > 5)
+        const photoCount = placeDetails.photos ? placeDetails.photos.length : 0;
+        if (photoCount > 5) {
+            score += 20;
+        } else if (photoCount > 0) {
+            score += 10; // Tiene fotos pero pocas
+        }
+
+        // Teléfono +10
+        if (placeDetails.phone) {
+            score += 10;
+        }
+
+        // Rating alto +15
+        if (placeDetails.rating) {
+            if (placeDetails.rating >= 4.5) {
+                score += 15;
+            } else if (placeDetails.rating >= 4.0) {
+                score += 10;
+            } else if (placeDetails.rating >= 3.5) {
+                score += 5;
+            }
+        }
+
+        // Reviews abundantes +10
+        if (placeDetails.reviews_count) {
+            if (placeDetails.reviews_count > 100) {
+                score += 10;
+            } else if (placeDetails.reviews_count > 50) {
+                score += 7;
+            } else if (placeDetails.reviews_count > 20) {
+                score += 5;
+            }
+        }
+
+        // Verificado en Google +15
+        if (placeDetails.verified || placeDetails.business_status === 'OPERATIONAL') {
+            score += 15;
+        }
+
+        // Penalizaciones
+        if (placeDetails.business_status === 'CLOSED_PERMANENTLY') {
+            score -= 50; // Casi elimina
+        } else if (placeDetails.business_status === 'CLOSED_TEMPORARILY') {
+            score -= 20;
+        }
+
+        if (placeDetails.rating && placeDetails.rating < 3.0) {
+            score -= 10;
+        }
+
+        // Asegurar que esté entre 0 y 100
+        return Math.max(0, Math.min(100, score));
+    }
+
+    /**
      * Normalizar datos de lugar al formato de maps_prospects
      */
+
     normalizePlace(place) {
         // Extraer ciudad y código postal de address_components
         let city = '';
@@ -247,13 +315,57 @@ class GooglePlacesService {
                 // Obtener detalles completos
                 const details = await this.getPlaceDetails(place.place_id);
 
-                // Insertar en DB
+                // PASO C: Calcular Quality Score
+                const qualityScore = this.calculateQualityScore(details);
+
+                // Filtrar prospectos de baja calidad (score < 20)
+                if (qualityScore < 20) {
+                    skipped.push({
+                        name: details.name,
+                        reason: `Calidad baja (score: ${qualityScore})`
+                    });
+                    continue;
+                }
+
+                // PASO C: Intentar extraer social media handle
+                let socialHandle = null;
+                let socialPlatform = 'instagram';
+                let socialStats = null;
+
+                try {
+                    const socialMediaService = require('./socialMediaService');
+                    const handleData = await socialMediaService.extractHandle(
+                        details.website,
+                        details.name,
+                        details.business_type
+                    );
+
+                    if (handleData && handleData.handle) {
+                        socialHandle = handleData.handle;
+                        socialPlatform = handleData.platform || 'instagram';
+
+                        // Solo intentar obtener stats si no es inferido (más confiabilidad)
+                        if (!handleData.inferred && socialPlatform === 'instagram') {
+                            socialStats = await socialMediaService.getInstagramStats(socialHandle);
+                            if (socialStats) {
+                                console.log(`✓ Stats de IG obtenidas para @${socialHandle}:`,
+                                    `${socialStats.followers_count} seguidores`);
+                            }
+                        }
+                    }
+                } catch (socialError) {
+                    // No detener el flujo si falla social media
+                    console.warn('Social media extraction failed (non-critical):', socialError.message);
+                }
+
+                // Insertar en DB con nuevos campos
                 const result = await db.query(
                     `INSERT INTO maps_prospects 
                      (place_id, name, phone, website, has_website, rating, reviews_count, 
                       address, city, postal_code, business_type, business_types, 
-                      searched_by, search_query, search_id, strategy, photos, reviews)
-                     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18)
+                      searched_by, search_query, search_id, strategy, photos, reviews,
+                      quality_score, social_handle, social_platform, social_stats)
+                     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22)
                      RETURNING id`,
                     [
                         details.place_id,
@@ -273,11 +385,16 @@ class GooglePlacesService {
                         searchId,
                         strategy,
                         JSON.stringify(details.photos),
-                        JSON.stringify(details.reviews || [])
+                        JSON.stringify(details.reviews || []),
+                        qualityScore, // Nuevo
+                        socialHandle, // Nuevo
+                        socialPlatform, // Nuevo
+                        socialStats ? JSON.stringify(socialStats) : null // Nuevo
                     ]
                 );
 
                 saved.push({
+
                     id: result.rows[0].id,
                     ...details
                 });

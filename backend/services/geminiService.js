@@ -724,6 +724,181 @@ SALIDA: SOLO el código HTML completo. Sin explicaciones. Sin markdown. Empieza 
     }
 
     /**
+     * PASO D: Análisis Profundo de Auditoría Digital
+     * Genera una auditoría 360º con datos reales de redes sociales
+     */
+    async analyzeProspectDeep(prospect) {
+        await this.getConfig();
+
+        // Preparar datos de social media
+        const socialData = prospect.social_stats ?
+            (typeof prospect.social_stats === 'string' ? JSON.parse(prospect.social_stats) : prospect.social_stats)
+            : null;
+
+        const hasSocialMedia = !!prospect.social_handle && !!socialData;
+        const followers = socialData?.followers_count || 0;
+        const isActive = socialData?.is_active || false;
+        const lastPost = socialData?.last_post_date || 'Nunca';
+        const engagement = socialData?.engagement_rate || 0;
+
+        // Construir prompt de auditoría digital
+        const prompt = `
+CONTEXTO: Eres un Consultor Senior de Transformación Digital especializado en PYMES.
+
+OBJETIVO: Realizar una Auditoría Digital 360º de este negocio y diseñar la estrategia de venta óptima.
+
+DATOS DEL NEGOCIO:
+- Nombre: ${prospect.name}
+- Tipo: ${prospect.business_type}
+- Ubicación: ${prospect.city}
+- Web: ${prospect.website || 'NO TIENE'}
+- Rating Google: ${prospect.rating || 'N/A'}/5 (${prospect.reviews_count || 0} reseñas)
+- Quality Score Preliminar: ${prospect.quality_score || 0}/100
+
+PRESENCIA EN REDES SOCIALES:
+- Instagram: ${hasSocialMedia ? `@${prospect.social_handle}` : 'NO DETECTADO'}
+${hasSocialMedia ? `
+- Seguidores: ${followers.toLocaleString()}
+- Engagement Rate: ${engagement}%
+- Último post: ${lastPost}
+- Estado: ${isActive ? '✓ ACTIVO' : '✗ INACTIVO (>30 días sin postear)'}
+` : '- Sin presencia detectada en redes sociales'}
+
+RESEÑAS RECIENTES (Análisis de sentimiento):
+${prospect.reviews ? this.formatReviewsForAudit(prospect.reviews) : 'Sin reseñas disponibles para análisis'}
+
+ANÁLISIS REQUERIDO:
+
+1. MADUREZ DIGITAL (Score 0-100):
+   Evalúa cada área:
+   - Web moderna y funcional: 0-30 pts
+   - Presencia en redes activa: 0-30 pts
+   - Reputación online gestionada: 0-20 pts
+   - E-commerce / Reservas online: 0-20 pts
+   
+   Calcula el score total sumando los puntos de cada área.
+
+2. DIAGNÓSTICO DE DOLOR (Pain Point Principal):
+   Identifica el punto de dolor MÁS crítico y específico:
+   Ejemplos:
+   - "Instagram con 5k seguidores pero abandonado desde hace 6 meses - pierden engagement"
+   - "Web antigua no responsive - pierden clientes mobile (80% del tráfico)"
+   - "Reseñas negativas sin respuesta - daña reputación"
+   - "Sin sistema de reservas online - llaman 50 veces/día"
+
+3. ESTRATEGIA DE VENTA RECOMENDADA:
+   Basándote en el diagnóstico, recomienda UNA de estas:
+   - "Venta TPV" → Si es hostelería/retail sin mencionar Verifactu
+   - "Venta Web" → Si no tiene web o está muy obsoleta
+   - "Marketing Digital" → Si tiene web pero redes inactivas
+   - "Pack Completo" → Si todo (web, redes, procesos) está mal
+
+4. MENSAJE DE APERTURA (Sales Hook):
+   Crea UNA frase de 1-2 líneas que:
+   - Demuestre que investigaste (menciona dato ESPECÍFICO real)
+   - Genere curiosidad sin ser vendedor
+   - Use el tono: cercano pero profesional
+   
+   Ejemplos:
+   - "He visto que tenéis ${followers} seguidores en IG pero no se puede reservar desde el perfil..."
+   - "Vuestra web no carga en móvil y el 80% de las búsquedas son desde el móvil..."
+   - "Tenéis ${prospect.reviews_count} reseñas pero 5 quejas sin respuesta en el último mes..."
+
+SALIDA JSON (ESTRICTA - NO AÑADAS NADA MÁS):
+{
+  "digital_audit": {
+    "score": 65,
+    "web_status": "outdated",
+    "social_health": "inactive",
+    "reputation": "good",
+    "details": {
+      "web_score": 15,
+      "social_score": 10,
+      "reputation_score": 20,
+      "ecommerce_score": 0
+    }
+  },
+  "sales_intelligence": {
+    "primary_pain_point": "Descripción MUY específica del dolor principal detectado",
+    "suggested_product": "Producto/Servicio exacto a ofrecer",
+    "opening_message": "Frase de apertura personalizada con dato real",
+    "recommended_strategy": "Venta TPV|Venta Web|Marketing|Pack Completo",
+    "estimated_value": 2500,
+    "close_probability": 0.7
+  },
+  "tags": [1, 7, 12],
+  "priority": "urgent"
+}
+
+VALIDACIONES:
+- web_status: solo "modern", "outdated" o "missing"
+- social_health: solo "healthy", "inactive", "missing" o "critical"
+- reputation: solo "excellent", "good", "fair" o "poor"
+- recommended_strategy: EXACTAMENTE uno de los 4 valores especificados
+- priority: solo "urgent", "high", "medium" o "low"
+- score: número entre 0 y 100
+        `;
+
+        // Llamar a Gemini
+        const url = `${this.baseUrl}/models/${this.model}:generateContent?key=${this.apiKey}`;
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                contents: [{
+                    parts: [{ text: prompt }]
+                }],
+                generationConfig: {
+                    responseMimeType: 'application/json',
+                    maxOutputTokens: 1024,
+                    temperature: 0.7
+                }
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error(`Gemini API error: ${response.status}`);
+        }
+
+        const data = await response.json();
+        const rawText = data.candidates?.[0]?.content?.parts?.[0]?.text;
+
+        if (!rawText) {
+            throw new Error('No se recibió respuesta de Gemini');
+        }
+
+        // Parse JSON
+        let analysis;
+        try {
+            analysis = JSON.parse(rawText);
+        } catch (parseError) {
+            console.error('Error parsing Gemini response:', rawText);
+            throw new Error('Respuesta de IA no válida');
+        }
+
+        // Validar estructura
+        if (!analysis.digital_audit || !analysis.sales_intelligence) {
+            throw new Error('Estructura de análisis incompleta');
+        }
+
+        return analysis;
+    }
+
+    /**
+     * Formatea reviews para el prompt de auditoría
+     */
+    formatReviewsForAudit(reviews) {
+        if (!reviews || reviews.length === 0) return 'Sin reseñas';
+
+        const reviewsData = typeof reviews === 'string' ? JSON.parse(reviews) : reviews;
+        const recentReviews = reviewsData.slice(0, 5);
+
+        return recentReviews.map((r, i) =>
+            `${i + 1}. [${r.rating}⭐] ${r.text?.substring(0, 100) || 'Sin texto'}...`
+        ).join('\n');
+    }
+
+    /**
      * Optimizar un prompt sugerido por el usuario
      */
     async refinePrompt(userPrompt) {

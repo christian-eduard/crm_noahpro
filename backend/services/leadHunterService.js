@@ -108,7 +108,7 @@ class LeadHunterService {
      * Realizar búsqueda profunda de un prospecto (Simulación con IA)
      */
     async deepAnalyzeProspect(prospectId, userId) {
-        // 1. Obtener prospecto
+        // 1. Obtener prospecto con todos los datos
         const prospectResult = await db.query(
             'SELECT * FROM maps_prospects WHERE id = $1 AND searched_by = $2',
             [prospectId, userId]
@@ -120,21 +120,32 @@ class LeadHunterService {
 
         const prospect = prospectResult.rows[0];
 
-        // 2. Usar Gemini para "Búsqueda Profunda"
-        const deepAnalysis = await geminiService.performDeepSearch(prospect);
+        // 2. Ejecutar Auditoría Digital 360º (PASO D)
+        const digitalAudit = await geminiService.analyzeProspectDeep(prospect);
 
-        // 3. Actualizar prospecto con nuevos datos
+        // 3. Guardar resultados en columnas específicas
         const result = await db.query(
             `UPDATE maps_prospects 
-             SET ai_analysis = ai_analysis || $1::jsonb,
-                 is_deep_analyzed = TRUE,
+             SET digital_audit = $1,
+                 sales_intelligence = $2,
+                 ai_tags = $3,
+                 ai_priority = $4,
                  updated_at = NOW()
-             WHERE id = $2
-             RETURNING ai_analysis`,
-            [JSON.stringify(deepAnalysis), prospectId]
+             WHERE id = $5
+             RETURNING *`,
+            [
+                JSON.stringify(digitalAudit.digital_audit),
+                JSON.stringify(digitalAudit.sales_intelligence),
+                digitalAudit.tags,
+                digitalAudit.priority,
+                prospectId
+            ]
         );
 
-        return result.rows[0].ai_analysis;
+        // 4. Actualizar estadísticas
+        await this.updateStats(userId, { prospects_analyzed: 1 });
+
+        return result.rows[0];
     }
 
     /**
