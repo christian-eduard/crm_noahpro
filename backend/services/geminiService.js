@@ -418,6 +418,14 @@ DATOS DEL CLIENTE:
 - Teléfono: ${prospect.phone || 'No disponible'}
 - Rating: ${prospect.rating}/5 estrellas (${prospect.reviews_count} reseñas)
 
+RESEÑAS REALES DEL NEGOCIO (para testimonios):\n${prospect.reviews && prospect.reviews.length > 0 ?
+                JSON.parse(typeof prospect.reviews === 'string' ? prospect.reviews : JSON.stringify(prospect.reviews))
+                    .filter(r => r.rating >= 4)
+                    .slice(0, 3)
+                    .map((r, i) => `${i + 1}. "${r.text}" - ${r.author_name}, ${r.rating}/5 estrellas`)
+                    .join('\n')
+                : 'No hay reseñas disponibles - usa testimonios ficticios positivos'}
+
 OBJETIVO PRINCIPAL: 
 Impresionar al cliente con una web que le haga pensar "¡Yo quiero esto para mi negocio!" y motivarle a contactarnos.
 
@@ -456,11 +464,13 @@ REQUISITOS DE DISEÑO ULTRA PREMIUM:
    - Gap entre imagenes (20px)
    - Lightbox simple al click (opcional)
 
-5. TESTIMONIOS - Social Proof Fuerte:
-   - 3 testimonios con avatares GRANDES (200x200px)
-   - Nombres ficticios + cargo/empresa
-   - Citas LARGAS y convincentes
-   - 5 estrellas doradas visible
+5. TESTIMONIOS - Social Proof Autentico:
+   - USA LAS 3 RESEÑAS REALES proporcionadas arriba
+   - Si no hay suficientes, complementa con ficticias positivas
+   - Avatares GRANDES (200x200px) - usa picsum.photos/200/200
+   - Nombres REALES del autor de la reseña
+   - Rating REAL de 5 estrellas (o el que tenga la reseña)
+   - Texto COMPLETO de la reseña real
    - Background alternado o cards elevados
 
 6. FORMULARIO CONTACTO - Conversion Optimizado:
