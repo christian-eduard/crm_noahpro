@@ -2487,7 +2487,7 @@ const LeadHunterDashboard = ({ onNavigateSettings }) => {
                                                                                     <Button
                                                                                         size="sm"
                                                                                         className="flex-1 bg-indigo-600 text-white"
-                                                                                        onClick={() => window.open(`${API_URL.replace('/api', '')}/api/hunter/public/demo/${demoHistory[0]?.token}`, '_blank')}
+                                                                                        onClick={() => window.open(`${API_URL.replace('/api', '')}/api/hunter/public/demo/${demoHistory[0]?.public_token}`, '_blank')}
                                                                                     >
                                                                                         <ExternalLink className="w-4 h-4 mr-2" /> VER
                                                                                     </Button>
@@ -2497,7 +2497,7 @@ const LeadHunterDashboard = ({ onNavigateSettings }) => {
                                                                                         className="flex-1 text-indigo-600"
                                                                                         onClick={() => {
                                                                                             const API_BASE = API_URL.replace('/api', '');
-                                                                                            navigator.clipboard.writeText(`${API_BASE}/api/hunter/public/demo/${demoHistory[0]?.token}`);
+                                                                                            navigator.clipboard.writeText(`${API_BASE}/api/hunter/public/demo/${demoHistory[0]?.public_token}`);
                                                                                             toast.success('Enlace copiado');
                                                                                         }}
                                                                                     >
@@ -3116,7 +3116,7 @@ const LeadHunterDashboard = ({ onNavigateSettings }) => {
                                                                 <div className="flex items-center gap-2">
                                                                     <Button size="sm" variant="outline" onClick={() => {
                                                                         const API_BASE = API_URL.replace('/api', '');
-                                                                        window.open(demo.public_url || `${API_BASE}/api/hunter/public/demo/${demo.token}`, '_blank');
+                                                                        window.open(demo.public_url || `${API_BASE}/api/hunter/public/demo/${demo.public_token}`, '_blank');
                                                                     }}>
                                                                         <ExternalLink className="w-4 h-4 mr-2" /> Ver
                                                                     </Button>
