@@ -1,0 +1,57 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e4]:
+    - generic [ref=e7]:
+      - generic [ref=e8]:
+        - img [ref=e10]
+        - heading "NoahPro TPV" [level=1] [ref=e12]
+      - generic [ref=e13]:
+        - heading "Panel de Gestión Comercial Interno" [level=2] [ref=e14]:
+          - text: Panel de Gestión
+          - text: Comercial Interno
+        - paragraph [ref=e15]: Sistema de gestión centralizada para administrar leads, propuestas y clientes de NoahPro TPV.
+    - generic [ref=e17]:
+      - generic [ref=e18]:
+        - generic [ref=e19]: CRM
+        - generic [ref=e20]: Gestión Interna
+      - generic [ref=e21]:
+        - generic [ref=e22]: TPV
+        - generic [ref=e23]: NoahPro
+      - generic [ref=e24]:
+        - generic [ref=e25]: 24/7
+        - generic [ref=e26]: Acceso
+  - generic [ref=e28]:
+    - generic [ref=e29]:
+      - heading "Acceso al Panel CRM" [level=2] [ref=e30]
+      - paragraph [ref=e31]: Portal de gestión interna para equipo comercial
+    - generic [ref=e32]:
+      - generic [ref=e33]:
+        - generic [ref=e34]: Usuario
+        - generic [ref=e35]:
+          - generic:
+            - img
+          - textbox "Usuario corporativo" [ref=e36]: admin
+      - generic [ref=e37]:
+        - generic [ref=e38]: Contraseña
+        - generic [ref=e39]:
+          - generic:
+            - img
+          - textbox "••••••••" [ref=e40]: admin123
+          - button [ref=e41] [cursor=pointer]:
+            - img [ref=e42]
+      - generic [ref=e45]:
+        - img [ref=e46]
+        - generic [ref=e48]: Credenciales inválidas
+      - button "Acceder al Panel" [ref=e49] [cursor=pointer]:
+        - generic [ref=e50]: Acceder al Panel
+        - img [ref=e51]
+    - link "Volver a la App Principal" [ref=e54] [cursor=pointer]:
+      - /url: /
+      - img [ref=e55]
+      - generic [ref=e57]: Volver a la App Principal
+    - generic [ref=e59]:
+      - img [ref=e60]
+      - generic [ref=e63]: Conexión segura y encriptada
+```

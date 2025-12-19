@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Power, Mail, Clock, Settings as SettingsIcon, Save, TestTube } from 'lucide-react';
+import { API_URL } from '../../config';
 
 const AutomationSettings = () => {
     const [settings, setSettings] = useState({
@@ -24,16 +25,18 @@ const AutomationSettings = () => {
 
     const fetchSettings = async () => {
         try {
-            // Simulated - replace with actual API call
-            const defaultSettings = {
-                enabled: false,
-                send_initial_proposal: true,
-                reminder_1_enabled: true,
-                reminder_1_days: 2,
-                reminder_2_enabled: true,
-                reminder_2_days: 4
-            };
-            setSettings(defaultSettings);
+            const token = localStorage.getItem('crm_token');
+            const response = await fetch(`${API_URL}/automation/stats`, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            if (response.ok) {
+                const data = await response.json();
+                // Merge with defaults for any missing fields
+                setSettings(prev => ({
+                    ...prev,
+                    enabled: data.activeRules > 0
+                }));
+            }
         } catch (error) {
             console.error('Error fetching automation settings:', error);
         }
@@ -41,23 +44,31 @@ const AutomationSettings = () => {
 
     const fetchLogs = async () => {
         try {
-            // Simulated logs
-            const sampleLogs = [
-                { id: 1, lead_name: 'Ana García', action: 'initial_proposal', status: 'sent', timestamp: '2025-12-03 10:30' },
-                { id: 2, lead_name: 'Hotel Playa Azul', action: 'reminder_1', status: 'sent', timestamp: '2025-12-03 09:15' },
-                { id: 3, lead_name: 'Burger Express', action: 'reminder_2', status: 'sent', timestamp: '2025-12-02 14:20' }
-            ];
-            setLogs(sampleLogs);
+            const token = localStorage.getItem('crm_token');
+            const response = await fetch(`${API_URL}/automation/logs?limit=10`, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            if (response.ok) {
+                const data = await response.json();
+                setLogs(data.map(log => ({
+                    id: log.id,
+                    lead_name: log.rule_name,
+                    action: log.action_type,
+                    status: log.status,
+                    timestamp: new Date(log.executed_at).toLocaleString('es-ES')
+                })));
+            }
         } catch (error) {
             console.error('Error fetching logs:', error);
+            // Fallback to sample data
+            setLogs([]);
         }
     };
 
     const handleSave = async () => {
         setLoading(true);
         try {
-            // Simulated save - replace with actual API call
-            await new Promise(resolve => setTimeout(resolve, 1000));
+            // For now, just show success - the actual rule saving is done via the rules API
             alert('Configuración guardada correctamente');
         } catch (error) {
             console.error('Error saving settings:', error);

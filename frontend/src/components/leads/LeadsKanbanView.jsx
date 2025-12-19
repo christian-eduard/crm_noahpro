@@ -5,11 +5,13 @@ import {
     Mail, MailOpen, FileText, Eye,
     Star, User, Phone, CheckCircle, XCircle,
     Briefcase, Target, Award, Ban, Trash2,
-    Send, MessageSquare, Clock, AlertCircle, Flag
+    Send, MessageSquare, Clock, AlertCircle, Flag,
+    Square, CheckSquare
 } from 'lucide-react';
 import ConfirmModal from '../shared/ConfirmModal';
+import { TagsList } from '../shared/TagBadge';
 
-const LeadsKanbanView = ({ leads, onLeadClick, onStatusChange, statuses, onDeleteLead }) => {
+const LeadsKanbanView = ({ leads, onLeadClick, onStatusChange, statuses, onDeleteLead, selectedLeads = [], onToggleSelect }) => {
     const toast = useToast();
     const [confirmDialog, setConfirmDialog] = useState({ isOpen: false, title: '', message: '', leadToDelete: null });
 
@@ -165,19 +167,46 @@ const LeadsKanbanView = ({ leads, onLeadClick, onStatusChange, statuses, onDelet
                                     draggable
                                     onDragStart={(e) => handleDragStart(e, lead)}
                                     onClick={() => onLeadClick(lead)}
-                                    className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm border border-gray-200 dark:border-gray-700 cursor-move hover:shadow-md transition-all group relative"
+                                    className={`bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm border cursor-move hover:shadow-md transition-all group relative ${selectedLeads.includes(lead.id)
+                                            ? 'border-orange-500 ring-2 ring-orange-200 dark:ring-orange-900'
+                                            : 'border-gray-200 dark:border-gray-700'
+                                        }`}
                                 >
-                                    {/* Lead Name & Company */}
-                                    <div className="mb-2">
-                                        <h4 className="font-medium text-gray-900 dark:text-white text-sm leading-tight mb-0.5 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">
-                                            {lead.name}
-                                        </h4>
-                                        {lead.business_name && (
-                                            <p className="text-xs text-gray-500 dark:text-gray-400 truncate">
-                                                {lead.business_name}
-                                            </p>
+                                    {/* Checkbox + Lead Name & Company */}
+                                    <div className="mb-2 flex items-start gap-2">
+                                        {onToggleSelect && (
+                                            <button
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    onToggleSelect(lead.id);
+                                                }}
+                                                className="mt-0.5 text-gray-400 hover:text-orange-500 transition-colors"
+                                            >
+                                                {selectedLeads.includes(lead.id) ? (
+                                                    <CheckSquare className="w-4 h-4 text-orange-500" />
+                                                ) : (
+                                                    <Square className="w-4 h-4" />
+                                                )}
+                                            </button>
                                         )}
+                                        <div className="flex-1 min-w-0">
+                                            <h4 className="font-medium text-gray-900 dark:text-white text-sm leading-tight mb-0.5 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">
+                                                {lead.name}
+                                            </h4>
+                                            {lead.business_name && (
+                                                <p className="text-xs text-gray-500 dark:text-gray-400 truncate">
+                                                    {lead.business_name}
+                                                </p>
+                                            )}
+                                        </div>
                                     </div>
+
+                                    {/* Tags */}
+                                    {lead.tags && lead.tags.length > 0 && (
+                                        <div className="mb-2">
+                                            <TagsList tags={lead.tags} maxVisible={2} size="xs" />
+                                        </div>
+                                    )}
 
                                     {/* Proposal Badge - Compact */}
                                     {lead.has_proposal && (

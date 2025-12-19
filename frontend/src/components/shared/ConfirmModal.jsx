@@ -38,8 +38,8 @@ const ConfirmModal = ({
     const style = typeStyles[type] || typeStyles.danger;
 
     return (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-[60] p-4">
-            <div className="bg-white dark:bg-gray-800 rounded-2xl max-w-md w-full p-6 shadow-2xl">
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-[99999] p-4 text-left">
+            <div className="bg-white dark:bg-gray-800 rounded-2xl max-w-md w-full p-6 shadow-2xl relative animate-fadeIn">
                 <div className={`${style.bg} rounded-lg p-4 mb-4 border ${style.border}`}>
                     <div className="flex items-start gap-3">
                         <AlertTriangle className={`w-5 h-5 ${style.icon} flex-shrink-0 mt-0.5`} />

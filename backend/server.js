@@ -14,8 +14,14 @@ const server = http.createServer(app);
 const socketIO = require('socket.io');
 const io = socketIO(server, {
     cors: {
-        origin: process.env.FRONTEND_URL || 'http://localhost:5174',
-        methods: ['GET', 'POST']
+        origin: process.env.FRONTEND_URL ? process.env.FRONTEND_URL.split(',') : [
+            'http://localhost:5173',
+            'http://localhost:5174',
+            'http://localhost:5175',
+            'http://localhost:5176'
+        ],
+        methods: ['GET', 'POST'],
+        credentials: true
     }
 });
 
@@ -107,6 +113,24 @@ app.use('/api/invoices/public', require('./routes/invoicesPublic'));
 app.use('/api/commercials', require('./routes/commercials'));
 app.use('/api/training', require('./routes/training'));
 app.use('/api/support', require('./routes/support'));
+app.use('/api/automation', require('./routes/automation'));
+app.use('/api/webhooks', require('./routes/webhooks'));
+app.use('/api/hunter', require('./routes/leadHunter'));
+app.use('/api/business-types', require('./routes/businessTypes'));
+app.use('/api/hunter-strategies', require('./routes/hunterStrategies'));
+
+// Initialize automation engine and services
+const automationEngine = require('./services/automationEngine');
+const webhookService = require('./services/webhookService');
+const emailAutomation = require('./services/emailAutomationService');
+
+// Load rules and webhooks on startup
+(async () => {
+    await automationEngine.loadRules();
+    automationEngine.setupTimeTriggers();
+    await webhookService.loadWebhooks();
+    emailAutomation.setupCron();
+})();
 
 // Error handling
 app.use((err, req, res, next) => {

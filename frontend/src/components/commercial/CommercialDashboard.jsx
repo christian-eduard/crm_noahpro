@@ -3,10 +3,11 @@ import React, { useState, useEffect } from 'react';
 import { useToast } from '../../contexts/ToastContext';
 import Button from '../shared/Button';
 import Modal from '../shared/Modal';
-import { User, TrendingUp, QrCode, BookOpen, HeadphonesIcon, Video, FileText, Link as LinkIcon, ExternalLink, MessageSquare, Plus, Clock, CheckCircle, AlertCircle, X, Copy } from 'lucide-react';
+import { User, TrendingUp, QrCode, BookOpen, HeadphonesIcon, Video, FileText, Link as LinkIcon, ExternalLink, MessageSquare, Plus, Clock, CheckCircle, AlertCircle, X, Copy, Search } from 'lucide-react';
 import LeadsListView from '../leads/LeadsListView';
 import ClientsListView from '../clients/ClientsListView';
 import ClientDetailView from '../clients/ClientDetailView';
+import LeadHunterDashboard from '../hunter/LeadHunterDashboard';
 
 const CommercialDashboard = ({ activeSection = 'home' }) => {
     const [activeTab, setActiveTab] = useState('dashboard');
@@ -16,6 +17,7 @@ const CommercialDashboard = ({ activeSection = 'home' }) => {
         else if (activeSection === 'support') setActiveTab('support');
         else if (activeSection === 'leads') setActiveTab('leads');
         else if (activeSection === 'clients') setActiveTab('clients');
+        else if (activeSection === 'hunter') setActiveTab('hunter');
         else setActiveTab('dashboard');
     }, [activeSection]);
     const [stats, setStats] = useState({ leads: { total: 0, won: 0 }, commissions: { current_month: 0, total_earned: 0 }, profile: {}, recent_leads: [] });
@@ -167,6 +169,7 @@ const CommercialDashboard = ({ activeSection = 'home' }) => {
 
     const tabs = [
         { id: 'dashboard', label: 'Mi Panel', icon: User },
+        { id: 'hunter', label: 'Lead Hunter', icon: Search },
         { id: 'training', label: 'Formación', icon: BookOpen },
         { id: 'support', label: 'Soporte', icon: HeadphonesIcon }
     ];
@@ -184,14 +187,15 @@ const CommercialDashboard = ({ activeSection = 'home' }) => {
                 <div>
                     <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
                         {activeTab === 'dashboard' ? `Hola, ${user.full_name || 'Comercial'}` :
-                            activeTab === 'training' ? 'Formación' :
-                                activeTab === 'support' ? 'Soporte' :
-                                    activeTab === 'leads' ? 'Mis Leads' :
-                                        activeTab === 'clients' ? 'Mis Clientes' : 'Dashboard'}
+                            activeTab === 'hunter' ? 'Lead Hunter AI' :
+                                activeTab === 'training' ? 'Formación' :
+                                    activeTab === 'support' ? 'Soporte' :
+                                        activeTab === 'leads' ? 'Mis Leads' :
+                                            activeTab === 'clients' ? 'Mis Clientes' : 'Dashboard'}
                     </h1>
                     <p className="text-gray-500 dark:text-gray-400">Bienvenido a tu panel comercial</p>
                 </div>
-                {['dashboard', 'training', 'support'].includes(activeTab) && (
+                {['dashboard', 'hunter', 'training', 'support'].includes(activeTab) && (
                     <div className="flex bg-gray-100 dark:bg-gray-700 rounded-xl p-1">
                         {tabs.map(tab => (
                             <button key={tab.id} onClick={() => setActiveTab(tab.id)}
@@ -314,6 +318,11 @@ const CommercialDashboard = ({ activeSection = 'home' }) => {
                         </div>
                     )}
                 </div>
+            )}
+
+            {/* ==================== TAB LEAD HUNTER ==================== */}
+            {activeTab === 'hunter' && (
+                <LeadHunterDashboard />
             )}
 
             {/* ==================== TAB FORMACIÓN ==================== */}

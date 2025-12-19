@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Home, Users, MessageSquare, BarChart3, Settings, FileText, Mail, LogOut, User, Moon, Sun, ChevronDown, BookOpen, HeadphonesIcon, Menu, X, UserPlus, CalendarPlus } from 'lucide-react';
+import { Home, Users, MessageSquare, BarChart3, Settings, FileText, Mail, LogOut, User, Moon, Sun, ChevronDown, BookOpen, HeadphonesIcon, Menu, X, UserPlus, CalendarPlus, Search } from 'lucide-react';
 import NotificationBell from '../notifications/NotificationBell';
 import AdminChatWidget from '../admin/chat/AdminChatWidget';
 import ProfileModal from '../profile/ProfileModal';
@@ -99,6 +99,12 @@ const CrmLayout = ({ children, onLogout, activeSection = 'leads', onSectionChang
             description: 'Cartera de clientes'
         },
         {
+            id: 'hunter',
+            label: 'Lead Hunter',
+            icon: <Search className="w-5 h-5" />,
+            description: 'Prospección con IA'
+        },
+        {
             id: 'training',
             label: 'Formación',
             icon: <BookOpen className="w-5 h-5" />,
@@ -170,7 +176,7 @@ const CrmLayout = ({ children, onLogout, activeSection = 'leads', onSectionChang
             )}
 
             {/* Sidebar - Hidden on mobile, shown on md+ */}
-            <aside className={`fixed left-0 top-0 h-full bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 transition-all duration-300 z-50 ${sidebarCollapsed ? 'w-20' : 'w-64'} hidden md:block`}>
+            <aside className={`fixed left-0 top-0 h-full bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 transition-all duration-300 z-50 ${sidebarCollapsed ? 'w-20' : 'w-64'} hidden md:flex md:flex-col`}>
                 {/* Logo Section */}
                 <div className="h-16 flex items-center justify-between px-4 border-b border-gray-200 dark:border-gray-700">
                     {!sidebarCollapsed && (
@@ -194,8 +200,8 @@ const CrmLayout = ({ children, onLogout, activeSection = 'leads', onSectionChang
                     </button>
                 </div>
 
-                {/* Navigation Menu */}
-                <nav className="p-3 space-y-1">
+                {/* Navigation Menu - Scrollable */}
+                <nav className="flex-1 overflow-y-auto p-3 space-y-1 pb-20">
                     {filteredMenuItems.map(item => (
                         <button
                             key={item.id}
@@ -230,7 +236,7 @@ const CrmLayout = ({ children, onLogout, activeSection = 'leads', onSectionChang
             </aside>
 
             {/* Mobile Sidebar */}
-            <aside className={`fixed left-0 top-0 h-full w-64 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 z-50 transform transition-transform duration-300 md:hidden ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+            <aside className={`fixed left-0 top-0 h-full w-64 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 z-50 transform transition-transform duration-300 md:hidden flex flex-col ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
                 {/* Logo Section */}
                 <div className="h-16 flex items-center justify-between px-4 border-b border-gray-200 dark:border-gray-700">
                     <div className="flex items-center space-x-3">
@@ -250,8 +256,8 @@ const CrmLayout = ({ children, onLogout, activeSection = 'leads', onSectionChang
                     </button>
                 </div>
 
-                {/* Mobile Navigation Menu */}
-                <nav className="p-3 space-y-1">
+                {/* Navigation Menu - Scrollable */}
+                <nav className="flex-1 overflow-y-auto p-3 space-y-1 pb-20">
                     {filteredMenuItems.map(item => (
                         <button
                             key={item.id}
@@ -449,7 +455,7 @@ const CrmLayout = ({ children, onLogout, activeSection = 'leads', onSectionChang
                 </header>
 
                 {/* Main Content */}
-                <main className={`transition-all duration-300 pt-20 p-3 md:p-6`}>
+                <main className={`transition-all duration-300 mt-16 p-3 md:p-6 pb-24`}>
                     {children}
                 </main>
             </div>

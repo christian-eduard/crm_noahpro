@@ -1,6 +1,32 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../config/database');
+const { authenticateToken } = require('../middleware/authMiddleware');
+
+router.use(authenticateToken);
+
+/**
+ * GET /api/activities
+ * Obtener actividades globales recientes (para el dashboard)
+ */
+router.get('/', async (req, res) => {
+    try {
+        const limit = req.query.limit || 10;
+        const result = await db.query(
+            `SELECT a.*, u.username as user_name, l.name as lead_name
+             FROM activities a
+             LEFT JOIN users u ON a.user_id = u.id
+             LEFT JOIN leads l ON a.lead_id = l.id
+             ORDER BY a.created_at DESC
+             LIMIT $1`,
+            [limit]
+        );
+        res.json(result.rows);
+    } catch (error) {
+        console.error('Error fetching global activities:', error);
+        res.status(500).json({ error: 'Error del servidor' });
+    }
+});
 
 /**
  * @swagger

@@ -21,12 +21,13 @@ const protect = async (req, res, next) => {
 
             return next();
         } catch (error) {
-            console.error('Error de autenticación:', error);
+            console.error('❌ Error de autenticación:', error.message);
             return res.status(401).json({ error: 'No autorizado, token fallido' });
         }
     }
 
     if (!token) {
+        console.log('❌ No token provided for:', req.path);
         return res.status(401).json({ error: 'No autorizado, no hay token' });
     }
 };

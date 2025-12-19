@@ -141,7 +141,7 @@ const PublicProposal = () => {
 
     if (loading) {
         return (
-            <div className="min-h-screen flex items-center justify-center bg-gray-50">
+            <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
                 <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-600"></div>
             </div>
         );
@@ -149,11 +149,11 @@ const PublicProposal = () => {
 
     if (error) {
         return (
-            <div className="min-h-screen flex items-center justify-center bg-gray-50">
-                <div className="text-center p-8 bg-white dark:bg-gray-800 rounded-xl shadow-lg max-w-md">
+            <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
+                <div className="text-center p-8 bg-white dark:bg-gray-800 rounded-xl shadow-lg max-w-md border border-gray-200 dark:border-gray-700">
                     <div className="text-5xl mb-4">😕</div>
-                    <h2 className="text-2xl font-bold text-gray-900 mb-2">Lo sentimos</h2>
-                    <p className="text-gray-600">{error}</p>
+                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Lo sentimos</h2>
+                    <p className="text-gray-600 dark:text-gray-300">{error}</p>
                 </div>
             </div>
         );
@@ -164,7 +164,7 @@ const PublicProposal = () => {
     const content = proposal.content_json || { items: [] };
 
     return (
-        <div className="min-h-screen bg-gray-50 font-sans">
+        <div className="min-h-screen bg-gray-50 dark:bg-gray-900 font-sans">
             {/* Header / Banner */}
             <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 sticky top-0 z-10">
                 <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex justify-between items-center">
@@ -172,10 +172,10 @@ const PublicProposal = () => {
                         <div className="h-8 w-8 bg-gradient-to-br from-orange-600 to-red-600 rounded-lg flex items-center justify-center text-white font-bold">
                             N
                         </div>
-                        <span className="font-bold text-xl text-gray-900">NoahPro</span>
+                        <span className="font-bold text-xl text-gray-900 dark:text-white">NoahPro</span>
                     </div>
                     <div className="flex items-center space-x-4">
-                        <a href={`mailto:contacto@noahpro.com`} className="text-sm text-gray-500 hover:text-gray-900">
+                        <a href={`mailto:contacto@noahpro.com`} className="text-sm text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">
                             ¿Dudas? Contáctanos
                         </a>
                         <Button
@@ -206,7 +206,7 @@ const PublicProposal = () => {
                     </div>
 
                     <div className="p-8">
-                        <div className="prose max-w-none text-gray-600">
+                        <div className="prose max-w-none text-gray-600 dark:text-gray-300">
                             <p className="text-lg leading-relaxed whitespace-pre-line">
                                 {proposal.description}
                             </p>
@@ -215,36 +215,36 @@ const PublicProposal = () => {
                 </div>
 
                 {/* Pricing / Items */}
-                <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden mb-8">
+                <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
                     <div className="p-8">
-                        <h3 className="text-xl font-bold text-gray-900 mb-6">Resumen de la Inversión</h3>
+                        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6">Resumen de la Inversión</h3>
 
                         <div className="space-y-4">
                             {/* Si hay items detallados en el JSON, los mostramos. Si no, mostramos el total */}
                             {content.items && content.items.length > 0 ? (
                                 content.items.map((item, idx) => (
-                                    <div key={idx} className="flex justify-between items-center py-3 border-b border-gray-100 last:border-0">
+                                    <div key={idx} className="flex justify-between items-center py-3 border-b border-gray-100 dark:border-gray-700 last:border-0">
                                         <div>
-                                            <p className="font-medium text-gray-900">{item.name}</p>
-                                            <p className="text-sm text-gray-500">{item.description}</p>
+                                            <p className="font-medium text-gray-900 dark:text-white">{item.name}</p>
+                                            <p className="text-sm text-gray-500 dark:text-gray-400">{item.description}</p>
                                         </div>
-                                        <div className="font-medium text-gray-900">
+                                        <div className="font-medium text-gray-900 dark:text-white">
                                             {parseFloat(item.price).toLocaleString('es-ES', { style: 'currency', currency: 'EUR' })}
                                         </div>
                                     </div>
                                 ))
                             ) : (
                                 <div className="flex justify-between items-center py-3">
-                                    <span className="text-gray-600">Servicios detallados en la descripción</span>
-                                    <span className="font-medium text-gray-900">-</span>
+                                    <span className="text-gray-600 dark:text-gray-300">Servicios detallados en la descripción</span>
+                                    <span className="font-medium text-gray-900 dark:text-white">-</span>
                                 </div>
                             )}
                         </div>
 
-                        <div className="mt-8 pt-8 border-t border-gray-200 flex justify-end">
+                        <div className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700 flex justify-end">
                             <div className="text-right">
-                                <p className="text-sm text-gray-500 mb-1">Total (Impuestos no incluidos)</p>
-                                <p className="text-4xl font-bold text-gray-900">
+                                <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">Total (Impuestos no incluidos)</p>
+                                <p className="text-4xl font-bold text-gray-900 dark:text-white">
                                     {parseFloat(proposal.total_price).toLocaleString('es-ES', { style: 'currency', currency: 'EUR' })}
                                 </p>
                             </div>

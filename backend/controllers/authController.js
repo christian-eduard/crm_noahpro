@@ -11,9 +11,9 @@ const login = async (req, res) => {
             return res.status(400).json({ error: 'Usuario y contraseña requeridos' });
         }
 
-        // Try to find user by email or username
+        // Buscar usuario por username O email en tabla users (unificada)
         const result = await db.query(
-            'SELECT * FROM users WHERE email = $1 OR name = $1',
+            'SELECT * FROM users WHERE username = $1 OR email = $1',
             [loginIdentifier]
         );
 
@@ -22,14 +22,16 @@ const login = async (req, res) => {
         }
 
         const user = result.rows[0];
-        const validPassword = await bcrypt.compare(password, user.password);
+
+        // Verificar password con password_hash
+        const validPassword = await bcrypt.compare(password, user.password_hash);
 
         if (!validPassword) {
             return res.status(401).json({ error: 'Credenciales inválidas' });
         }
 
         const token = jwt.sign(
-            { userId: user.id, username: user.name, email: user.email, role: user.role, type: 'crm_user' },
+            { userId: user.id, username: user.username, role: user.role, type: 'crm_user' },
             process.env.JWT_SECRET || 'crm_secret_key',
             { expiresIn: '24h' }
         );
@@ -38,13 +40,14 @@ const login = async (req, res) => {
             token,
             user: {
                 id: user.id,
-                username: user.name,
-                name: user.name,
+                username: user.username,
+                name: user.full_name || user.username,
                 role: user.role,
-                full_name: user.name,
+                full_name: user.full_name || user.username,
                 email: user.email,
-                avatar_url: user.avatar,
-                notifications_enabled: true
+                avatar_url: user.avatar_url,
+                notifications_enabled: user.notifications_enabled !== false,
+                has_lead_hunter_access: user.has_lead_hunter_access
             }
         });
     } catch (error) {
@@ -54,3 +57,4 @@ const login = async (req, res) => {
 };
 
 module.exports = { login };
+

@@ -1,0 +1,1309 @@
+2025-12-18T23:40:30.839Z [INFO]: 🚀 Leads Backend running on port 3002
+2025-12-18T23:40:30.841Z [INFO]: 📊 Database: Not configured
+2025-12-18T23:40:30.841Z [INFO]: 💬 Socket.io initialized
+[AutomationEngine] Loaded 0 active rules
+[WebhookService] Loaded 0 active webhooks
+[EmailAutomation] Cron job scheduled (every 5 minutes)
+2025-12-18T23:41:05.996Z [INFO]: DELETE /api/hunter/searches/5 
+2025-12-18T23:41:06.065Z [INFO]: GET /api/hunter/searches 
+2025-12-18T23:41:09.913Z [INFO]: DELETE /api/hunter/searches/4 
+2025-12-18T23:41:09.923Z [INFO]: GET /api/hunter/searches 
+2025-12-18T23:41:14.950Z [INFO]: POST /api/hunter/stats/reset 
+2025-12-18T23:41:14.968Z [INFO]: GET /api/hunter/access 
+2025-12-18T23:41:14.971Z [INFO]: GET /api/hunter/stats 
+2025-12-18T23:41:33.897Z [INFO]: GET /api/hunter/access 
+2025-12-18T23:41:33.899Z [INFO]: GET /api/hunter/stats 
+2025-12-18T23:41:33.900Z [INFO]: GET /api/business-types 
+2025-12-18T23:41:33.902Z [INFO]: GET /api/hunter/searches 
+2025-12-18T23:41:33.903Z [INFO]: GET /api/hunter-strategies 
+2025-12-18T23:41:36.733Z [INFO]: GET /api/settings 
+2025-12-18T23:41:36.737Z [INFO]: GET /api/settings 
+2025-12-18T23:41:42.312Z [INFO]: GET /api/business-types 
+2025-12-18T23:41:42.317Z [INFO]: GET /api/business-types 
+2025-12-18T23:42:08.403Z [INFO]: GET /api/hunter/access 
+2025-12-18T23:42:08.404Z [INFO]: GET /api/hunter/stats 
+2025-12-18T23:42:08.405Z [INFO]: GET /api/business-types 
+2025-12-18T23:42:08.407Z [INFO]: GET /api/hunter/searches 
+2025-12-18T23:42:08.410Z [INFO]: GET /api/hunter-strategies 
+2025-12-18T23:42:08.414Z [INFO]: GET /api/hunter/access 
+2025-12-18T23:42:08.419Z [INFO]: GET /api/hunter/searches 
+2025-12-18T23:42:08.420Z [INFO]: GET /api/business-types 
+2025-12-18T23:42:08.423Z [INFO]: GET /api/hunter/stats 
+2025-12-18T23:42:08.425Z [INFO]: GET /api/hunter-strategies 
+2025-12-18T23:42:12.634Z [INFO]: GET /api/hunter-strategies 
+2025-12-18T23:42:12.637Z [INFO]: GET /api/hunter-strategies 
+2025-12-18T23:42:14.053Z [INFO]: GET /api/hunter-strategies 
+2025-12-18T23:42:16.588Z [INFO]: GET /api/hunter-strategies 
+2025-12-18T23:42:16.590Z [INFO]: GET /api/hunter/access 
+2025-12-18T23:42:16.591Z [INFO]: GET /api/business-types 
+2025-12-18T23:42:16.592Z [INFO]: GET /api/hunter/stats 
+2025-12-18T23:42:16.600Z [INFO]: GET /api/hunter/searches 
+2025-12-18T23:42:31.564Z [INFO]: GET /api/hunter/stats 
+2025-12-18T23:42:31.564Z [INFO]: GET /api/hunter/access 
+2025-12-18T23:42:31.564Z [INFO]: GET /api/business-types 
+2025-12-18T23:42:31.565Z [INFO]: GET /api/hunter-strategies 
+2025-12-18T23:42:31.565Z [INFO]: GET /api/hunter/searches 
+2025-12-18T23:42:50.082Z [INFO]: GET /api/commercials 
+2025-12-18T23:42:50.088Z [INFO]: GET /api/commercials 
+2025-12-18T23:42:58.459Z [INFO]: GET /api/settings/public 
+Fetching public settings...
+Query result: [
+  {
+    demo_url: 'https://noahpro.es/crm/login',
+    chat_title: 'Soporte NoahPro',
+    chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+    chat_primary_color: '#e74f0d',
+    chat_enabled: true,
+    pusher_key: '0815d25ee2bae406d7d9',
+    pusher_cluster: 'eu',
+    pusher_app_id: '2086108'
+  }
+]
+Returning settings: {
+  demo_url: 'https://noahpro.es/crm/login',
+  chat_title: 'Soporte NoahPro',
+  chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+  chat_primary_color: '#e74f0d',
+  chat_enabled: true,
+  pusher_key: '0815d25ee2bae406d7d9',
+  pusher_cluster: 'eu',
+  pusher_app_id: '2086108'
+}
+2025-12-18T23:42:58.479Z [INFO]: GET /api/settings/public 
+Fetching public settings...
+Query result: [
+  {
+    demo_url: 'https://noahpro.es/crm/login',
+    chat_title: 'Soporte NoahPro',
+    chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+    chat_primary_color: '#e74f0d',
+    chat_enabled: true,
+    pusher_key: '0815d25ee2bae406d7d9',
+    pusher_cluster: 'eu',
+    pusher_app_id: '2086108'
+  }
+]
+Returning settings: {
+  demo_url: 'https://noahpro.es/crm/login',
+  chat_title: 'Soporte NoahPro',
+  chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+  chat_primary_color: '#e74f0d',
+  chat_enabled: true,
+  pusher_key: '0815d25ee2bae406d7d9',
+  pusher_cluster: 'eu',
+  pusher_app_id: '2086108'
+}
+2025-12-18T23:43:05.128Z [INFO]: POST /api/auth/login 
+2025-12-18T23:43:17.973Z [INFO]: POST /api/auth/login 
+2025-12-18T23:43:19.691Z [INFO]: POST /api/auth/login 
+2025-12-18T23:43:20.437Z [INFO]: POST /api/auth/login 
+2025-12-18T23:43:26.630Z [INFO]: POST /api/auth/login 
+2025-12-18T23:43:26.811Z [INFO]: GET /api/settings/public 
+Fetching public settings...
+Query result: [
+  {
+    demo_url: 'https://noahpro.es/crm/login',
+    chat_title: 'Soporte NoahPro',
+    chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+    chat_primary_color: '#e74f0d',
+    chat_enabled: true,
+    pusher_key: '0815d25ee2bae406d7d9',
+    pusher_cluster: 'eu',
+    pusher_app_id: '2086108'
+  }
+]
+Returning settings: {
+  demo_url: 'https://noahpro.es/crm/login',
+  chat_title: 'Soporte NoahPro',
+  chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+  chat_primary_color: '#e74f0d',
+  chat_enabled: true,
+  pusher_key: '0815d25ee2bae406d7d9',
+  pusher_cluster: 'eu',
+  pusher_app_id: '2086108'
+}
+2025-12-18T23:43:26.815Z [INFO]: GET /api/settings/public 
+Fetching public settings...
+Query result: [
+  {
+    demo_url: 'https://noahpro.es/crm/login',
+    chat_title: 'Soporte NoahPro',
+    chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+    chat_primary_color: '#e74f0d',
+    chat_enabled: true,
+    pusher_key: '0815d25ee2bae406d7d9',
+    pusher_cluster: 'eu',
+    pusher_app_id: '2086108'
+  }
+]
+Returning settings: {
+  demo_url: 'https://noahpro.es/crm/login',
+  chat_title: 'Soporte NoahPro',
+  chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+  chat_primary_color: '#e74f0d',
+  chat_enabled: true,
+  pusher_key: '0815d25ee2bae406d7d9',
+  pusher_cluster: 'eu',
+  pusher_app_id: '2086108'
+}
+2025-12-18T23:43:26.834Z [INFO]: GET /api/notifications 
+2025-12-18T23:43:26.836Z [INFO]: GET /api/notifications/unread-count 
+2025-12-18T23:43:26.839Z [INFO]: GET /api/chat/conversations 
+2025-12-18T23:43:26.842Z [INFO]: GET /api/settings/lead-statuses 
+2025-12-18T23:43:26.843Z [INFO]: GET /api/leads 
+2025-12-18T23:43:26.846Z [INFO]: GET /api/chat/conversations 
+2025-12-18T23:43:26.849Z [INFO]: GET /api/tasks 
+2025-12-18T23:43:26.851Z [INFO]: GET /api/notifications 
+2025-12-18T23:43:26.867Z [INFO]: GET /api/calendar/events 
+2025-12-18T23:43:26.870Z [INFO]: GET /api/tasks 
+2025-12-18T23:43:26.899Z [INFO]: GET /api/calendar/events 
+2025-12-18T23:43:26.907Z [INFO]: GET /api/notifications/unread-count 
+2025-12-18T23:43:26.909Z [INFO]: GET /api/settings/lead-statuses 
+2025-12-18T23:43:26.915Z [INFO]: GET /api/leads 
+2025-12-18T23:43:26.921Z [INFO]: GET /api/leads 
+2025-12-18T23:43:26.926Z [INFO]: GET /api/leads 
+2025-12-18T23:43:30.265Z [INFO]: GET /api/commercials 
+2025-12-18T23:43:30.269Z [INFO]: GET /api/commercials 
+2025-12-18T23:43:33.840Z [INFO]: GET /api/commercials/10 
+Error getting commercial: error: column u.name does not exist
+    at /Users/cex/Desktop/Crm App Tpv/backend/node_modules/pg-pool/index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async getCommercialById (/Users/cex/Desktop/Crm App Tpv/backend/controllers/commercialController.js:95:24) {
+  length: 104,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '36',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3675',
+  routine: 'errorMissingColumn'
+}
+2025-12-18T23:43:34.788Z [INFO]: GET /api/commercials/10 
+Error getting commercial: error: column u.name does not exist
+    at /Users/cex/Desktop/Crm App Tpv/backend/node_modules/pg-pool/index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async getCommercialById (/Users/cex/Desktop/Crm App Tpv/backend/controllers/commercialController.js:95:24) {
+  length: 104,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '36',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3675',
+  routine: 'errorMissingColumn'
+}
+2025-12-18T23:43:35.246Z [INFO]: GET /api/commercials/10 
+Error getting commercial: error: column u.name does not exist
+    at /Users/cex/Desktop/Crm App Tpv/backend/node_modules/pg-pool/index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async getCommercialById (/Users/cex/Desktop/Crm App Tpv/backend/controllers/commercialController.js:95:24) {
+  length: 104,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '36',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3675',
+  routine: 'errorMissingColumn'
+}
+2025-12-18T23:43:38.048Z [INFO]: GET /api/commercials/10 
+Error getting commercial: error: column u.name does not exist
+    at /Users/cex/Desktop/Crm App Tpv/backend/node_modules/pg-pool/index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async getCommercialById (/Users/cex/Desktop/Crm App Tpv/backend/controllers/commercialController.js:95:24) {
+  length: 104,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '36',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3675',
+  routine: 'errorMissingColumn'
+}
+2025-12-18T23:43:38.431Z [INFO]: GET /api/commercials/10 
+Error getting commercial: error: column u.name does not exist
+    at /Users/cex/Desktop/Crm App Tpv/backend/node_modules/pg-pool/index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async getCommercialById (/Users/cex/Desktop/Crm App Tpv/backend/controllers/commercialController.js:95:24) {
+  length: 104,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '36',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3675',
+  routine: 'errorMissingColumn'
+}
+2025-12-18T23:43:38.634Z [INFO]: GET /api/commercials/10 
+Error getting commercial: error: column u.name does not exist
+    at /Users/cex/Desktop/Crm App Tpv/backend/node_modules/pg-pool/index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async getCommercialById (/Users/cex/Desktop/Crm App Tpv/backend/controllers/commercialController.js:95:24) {
+  length: 104,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '36',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3675',
+  routine: 'errorMissingColumn'
+}
+2025-12-18T23:43:47.514Z [INFO]: GET /api/hunter/stats 
+2025-12-18T23:43:47.515Z [INFO]: GET /api/hunter/access 
+2025-12-18T23:43:47.515Z [INFO]: GET /api/business-types 
+2025-12-18T23:43:47.516Z [INFO]: GET /api/hunter-strategies 
+2025-12-18T23:43:47.516Z [INFO]: GET /api/hunter/searches 
+2025-12-18T23:43:47.524Z [INFO]: GET /api/business-types 
+2025-12-18T23:43:47.526Z [INFO]: GET /api/hunter-strategies 
+2025-12-18T23:43:47.527Z [INFO]: GET /api/hunter/searches 
+2025-12-18T23:43:47.527Z [INFO]: GET /api/hunter/stats 
+2025-12-18T23:43:47.529Z [INFO]: GET /api/hunter/access 
+2025-12-18T23:43:59.979Z [INFO]: GET /api/hunter/access 
+2025-12-18T23:43:59.980Z [INFO]: GET /api/hunter/stats 
+2025-12-18T23:43:59.980Z [INFO]: GET /api/business-types 
+2025-12-18T23:43:59.981Z [INFO]: GET /api/hunter/searches 
+2025-12-18T23:43:59.981Z [INFO]: GET /api/hunter-strategies 
+2025-12-18T23:44:39.875Z [INFO]: GET /api/hunter/access 
+2025-12-18T23:44:39.879Z [INFO]: GET /api/business-types 
+2025-12-18T23:44:39.884Z [INFO]: GET /api/hunter/stats 
+2025-12-18T23:44:39.885Z [INFO]: GET /api/hunter/searches 
+2025-12-18T23:44:39.889Z [INFO]: GET /api/hunter-strategies 
+2025-12-18T23:46:36.330Z [INFO]: POST /api/hunter/search 
+2025-12-18T23:46:37.938Z [INFO]: GET /api/hunter/searches 
+2025-12-18T23:46:37.939Z [INFO]: GET /api/hunter/access 
+2025-12-18T23:46:40.064Z [INFO]: GET /api/hunter/searches/6/prospects 
+2025-12-18T23:47:02.880Z [INFO]: POST /api/hunter/analyze/88 
+2025-12-18T23:47:04.940Z [INFO]: GET /api/hunter/searches/6/prospects 
+2025-12-18T23:47:04.943Z [INFO]: GET /api/hunter/stats 
+2025-12-18T23:47:19.889Z [INFO]: GET /api/hunter/searches/6/prospects 
+2025-12-18T23:47:41.543Z [INFO]: POST /api/hunter/prospects/88/demo 
+Error generando demo: error: column "demo_generated_at" of relation "maps_prospects" does not exist
+    at /Users/cex/Desktop/Crm App Tpv/backend/node_modules/pg-pool/index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async LeadHunterService.generateDemo (/Users/cex/Desktop/Crm App Tpv/backend/services/leadHunterService.js:243:9)
+    at async /Users/cex/Desktop/Crm App Tpv/backend/routes/leadHunter.js:141:24 {
+  length: 146,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '27',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'analyze.c',
+  line: '2520',
+  routine: 'transformUpdateTargetList'
+}
+2025-12-18T23:50:39.300Z [INFO]: GET /api/hunter/searches/6/prospects 
+2025-12-18T23:50:42.518Z [INFO]: GET /api/hunter/searches/6/prospects 
+2025-12-18T23:51:08.482Z [INFO]: GET /api/hunter/access 
+2025-12-18T23:51:08.483Z [INFO]: GET /api/hunter/stats 
+2025-12-18T23:51:08.486Z [INFO]: GET /api/business-types 
+2025-12-18T23:51:08.486Z [INFO]: GET /api/hunter/searches 
+2025-12-18T23:51:08.488Z [INFO]: GET /api/hunter-strategies 
+2025-12-18T23:51:13.865Z [INFO]: GET /api/hunter/stats 
+2025-12-18T23:51:13.867Z [INFO]: GET /api/hunter/searches 
+2025-12-18T23:51:13.868Z [INFO]: GET /api/business-types 
+2025-12-18T23:51:13.868Z [INFO]: GET /api/hunter/access 
+2025-12-18T23:51:13.869Z [INFO]: GET /api/hunter-strategies 
+2025-12-18T23:51:17.709Z [INFO]: GET /api/hunter/stats 
+2025-12-18T23:51:17.709Z [INFO]: GET /api/business-types 
+2025-12-18T23:51:17.710Z [INFO]: GET /api/hunter/access 
+2025-12-18T23:51:17.710Z [INFO]: GET /api/hunter/searches 
+2025-12-18T23:51:17.711Z [INFO]: GET /api/hunter-strategies 
+2025-12-18T23:51:17.714Z [INFO]: GET /api/business-types 
+2025-12-18T23:51:17.717Z [INFO]: GET /api/hunter-strategies 
+2025-12-18T23:51:17.717Z [INFO]: GET /api/hunter/searches 
+2025-12-18T23:51:17.718Z [INFO]: GET /api/hunter/access 
+2025-12-18T23:51:17.718Z [INFO]: GET /api/hunter/stats 
+2025-12-18T23:52:02.705Z [INFO]: GET /api/settings/public 
+Fetching public settings...
+2025-12-18T23:52:02.722Z [INFO]: GET /api/chat/conversations 
+2025-12-18T23:52:02.726Z [INFO]: GET /api/notifications 
+2025-12-18T23:52:02.729Z [INFO]: GET /api/notifications/unread-count 
+2025-12-18T23:52:02.734Z [INFO]: GET /api/tasks 
+2025-12-18T23:52:02.736Z [INFO]: GET /api/leads 
+2025-12-18T23:52:02.737Z [INFO]: GET /api/chat/conversations 
+2025-12-18T23:52:02.738Z [INFO]: GET /api/settings/lead-statuses 
+2025-12-18T23:52:02.757Z [INFO]: GET /api/calendar/events 
+Query result: [
+  {
+    demo_url: 'https://noahpro.es/crm/login',
+    chat_title: 'Soporte NoahPro',
+    chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+    chat_primary_color: '#e74f0d',
+    chat_enabled: true,
+    pusher_key: '0815d25ee2bae406d7d9',
+    pusher_cluster: 'eu',
+    pusher_app_id: '2086108'
+  }
+]
+Returning settings: {
+  demo_url: 'https://noahpro.es/crm/login',
+  chat_title: 'Soporte NoahPro',
+  chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+  chat_primary_color: '#e74f0d',
+  chat_enabled: true,
+  pusher_key: '0815d25ee2bae406d7d9',
+  pusher_cluster: 'eu',
+  pusher_app_id: '2086108'
+}
+2025-12-18T23:52:02.759Z [INFO]: GET /api/notifications/unread-count 
+2025-12-18T23:52:02.760Z [INFO]: GET /api/notifications 
+2025-12-18T23:52:02.762Z [INFO]: GET /api/settings/public 
+Fetching public settings...
+2025-12-18T23:52:02.764Z [INFO]: GET /api/calendar/events 
+Query result: [
+  {
+    demo_url: 'https://noahpro.es/crm/login',
+    chat_title: 'Soporte NoahPro',
+    chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+    chat_primary_color: '#e74f0d',
+    chat_enabled: true,
+    pusher_key: '0815d25ee2bae406d7d9',
+    pusher_cluster: 'eu',
+    pusher_app_id: '2086108'
+  }
+]
+Returning settings: {
+  demo_url: 'https://noahpro.es/crm/login',
+  chat_title: 'Soporte NoahPro',
+  chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+  chat_primary_color: '#e74f0d',
+  chat_enabled: true,
+  pusher_key: '0815d25ee2bae406d7d9',
+  pusher_cluster: 'eu',
+  pusher_app_id: '2086108'
+}
+2025-12-18T23:52:02.766Z [INFO]: GET /api/tasks 
+2025-12-18T23:52:02.768Z [INFO]: GET /api/settings/lead-statuses 
+2025-12-18T23:52:02.770Z [INFO]: GET /api/leads 
+2025-12-18T23:52:02.776Z [INFO]: GET /api/leads 
+2025-12-18T23:52:02.778Z [INFO]: GET /api/leads 
+2025-12-18T23:52:16.655Z [INFO]: GET /api/hunter/access 
+2025-12-18T23:52:16.656Z [INFO]: GET /api/hunter-strategies 
+2025-12-18T23:52:16.656Z [INFO]: GET /api/business-types 
+2025-12-18T23:52:16.656Z [INFO]: GET /api/hunter/stats 
+2025-12-18T23:52:16.656Z [INFO]: GET /api/hunter/searches 
+2025-12-18T23:52:16.658Z [INFO]: GET /api/hunter-strategies 
+2025-12-18T23:52:16.660Z [INFO]: GET /api/hunter/searches 
+2025-12-18T23:52:16.661Z [INFO]: GET /api/business-types 
+2025-12-18T23:52:16.663Z [INFO]: GET /api/hunter/stats 
+2025-12-18T23:52:16.671Z [INFO]: GET /api/hunter/access 
+2025-12-18T23:53:03.283Z [INFO]: GET /api/settings/public 
+Fetching public settings...
+Query result: [
+  {
+    demo_url: 'https://noahpro.es/crm/login',
+    chat_title: 'Soporte NoahPro',
+    chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+    chat_primary_color: '#e74f0d',
+    chat_enabled: true,
+    pusher_key: '0815d25ee2bae406d7d9',
+    pusher_cluster: 'eu',
+    pusher_app_id: '2086108'
+  }
+]
+Returning settings: {
+  demo_url: 'https://noahpro.es/crm/login',
+  chat_title: 'Soporte NoahPro',
+  chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+  chat_primary_color: '#e74f0d',
+  chat_enabled: true,
+  pusher_key: '0815d25ee2bae406d7d9',
+  pusher_cluster: 'eu',
+  pusher_app_id: '2086108'
+}
+2025-12-18T23:53:03.306Z [INFO]: GET /api/settings/public 
+Fetching public settings...
+Query result: [
+  {
+    demo_url: 'https://noahpro.es/crm/login',
+    chat_title: 'Soporte NoahPro',
+    chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+    chat_primary_color: '#e74f0d',
+    chat_enabled: true,
+    pusher_key: '0815d25ee2bae406d7d9',
+    pusher_cluster: 'eu',
+    pusher_app_id: '2086108'
+  }
+]
+Returning settings: {
+  demo_url: 'https://noahpro.es/crm/login',
+  chat_title: 'Soporte NoahPro',
+  chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+  chat_primary_color: '#e74f0d',
+  chat_enabled: true,
+  pusher_key: '0815d25ee2bae406d7d9',
+  pusher_cluster: 'eu',
+  pusher_app_id: '2086108'
+}
+2025-12-18T23:53:03.323Z [INFO]: GET /api/notifications 
+2025-12-18T23:53:03.323Z [INFO]: GET /api/notifications/unread-count 
+2025-12-18T23:53:03.324Z [INFO]: GET /api/leads 
+2025-12-18T23:53:03.325Z [INFO]: GET /api/chat/conversations 
+2025-12-18T23:53:03.326Z [INFO]: GET /api/settings/lead-statuses 
+2025-12-18T23:53:03.327Z [INFO]: GET /api/tasks 
+2025-12-18T23:53:03.327Z [INFO]: GET /api/chat/conversations 
+2025-12-18T23:53:03.329Z [INFO]: GET /api/notifications 
+2025-12-18T23:53:03.334Z [INFO]: GET /api/notifications/unread-count 
+2025-12-18T23:53:03.336Z [INFO]: GET /api/calendar/events 
+2025-12-18T23:53:03.339Z [INFO]: GET /api/settings/lead-statuses 
+2025-12-18T23:53:03.340Z [INFO]: GET /api/calendar/events 
+2025-12-18T23:53:03.340Z [INFO]: GET /api/tasks 
+2025-12-18T23:53:03.341Z [INFO]: GET /api/leads 
+2025-12-18T23:53:03.343Z [INFO]: GET /api/leads 
+2025-12-18T23:53:03.344Z [INFO]: GET /api/leads 
+2025-12-18T23:53:04.955Z [INFO]: GET /api/hunter/access 
+2025-12-18T23:53:04.957Z [INFO]: GET /api/hunter/stats 
+2025-12-18T23:53:04.957Z [INFO]: GET /api/business-types 
+2025-12-18T23:53:04.958Z [INFO]: GET /api/hunter-strategies 
+2025-12-18T23:53:04.959Z [INFO]: GET /api/hunter/searches 
+2025-12-18T23:53:04.962Z [INFO]: GET /api/business-types 
+2025-12-18T23:53:04.963Z [INFO]: GET /api/hunter-strategies 
+2025-12-18T23:53:04.964Z [INFO]: GET /api/hunter/searches 
+2025-12-18T23:53:04.965Z [INFO]: GET /api/hunter/stats 
+2025-12-18T23:53:04.968Z [INFO]: GET /api/hunter/access 
+2025-12-18T23:55:11.080Z [INFO]: GET /api/settings/public 
+Fetching public settings...
+Query result: [
+  {
+    demo_url: 'https://noahpro.es/crm/login',
+    chat_title: 'Soporte NoahPro',
+    chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+    chat_primary_color: '#e74f0d',
+    chat_enabled: true,
+    pusher_key: '0815d25ee2bae406d7d9',
+    pusher_cluster: 'eu',
+    pusher_app_id: '2086108'
+  }
+]
+Returning settings: {
+  demo_url: 'https://noahpro.es/crm/login',
+  chat_title: 'Soporte NoahPro',
+  chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+  chat_primary_color: '#e74f0d',
+  chat_enabled: true,
+  pusher_key: '0815d25ee2bae406d7d9',
+  pusher_cluster: 'eu',
+  pusher_app_id: '2086108'
+}
+2025-12-18T23:55:11.093Z [INFO]: GET /api/notifications 
+2025-12-18T23:55:11.105Z [INFO]: GET /api/chat/conversations 
+2025-12-18T23:55:11.111Z [INFO]: GET /api/notifications/unread-count 
+2025-12-18T23:55:11.116Z [INFO]: GET /api/settings/public 
+Fetching public settings...
+2025-12-18T23:55:11.117Z [INFO]: GET /api/leads 
+2025-12-18T23:55:11.121Z [INFO]: GET /api/tasks 
+2025-12-18T23:55:11.121Z [INFO]: GET /api/chat/conversations 
+2025-12-18T23:55:11.122Z [INFO]: GET /api/settings/lead-statuses 
+Query result: [
+  {
+    demo_url: 'https://noahpro.es/crm/login',
+    chat_title: 'Soporte NoahPro',
+    chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+    chat_primary_color: '#e74f0d',
+    chat_enabled: true,
+    pusher_key: '0815d25ee2bae406d7d9',
+    pusher_cluster: 'eu',
+    pusher_app_id: '2086108'
+  }
+]
+Returning settings: {
+  demo_url: 'https://noahpro.es/crm/login',
+  chat_title: 'Soporte NoahPro',
+  chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+  chat_primary_color: '#e74f0d',
+  chat_enabled: true,
+  pusher_key: '0815d25ee2bae406d7d9',
+  pusher_cluster: 'eu',
+  pusher_app_id: '2086108'
+}
+2025-12-18T23:55:11.127Z [INFO]: GET /api/calendar/events 
+2025-12-18T23:55:11.128Z [INFO]: GET /api/notifications 
+2025-12-18T23:55:11.134Z [INFO]: GET /api/notifications/unread-count 
+2025-12-18T23:55:11.136Z [INFO]: GET /api/calendar/events 
+2025-12-18T23:55:11.144Z [INFO]: GET /api/tasks 
+2025-12-18T23:55:11.160Z [INFO]: GET /api/settings/lead-statuses 
+2025-12-18T23:55:11.257Z [INFO]: GET /api/leads 
+2025-12-18T23:55:11.293Z [INFO]: GET /api/leads 
+2025-12-18T23:55:11.302Z [INFO]: GET /api/leads 
+2025-12-18T23:57:58.614Z [INFO]: GET /api/settings/public 
+Fetching public settings...
+2025-12-18T23:57:58.674Z [INFO]: GET /api/notifications 
+2025-12-18T23:57:58.675Z [INFO]: GET /api/notifications/unread-count 
+2025-12-18T23:57:58.676Z [INFO]: GET /api/chat/conversations 
+2025-12-18T23:57:58.677Z [INFO]: GET /api/tasks 
+2025-12-18T23:57:58.678Z [INFO]: GET /api/leads 
+2025-12-18T23:57:58.681Z [INFO]: GET /api/settings/lead-statuses 
+Query result: [
+  {
+    demo_url: 'https://noahpro.es/crm/login',
+    chat_title: 'Soporte NoahPro',
+    chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+    chat_primary_color: '#e74f0d',
+    chat_enabled: true,
+    pusher_key: '0815d25ee2bae406d7d9',
+    pusher_cluster: 'eu',
+    pusher_app_id: '2086108'
+  }
+]
+Returning settings: {
+  demo_url: 'https://noahpro.es/crm/login',
+  chat_title: 'Soporte NoahPro',
+  chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+  chat_primary_color: '#e74f0d',
+  chat_enabled: true,
+  pusher_key: '0815d25ee2bae406d7d9',
+  pusher_cluster: 'eu',
+  pusher_app_id: '2086108'
+}
+2025-12-18T23:57:58.691Z [INFO]: GET /api/chat/conversations 
+2025-12-18T23:57:58.693Z [INFO]: GET /api/notifications/unread-count 
+2025-12-18T23:57:58.694Z [INFO]: GET /api/settings/public 
+Fetching public settings...
+2025-12-18T23:57:58.694Z [INFO]: GET /api/tasks 
+2025-12-18T23:57:58.694Z [INFO]: GET /api/notifications 
+Query result: [
+  {
+    demo_url: 'https://noahpro.es/crm/login',
+    chat_title: 'Soporte NoahPro',
+    chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+    chat_primary_color: '#e74f0d',
+    chat_enabled: true,
+    pusher_key: '0815d25ee2bae406d7d9',
+    pusher_cluster: 'eu',
+    pusher_app_id: '2086108'
+  }
+]
+Returning settings: {
+  demo_url: 'https://noahpro.es/crm/login',
+  chat_title: 'Soporte NoahPro',
+  chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+  chat_primary_color: '#e74f0d',
+  chat_enabled: true,
+  pusher_key: '0815d25ee2bae406d7d9',
+  pusher_cluster: 'eu',
+  pusher_app_id: '2086108'
+}
+2025-12-18T23:57:58.697Z [INFO]: GET /api/calendar/events 
+2025-12-18T23:57:58.699Z [INFO]: GET /api/settings/lead-statuses 
+2025-12-18T23:57:58.699Z [INFO]: GET /api/calendar/events 
+2025-12-18T23:57:58.701Z [INFO]: GET /api/leads 
+2025-12-18T23:57:58.706Z [INFO]: GET /api/leads 
+2025-12-18T23:57:58.709Z [INFO]: GET /api/leads 
+2025-12-18T23:58:00.036Z [INFO]: GET /api/hunter/access 
+2025-12-18T23:58:00.038Z [INFO]: GET /api/hunter/stats 
+2025-12-18T23:58:00.039Z [INFO]: GET /api/business-types 
+2025-12-18T23:58:00.039Z [INFO]: GET /api/hunter/searches 
+2025-12-18T23:58:00.040Z [INFO]: GET /api/hunter-strategies 
+2025-12-18T23:58:00.043Z [INFO]: GET /api/hunter/searches 
+2025-12-18T23:58:00.045Z [INFO]: GET /api/business-types 
+2025-12-18T23:58:00.046Z [INFO]: GET /api/hunter-strategies 
+2025-12-18T23:58:00.049Z [INFO]: GET /api/hunter/stats 
+2025-12-18T23:58:00.051Z [INFO]: GET /api/hunter/access 
+2025-12-18T23:59:46.752Z [INFO]: GET /api/settings/public 
+Fetching public settings...
+2025-12-18T23:59:46.768Z [INFO]: GET /api/notifications 
+2025-12-18T23:59:46.773Z [INFO]: GET /api/notifications/unread-count 
+2025-12-18T23:59:46.776Z [INFO]: GET /api/leads 
+2025-12-18T23:59:46.777Z [INFO]: GET /api/chat/conversations 
+2025-12-18T23:59:46.777Z [INFO]: GET /api/tasks 
+2025-12-18T23:59:46.779Z [INFO]: GET /api/settings/lead-statuses 
+Query result: [
+  {
+    demo_url: 'https://noahpro.es/crm/login',
+    chat_title: 'Soporte NoahPro',
+    chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+    chat_primary_color: '#e74f0d',
+    chat_enabled: true,
+    pusher_key: '0815d25ee2bae406d7d9',
+    pusher_cluster: 'eu',
+    pusher_app_id: '2086108'
+  }
+]
+Returning settings: {
+  demo_url: 'https://noahpro.es/crm/login',
+  chat_title: 'Soporte NoahPro',
+  chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+  chat_primary_color: '#e74f0d',
+  chat_enabled: true,
+  pusher_key: '0815d25ee2bae406d7d9',
+  pusher_cluster: 'eu',
+  pusher_app_id: '2086108'
+}
+2025-12-18T23:59:46.815Z [INFO]: GET /api/calendar/events 
+2025-12-18T23:59:46.816Z [INFO]: GET /api/chat/conversations 
+2025-12-18T23:59:46.817Z [INFO]: GET /api/notifications/unread-count 
+2025-12-18T23:59:46.820Z [INFO]: GET /api/settings/public 
+Fetching public settings...
+2025-12-18T23:59:46.822Z [INFO]: GET /api/tasks 
+2025-12-18T23:59:46.824Z [INFO]: GET /api/notifications 
+Query result: [
+  {
+    demo_url: 'https://noahpro.es/crm/login',
+    chat_title: 'Soporte NoahPro',
+    chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+    chat_primary_color: '#e74f0d',
+    chat_enabled: true,
+    pusher_key: '0815d25ee2bae406d7d9',
+    pusher_cluster: 'eu',
+    pusher_app_id: '2086108'
+  }
+]
+Returning settings: {
+  demo_url: 'https://noahpro.es/crm/login',
+  chat_title: 'Soporte NoahPro',
+  chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+  chat_primary_color: '#e74f0d',
+  chat_enabled: true,
+  pusher_key: '0815d25ee2bae406d7d9',
+  pusher_cluster: 'eu',
+  pusher_app_id: '2086108'
+}
+2025-12-18T23:59:46.834Z [INFO]: GET /api/settings/lead-statuses 
+2025-12-18T23:59:46.839Z [INFO]: GET /api/calendar/events 
+2025-12-18T23:59:46.847Z [INFO]: GET /api/leads 
+2025-12-18T23:59:46.853Z [INFO]: GET /api/leads 
+2025-12-18T23:59:46.860Z [INFO]: GET /api/leads 
+2025-12-19T00:03:36.691Z [INFO]: GET /api/settings/public 
+Fetching public settings...
+Query result: [
+  {
+    demo_url: 'https://noahpro.es/crm/login',
+    chat_title: 'Soporte NoahPro',
+    chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+    chat_primary_color: '#e74f0d',
+    chat_enabled: true,
+    pusher_key: '0815d25ee2bae406d7d9',
+    pusher_cluster: 'eu',
+    pusher_app_id: '2086108'
+  }
+]
+Returning settings: {
+  demo_url: 'https://noahpro.es/crm/login',
+  chat_title: 'Soporte NoahPro',
+  chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+  chat_primary_color: '#e74f0d',
+  chat_enabled: true,
+  pusher_key: '0815d25ee2bae406d7d9',
+  pusher_cluster: 'eu',
+  pusher_app_id: '2086108'
+}
+2025-12-19T00:03:36.721Z [INFO]: GET /api/settings/public 
+Fetching public settings...
+Query result: [
+  {
+    demo_url: 'https://noahpro.es/crm/login',
+    chat_title: 'Soporte NoahPro',
+    chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+    chat_primary_color: '#e74f0d',
+    chat_enabled: true,
+    pusher_key: '0815d25ee2bae406d7d9',
+    pusher_cluster: 'eu',
+    pusher_app_id: '2086108'
+  }
+]
+Returning settings: {
+  demo_url: 'https://noahpro.es/crm/login',
+  chat_title: 'Soporte NoahPro',
+  chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+  chat_primary_color: '#e74f0d',
+  chat_enabled: true,
+  pusher_key: '0815d25ee2bae406d7d9',
+  pusher_cluster: 'eu',
+  pusher_app_id: '2086108'
+}
+2025-12-19T00:03:36.735Z [INFO]: GET /api/notifications 
+2025-12-19T00:03:36.739Z [INFO]: GET /api/chat/conversations 
+2025-12-19T00:03:36.741Z [INFO]: GET /api/notifications/unread-count 
+2025-12-19T00:03:36.747Z [INFO]: GET /api/chat/conversations 
+2025-12-19T00:03:36.750Z [INFO]: GET /api/leads 
+2025-12-19T00:03:36.755Z [INFO]: GET /api/tasks 
+2025-12-19T00:03:36.756Z [INFO]: GET /api/settings/lead-statuses 
+2025-12-19T00:03:36.763Z [INFO]: GET /api/notifications 
+2025-12-19T00:03:36.767Z [INFO]: GET /api/calendar/events 
+2025-12-19T00:03:36.780Z [INFO]: GET /api/tasks 
+2025-12-19T00:03:36.791Z [INFO]: GET /api/notifications/unread-count 
+2025-12-19T00:03:36.823Z [INFO]: GET /api/settings/lead-statuses 
+2025-12-19T00:03:36.824Z [INFO]: GET /api/calendar/events 
+2025-12-19T00:03:36.825Z [INFO]: GET /api/leads 
+2025-12-19T00:03:36.850Z [INFO]: GET /api/leads 
+2025-12-19T00:03:36.864Z [INFO]: GET /api/leads 
+2025-12-19T00:04:53.296Z [INFO]: GET /api/hunter/stats 
+2025-12-19T00:04:53.299Z [INFO]: GET /api/hunter/access 
+2025-12-19T00:04:53.301Z [INFO]: GET /api/hunter/searches 
+2025-12-19T00:04:53.302Z [INFO]: GET /api/business-types 
+2025-12-19T00:04:53.302Z [INFO]: GET /api/hunter-strategies 
+2025-12-19T00:04:53.354Z [INFO]: GET /api/hunter/searches 
+2025-12-19T00:04:53.355Z [INFO]: GET /api/hunter-strategies 
+2025-12-19T00:04:53.357Z [INFO]: GET /api/business-types 
+2025-12-19T00:04:53.358Z [INFO]: GET /api/hunter/stats 
+2025-12-19T00:04:53.375Z [INFO]: GET /api/hunter/access 
+2025-12-19T00:04:59.602Z [INFO]: GET /api/settings/public 
+Fetching public settings...
+2025-12-19T00:04:59.664Z [INFO]: GET /api/notifications 
+2025-12-19T00:04:59.665Z [INFO]: GET /api/notifications/unread-count 
+2025-12-19T00:04:59.666Z [INFO]: GET /api/chat/conversations 
+2025-12-19T00:04:59.666Z [INFO]: GET /api/leads 
+2025-12-19T00:04:59.667Z [INFO]: GET /api/tasks 
+2025-12-19T00:04:59.667Z [INFO]: GET /api/chat/conversations 
+2025-12-19T00:04:59.668Z [INFO]: GET /api/settings/lead-statuses 
+2025-12-19T00:04:59.721Z [INFO]: GET /api/notifications/unread-count 
+2025-12-19T00:04:59.721Z [INFO]: GET /api/notifications 
+Query result: [
+  {
+    demo_url: 'https://noahpro.es/crm/login',
+    chat_title: 'Soporte NoahPro',
+    chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+    chat_primary_color: '#e74f0d',
+    chat_enabled: true,
+    pusher_key: '0815d25ee2bae406d7d9',
+    pusher_cluster: 'eu',
+    pusher_app_id: '2086108'
+  }
+]
+Returning settings: {
+  demo_url: 'https://noahpro.es/crm/login',
+  chat_title: 'Soporte NoahPro',
+  chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+  chat_primary_color: '#e74f0d',
+  chat_enabled: true,
+  pusher_key: '0815d25ee2bae406d7d9',
+  pusher_cluster: 'eu',
+  pusher_app_id: '2086108'
+}
+2025-12-19T00:04:59.722Z [INFO]: GET /api/calendar/events 
+2025-12-19T00:04:59.784Z [INFO]: GET /api/settings/public 
+Fetching public settings...
+Query result: [
+  {
+    demo_url: 'https://noahpro.es/crm/login',
+    chat_title: 'Soporte NoahPro',
+    chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+    chat_primary_color: '#e74f0d',
+    chat_enabled: true,
+    pusher_key: '0815d25ee2bae406d7d9',
+    pusher_cluster: 'eu',
+    pusher_app_id: '2086108'
+  }
+]
+Returning settings: {
+  demo_url: 'https://noahpro.es/crm/login',
+  chat_title: 'Soporte NoahPro',
+  chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+  chat_primary_color: '#e74f0d',
+  chat_enabled: true,
+  pusher_key: '0815d25ee2bae406d7d9',
+  pusher_cluster: 'eu',
+  pusher_app_id: '2086108'
+}
+2025-12-19T00:04:59.788Z [INFO]: GET /api/calendar/events 
+2025-12-19T00:04:59.788Z [INFO]: GET /api/tasks 
+2025-12-19T00:04:59.789Z [INFO]: GET /api/settings/lead-statuses 
+2025-12-19T00:04:59.792Z [INFO]: GET /api/leads 
+2025-12-19T00:04:59.795Z [INFO]: GET /api/leads 
+2025-12-19T00:04:59.798Z [INFO]: GET /api/leads 
+2025-12-19T00:05:00.917Z [INFO]: GET /api/hunter/access 
+2025-12-19T00:05:00.919Z [INFO]: GET /api/hunter/stats 
+2025-12-19T00:05:00.920Z [INFO]: GET /api/business-types 
+2025-12-19T00:05:00.921Z [INFO]: GET /api/hunter/searches 
+2025-12-19T00:05:00.921Z [INFO]: GET /api/hunter-strategies 
+2025-12-19T00:05:00.924Z [INFO]: GET /api/business-types 
+2025-12-19T00:05:00.925Z [INFO]: GET /api/hunter-strategies 
+2025-12-19T00:05:00.925Z [INFO]: GET /api/hunter/searches 
+2025-12-19T00:05:00.930Z [INFO]: GET /api/hunter/stats 
+2025-12-19T00:05:00.931Z [INFO]: GET /api/hunter/access 
+2025-12-19T00:06:45.901Z [INFO]: GET /api/settings/public 
+Fetching public settings...
+Query result: [
+  {
+    demo_url: 'https://noahpro.es/crm/login',
+    chat_title: 'Soporte NoahPro',
+    chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+    chat_primary_color: '#e74f0d',
+    chat_enabled: true,
+    pusher_key: '0815d25ee2bae406d7d9',
+    pusher_cluster: 'eu',
+    pusher_app_id: '2086108'
+  }
+]
+Returning settings: {
+  demo_url: 'https://noahpro.es/crm/login',
+  chat_title: 'Soporte NoahPro',
+  chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+  chat_primary_color: '#e74f0d',
+  chat_enabled: true,
+  pusher_key: '0815d25ee2bae406d7d9',
+  pusher_cluster: 'eu',
+  pusher_app_id: '2086108'
+}
+2025-12-19T00:06:45.931Z [INFO]: GET /api/settings/public 
+Fetching public settings...
+Query result: [
+  {
+    demo_url: 'https://noahpro.es/crm/login',
+    chat_title: 'Soporte NoahPro',
+    chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+    chat_primary_color: '#e74f0d',
+    chat_enabled: true,
+    pusher_key: '0815d25ee2bae406d7d9',
+    pusher_cluster: 'eu',
+    pusher_app_id: '2086108'
+  }
+]
+Returning settings: {
+  demo_url: 'https://noahpro.es/crm/login',
+  chat_title: 'Soporte NoahPro',
+  chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+  chat_primary_color: '#e74f0d',
+  chat_enabled: true,
+  pusher_key: '0815d25ee2bae406d7d9',
+  pusher_cluster: 'eu',
+  pusher_app_id: '2086108'
+}
+2025-12-19T00:06:45.966Z [INFO]: GET /api/notifications 
+2025-12-19T00:06:45.967Z [INFO]: GET /api/leads 
+2025-12-19T00:06:45.969Z [INFO]: GET /api/notifications/unread-count 
+2025-12-19T00:06:45.969Z [INFO]: GET /api/tasks 
+2025-12-19T00:06:45.970Z [INFO]: GET /api/chat/conversations 
+2025-12-19T00:06:45.976Z [INFO]: GET /api/notifications 
+2025-12-19T00:06:45.976Z [INFO]: GET /api/settings/lead-statuses 
+2025-12-19T00:06:45.979Z [INFO]: GET /api/chat/conversations 
+2025-12-19T00:06:45.982Z [INFO]: GET /api/calendar/events 
+2025-12-19T00:06:45.986Z [INFO]: GET /api/notifications/unread-count 
+2025-12-19T00:06:45.999Z [INFO]: GET /api/calendar/events 
+2025-12-19T00:06:46.000Z [INFO]: GET /api/settings/lead-statuses 
+2025-12-19T00:06:46.001Z [INFO]: GET /api/tasks 
+2025-12-19T00:06:46.005Z [INFO]: GET /api/leads 
+2025-12-19T00:06:46.020Z [INFO]: GET /api/leads 
+2025-12-19T00:06:46.025Z [INFO]: GET /api/leads 
+2025-12-19T00:07:32.335Z [INFO]: GET /api/hunter/stats 
+2025-12-19T00:07:32.338Z [INFO]: GET /api/hunter/access 
+2025-12-19T00:07:32.340Z [INFO]: GET /api/hunter/searches 
+2025-12-19T00:07:32.341Z [INFO]: GET /api/business-types 
+2025-12-19T00:07:32.343Z [INFO]: GET /api/hunter-strategies 
+2025-12-19T00:07:32.374Z [INFO]: GET /api/hunter/searches 
+2025-12-19T00:07:32.375Z [INFO]: GET /api/hunter-strategies 
+2025-12-19T00:07:32.375Z [INFO]: GET /api/business-types 
+2025-12-19T00:07:32.379Z [INFO]: GET /api/hunter/stats 
+2025-12-19T00:07:32.405Z [INFO]: GET /api/hunter/access 
+2025-12-19T00:08:01.701Z [INFO]: GET /api/settings/public 
+Fetching public settings...
+Query result: [
+  {
+    demo_url: 'https://noahpro.es/crm/login',
+    chat_title: 'Soporte NoahPro',
+    chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+    chat_primary_color: '#e74f0d',
+    chat_enabled: true,
+    pusher_key: '0815d25ee2bae406d7d9',
+    pusher_cluster: 'eu',
+    pusher_app_id: '2086108'
+  }
+]
+Returning settings: {
+  demo_url: 'https://noahpro.es/crm/login',
+  chat_title: 'Soporte NoahPro',
+  chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+  chat_primary_color: '#e74f0d',
+  chat_enabled: true,
+  pusher_key: '0815d25ee2bae406d7d9',
+  pusher_cluster: 'eu',
+  pusher_app_id: '2086108'
+}
+2025-12-19T00:08:01.718Z [INFO]: GET /api/chat/conversations 
+2025-12-19T00:08:01.724Z [INFO]: GET /api/leads 
+2025-12-19T00:08:01.727Z [INFO]: GET /api/settings/public 
+Fetching public settings...
+2025-12-19T00:08:01.729Z [INFO]: GET /api/notifications 
+2025-12-19T00:08:01.732Z [INFO]: GET /api/chat/conversations 
+2025-12-19T00:08:01.740Z [INFO]: GET /api/notifications/unread-count 
+2025-12-19T00:08:01.753Z [INFO]: GET /api/tasks 
+2025-12-19T00:08:01.754Z [INFO]: GET /api/settings/lead-statuses 
+Query result: [
+  {
+    demo_url: 'https://noahpro.es/crm/login',
+    chat_title: 'Soporte NoahPro',
+    chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+    chat_primary_color: '#e74f0d',
+    chat_enabled: true,
+    pusher_key: '0815d25ee2bae406d7d9',
+    pusher_cluster: 'eu',
+    pusher_app_id: '2086108'
+  }
+]
+Returning settings: {
+  demo_url: 'https://noahpro.es/crm/login',
+  chat_title: 'Soporte NoahPro',
+  chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+  chat_primary_color: '#e74f0d',
+  chat_enabled: true,
+  pusher_key: '0815d25ee2bae406d7d9',
+  pusher_cluster: 'eu',
+  pusher_app_id: '2086108'
+}
+2025-12-19T00:08:01.761Z [INFO]: GET /api/calendar/events 
+2025-12-19T00:08:01.762Z [INFO]: GET /api/notifications 
+2025-12-19T00:08:01.764Z [INFO]: GET /api/leads 
+2025-12-19T00:08:01.768Z [INFO]: GET /api/notifications/unread-count 
+2025-12-19T00:08:01.770Z [INFO]: GET /api/tasks 
+2025-12-19T00:08:01.775Z [INFO]: GET /api/calendar/events 
+2025-12-19T00:08:01.776Z [INFO]: GET /api/leads 
+2025-12-19T00:08:01.782Z [INFO]: GET /api/settings/lead-statuses 
+2025-12-19T00:08:01.789Z [INFO]: GET /api/leads 
+2025-12-19T00:08:22.134Z [INFO]: GET /api/settings/public 
+Fetching public settings...
+Query result: [
+  {
+    demo_url: 'https://noahpro.es/crm/login',
+    chat_title: 'Soporte NoahPro',
+    chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+    chat_primary_color: '#e74f0d',
+    chat_enabled: true,
+    pusher_key: '0815d25ee2bae406d7d9',
+    pusher_cluster: 'eu',
+    pusher_app_id: '2086108'
+  }
+]
+Returning settings: {
+  demo_url: 'https://noahpro.es/crm/login',
+  chat_title: 'Soporte NoahPro',
+  chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+  chat_primary_color: '#e74f0d',
+  chat_enabled: true,
+  pusher_key: '0815d25ee2bae406d7d9',
+  pusher_cluster: 'eu',
+  pusher_app_id: '2086108'
+}
+2025-12-19T00:08:22.142Z [INFO]: GET /api/settings/public 
+Fetching public settings...
+Query result: [
+  {
+    demo_url: 'https://noahpro.es/crm/login',
+    chat_title: 'Soporte NoahPro',
+    chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+    chat_primary_color: '#e74f0d',
+    chat_enabled: true,
+    pusher_key: '0815d25ee2bae406d7d9',
+    pusher_cluster: 'eu',
+    pusher_app_id: '2086108'
+  }
+]
+Returning settings: {
+  demo_url: 'https://noahpro.es/crm/login',
+  chat_title: 'Soporte NoahPro',
+  chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+  chat_primary_color: '#e74f0d',
+  chat_enabled: true,
+  pusher_key: '0815d25ee2bae406d7d9',
+  pusher_cluster: 'eu',
+  pusher_app_id: '2086108'
+}
+2025-12-19T00:08:22.174Z [INFO]: GET /api/notifications 
+2025-12-19T00:08:22.175Z [INFO]: GET /api/notifications/unread-count 
+2025-12-19T00:08:22.177Z [INFO]: GET /api/leads 
+2025-12-19T00:08:22.178Z [INFO]: GET /api/settings/lead-statuses 
+2025-12-19T00:08:22.179Z [INFO]: GET /api/tasks 
+2025-12-19T00:08:22.179Z [INFO]: GET /api/notifications 
+2025-12-19T00:08:22.180Z [INFO]: GET /api/chat/conversations 
+2025-12-19T00:08:22.181Z [INFO]: GET /api/notifications/unread-count 
+2025-12-19T00:08:22.182Z [INFO]: GET /api/chat/conversations 
+2025-12-19T00:08:22.183Z [INFO]: GET /api/leads 
+2025-12-19T00:08:22.184Z [INFO]: GET /api/settings/lead-statuses 
+2025-12-19T00:08:22.185Z [INFO]: GET /api/tasks 
+2025-12-19T00:08:22.188Z [INFO]: GET /api/calendar/events 
+2025-12-19T00:08:22.190Z [INFO]: GET /api/leads 
+2025-12-19T00:08:22.190Z [INFO]: GET /api/calendar/events 
+2025-12-19T00:08:22.192Z [INFO]: GET /api/leads 
+2025-12-19T00:08:23.335Z [INFO]: GET /api/hunter/access 
+2025-12-19T00:08:23.336Z [INFO]: GET /api/hunter/stats 
+2025-12-19T00:08:23.337Z [INFO]: GET /api/business-types 
+2025-12-19T00:08:23.338Z [INFO]: GET /api/hunter/searches 
+2025-12-19T00:08:23.339Z [INFO]: GET /api/hunter-strategies 
+2025-12-19T00:08:23.342Z [INFO]: GET /api/business-types 
+2025-12-19T00:08:23.342Z [INFO]: GET /api/hunter/searches 
+2025-12-19T00:08:23.343Z [INFO]: GET /api/hunter/access 
+2025-12-19T00:08:23.344Z [INFO]: GET /api/hunter-strategies 
+2025-12-19T00:08:23.344Z [INFO]: GET /api/hunter/stats 
+2025-12-19T00:08:31.573Z [INFO]: GET /api/hunter/searches/6/prospects 
+2025-12-19T00:08:35.597Z [INFO]: GET /api/hunter/searches/6/prospects 
+2025-12-19T00:09:46.468Z [INFO]: GET /api/settings/public 
+Fetching public settings...
+2025-12-19T00:09:46.486Z [INFO]: GET /api/notifications 
+2025-12-19T00:09:46.489Z [INFO]: GET /api/notifications/unread-count 
+2025-12-19T00:09:46.502Z [INFO]: GET /api/chat/conversations 
+2025-12-19T00:09:46.506Z [INFO]: GET /api/tasks 
+2025-12-19T00:09:46.507Z [INFO]: GET /api/leads 
+2025-12-19T00:09:46.513Z [INFO]: GET /api/settings/lead-statuses 
+Query result: [
+  {
+    demo_url: 'https://noahpro.es/crm/login',
+    chat_title: 'Soporte NoahPro',
+    chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+    chat_primary_color: '#e74f0d',
+    chat_enabled: true,
+    pusher_key: '0815d25ee2bae406d7d9',
+    pusher_cluster: 'eu',
+    pusher_app_id: '2086108'
+  }
+]
+Returning settings: {
+  demo_url: 'https://noahpro.es/crm/login',
+  chat_title: 'Soporte NoahPro',
+  chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+  chat_primary_color: '#e74f0d',
+  chat_enabled: true,
+  pusher_key: '0815d25ee2bae406d7d9',
+  pusher_cluster: 'eu',
+  pusher_app_id: '2086108'
+}
+2025-12-19T00:09:46.519Z [INFO]: GET /api/chat/conversations 
+2025-12-19T00:09:46.537Z [INFO]: GET /api/calendar/events 
+2025-12-19T00:09:46.573Z [INFO]: GET /api/settings/public 
+Fetching public settings...
+2025-12-19T00:09:46.575Z [INFO]: GET /api/notifications 
+Query result: [
+  {
+    demo_url: 'https://noahpro.es/crm/login',
+    chat_title: 'Soporte NoahPro',
+    chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+    chat_primary_color: '#e74f0d',
+    chat_enabled: true,
+    pusher_key: '0815d25ee2bae406d7d9',
+    pusher_cluster: 'eu',
+    pusher_app_id: '2086108'
+  }
+]
+Returning settings: {
+  demo_url: 'https://noahpro.es/crm/login',
+  chat_title: 'Soporte NoahPro',
+  chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+  chat_primary_color: '#e74f0d',
+  chat_enabled: true,
+  pusher_key: '0815d25ee2bae406d7d9',
+  pusher_cluster: 'eu',
+  pusher_app_id: '2086108'
+}
+2025-12-19T00:09:46.584Z [INFO]: GET /api/notifications/unread-count 
+2025-12-19T00:09:46.588Z [INFO]: GET /api/calendar/events 
+2025-12-19T00:09:46.590Z [INFO]: GET /api/tasks 
+2025-12-19T00:09:46.596Z [INFO]: GET /api/settings/lead-statuses 
+2025-12-19T00:09:46.603Z [INFO]: GET /api/leads 
+2025-12-19T00:09:46.638Z [INFO]: GET /api/leads 
+2025-12-19T00:09:46.646Z [INFO]: GET /api/leads 
+2025-12-19T00:09:49.764Z [INFO]: GET /api/settings/public 
+Fetching public settings...
+Query result: [
+  {
+    demo_url: 'https://noahpro.es/crm/login',
+    chat_title: 'Soporte NoahPro',
+    chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+    chat_primary_color: '#e74f0d',
+    chat_enabled: true,
+    pusher_key: '0815d25ee2bae406d7d9',
+    pusher_cluster: 'eu',
+    pusher_app_id: '2086108'
+  }
+]
+Returning settings: {
+  demo_url: 'https://noahpro.es/crm/login',
+  chat_title: 'Soporte NoahPro',
+  chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+  chat_primary_color: '#e74f0d',
+  chat_enabled: true,
+  pusher_key: '0815d25ee2bae406d7d9',
+  pusher_cluster: 'eu',
+  pusher_app_id: '2086108'
+}
+2025-12-19T00:09:49.799Z [INFO]: GET /api/settings/public 
+Fetching public settings...
+Query result: [
+  {
+    demo_url: 'https://noahpro.es/crm/login',
+    chat_title: 'Soporte NoahPro',
+    chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+    chat_primary_color: '#e74f0d',
+    chat_enabled: true,
+    pusher_key: '0815d25ee2bae406d7d9',
+    pusher_cluster: 'eu',
+    pusher_app_id: '2086108'
+  }
+]
+Returning settings: {
+  demo_url: 'https://noahpro.es/crm/login',
+  chat_title: 'Soporte NoahPro',
+  chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+  chat_primary_color: '#e74f0d',
+  chat_enabled: true,
+  pusher_key: '0815d25ee2bae406d7d9',
+  pusher_cluster: 'eu',
+  pusher_app_id: '2086108'
+}
+2025-12-19T00:09:49.839Z [INFO]: GET /api/notifications 
+2025-12-19T00:09:49.840Z [INFO]: GET /api/notifications/unread-count 
+2025-12-19T00:09:49.840Z [INFO]: GET /api/leads 
+2025-12-19T00:09:49.841Z [INFO]: GET /api/tasks 
+2025-12-19T00:09:49.841Z [INFO]: GET /api/settings/lead-statuses 
+2025-12-19T00:09:49.842Z [INFO]: GET /api/chat/conversations 
+2025-12-19T00:09:49.844Z [INFO]: GET /api/chat/conversations 
+2025-12-19T00:09:49.850Z [INFO]: GET /api/calendar/events 
+2025-12-19T00:09:49.852Z [INFO]: GET /api/notifications 
+2025-12-19T00:09:49.853Z [INFO]: GET /api/notifications/unread-count 
+2025-12-19T00:09:49.853Z [INFO]: GET /api/tasks 
+2025-12-19T00:09:49.854Z [INFO]: GET /api/settings/lead-statuses 
+2025-12-19T00:09:49.854Z [INFO]: GET /api/leads 
+2025-12-19T00:09:49.856Z [INFO]: GET /api/calendar/events 
+2025-12-19T00:09:49.870Z [INFO]: GET /api/leads 
+2025-12-19T00:09:49.873Z [INFO]: GET /api/leads 
+2025-12-19T00:09:51.396Z [INFO]: GET /api/hunter/access 
+2025-12-19T00:09:51.397Z [INFO]: GET /api/hunter/stats 
+2025-12-19T00:09:51.398Z [INFO]: GET /api/business-types 
+2025-12-19T00:09:51.399Z [INFO]: GET /api/hunter/searches 
+2025-12-19T00:09:51.400Z [INFO]: GET /api/hunter-strategies 
+2025-12-19T00:09:51.402Z [INFO]: GET /api/business-types 
+2025-12-19T00:09:51.405Z [INFO]: GET /api/hunter/searches 
+2025-12-19T00:09:51.406Z [INFO]: GET /api/hunter-strategies 
+2025-12-19T00:09:51.409Z [INFO]: GET /api/hunter/stats 
+2025-12-19T00:09:51.415Z [INFO]: GET /api/hunter/access 
+2025-12-19T00:09:53.745Z [INFO]: GET /api/hunter/searches/6/prospects 
+2025-12-19T00:09:56.173Z [INFO]: GET /api/hunter/searches/6/prospects 
+2025-12-19T00:10:24.746Z [INFO]: POST /api/hunter/prospects/88/notes/improve 
+2025-12-19T00:10:24.748Z [WARN]: 404 Not Found: POST /api/hunter/prospects/88/notes/improve 
+2025-12-19T00:10:38.170Z [INFO]: PUT /api/hunter/prospects/88/notes 
+2025-12-19T00:10:38.175Z [WARN]: 404 Not Found: PUT /api/hunter/prospects/88/notes 
+2025-12-19T00:10:50.525Z [INFO]: POST /api/hunter/prospects/88/demo 
+2025-12-19T00:11:15.465Z [INFO]: GET /api/settings/public 
+Fetching public settings...
+Query result: [
+  {
+    demo_url: 'https://noahpro.es/crm/login',
+    chat_title: 'Soporte NoahPro',
+    chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+    chat_primary_color: '#e74f0d',
+    chat_enabled: true,
+    pusher_key: '0815d25ee2bae406d7d9',
+    pusher_cluster: 'eu',
+    pusher_app_id: '2086108'
+  }
+]
+Returning settings: {
+  demo_url: 'https://noahpro.es/crm/login',
+  chat_title: 'Soporte NoahPro',
+  chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+  chat_primary_color: '#e74f0d',
+  chat_enabled: true,
+  pusher_key: '0815d25ee2bae406d7d9',
+  pusher_cluster: 'eu',
+  pusher_app_id: '2086108'
+}
+2025-12-19T00:11:15.475Z [INFO]: GET /api/settings/public 
+Fetching public settings...
+Query result: [
+  {
+    demo_url: 'https://noahpro.es/crm/login',
+    chat_title: 'Soporte NoahPro',
+    chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+    chat_primary_color: '#e74f0d',
+    chat_enabled: true,
+    pusher_key: '0815d25ee2bae406d7d9',
+    pusher_cluster: 'eu',
+    pusher_app_id: '2086108'
+  }
+]
+Returning settings: {
+  demo_url: 'https://noahpro.es/crm/login',
+  chat_title: 'Soporte NoahPro',
+  chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+  chat_primary_color: '#e74f0d',
+  chat_enabled: true,
+  pusher_key: '0815d25ee2bae406d7d9',
+  pusher_cluster: 'eu',
+  pusher_app_id: '2086108'
+}
+2025-12-19T00:11:15.526Z [INFO]: GET /api/chat/conversations 
+2025-12-19T00:11:15.527Z [INFO]: GET /api/notifications 
+2025-12-19T00:11:15.531Z [INFO]: GET /api/notifications/unread-count 
+2025-12-19T00:11:15.532Z [INFO]: GET /api/tasks 
+2025-12-19T00:11:15.532Z [INFO]: GET /api/chat/conversations 
+2025-12-19T00:11:15.534Z [INFO]: GET /api/settings/lead-statuses 
+2025-12-19T00:11:15.535Z [INFO]: GET /api/leads 
+2025-12-19T00:11:15.536Z [INFO]: GET /api/notifications 
+2025-12-19T00:11:15.538Z [INFO]: GET /api/settings/lead-statuses 
+2025-12-19T00:11:15.538Z [INFO]: GET /api/calendar/events 
+2025-12-19T00:11:15.552Z [INFO]: GET /api/calendar/events 
+2025-12-19T00:11:15.556Z [INFO]: GET /api/notifications/unread-count 
+2025-12-19T00:11:15.556Z [INFO]: GET /api/tasks 
+2025-12-19T00:11:15.561Z [INFO]: GET /api/leads 
+2025-12-19T00:11:15.565Z [INFO]: GET /api/leads 
+2025-12-19T00:11:15.567Z [INFO]: GET /api/leads 
+2025-12-19T00:11:18.407Z [INFO]: GET /api/business-types 
+2025-12-19T00:11:18.408Z [INFO]: GET /api/hunter/searches 
+2025-12-19T00:11:18.408Z [INFO]: GET /api/hunter-strategies 
+2025-12-19T00:11:18.408Z [INFO]: GET /api/hunter/access 
+2025-12-19T00:11:18.409Z [INFO]: GET /api/hunter/stats 
+2025-12-19T00:11:18.414Z [INFO]: GET /api/hunter/searches 
+2025-12-19T00:11:18.415Z [INFO]: GET /api/business-types 
+2025-12-19T00:11:18.415Z [INFO]: GET /api/hunter-strategies 
+2025-12-19T00:11:18.419Z [INFO]: GET /api/hunter/stats 
+2025-12-19T00:11:18.421Z [INFO]: GET /api/hunter/access 

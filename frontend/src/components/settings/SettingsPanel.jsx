@@ -1,6 +1,6 @@
 import { API_URL, SOCKET_URL } from '../../config';
 import React, { useState, useEffect } from 'react';
-import { Settings, BarChart3, Bot, Plug, Mail, Bell, Save, MessageSquare, Radio, Key, Server, Globe, FileText, User, Building2, Phone, MapPin, CreditCard } from 'lucide-react';
+import { Settings, BarChart3, Bot, Plug, Mail, Bell, Save, MessageSquare, Radio, Key, Server, Globe, FileText, User, Building2, Phone, MapPin, CreditCard, Search, Store } from 'lucide-react';
 import Button from '../shared/Button';
 import Input from '../shared/Input';
 import TemplatesManager from '../admin/settings/TemplatesManager';
@@ -10,6 +10,11 @@ import GoogleCalendarSettings from './GoogleCalendarSettings';
 import UsersSettings from './UsersSettings';
 import HTMLEmailTemplatesEditor from './HTMLEmailTemplatesEditor';
 import InvoiceSettings from './InvoiceSettings';
+import WebhooksSettings from './WebhooksSettings';
+
+import LeadHunterSettings from './LeadHunterSettings';
+import BusinessTypesSettings from './BusinessTypesSettings';
+import HunterStrategiesSettings from './HunterStrategiesSettings';
 
 const SettingsPanel = () => {
     const [activeTab, setActiveTab] = useState('general');
@@ -20,11 +25,16 @@ const SettingsPanel = () => {
         { id: 'users', label: 'Usuarios', icon: <User className="w-5 h-5" /> },
         { id: 'statuses', label: 'Estados', icon: <BarChart3 className="w-5 h-5" /> },
         { id: 'automation', label: 'Automatización', icon: <Bot className="w-5 h-5" /> },
+
+        { id: 'lead_hunter', label: 'Lead Hunter', icon: <Search className="w-5 h-5" /> },
+        { id: 'business_types', label: 'Tipos de Negocio', icon: <Store className="w-5 h-5" /> },
+        { id: 'strategy_ia', label: 'Estrategia IA', icon: <Bot className="w-5 h-5" /> },
         { id: 'invoices', label: 'Facturación', icon: <FileText className="w-5 h-5" /> },
         { id: 'integrations', label: 'Integraciones', icon: <Plug className="w-5 h-5" /> },
         { id: 'email_templates', label: 'Plantillas Email', icon: <Mail className="w-5 h-5" /> },
         { id: 'proposal_templates', label: 'Plantillas Propuestas', icon: <FileText className="w-5 h-5" /> },
         { id: 'smtp', label: 'Email (SMTP)', icon: <Mail className="w-5 h-5" /> },
+        { id: 'webhooks', label: 'Webhooks', icon: <Globe className="w-5 h-5" /> },
         { id: 'notifications', label: 'Notificaciones', icon: <Bell className="w-5 h-5" /> }
     ];
 
@@ -196,10 +206,15 @@ const SettingsPanel = () => {
                         {activeTab === 'users' && <UsersSettings />}
                         {activeTab === 'statuses' && <LeadStatusSettings />}
                         {activeTab === 'automation' && <AutomationSettings />}
+
+                        {activeTab === 'lead_hunter' && <LeadHunterSettings />}
+                        {activeTab === 'business_types' && <BusinessTypesSettings />}
+                        {activeTab === 'strategy_ia' && <HunterStrategiesSettings />}
                         {activeTab === 'invoices' && <InvoiceSettings />}
                         {activeTab === 'integrations' && <GoogleCalendarSettings />}
                         {activeTab === 'email_templates' && <HTMLEmailTemplatesEditor />}
                         {activeTab === 'proposal_templates' && <TemplatesManager />}
+                        {activeTab === 'webhooks' && <WebhooksSettings />}
                         {activeTab === 'smtp' && (
                             <div className="space-y-8">
                                 <form onSubmit={handleSave}>

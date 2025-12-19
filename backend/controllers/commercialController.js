@@ -93,7 +93,7 @@ const getCommercialById = async (req, res) => {
     const { id } = req.params;
     try {
         const result = await db.query(`
-            SELECT u.id, u.email, u.name, u.created_at,
+            SELECT u.id, u.email, u.full_name as name, u.created_at,
                    cp.commercial_code, cp.phone, cp.qr_code_url
             FROM users u
             LEFT JOIN commercial_profiles cp ON u.id = cp.user_id

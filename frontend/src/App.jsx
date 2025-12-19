@@ -12,6 +12,8 @@ import InvoiceDetail from './components/invoices/InvoiceDetail';
 import InvoicePublic from './components/invoices/InvoicePublic';
 import CommercialDashboard from './components/commercial/CommercialDashboard';
 
+import PublicDemoViewer from './components/hunter/PublicDemoViewer';
+
 function App() {
     const [currentRoute, setCurrentRoute] = useState('/');
     const [loading, setLoading] = useState(true);
@@ -81,6 +83,11 @@ function App() {
         // Propuesta pública
         if (currentRoute.startsWith('/proposal/')) {
             return <PublicProposal />;
+        }
+
+        // Demo Pública de Lead Hunter
+        if (currentRoute.startsWith('/demo/')) {
+            return <PublicDemoViewer />;
         }
 
         // Login CRM

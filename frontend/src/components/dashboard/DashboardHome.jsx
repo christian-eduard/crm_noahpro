@@ -11,6 +11,7 @@ import 'react-resizable/css/styles.css';
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
 const DashboardHome = () => {
+    const [mounted, setMounted] = useState(false);
     const [stats, setStats] = useState({
         totalLeads: 0,
         newLeads: 0,
@@ -60,6 +61,7 @@ const DashboardHome = () => {
     });
 
     useEffect(() => {
+        setMounted(true);
         fetchDashboardData();
         fetchTasks();
     }, []);
@@ -144,17 +146,43 @@ const DashboardHome = () => {
         }
     };
 
+    const formatTimeAgo = (dateString) => {
+        const now = new Date();
+        const past = new Date(dateString);
+        const diffInMs = now - past;
+        const diffInMins = Math.floor(diffInMs / (1000 * 60));
+        const diffInHours = Math.floor(diffInMins / 60);
+        const diffInDays = Math.floor(diffInHours / 24);
+
+        if (diffInMins < 1) return 'Ahora mismo';
+        if (diffInMins < 60) return `Hace ${diffInMins} min`;
+        if (diffInHours < 24) return `Hace ${diffInHours} horas`;
+        return `Hace ${diffInDays} días`;
+    };
+
+    const getActivityIcon = (type) => {
+        const icons = {
+            'lead_created': '👤',
+            'proposal_sent': '📄',
+            'deal_won': '🎉',
+            'meeting_scheduled': '📅',
+            'note_added': '📝',
+            'status_changed': '🔄'
+        };
+        return icons[type] || '⚡';
+    };
+
     const fetchDashboardData = async () => {
         try {
             const token = localStorage.getItem('crm_token');
-            const response = await fetch(`${API_URL}/leads`, {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            });
-            if (response.ok) {
-                const leads = await response.json();
 
+            // Fetch leads for stats
+            const leadsResponse = await fetch(`${API_URL}/leads`, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+
+            if (leadsResponse.ok) {
+                const leads = await leadsResponse.json();
                 const newLeads = leads.filter(l => l.status === 'new').length;
                 const wonDeals = leads.filter(l => l.status === 'won').length;
                 const conversionRate = leads.length > 0 ? ((wonDeals / leads.length) * 100).toFixed(1) : 0;
@@ -167,13 +195,22 @@ const DashboardHome = () => {
                     conversionRate,
                     revenue: wonDeals * 2500
                 });
+            }
 
-                setRecentActivity([
-                    { id: 1, type: 'lead', description: 'Nuevo lead: Ana García', time: 'Hace 5 min', icon: '👤' },
-                    { id: 2, type: 'proposal', description: 'Propuesta enviada a Hotel Playa Azul', time: 'Hace 1 hora', icon: '📄' },
-                    { id: 3, type: 'won', description: 'Deal ganado: Burger Express', time: 'Hace 2 horas', icon: '🎉' },
-                    { id: 4, type: 'meeting', description: 'Reunión agendada con Pizzería Napoli', time: 'Hace 3 horas', icon: '📅' }
-                ]);
+            // Fetch real activities
+            const activitiesResponse = await fetch(`${API_URL}/activities?limit=10`, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+
+            if (activitiesResponse.ok) {
+                const activities = await activitiesResponse.json();
+                setRecentActivity(activities.map(a => ({
+                    id: a.id,
+                    type: a.type,
+                    description: a.description,
+                    time: formatTimeAgo(a.created_at),
+                    icon: getActivityIcon(a.type)
+                })));
             }
         } catch (error) {
             console.error('Error fetching dashboard data:', error);
@@ -229,6 +266,8 @@ const DashboardHome = () => {
         };
         return colors[color] || colors.blue;
     };
+
+    if (!mounted) return null;
 
     return (
         <div className="p-4 pb-24">
@@ -291,6 +330,7 @@ const DashboardHome = () => {
                 isDraggable={editMode}
                 isResizable={editMode}
                 resizeHandles={['se', 'sw', 'ne', 'nw']}
+                useCSSTransforms={mounted}
             >
                 {/* Stats Cards - Fixed Position */}
                 <div key="stats" className="bg-transparent">
@@ -369,8 +409,10 @@ const DashboardHome = () => {
                     </div>
                     <div className="p-4 space-y-3 overflow-y-auto" style={{ maxHeight: 'calc(100% - 60px)' }}>
                         {recentActivity.map((activity) => (
-                            <div key={activity.id} className="flex items-start space-x-3 p-3 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors">
-                                <span className="text-2xl flex-shrink-0">{activity.icon}</span>
+                            <div key={activity.id} className="flex items-center space-x-3 p-3 bg-gray-50 dark:bg-gray-700/60 rounded-lg border border-gray-100 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600 transition-all">
+                                <div className="w-10 h-10 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 shadow-sm flex-shrink-0">
+                                    <span className="text-lg">{activity.icon}</span>
+                                </div>
                                 <div className="flex-1 min-w-0">
                                     <p className="text-sm font-medium text-gray-900 dark:text-white truncate">
                                         {activity.description}

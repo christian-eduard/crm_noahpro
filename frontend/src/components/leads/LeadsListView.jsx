@@ -1,11 +1,12 @@
 import { API_URL, SOCKET_URL } from '../../config';
 import React, { useState } from 'react';
-import { Eye, UserPlus, Trash2 } from 'lucide-react';
+import { Eye, UserPlus, Trash2, Square, CheckSquare } from 'lucide-react';
 import ConfirmModal from '../shared/ConfirmModal';
 import Button from '../shared/Button';
 import { useToast } from '../../contexts/ToastContext';
+import { TagsList } from '../shared/TagBadge';
 
-const LeadsListView = ({ leads, onLeadClick, onStatusChange, onDeleteLead }) => {
+const LeadsListView = ({ leads, onLeadClick, onStatusChange, onDeleteLead, selectedLeads = [], onToggleSelect }) => {
     const [confirmDialog, setConfirmDialog] = useState({ isOpen: false, title: '', message: '', leadToDelete: null });
     const [convertModal, setConvertModal] = useState({ isOpen: false, lead: null });
     const [sortBy, setSortBy] = useState('date');
@@ -139,12 +140,14 @@ const LeadsListView = ({ leads, onLeadClick, onStatusChange, onDeleteLead }) => 
                 <table className="w-full min-w-[900px]">
                     <thead className="bg-gray-50 dark:bg-gray-900/50 border-b border-gray-200 dark:border-gray-700">
                         <tr>
+                            {onToggleSelect && (
+                                <th className="px-4 py-4 w-12"></th>
+                            )}
                             <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase">Lead</th>
                             <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase">Empresa</th>
+                            <th className="px-4 py-4 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase">Tags</th>
                             <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase">Estado</th>
                             <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase">Propuesta</th>
-                            <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase">Última Vista</th>
-                            <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase">Email Abierto</th>
                             <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase">Acciones</th>
                         </tr>
                     </thead>
@@ -153,8 +156,26 @@ const LeadsListView = ({ leads, onLeadClick, onStatusChange, onDeleteLead }) => 
                             <tr
                                 key={lead.id}
                                 onClick={() => onLeadClick(lead)}
-                                className="hover:bg-gray-50 dark:hover:bg-gray-700/50 cursor-pointer transition-colors"
+                                className={`hover:bg-gray-50 dark:hover:bg-gray-700/50 cursor-pointer transition-colors ${selectedLeads.includes(lead.id) ? 'bg-orange-50 dark:bg-orange-900/20' : ''
+                                    }`}
                             >
+                                {onToggleSelect && (
+                                    <td className="px-4 py-4">
+                                        <button
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                onToggleSelect(lead.id);
+                                            }}
+                                            className="text-gray-400 hover:text-orange-500 transition-colors"
+                                        >
+                                            {selectedLeads.includes(lead.id) ? (
+                                                <CheckSquare className="w-5 h-5 text-orange-500" />
+                                            ) : (
+                                                <Square className="w-5 h-5" />
+                                            )}
+                                        </button>
+                                    </td>
+                                )}
                                 <td className="px-6 py-4">
                                     <div>
                                         <p className="font-medium text-gray-900 dark:text-white">{lead.name}</p>
@@ -163,6 +184,13 @@ const LeadsListView = ({ leads, onLeadClick, onStatusChange, onDeleteLead }) => 
                                 </td>
                                 <td className="px-6 py-4 text-sm text-gray-600 dark:text-gray-400">
                                     {lead.business_name || '-'}
+                                </td>
+                                <td className="px-4 py-4">
+                                    {lead.tags && lead.tags.length > 0 ? (
+                                        <TagsList tags={lead.tags} maxVisible={2} size="xs" />
+                                    ) : (
+                                        <span className="text-gray-400">-</span>
+                                    )}
                                 </td>
                                 <td className="px-6 py-4">
                                     <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusBadge(lead.status)}`}>
@@ -177,12 +205,6 @@ const LeadsListView = ({ leads, onLeadClick, onStatusChange, onDeleteLead }) => 
                                     ) : (
                                         <span className="text-sm text-gray-400 dark:text-gray-500">-</span>
                                     )}
-                                </td>
-                                <td className="px-6 py-4 text-sm text-gray-600 dark:text-gray-400">
-                                    {lead.last_proposal_view || '-'}
-                                </td>
-                                <td className="px-6 py-4 text-sm text-gray-600 dark:text-gray-400">
-                                    {lead.last_email_open || '-'}
                                 </td>
                                 <td className="px-6 py-4">
                                     <div className="flex items-center gap-2">

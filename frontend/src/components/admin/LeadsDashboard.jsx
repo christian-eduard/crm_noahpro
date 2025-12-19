@@ -19,6 +19,8 @@ import ClientsListView from '../clients/ClientsListView';
 import ClientDetailView from '../clients/ClientDetailView';
 import InvoicesView from '../invoices/InvoicesView';
 import CommercialsManager from './CommercialsManager';
+import BulkActionsBar from '../shared/BulkActionsBar';
+import LeadHunterDashboard from '../hunter/LeadHunterDashboard';
 
 const LeadsDashboard = ({ activeSection }) => {
     const [leads, setLeads] = useState([]);
@@ -40,6 +42,9 @@ const LeadsDashboard = ({ activeSection }) => {
     const [confirmDialog, setConfirmDialog] = useState({ isOpen: false, title: '', message: '', onConfirm: null });
     const [showLeadModal, setShowLeadModal] = useState(false);
     const [showCalendarView, setShowCalendarView] = useState(false);
+
+    // Bulk selection state
+    const [selectedLeads, setSelectedLeads] = useState([]);
 
     const [templates, setTemplates] = useState([]);
     const [statuses, setStatuses] = useState([]);
@@ -409,8 +414,50 @@ const LeadsDashboard = ({ activeSection }) => {
     const handleDeleteLead = (leadId) => {
         // Remove the lead from the local state
         setLeads(prevLeads => prevLeads.filter(lead => lead.id !== leadId));
+        // Also remove from selection if selected
+        setSelectedLeads(prev => prev.filter(id => id !== leadId));
         // Refresh leads from server to ensure consistency
         fetchLeads();
+    };
+
+    // Toggle lead selection for bulk actions
+    const toggleSelectLead = (leadId) => {
+        setSelectedLeads(prev =>
+            prev.includes(leadId)
+                ? prev.filter(id => id !== leadId)
+                : [...prev, leadId]
+        );
+    };
+
+    // Clear all selections
+    const clearSelection = () => {
+        setSelectedLeads([]);
+    };
+
+    // Handle bulk actions
+    const handleBulkAction = async (actionType, value) => {
+        const token = localStorage.getItem('crm_token');
+        try {
+            const response = await fetch(`${API_URL}/leads/bulk/${actionType}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({ leadIds: selectedLeads, value })
+            });
+
+            if (response.ok) {
+                toast.success(`Acción aplicada a ${selectedLeads.length} leads`);
+                clearSelection();
+                fetchLeads();
+            } else {
+                throw new Error('Error en acción masiva');
+            }
+        } catch (error) {
+            console.error('Bulk action error:', error);
+            toast.error('Error al realizar la acción');
+        }
     };
 
     const getStatusColor = (status) => {
@@ -541,6 +588,10 @@ const LeadsDashboard = ({ activeSection }) => {
             return <ClientDetailView clientId={selectedClientId} onBack={() => setSelectedClientId(null)} />;
         }
         return <ClientsListView onClientSelect={setSelectedClientId} />;
+    }
+
+    if (activeSection === 'hunter') {
+        return <LeadHunterDashboard />;
     }
 
     return (
@@ -689,6 +740,8 @@ const LeadsDashboard = ({ activeSection }) => {
                     onStatusChange={updateLeadStatus}
                     statuses={statuses}
                     onDeleteLead={handleDeleteLead}
+                    selectedLeads={selectedLeads}
+                    onToggleSelect={toggleSelectLead}
                 />
             )}
 
@@ -699,6 +752,8 @@ const LeadsDashboard = ({ activeSection }) => {
                     onLeadClick={setSelectedLead}
                     onStatusChange={updateLeadStatus}
                     onDeleteLead={handleDeleteLead}
+                    selectedLeads={selectedLeads}
+                    onToggleSelect={toggleSelectLead}
                 />
             )}
 
@@ -1115,6 +1170,15 @@ const LeadsDashboard = ({ activeSection }) => {
                     </div>
                 </div>
             )}
+
+            {/* Bulk Actions Bar */}
+            <BulkActionsBar
+                selectedCount={selectedLeads.length}
+                onUpdateStatus={(status) => handleBulkAction('update-status', status)}
+                onAddTag={() => toast.info('Función de tags masivos próximamente')}
+                onDelete={() => handleBulkAction('delete')}
+                onCancel={clearSelection}
+            />
 
             {/* Confirm Dialog Modal */}
             <ConfirmModal
