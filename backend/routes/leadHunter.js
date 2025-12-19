@@ -21,6 +21,17 @@ router.get('/public/demo/:token', async (req, res) => {
         const demo = await leadHunterService.getPublicDemo(req.params.token);
         if (!demo) return res.status(404).send('Demo no encontrada o enlace expirado');
 
+        // Set permissive CSP headers to allow external images and inline scripts
+        res.setHeader('Content-Security-Policy',
+            "default-src 'self'; " +
+            "img-src 'self' data: https: http:; " +
+            "script-src 'self' 'unsafe-inline' 'unsafe-eval'; " +
+            "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
+            "font-src 'self' https://fonts.gstatic.com; " +
+            "connect-src 'self' http://localhost:3002"
+        );
+        res.setHeader('Content-Type', 'text/html; charset=utf-8');
+
         // Return HTML directly
         res.send(demo.html_content);
     } catch (error) {
