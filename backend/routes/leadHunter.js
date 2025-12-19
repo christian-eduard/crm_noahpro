@@ -966,6 +966,48 @@ router.get('/prospects/:id/demos', async (req, res) => {
     }
 });
 
+// View Public Demo (NO AUTH)
+router.get('/public/demo/:token', async (req, res) => {
+    try {
+        const demo = await leadHunterService.getPublicDemo(req.params.token);
+        if (!demo) return res.status(404).send('Demo no encontrada o enlace expirado');
+
+        // Return HTML directly
+        res.send(demo.html_content);
+    } catch (error) {
+        res.status(500).send('Error al cargar la demo');
+    }
+});
+
+/**
+ * POST /api/hunter/demos/contact (PUBLIC - NO AUTH)
+ * Recibir solicitudes de contacto desde el formulario de la landing demo
+ */
+router.post('/demos/contact', async (req, res) => {
+    try {
+        const { prospectId, name, email, phone, message } = req.body;
+
+        if (!prospectId || !name || !email) {
+            return res.status(400).json({ error: 'Nombre, email y prospecto son requeridos' });
+        }
+
+        // Insert contact request into database
+        const result = await db.query(`
+            INSERT INTO demo_contact_requests 
+            (prospect_id, name, email, phone, message, created_at)
+            VALUES ($1, $2, $3, $4, $5, NOW())
+            RETURNING id
+        `, [prospectId, name, email, phone, message]);
+
+        // Update prospect to mark it has contact requests
+        await db.query(`
+            UPDATE maps_prospects 
+            SET has_contact_requests = TRUE, 
+                contact_requests_count = COALESCE(contact_requests_count, 0) + 1
+            WHERE id = $1
+        `, [prospectId]);
+
+        res.json({ success: true, message: 'Solicitud enviada correctamente', id: result.rows[0].id });
     } catch (error) {
         console.error('Error saving demo contact request:', error);
         // If table doesn't exist, create it and retry

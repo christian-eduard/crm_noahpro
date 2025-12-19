@@ -20431,3 +20431,7 @@
 {"level":"info","message":"🚀 Leads Backend running on port 3002","timestamp":"2025-12-19T12:01:09.002Z"}
 {"level":"info","message":"📊 Database: Not configured","timestamp":"2025-12-19T12:01:09.008Z"}
 {"level":"info","message":"💬 Socket.io initialized","timestamp":"2025-12-19T12:01:09.008Z"}
+{"level":"info","message":"🚀 Leads Backend running on port 3002","timestamp":"2025-12-19T12:04:33.339Z"}
+{"level":"info","message":"📊 Database: Not configured","timestamp":"2025-12-19T12:04:33.346Z"}
+{"level":"info","message":"💬 Socket.io initialized","timestamp":"2025-12-19T12:04:33.346Z"}
+{"level":"info","message":"GET /api/hunter/public/demo/test ","timestamp":"2025-12-19T12:05:00.453Z"}
