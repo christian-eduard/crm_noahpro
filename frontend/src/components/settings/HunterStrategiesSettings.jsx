@@ -255,10 +255,11 @@ const HunterStrategiesSettings = () => {
                         </div>
 
                         <div className="flex gap-2">
-                            <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <div className="flex gap-2">
                                 <button
                                     onClick={() => setEditingStrategy(strategy)}
                                     className="p-1.5 text-blue-600 hover:bg-blue-50 rounded-lg dark:hover:bg-blue-900/30 dark:text-blue-400"
+                                    title="Editar estrategia"
                                 >
                                     <Edit2 className="w-4 h-4" />
                                 </button>
@@ -266,12 +267,14 @@ const HunterStrategiesSettings = () => {
                                     <button
                                         onClick={() => handleDeleteClick(strategy.id)}
                                         className="p-1.5 text-red-600 hover:bg-red-50 rounded-lg dark:hover:bg-red-900/30 dark:text-red-400"
+                                        title="Eliminar estrategia"
                                     >
                                         <Trash2 className="w-4 h-4" />
                                     </button>
                                 )}
                             </div>
                         </div>
+
                     </div>
                 ))}
 

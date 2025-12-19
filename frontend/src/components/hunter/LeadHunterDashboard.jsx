@@ -25,8 +25,9 @@ import {
     Trash2, AlertTriangle, ArrowRight, Check, MessageCircle, Instagram, Facebook, Linkedin, Video, Twitter, Users,
     MoreVertical, ChevronLeft, ChevronRight, Loader2, Target, Calendar, DollarSign, Building,
     Brain, BrainCircuit, ImageIcon, Copy, User, HelpCircle, Lightbulb, Share2, FileText, Network, BarChart, Monitor,
-    PenTool, Wand2, MoreHorizontal, Edit, Edit3, Camera, PhoneCall
+    PenTool, Wand2, MoreHorizontal, Edit, Edit3, Camera, PhoneCall, Settings
 } from 'lucide-react';
+
 
 const LeadHunterDashboard = ({ onNavigateSettings }) => {
     // --- State ---
@@ -1613,51 +1614,10 @@ const LeadHunterDashboard = ({ onNavigateSettings }) => {
                                                 <Settings className="w-4 h-4" />
                                             </button>
 
-                                            {isCustomStrategy && (
-                                                <div className="mt-2 animate-in fade-in slide-in-from-top-1 duration-300">
-                                                    <div className="relative">
-                                                        <textarea
-                                                            value={customStrategyPrompt}
-                                                            onChange={(e) => setCustomStrategyPrompt(e.target.value)}
-                                                            placeholder="Instrucciones para la IA: 'Fíjate si tienen Instagram activo', 'Analiza su competencia local'..."
-                                                            className="w-full p-2 pr-10 border border-orange-200 dark:border-orange-900/40 rounded-lg bg-orange-50/20 dark:bg-orange-900/10 text-xs text-gray-900 dark:text-white focus:ring-1 focus:ring-orange-500 outline-none h-20 resize-none"
-                                                            autoFocus
-                                                        />
-                                                        <button
-                                                            type="button"
-                                                            onClick={async () => {
-                                                                if (!customStrategyPrompt.trim()) return;
-                                                                try {
-                                                                    const res = await fetch(`${API_URL}/hunter/refine-prompt`, {
-                                                                        method: 'POST',
-                                                                        headers: {
-                                                                            'Authorization': `Bearer ${token}`,
-                                                                            'Content-Type': 'application/json'
-                                                                        },
-                                                                        body: JSON.stringify({ prompt: customStrategyPrompt })
-                                                                    });
-                                                                    const data = await res.json();
-                                                                    if (data.refinedPrompt) {
-                                                                        setCustomStrategyPrompt(data.refinedPrompt);
-                                                                        toast.success('¡Prompt optimizado!');
-                                                                    }
-                                                                } catch (err) {
-                                                                    toast.error('Error al optimizar');
-                                                                }
-                                                            }}
-                                                            className="absolute right-2 top-2 p-1.5 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg hover:scale-110 transition-transform shadow-lg"
-                                                            title="Optimizar con IA"
-                                                        >
-                                                            <Sparkles className="w-4 h-4" />
-                                                        </button>
-                                                    </div>
-                                                    <p className="text-[10px] text-gray-500 mt-1 ml-1">Pulsa ✨ para que la IA mejore tu prompt</p>
-                                                </div>
-                                            )}
-
                                         </div>
 
                                         <div className="flex-1">
+
                                             <label className="block text-sm text-gray-600 dark:text-gray-400 mb-1 flex items-center gap-1">
                                                 Límite
                                                 <span className="relative group cursor-help">
@@ -1678,7 +1638,59 @@ const LeadHunterDashboard = ({ onNavigateSettings }) => {
                                             </select>
                                         </div>
                                     </div>
+
+                                    {/* Custom Strategy Prompt - Full Width */}
+                                    {isCustomStrategy && (
+                                        <div className="animate-in fade-in slide-in-from-top-2 duration-300 -mt-2">
+                                            <label className="block text-sm text-gray-600 dark:text-gray-400 mb-1 flex items-center gap-2">
+                                                <Brain className="w-4 h-4 text-purple-500" />
+                                                Tu Prompt Personalizado
+                                            </label>
+                                            <div className="relative">
+                                                <textarea
+                                                    value={customStrategyPrompt}
+                                                    onChange={(e) => setCustomStrategyPrompt(e.target.value)}
+                                                    placeholder="Escribe instrucciones detalladas para la IA. Ej: 'Analiza si el negocio tiene redes sociales activas, detecta si usan TPV antiguo, enfócate en oportunidades de digitalización...'"
+                                                    className="w-full p-3 pr-12 border-2 border-purple-200 dark:border-purple-800/50 rounded-xl bg-purple-50/30 dark:bg-purple-900/10 text-sm text-gray-900 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none h-24 resize-none"
+                                                    autoFocus
+                                                />
+                                                <button
+                                                    type="button"
+                                                    onClick={async () => {
+                                                        if (!customStrategyPrompt.trim()) return;
+                                                        try {
+                                                            const res = await fetch(`${API_URL}/hunter/refine-prompt`, {
+                                                                method: 'POST',
+                                                                headers: {
+                                                                    'Authorization': `Bearer ${token}`,
+                                                                    'Content-Type': 'application/json'
+                                                                },
+                                                                body: JSON.stringify({ prompt: customStrategyPrompt })
+                                                            });
+                                                            const data = await res.json();
+                                                            if (data.refinedPrompt) {
+                                                                setCustomStrategyPrompt(data.refinedPrompt);
+                                                                toast.success('¡Prompt optimizado!');
+                                                            }
+                                                        } catch (err) {
+                                                            toast.error('Error al optimizar');
+                                                        }
+                                                    }}
+                                                    className="absolute right-3 top-3 p-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl hover:scale-110 transition-transform shadow-lg"
+                                                    title="Optimizar con IA"
+                                                >
+                                                    <Sparkles className="w-5 h-5" />
+                                                </button>
+                                            </div>
+                                            <p className="text-xs text-purple-500 mt-1.5 ml-1 flex items-center gap-1">
+                                                <Sparkles className="w-3 h-3" />
+                                                Pulsa el botón ✨ para que la IA mejore tu prompt automáticamente
+                                            </p>
+                                        </div>
+                                    )}
+
                                     <Button
+
                                         onClick={handleSearch}
                                         disabled={searching || !searchLocation || !searchQuery}
                                         className="w-full py-3 text-base shadow-lg shadow-orange-500/20"
