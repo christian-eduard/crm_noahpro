@@ -198,26 +198,30 @@ router.post('/estimate', async (req, res) => {
         const count = places.length;
         const displayCount = count >= 20 ? "20+" : count.toString();
 
-        // Calculate potential revenue (ticket medio por tipo de negocio)
-        const TICKET_MEDIO = {
-            'restaurante': 250,
-            'bar': 180,
-            'cafetería': 150,
-            'peluquería': 120,
-            'tienda': 200,
-            'taller': 300,
-            'hotel': 500,
-            'default': 200
-        };
-
-        const queryLower = query.toLowerCase();
-        let ticketMedio = TICKET_MEDIO.default;
-        for (const [tipo, valor] of Object.entries(TICKET_MEDIO)) {
-            if (queryLower.includes(tipo)) {
-                ticketMedio = valor;
-                break;
+        // Leer ticket medio desde configuración del usuario (NO hardcoded)
+        let ticketMedio = 500; // Default 500€
+        try {
+            const settingsResult = await db.query(
+                'SELECT average_ticket_value FROM hunter_user_settings WHERE user_id = $1',
+                [userId]
+            );
+            if (settingsResult.rows.length > 0 && settingsResult.rows[0].average_ticket_value) {
+                ticketMedio = parseFloat(settingsResult.rows[0].average_ticket_value);
             }
+        } catch (settingsError) {
+            console.warn('No user settings found, using default ticket:', settingsError.message);
         }
+
+        // Contar prospectos ya existentes en DB (para Smart Cache info)
+        let existingCount = 0;
+        try {
+            const existingResult = await db.query(
+                `SELECT COUNT(*) FROM maps_prospects 
+                 WHERE search_query ILIKE $1 AND address ILIKE $2`,
+                [`%${query}%`, `%${location}%`]
+            );
+            existingCount = parseInt(existingResult.rows[0].count) || 0;
+        } catch (e) { /* ignore */ }
 
         const potentialRevenue = count * ticketMedio;
         const potentialRevenueText = potentialRevenue >= 1000
@@ -230,6 +234,8 @@ router.post('/estimate', async (req, res) => {
             potentialRevenue,
             potentialRevenueText,
             ticketMedio,
+            existingCount, // Prospectos ya en DB (gratis)
+            newCount: Math.max(0, count - existingCount), // Nuevos de Google
             results: places.map(p => p.name).slice(0, 3)
         });
     } catch (error) {
@@ -254,13 +260,18 @@ router.post('/scout', async (req, res) => {
         const count = places.length;
         const displayCount = count >= 20 ? "20+" : count.toString();
 
-        // Ticket medio calculation
-        const TICKET_MEDIO = { 'restaurante': 250, 'bar': 180, 'cafetería': 150, 'peluquería': 120, 'tienda': 200, 'taller': 300, 'hotel': 500, 'default': 200 };
-        const queryLower = query.toLowerCase();
-        let ticketMedio = TICKET_MEDIO.default;
-        for (const [tipo, valor] of Object.entries(TICKET_MEDIO)) {
-            if (queryLower.includes(tipo)) { ticketMedio = valor; break; }
-        }
+        // Leer ticket medio desde configuración del usuario (NO hardcoded)
+        let ticketMedio = 500; // Default 500€
+        try {
+            const userIdForSettings = req.realUserId || 1;
+            const settingsResult = await db.query(
+                'SELECT average_ticket_value FROM hunter_user_settings WHERE user_id = $1',
+                [userIdForSettings]
+            );
+            if (settingsResult.rows.length > 0 && settingsResult.rows[0].average_ticket_value) {
+                ticketMedio = parseFloat(settingsResult.rows[0].average_ticket_value);
+            }
+        } catch (e) { /* use default */ }
 
         const potentialRevenue = count * ticketMedio;
 
@@ -1313,6 +1324,79 @@ router.get('/brain/stats', authenticateToken, async (req, res) => {
             learningProgress: Math.min(100, parseInt(stats.total_analyses) * 2) || 0
         });
     } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+/**
+ * GET /api/hunter/user-settings
+ * Obtener configuración del usuario
+ */
+router.get('/user-settings', async (req, res) => {
+    try {
+        const userId = req.realUserId;
+        const result = await db.query(
+            'SELECT * FROM hunter_user_settings WHERE user_id = $1',
+            [userId]
+        );
+
+        if (result.rows.length === 0) {
+            // Crear configuración por defecto
+            const newSettings = await db.query(
+                `INSERT INTO hunter_user_settings (user_id, average_ticket_value) 
+                 VALUES ($1, 500) RETURNING *`,
+                [userId]
+            );
+            return res.json(newSettings.rows[0]);
+        }
+
+        res.json(result.rows[0]);
+    } catch (error) {
+        console.error('Error getting user settings:', error);
+        // Devolver defaults si falla
+        res.json({
+            average_ticket_value: 500,
+            default_radius: 5000,
+            max_results_per_search: 20,
+            auto_analyze_new: true,
+            ignore_existing_prospects: true
+        });
+    }
+});
+
+/**
+ * PUT /api/hunter/user-settings
+ * Actualizar configuración del usuario
+ */
+router.put('/user-settings', async (req, res) => {
+    try {
+        const userId = req.realUserId;
+        const {
+            average_ticket_value,
+            default_radius,
+            max_results_per_search,
+            auto_analyze_new,
+            ignore_existing_prospects
+        } = req.body;
+
+        const result = await db.query(
+            `INSERT INTO hunter_user_settings 
+             (user_id, average_ticket_value, default_radius, max_results_per_search, auto_analyze_new, ignore_existing_prospects, updated_at)
+             VALUES ($1, $2, $3, $4, $5, $6, NOW())
+             ON CONFLICT (user_id) DO UPDATE SET
+                average_ticket_value = COALESCE($2, hunter_user_settings.average_ticket_value),
+                default_radius = COALESCE($3, hunter_user_settings.default_radius),
+                max_results_per_search = COALESCE($4, hunter_user_settings.max_results_per_search),
+                auto_analyze_new = COALESCE($5, hunter_user_settings.auto_analyze_new),
+                ignore_existing_prospects = COALESCE($6, hunter_user_settings.ignore_existing_prospects),
+                updated_at = NOW()
+             RETURNING *`,
+            [userId, average_ticket_value, default_radius, max_results_per_search, auto_analyze_new, ignore_existing_prospects]
+        );
+
+        res.json({ success: true, settings: result.rows[0] });
+    } catch (error) {
+        console.error('Error updating user settings:', error);
         res.status(500).json({ error: error.message });
     }
 });

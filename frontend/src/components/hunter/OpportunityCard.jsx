@@ -54,12 +54,12 @@ const OpportunityCard = ({
                 <span>{businessType} en <strong className="text-white">{location}</strong></span>
             </div>
 
-            {/* Stats Grid */}
-            <div className="relative grid grid-cols-2 gap-4 mb-6">
+            {/* Stats Grid - Smart Cache Info */}
+            <div className="relative grid grid-cols-2 gap-4 mb-4">
                 {/* Prospects Count */}
                 <div className="bg-white/15 backdrop-blur-sm rounded-xl p-4 text-center">
                     <p className="text-4xl font-bold mb-1">{searchEstimate.displayCount || '~20'}</p>
-                    <p className="text-sm text-white/80">prospectos disponibles</p>
+                    <p className="text-sm text-white/80">prospectos encontrados</p>
                 </div>
 
                 {/* Revenue Potential */}
@@ -71,6 +71,22 @@ const OpportunityCard = ({
                     <p className="text-sm text-white/80">potencial estimado</p>
                 </div>
             </div>
+
+            {/* Smart Cache Info */}
+            {(searchEstimate.existingCount > 0 || searchEstimate.newCount >= 0) && (
+                <div className="relative bg-white/10 rounded-lg p-3 mb-4 text-sm">
+                    <div className="flex justify-between items-center">
+                        <span className="flex items-center gap-1">
+                            📦 En tu DB: <strong className="text-green-300">{searchEstimate.existingCount || 0}</strong>
+                            <span className="text-white/60">(gratis)</span>
+                        </span>
+                        <span className="flex items-center gap-1">
+                            🌍 Nuevos: <strong className="text-yellow-300">{searchEstimate.newCount || searchEstimate.count || 0}</strong>
+                            <span className="text-white/60">(API)</span>
+                        </span>
+                    </div>
+                </div>
+            )}
 
             {/* Search Button */}
             <button
