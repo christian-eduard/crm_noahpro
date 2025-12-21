@@ -119,6 +119,7 @@ app.use('/api/hunter', require('./routes/leadHunter'));
 app.use('/api/business-types', require('./routes/businessTypes'));
 app.use('/api/hunter-strategies', require('./routes/hunterStrategies'));
 app.use('/api/brain', require('./routes/brain'));
+app.use('/api/calls', require('./routes/calls'));
 
 // Initialize automation engine and services
 const automationEngine = require('./services/automationEngine');
