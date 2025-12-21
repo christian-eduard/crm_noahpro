@@ -1219,6 +1219,13 @@ const LeadHunterDashboard = ({ onNavigateSettings }) => {
             filtered = filtered.filter(p => p.business_type === filterBusinessType);
         }
 
+        // ORDENACIÓN POR SCORE DESCENDENTE (mejores oportunidades primero)
+        filtered.sort((a, b) => {
+            const scoreA = a.opportunity_score || a.ai_analysis?.score || a.quality_score || 0;
+            const scoreB = b.opportunity_score || b.ai_analysis?.score || b.quality_score || 0;
+            return scoreB - scoreA; // Descendente
+        });
+
         return filtered;
     };
 
