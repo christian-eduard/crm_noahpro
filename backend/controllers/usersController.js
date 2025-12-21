@@ -6,7 +6,9 @@ const QRCode = require('qrcode');
 const getUsers = async (req, res) => {
     try {
         const { rows } = await db.query(
-            `SELECT id, username, email, full_name, role, created_at, referral_code, qr_code_url 
+            `SELECT id, username, email, full_name, role, created_at, referral_code, qr_code_url,
+                    can_make_calls, can_access_dojo, can_export_data,
+                    has_lead_hunter_access, hunter_daily_limit
              FROM users 
              WHERE role != 'commercial'
              ORDER BY created_at DESC`

@@ -22466,3 +22466,6 @@
 {"level":"info","message":"GET /api/hunter/prospects/387/notes_list ","timestamp":"2025-12-21T07:05:45.872Z"}
 {"level":"info","message":"GET /api/hunter/prospects/387/demos ","timestamp":"2025-12-21T07:05:45.873Z"}
 {"level":"info","message":"GET /api/hunter/prospects/387/contact-requests ","timestamp":"2025-12-21T07:05:52.509Z"}
+{"level":"info","message":"🚀 Leads Backend running on port 3002","timestamp":"2025-12-21T07:13:20.318Z"}
+{"level":"info","message":"📊 Database: Not configured","timestamp":"2025-12-21T07:13:20.319Z"}
+{"level":"info","message":"💬 Socket.io initialized","timestamp":"2025-12-21T07:13:20.319Z"}
