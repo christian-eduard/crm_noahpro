@@ -1,0 +1,174 @@
+{
+    "nav": {
+        "benefits": "Vorteile",
+        "verifactu": "Ihaltung",
+        "how": "Wie's funzt",
+        "demo": "Demo-Zugang",
+        "cta": "Info aaforde"
+    },
+    "hero": {
+        "badge": "✓ Verifactu uufgschobe uf 2027",
+        "title1": "D Software wo Ihres Gschäft",
+        "title2": "Zum Wachse Bruucht",
+        "desc": "Meh verchoufe, besser kontroliere. <strong>Ihres ganzes Gschäft uf ere Plattform</strong>.",
+        "cta1": "Aagebot aaforde",
+        "cta2": "Demo teste"
+    },
+    "benefits": {
+        "title": "Professionelli Verwaltig",
+        "subtitle": "NoahPro git ech d'Tools zum Abrächne und Wachse.",
+        "image_title": "Totali Kontrolle",
+        "b1": {
+            "title": "Agili Verchouf",
+            "desc": "Schnelli Kassa für Theke oder Tisch."
+        },
+        "b2": {
+            "title": "Kunde-Verwaltig",
+            "desc": "Historie und Loyalität."
+        },
+        "b3": {
+            "title": "360º Kontrolle",
+            "desc": "Lager und Abrächnig an eim Ort."
+        }
+    },
+    "sectors": {
+        "title": "Flexibels System",
+        "subtitle": "NoahPro passt sich a euche Workflow aa.",
+        "s1": {
+            "title": "Gastronomi",
+            "desc": "Restaurants, Bars.",
+            "f1": "Tischkontrolle",
+            "f2": "Mobili Bestellig"
+        },
+        "s2": {
+            "title": "Handel",
+            "desc": "Gschäft, Lager.",
+            "f1": "Lagerverwaltig",
+            "f2": "Code-Scanner"
+        },
+        "s3": {
+            "title": "Gsundheit & Schönheit",
+            "desc": "Klinike, Spas.",
+            "f1": "Buchige",
+            "f2": "Kunde-Historie"
+        },
+        "s4": {
+            "title": "Dienstleistige",
+            "desc": "Beratig, Wärchstätte.",
+            "f1": "Digitali Aagebot",
+            "f2": "Wiederkehrendi Abrächnig"
+        },
+        "cta": "Mit Experte rede",
+        "custom": "Eues Gschäft isch andersch? <strong>Mir passe NoahPro aa.</strong>"
+    },
+    "verifactu": {
+        "badge": "⚠️ BUSSGELDER VERMIIDE",
+        "title": "Compliance ohni Ufwand",
+        "desc": "Betrugbekämpfigs-Verordnig: Bussgelder bis zu <strong>50.000€</strong>.",
+        "steps": {
+            "s1": {
+                "title": "Verchouf Abgschlosse",
+                "desc": "Bon a de Kassa gschlosse."
+            },
+            "s2": {
+                "title": "Digitale Fingerabdruck",
+                "desc": "Einzigartige Hash."
+            },
+            "s3": {
+                "title": "A Behörde gschickt",
+                "desc": "Sofortigi Registrierig."
+            }
+        },
+        "alert_title": "Gueti Nochricht: Uufgschobe uf 2027",
+        "alert_desc": "Dir händ Ziit, aber wächslet jetzt.",
+        "features": [
+            "Verifactu-zertifiziert",
+            "TicketBAI",
+            "E-Rächnig",
+            "Auto-Backups"
+        ],
+        "cta": "Compliance-Experte"
+    },
+    "quote": {
+        "text": "\"Technologi soll eues Gschäft voraabringe.\""
+    },
+    "steps": {
+        "title": "In 3 Schritt Starte",
+        "subtitle": "Ohni technischi Komplikatione.",
+        "s1": {
+            "title": "Info Aaforde",
+            "desc": "Mir analysiere euchi Bedürfniss."
+        },
+        "s2": {
+            "title": "Konfigurieru",
+            "desc": "Mir importiere euchi Date."
+        },
+        "s3": {
+            "title": "Starte",
+            "desc": "Gnüesst s'System."
+        },
+        "cta": "I Möcht Starte"
+    },
+    "mobility": {
+        "title": "Totali Kontrolle vo überall",
+        "desc": "Zuegriff uf Metrike vom Handy.",
+        "l1": "Echtziit-Verchouf",
+        "l2": "Lagerverwaltig",
+        "l3": "Leistigsberächt"
+    },
+    "testimonials": {
+        "title": "Vertraue i NoahPro",
+        "subtitle": "500+ zfriideni Gschäft.",
+        "t1": "Siit NoahPro hämmer de Umsatz verdopplet.",
+        "t2": "I bi bsorgt gsi wäge Compliance. NoahPro hät's automatisiert.",
+        "t3": "Unglaubliche Support. A eim Nommitag betriibsbereit."
+    },
+    "final_cta": {
+        "title": "Über Gschäft rede?",
+        "desc": "Massgeschnidertes Aagebot zur Digitalisierig vo euem Gschäft.",
+        "button": "Aagebot Aaforde",
+        "note": "* Antwort garantiert < 24h."
+    },
+    "footer": {
+        "desc": "Professionelli POS-Software.",
+        "product": "Produkt",
+        "company": "Firma",
+        "legal": "Rechtlichs",
+        "careers": "Mir Stelle Ii",
+        "about": "Über Üs",
+        "contact": "Kontakt",
+        "privacy": "Dateschutz",
+        "terms": "AGB",
+        "rights": "Alli Rächt vorbehalte."
+    },
+    "contact_form": {
+        "title": "Demo Aaforde",
+        "subtitle": "Formular uusfülle.",
+        "success_title": "Aafrag Empfange!",
+        "success_message": "En Berater wird ech bald kontaktiere.",
+        "success_email": "📧 Postfach überprüefe",
+        "success_email_sub": "Zugangsdate gschickt",
+        "labels": {
+            "name": "Vollständige Name",
+            "email": "Gschäfts-E-Mail",
+            "phone": "Telefon",
+            "business": "Firmenname",
+            "ref_code": "Referenzcode",
+            "optional": "(optional)",
+            "message": "Wie chönd mir helfe?"
+        },
+        "placeholders": {
+            "name": "Eue Name",
+            "email": "dir@email.com",
+            "phone": "+41 79 000 00 00",
+            "business": "Z.B. Restaurant am Platz",
+            "ref_code": "Z.B. COM-1-1234",
+            "message": "Verzelled üs vo euem Gschäft..."
+        },
+        "ref_help": "Wenn dir vo eim Verchäufer empfohle worde sind, gebet sin Code ii",
+        "submit": "Informatione Aaforde →",
+        "submitting": "Schicke...",
+        "error": "Schickfähler. Bitte nomol probiere.",
+        "gdpr": "Eui Date sind sicher. DSGVO-konform."
+    }
+}

@@ -1,0 +1,174 @@
+{
+    "nav": {
+        "benefits": "Vorteile",
+        "verifactu": "Compliance",
+        "how": "Wie es funktioniert",
+        "demo": "Demo-Zugang",
+        "cta": "Info anfordern"
+    },
+    "hero": {
+        "badge": "✓ Verifactu auf 2027 verschoben",
+        "title1": "Die Software, die Ihr Unternehmen",
+        "title2": "Zum Wachsen Braucht",
+        "desc": "Mehr verkaufen, besser kontrollieren. <strong>Ihr gesamtes Unternehmen auf einer Plattform</strong>.",
+        "cta1": "Angebot anfordern",
+        "cta2": "Demo testen"
+    },
+    "benefits": {
+        "title": "Professionelle Verwaltung",
+        "subtitle": "NoahPro gibt Ihnen die Tools zum Abrechnen und Wachsen.",
+        "image_title": "Totale Kontrolle",
+        "b1": {
+            "title": "Agiler Verkauf",
+            "desc": "Schnelle Kasse für Theke oder Tische."
+        },
+        "b2": {
+            "title": "Kundenverwaltung",
+            "desc": "Historie und Loyalität."
+        },
+        "b3": {
+            "title": "360º Kontrolle",
+            "desc": "Lager und Abrechnung an einem Ort."
+        }
+    },
+    "sectors": {
+        "title": "Flexibles System",
+        "subtitle": "NoahPro passt sich Ihrem Workflow an.",
+        "s1": {
+            "title": "Gastronomie",
+            "desc": "Restaurants, Bars.",
+            "f1": "Tischkontrolle",
+            "f2": "Mobile Bestellung"
+        },
+        "s2": {
+            "title": "Handel",
+            "desc": "Geschäfte, Lager.",
+            "f1": "Lagerverwaltung",
+            "f2": "Code-Scanner"
+        },
+        "s3": {
+            "title": "Gesundheit & Schönheit",
+            "desc": "Kliniken, Spas.",
+            "f1": "Buchungen",
+            "f2": "Kundenhistorie"
+        },
+        "s4": {
+            "title": "Dienstleistungen",
+            "desc": "Beratung, Werkstätten.",
+            "f1": "Digitale Angebote",
+            "f2": "Wiederkehrende Abrechnung"
+        },
+        "cta": "Mit Experten sprechen",
+        "custom": "Ihr Unternehmen ist anders? <strong>Wir passen NoahPro an.</strong>"
+    },
+    "verifactu": {
+        "badge": "⚠️ BUSSGELDER VERMEIDEN",
+        "title": "Compliance ohne Aufwand",
+        "desc": "Betrugsbekämpfungsverordnung: Bußgelder bis zu <strong>50.000€</strong>.",
+        "steps": {
+            "s1": {
+                "title": "Verkauf Abgeschlossen",
+                "desc": "Bon an der Kasse geschlossen."
+            },
+            "s2": {
+                "title": "Digitaler Fingerabdruck",
+                "desc": "Einzigartiger Hash."
+            },
+            "s3": {
+                "title": "An Behörden Gesendet",
+                "desc": "Sofortige Registrierung."
+            }
+        },
+        "alert_title": "Gute Nachrichten: Auf 2027 verschoben",
+        "alert_desc": "Sie haben Zeit, aber wechseln Sie jetzt.",
+        "features": [
+            "Verifactu-zertifiziert",
+            "TicketBAI",
+            "E-Rechnung",
+            "Auto-Backups"
+        ],
+        "cta": "Compliance-Experte"
+    },
+    "quote": {
+        "text": "\"Technologie soll Ihr Unternehmen voranbringen.\""
+    },
+    "steps": {
+        "title": "In 3 Schritten Starten",
+        "subtitle": "Ohne technische Komplikationen.",
+        "s1": {
+            "title": "Info Anfordern",
+            "desc": "Wir analysieren Ihre Bedürfnisse."
+        },
+        "s2": {
+            "title": "Konfiguration",
+            "desc": "Wir importieren Ihre Daten."
+        },
+        "s3": {
+            "title": "Starten",
+            "desc": "Genießen Sie das System."
+        },
+        "cta": "Ich Möchte Starten"
+    },
+    "mobility": {
+        "title": "Totale Kontrolle von Überall",
+        "desc": "Zugriff auf Metriken vom Handy.",
+        "l1": "Echtzeit-Verkäufe",
+        "l2": "Lagerverwaltung",
+        "l3": "Leistungsberichte"
+    },
+    "testimonials": {
+        "title": "Vertrauen in NoahPro",
+        "subtitle": "500+ zufriedene Unternehmen.",
+        "t1": "Seit NoahPro haben wir den Umsatz verdoppelt.",
+        "t2": "Ich war besorgt über Compliance. NoahPro hat es automatisiert.",
+        "t3": "Unglaublicher Support. An einem Nachmittag betriebsbereit."
+    },
+    "final_cta": {
+        "title": "Über Geschäfte sprechen?",
+        "desc": "Maßgeschneidertes Angebot zur Digitalisierung Ihres Unternehmens.",
+        "button": "Angebot Anfordern",
+        "note": "* Antwort garantiert < 24h."
+    },
+    "footer": {
+        "desc": "Professionelle POS-Software.",
+        "product": "Produkt",
+        "company": "Unternehmen",
+        "legal": "Rechtliches",
+        "careers": "Wir Stellen Ein",
+        "about": "Über Uns",
+        "contact": "Kontakt",
+        "privacy": "Datenschutz",
+        "terms": "AGB",
+        "rights": "Alle Rechte vorbehalten."
+    },
+    "contact_form": {
+        "title": "Demo Anfordern",
+        "subtitle": "Formular ausfüllen.",
+        "success_title": "Anfrage Empfangen!",
+        "success_message": "Ein Berater wird Sie bald kontaktieren.",
+        "success_email": "📧 Postfach überprüfen",
+        "success_email_sub": "Zugangsdaten gesendet",
+        "labels": {
+            "name": "Vollständiger Name",
+            "email": "Geschäfts-E-Mail",
+            "phone": "Telefon",
+            "business": "Firmenname",
+            "ref_code": "Referenzcode",
+            "optional": "(optional)",
+            "message": "Wie können wir helfen?"
+        },
+        "placeholders": {
+            "name": "Ihr Name",
+            "email": "sie@email.com",
+            "phone": "+49 160 000 0000",
+            "business": "Z.B. Restaurant am Platz",
+            "ref_code": "Z.B. COM-1-1234",
+            "message": "Erzählen Sie uns von Ihrem Unternehmen..."
+        },
+        "ref_help": "Wenn Sie von einem Verkäufer empfohlen wurden, geben Sie dessen Code ein",
+        "submit": "Informationen Anfordern →",
+        "submitting": "Senden...",
+        "error": "Sendefehler. Bitte erneut versuchen.",
+        "gdpr": "Ihre Daten sind sicher. DSGVO-konform."
+    }
+}

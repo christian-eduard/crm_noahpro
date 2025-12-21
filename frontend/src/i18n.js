@@ -18,14 +18,17 @@ import landingFR from './locales/fr/landing.json';
 import dashboardFR from './locales/fr/dashboard.json';
 
 // Importar traducciones IT
+import landingIT from './locales/it/landing.json';
 import recruitmentIT from './locales/it/recruitment.json';
 import dashboardIT from './locales/it/dashboard.json';
 
 // Importar traducciones DE
+import landingDE from './locales/de/landing.json';
 import recruitmentDE from './locales/de/recruitment.json';
 import dashboardDE from './locales/de/dashboard.json';
 
 // Importar traducciones CH
+import landingCH from './locales/ch/landing.json';
 import recruitmentCH from './locales/ch/recruitment.json';
 import dashboardCH from './locales/ch/dashboard.json';
 
@@ -49,22 +52,22 @@ const resources = {
         comercial: comercialES
     },
     it: {
-        landing: landingEN, // Fallback a EN hasta tener IT
+        landing: landingIT,
         recruitment: recruitmentIT,
         dashboard: dashboardIT,
-        comercial: comercialEN
+        comercial: comercialEN // Fallback a EN
     },
     de: {
-        landing: landingEN, // Fallback a EN hasta tener DE
+        landing: landingDE,
         recruitment: recruitmentDE,
         dashboard: dashboardDE,
-        comercial: comercialEN
+        comercial: comercialEN // Fallback a EN
     },
     ch: {
-        landing: landingEN, // Fallback a EN
+        landing: landingCH,
         recruitment: recruitmentCH,
         dashboard: dashboardCH,
-        comercial: comercialEN
+        comercial: comercialEN // Fallback a EN
     }
 };
 
