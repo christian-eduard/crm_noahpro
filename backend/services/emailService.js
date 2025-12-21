@@ -204,11 +204,84 @@ const sendSupportTicketEmail = async (ticket, commercial, message) => {
     }
 };
 
+/**
+ * Enviar invitación de entrevista a candidato
+ */
+const sendInterviewInvitation = async ({ to, candidateName, interviewUrl, templateName, expiresAt }) => {
+    const subject = `🎯 Invitación a Entrevista - ${templateName}`;
+
+    const html = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <style>
+                body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+                .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+                .header { background: linear-gradient(135deg, #f97316 0%, #dc2626 100%); color: white; padding: 30px; text-align: center; border-radius: 10px 10px 0 0; }
+                .content { background: #f9fafb; padding: 30px; }
+                .button { display: inline-block; background: #f97316; color: white; padding: 15px 30px; text-decoration: none; border-radius: 8px; font-weight: bold; margin: 20px 0; }
+                .footer { text-align: center; padding: 20px; color: #6b7280; font-size: 12px; }
+            </style>
+        </head>
+        <body>
+            <div class="container">
+                <div class="header">
+                    <h1>🎯 Invitación a Entrevista - NoahPro CRM</h1>
+                </div>
+                <div class="content">
+                    <h2>¡Hola ${candidateName}!</h2>
+                    <p>Nos ha encantado tu perfil y queremos conocerte mejor.</p>
+                    <p>Hemos preparado una <strong>entrevista con IA</strong> personalizada para ti.</p>
+                    
+                    <h3>📋 Detalles:</h3>
+                    <ul>
+                        <li><strong>Tipo:</strong> ${templateName}</li>
+                        <li><strong>Válido hasta:</strong> ${new Date(expiresAt).toLocaleDateString('es-ES')}</li>
+                    </ul>
+
+                    <p style="text-align: center;">
+                        <a href="${interviewUrl}" class="button">🚀 Iniciar Entrevista</a>
+                    </p>
+
+                    <p style="color: #ef4444;"><strong>⏰ Este enlace expira el ${new Date(expiresAt).toLocaleDateString('es-ES')}</strong></p>
+                </div>
+                <div class="footer">
+                    <p>NoahPro CRM - AI Talent Hunter</p>
+                </div>
+            </div>
+        </body>
+        </html>
+    `;
+
+    return sendEmail(to, subject, html);
+};
+
+/**
+ * Notificar a admin de nueva postulación
+ */
+const notifyNewApplication = async ({ adminEmail, candidateName, candidateEmail }) => {
+    const subject = `🆕 Nueva Postulación: ${candidateName}`;
+
+    const html = `
+        <h2>🆕 Nueva Postulación Recibida</h2>
+        <p>Un nuevo candidato se ha postulado:</p>
+        <ul>
+            <li><strong>Nombre:</strong> ${candidateName}</li>
+            <li><strong>Email:</strong> ${candidateEmail}</li>
+        </ul>
+        <p>Revisa el perfil en el panel de administración.</p>
+    `;
+
+    return sendEmail(adminEmail, subject, html);
+};
+
 module.exports = {
     sendEmail,
     sendWelcomeEmail,
     sendNotificationEmail,
     sendProposalEmail,
     sendCommercialWelcomeEmail,
-    sendSupportTicketEmail
+    sendSupportTicketEmail,
+    sendInterviewInvitation,
+    notifyNewApplication
 };

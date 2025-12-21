@@ -2,9 +2,9 @@
 > leads-backend@1.0.0 start
 > node server.js
 
-2025-12-21T07:24:56.378Z [INFO]: 🚀 Leads Backend running on port 3002
-2025-12-21T07:24:56.379Z [INFO]: 📊 Database: Not configured
-2025-12-21T07:24:56.379Z [INFO]: 💬 Socket.io initialized
+2025-12-21T07:30:54.385Z [INFO]: 🚀 Leads Backend running on port 3002
+2025-12-21T07:30:54.386Z [INFO]: 📊 Database: Not configured
+2025-12-21T07:30:54.386Z [INFO]: 💬 Socket.io initialized
 [AutomationEngine] Loaded 0 active rules
 [WebhookService] Loaded 0 active webhooks
 [EmailAutomation] Cron job scheduled (every 5 minutes)
