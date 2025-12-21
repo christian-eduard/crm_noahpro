@@ -113,6 +113,30 @@ const ProspectCard = ({
             });
         }
 
+        // Tag: TPV Antiguo / Solo Efectivo (detectado por IA opportunities)
+        const needsTpv = aiAnalysis.opportunities?.needs_tpv || aiAnalysis.tags?.includes('TPV Antiguo');
+        if (needsTpv) {
+            tags.push({
+                id: 'tpv_antiguo',
+                label: 'Necesita TPV',
+                icon: Store,
+                color: 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400',
+                description: 'Solo acepta efectivo'
+            });
+        }
+
+        // Tag: Sin Redes Sociales (detectado por IA opportunities)
+        const needsSocial = aiAnalysis.opportunities?.needs_social || aiAnalysis.tags?.includes('Sin Redes');
+        if (needsSocial) {
+            tags.push({
+                id: 'sin_redes',
+                label: 'Sin Redes',
+                icon: MessageCircle,
+                color: 'bg-pink-100 text-pink-700 dark:bg-pink-900/30 dark:text-pink-400',
+                description: 'Necesita gestión de redes'
+            });
+        }
+
         // Tags adicionales de IA
         if (aiAnalysis.tags && Array.isArray(aiAnalysis.tags)) {
             aiAnalysis.tags.forEach(tag => {
