@@ -1329,6 +1329,39 @@ router.get('/brain/stats', authenticateToken, async (req, res) => {
 });
 
 /**
+ * GET /api/hunter/knowledge/stats
+ * Estadísticas de la Base de Conocimiento RAG
+ */
+router.get('/knowledge/stats', authenticateToken, async (req, res) => {
+    try {
+        const stats = await db.query(`
+            SELECT 
+                (SELECT COUNT(*) FROM prospect_knowledge_base) as total_entries,
+                (SELECT COUNT(*) FROM maps_prospects WHERE embedding IS NOT NULL) as vectorized_prospects,
+                (SELECT COUNT(DISTINCT business_category) FROM prospect_knowledge_base) as categories
+        `);
+
+        const row = stats.rows[0] || {};
+
+        res.json({
+            totalEntries: parseInt(row.total_entries) || 0,
+            vectorizedProspects: parseInt(row.vectorized_prospects) || 0,
+            categories: parseInt(row.categories) || 0,
+            lastUpdate: new Date().toISOString()
+        });
+    } catch (error) {
+        // Fallback if table doesn't exist yet
+        res.json({
+            totalEntries: 0,
+            vectorizedProspects: 0,
+            categories: 0,
+            lastUpdate: new Date().toISOString(),
+            status: 'initializing'
+        });
+    }
+});
+
+/**
  * GET /api/hunter/user-settings
  * Obtener configuración del usuario
  */

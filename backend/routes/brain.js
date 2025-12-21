@@ -32,6 +32,10 @@ router.get('/prompts', async (req, res) => {
         res.json(result.rows);
     } catch (error) {
         console.error('Error listing prompts:', error);
+        // Si la tabla no existe, devolver array vacío en lugar de error
+        if (error.message?.includes('does not exist') || error.message?.includes('no existe')) {
+            return res.json([]);
+        }
         res.status(500).json({ error: error.message });
     }
 });
