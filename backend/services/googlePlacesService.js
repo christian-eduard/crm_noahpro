@@ -384,7 +384,9 @@ class GooglePlacesService {
                 height: p.height,
                 width: p.width,
                 url: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=${p.photo_reference}&key=${this.apiKey}`
-            })) : []
+            })) : [],
+            latitude: place.geometry?.location?.lat || null,
+            longitude: place.geometry?.location?.lng || null
         };
     }
 
@@ -477,8 +479,8 @@ class GooglePlacesService {
                      (place_id, name, phone, website, has_website, rating, reviews_count, 
                       address, city, postal_code, business_type, business_types, 
                       searched_by, search_query, search_id, strategy, photos, reviews,
-                      quality_score, social_handle, social_platform, social_stats)
-                     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22)
+                      quality_score, social_handle, social_platform, social_stats, latitude, longitude)
+                     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24)
                      RETURNING id`,
                     [
                         details.place_id,
@@ -502,7 +504,9 @@ class GooglePlacesService {
                         qualityScore, // Nuevo
                         socialHandle, // Nuevo
                         socialPlatform, // Nuevo
-                        socialStats ? JSON.stringify(socialStats) : null // Nuevo
+                        socialStats ? JSON.stringify(socialStats) : null,
+                        details.latitude,
+                        details.longitude
                     ]
                 );
 
@@ -575,6 +579,50 @@ class GooglePlacesService {
         } catch (error) {
             return { success: false, message: error.message };
         }
+    }
+
+    /**
+     * Buscar duplicados o existentes por radio (Haversine Formula)
+     * @param {number} lat - Latitud centro
+     * @param {number} lng - Longitud centro
+     * @param {number} radius - Radio en metros
+     * @param {string} query - Opcional, filtrar por nombre/tipo
+     */
+    async findInRadius(lat, lng, radius, query = null) {
+        // Fórmula Haversine en SQL: 6371 * acos( ... )
+        // Pero usamos una aproximación simple para rendimiento si no es crítico,
+        // o la fórmula completa.
+        // Dado que radius es metros, convertimos a KM (/1000)
+
+        let queryFilter = '';
+        let params = [lat, lng, radius / 1000];
+
+        if (query) {
+            queryFilter = `AND (name ILIKE $4 OR business_type ILIKE $4 OR search_query ILIKE $4)`;
+            params.push(`%${query}%`);
+        }
+
+        const sql = `
+            SELECT id, name, latitude, longitude,
+                (6371 * acos(least(1.0, greatest(-1.0, 
+                    cos(radians($1)) * cos(radians(latitude)) * 
+                    cos(radians(longitude) - radians($2)) + 
+                    sin(radians($1)) * sin(radians(latitude))
+                )))) AS distance
+            FROM maps_prospects
+            WHERE latitude IS NOT NULL AND longitude IS NOT NULL
+            ${queryFilter}
+            AND (6371 * acos(least(1.0, greatest(-1.0, 
+                    cos(radians($1)) * cos(radians(latitude)) * 
+                    cos(radians(longitude) - radians($2)) + 
+                    sin(radians($1)) * sin(radians(latitude))
+                )))) <= $3
+            ORDER BY distance ASC
+            LIMIT 50
+        `;
+
+        const result = await db.query(sql, params);
+        return result.rows;
     }
 }
 

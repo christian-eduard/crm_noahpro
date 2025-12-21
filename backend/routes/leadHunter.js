@@ -191,7 +191,33 @@ router.post('/estimate', async (req, res) => {
             return res.status(400).json({ error: 'Se requiere query y location' });
         }
 
-        // Use maxResults=20 for quick estimation (1 page)
+        // Geocode location to get coordinates
+        let lat, lng;
+        try {
+            // Simplest geocoding check for lat,lng string
+            const coordPattern = /^(-?\d+(\.\d+)?),\s*(-?\d+(\.\d+)?)$/;
+            const match = location.match(coordPattern);
+            if (match) {
+                lat = parseFloat(match[1]);
+                lng = parseFloat(match[3]);
+            } else {
+                // If not coordinates, we should ideally geocode. 
+                // But for now, we'll try to rely on googlePlacesService doing it internally for searchPlace.
+                // To do it properly for findInRadius, we need coords.
+                // We'll call a helper or googlePlacesService.getPlaceDetails if we had a placeId, but we don't.
+                // Let's assume searchPlaces returns geometry and we can use the first result center or input coords.
+                // Actually searchPlaces does geocoding internally. Let's expose it or just re-do it or use the first result?
+                // Better approach: Let googlePlacesService export a geocode function? Or just rely on the existing weak text search if geocoding fails.
+
+                // Let's try to fetch 1 result from google to get the center? No, expensive.
+                // We will use the weak text search fallback for existingCount if no coords provided, 
+                // UNLESS searchPlaces results give us a hint?? No results are business locations, not search center.
+            }
+        } catch (e) {
+            console.log('Geocoding error in estimate', e);
+        }
+
+        // Use maxResults=20 for quick estimation (1 page) from Google
         const places = await googlePlacesService.searchPlaces(query, location, radius, 20);
 
         // Google Places returns up to 20 results per page.
@@ -212,16 +238,39 @@ router.post('/estimate', async (req, res) => {
             console.warn('No user settings found, using default ticket:', settingsError.message);
         }
 
-        // Contar prospectos ya existentes en DB (para Smart Cache info)
+        // SMART CACHE DETECTION
         let existingCount = 0;
-        try {
-            const existingResult = await db.query(
-                `SELECT COUNT(*) FROM maps_prospects 
-                 WHERE search_query ILIKE $1 AND address ILIKE $2`,
-                [`%${query}%`, `%${location}%`]
+
+        // If we have coords (either from input or... maybe we can extract from searchPlaces if we refactor?)
+        // Let's try to get coords from the first place found close to center? No.
+        // For now, if input was coords, use findInRadius.
+        if (lat && lng) {
+            const inRadius = await googlePlacesService.findInRadius(lat, lng, radius, query);
+            existingCount = inRadius.length;
+        } else {
+            // Fallback to text search
+            try {
+                const existingResult = await db.query(
+                    `SELECT COUNT(*) FROM maps_prospects 
+                     WHERE (search_query ILIKE $1 OR name ILIKE $1) AND address ILIKE $2`,
+                    [`%${query}%`, `%${location}%`]
+                );
+                existingCount = parseInt(existingResult.rows[0].count) || 0;
+            } catch (e) { /* ignore */ }
+        }
+
+        // If we found duplicates via Google Search (check cache for returned place_ids)
+        // This is the most accurate way without geocoding the center manually:
+        // Check how many of the returned `places` are already in `maps_prospects`
+        if (places.length > 0) {
+            const placeIds = places.map(p => p.place_id);
+            const existingInSearch = await db.query(
+                `SELECT COUNT(*) FROM maps_prospects WHERE place_id = ANY($1)`,
+                [placeIds]
             );
-            existingCount = parseInt(existingResult.rows[0].count) || 0;
-        } catch (e) { /* ignore */ }
+            // We use the MAX of radius-search vs known-duplicates in search
+            existingCount = Math.max(existingCount, parseInt(existingInSearch.rows[0].count));
+        }
 
         const potentialRevenue = count * ticketMedio;
         const potentialRevenueText = potentialRevenue >= 1000
