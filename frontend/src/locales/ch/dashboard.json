@@ -1,0 +1,69 @@
+{
+    "app_name": "NoahPro",
+    "app_subtitle": "CRM Pro",
+    "sidebar": {
+        "home": "Dashboard",
+        "home_desc": "Hauptpanel",
+        "leads": "Leads",
+        "leads_desc": "Lead-Verwaltung",
+        "clients": "Kunde",
+        "clients_desc": "Kundeportfolio",
+        "hunter": "Lead Hunter",
+        "hunter_desc": "KI-Prospektieru",
+        "recruitment": "Talent Hunter",
+        "recruitment_desc": "KI-Rekrutieru",
+        "brain": "KI-Hirni",
+        "brain_desc": "Status & Intelligänz",
+        "dojo": "Sales Dojo",
+        "dojo_desc": "KI-Traini",
+        "training": "Schulig",
+        "training_desc": "Schuligsmaterial",
+        "support": "Support",
+        "support_desc": "Hilf & Tickets",
+        "proposals": "Aagebot",
+        "proposals_desc": "Aagebotsverwalt",
+        "invoices": "Rechnige",
+        "invoices_desc": "Abr echni & Zahlige",
+        "chat": "Chat",
+        "chat_desc": "Konversatione",
+        "analytics": "Analytics",
+        "analytics_desc": "Metrike & Bricht",
+        "commercials": "Vertriebs-Lüt",
+        "commercials_desc": "Teamverwaltung",
+        "settings": "Iistellige",
+        "settings_desc": "Systemiistellige"
+    },
+    "topbar": {
+        "search_placeholder": "Leads, Aagebot, Kontäkt sueche...",
+        "help": "Hilf",
+        "theme_light": "Dunkle Modus",
+        "theme_dark": "Helle Modus",
+        "new_action": "+ Nöi"
+    },
+    "quick_actions": {
+        "new_lead": "Nöie Lead",
+        "new_lead_desc": "Manuelle Kontakt erstelle",
+        "new_proposal": "Nöis Aagebot",
+        "new_proposal_desc": "Gschäftsaagebot erstelle",
+        "new_meeting": "Nöis Meeting",
+        "new_meeting_desc": "Videoruf plane"
+    },
+    "user_menu": {
+        "view_profile": "Profil aaluege",
+        "logout": "Abmälde",
+        "no_email": "Kei E-Mail"
+    },
+    "common": {
+        "save": "Speichere",
+        "cancel": "Abbräche",
+        "delete": "Lösche",
+        "edit": "Bearbeite",
+        "view": "Aaluege",
+        "search": "Sueche",
+        "loading": "Lade",
+        "no_results": "Kei Resultat",
+        "confirm": "Bestätige",
+        "success": "Erfolg",
+        "error": "Fähler"
+    }
+}

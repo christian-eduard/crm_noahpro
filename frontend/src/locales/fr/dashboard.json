@@ -1,0 +1,69 @@
+{
+    "app_name": "NoahPro",
+    "app_subtitle": "CRM Pro",
+    "sidebar": {
+        "home": "Tableau de bord",
+        "home_desc": "Panneau principal",
+        "leads": "Prospects",
+        "leads_desc": "Gestion des prospects",
+        "clients": "Clients",
+        "clients_desc": "Portefeuille clients",
+        "hunter": "Lead Hunter",
+        "hunter_desc": "Prospection IA",
+        "recruitment": "Talent Hunter",
+        "recruitment_desc": "Recrutement IA",
+        "brain": "Cerveau IA",
+        "brain_desc": "État & intelligence",
+        "dojo": "Sales Dojo",
+        "dojo_desc": "Formation IA",
+        "training": "Formation",
+        "training_desc": "Matériel éducatif",
+        "support": "Support",
+        "support_desc": "Aide & tickets",
+        "proposals": "Propositions",
+        "proposals_desc": "Gestion des propositions",
+        "invoices": "Factures",
+        "invoices_desc": "Facturation & paiements",
+        "chat": "Chat",
+        "chat_desc": "Conversations",
+        "analytics": "Analytics",
+        "analytics_desc": "Métriques & rapports",
+        "commercials": "Commerciaux",
+        "commercials_desc": "Gestion d'équipe",
+        "settings": "Paramètres",
+        "settings_desc": "Réglages système"
+    },
+    "topbar": {
+        "search_placeholder": "Rechercher prospects, propositions, contacts...",
+        "help": "Aide",
+        "theme_light": "Mode Sombre",
+        "theme_dark": "Mode Clair",
+        "new_action": "+ Nouveau"
+    },
+    "quick_actions": {
+        "new_lead": "Nouveau Prospect",
+        "new_lead_desc": "Créer contact manuel",
+        "new_proposal": "Nouvelle Proposition",
+        "new_proposal_desc": "Créer offre commerciale",
+        "new_meeting": "Nouvelle Réunion",
+        "new_meeting_desc": "Planifier appel vidéo"
+    },
+    "user_menu": {
+        "view_profile": "Voir Profil",
+        "logout": "Déconnexion",
+        "no_email": "Pas d'email"
+    },
+    "common": {
+        "save": "Enregistrer",
+        "cancel": "Annuler",
+        "delete": "Supprimer",
+        "edit": "Modifier",
+        "view": "Voir",
+        "search": "Rechercher",
+        "loading": "Chargement",
+        "no_results": "Aucun résultat",
+        "confirm": "Confirmer",
+        "success": "Succès",
+        "error": "Erreur"
+    }
+}

@@ -1,0 +1,69 @@
+{
+    "app_name": "NoahPro",
+    "app_subtitle": "CRM Pro",
+    "sidebar": {
+        "home": "Dashboard",
+        "home_desc": "Hauptpanel",
+        "leads": "Leads",
+        "leads_desc": "Lead-Verwaltung",
+        "clients": "Kunden",
+        "clients_desc": "Kundenportfolio",
+        "hunter": "Lead Hunter",
+        "hunter_desc": "KI-Prospektion",
+        "recruitment": "Talent Hunter",
+        "recruitment_desc": "KI-Rekrutierung",
+        "brain": "KI-Gehirn",
+        "brain_desc": "Status & Intelligenz",
+        "dojo": "Sales Dojo",
+        "dojo_desc": "KI-Training",
+        "training": "Schulung",
+        "training_desc": "Schulungsmaterial",
+        "support": "Support",
+        "support_desc": "Hilfe & Tickets",
+        "proposals": "Angebote",
+        "proposals_desc": "Angebotsverwaltung",
+        "invoices": "Rechnungen",
+        "invoices_desc": "Abrechnung & Zahlungen",
+        "chat": "Chat",
+        "chat_desc": "Konversationen",
+        "analytics": "Analytics",
+        "analytics_desc": "Metriken & Berichte",
+        "commercials": "Vertriebsmitarbeiter",
+        "commercials_desc": "Teamverwaltung",
+        "settings": "Einstellungen",
+        "settings_desc": "Systemeinstellungen"
+    },
+    "topbar": {
+        "search_placeholder": "Leads, Angebote, Kontakte suchen...",
+        "help": "Hilfe",
+        "theme_light": "Dunkler Modus",
+        "theme_dark": "Heller Modus",
+        "new_action": "+ Neu"
+    },
+    "quick_actions": {
+        "new_lead": "Neuer Lead",
+        "new_lead_desc": "Manuellen Kontakt erstellen",
+        "new_proposal": "Neues Angebot",
+        "new_proposal_desc": "Geschäftsangebot erstellen",
+        "new_meeting": "Neues Meeting",
+        "new_meeting_desc": "Videoanruf planen"
+    },
+    "user_menu": {
+        "view_profile": "Profil anzeigen",
+        "logout": "Abmelden",
+        "no_email": "Keine E-Mail"
+    },
+    "common": {
+        "save": "Speichern",
+        "cancel": "Abbrechen",
+        "delete": "Löschen",
+        "edit": "Bearbeiten",
+        "view": "Ansehen",
+        "search": "Suchen",
+        "loading": "Laden",
+        "no_results": "Keine Ergebnisse",
+        "confirm": "Bestätigen",
+        "success": "Erfolg",
+        "error": "Fehler"
+    }
+}

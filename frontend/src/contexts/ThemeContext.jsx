@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const ThemeContext = createContext();
 
@@ -11,6 +12,7 @@ export const useTheme = () => {
 };
 
 export const ThemeProvider = ({ children }) => {
+    const { i18n } = useTranslation();
     const [theme, setTheme] = useState('light');
     const [autoMode, setAutoMode] = useState(true);
 
@@ -21,10 +23,16 @@ export const ThemeProvider = ({ children }) => {
         return (hour >= 20 || hour < 6) ? 'dark' : 'light';
     };
 
-    // Inicializar tema
+    // Inicializar tema e idioma
     useEffect(() => {
         const savedTheme = localStorage.getItem('theme');
         const savedAutoMode = localStorage.getItem('autoMode');
+        const savedLanguage = localStorage.getItem('preferred_language');
+
+        // Cargar idioma preferido
+        if (savedLanguage && i18n.language !== savedLanguage) {
+            i18n.changeLanguage(savedLanguage);
+        }
 
         if (savedAutoMode === 'false') {
             setAutoMode(false);
@@ -33,7 +41,7 @@ export const ThemeProvider = ({ children }) => {
             setAutoMode(true);
             setTheme(getAutoTheme());
         }
-    }, []);
+    }, [i18n]);
 
     // Auto-switch basado en hora si está en modo auto
     useEffect(() => {

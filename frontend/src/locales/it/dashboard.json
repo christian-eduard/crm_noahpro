@@ -1,0 +1,69 @@
+{
+    "app_name": "NoahPro",
+    "app_subtitle": "CRM Pro",
+    "sidebar": {
+        "home": "Dashboard",
+        "home_desc": "Pannello principale",
+        "leads": "Lead",
+        "leads_desc": "Gestione lead",
+        "clients": "Clienti",
+        "clients_desc": "Portafoglio clienti",
+        "hunter": "Lead Hunter",
+        "hunter_desc": "Prospezione IA",
+        "recruitment": "Talent Hunter",
+        "recruitment_desc": "Reclutamento IA",
+        "brain": "Cervello IA",
+        "brain_desc": "Stato & intelligenza",
+        "dojo": "Sales Dojo",
+        "dojo_desc": "Formazione IA",
+        "training": "Formazione",
+        "training_desc": "Materiale educativo",
+        "support": "Supporto",
+        "support_desc": "Aiuto & ticket",
+        "proposals": "Proposte",
+        "proposals_desc": "Gestione proposte",
+        "invoices": "Fatture",
+        "invoices_desc": "Fatturazione & pagamenti",
+        "chat": "Chat",
+        "chat_desc": "Conversazioni",
+        "analytics": "Analytics",
+        "analytics_desc": "Metriche & report",
+        "commercials": "Commerciali",
+        "commercials_desc": "Gestione team",
+        "settings": "Impostazioni",
+        "settings_desc": "Impostazioni sistema"
+    },
+    "topbar": {
+        "search_placeholder": "Cerca lead, proposte, contatti...",
+        "help": "Aiuto",
+        "theme_light": "Modalità Scura",
+        "theme_dark": "Modalità Chiara",
+        "new_action": "+ Nuovo"
+    },
+    "quick_actions": {
+        "new_lead": "Nuovo Lead",
+        "new_lead_desc": "Crea contatto manuale",
+        "new_proposal": "Nuova Proposta",
+        "new_proposal_desc": "Crea offerta commerciale",
+        "new_meeting": "Nuova Riunione",
+        "new_meeting_desc": "Pianifica videochiamata"
+    },
+    "user_menu": {
+        "view_profile": "Vedi Profilo",
+        "logout": "Esci",
+        "no_email": "Nessuna email"
+    },
+    "common": {
+        "save": "Salva",
+        "cancel": "Annulla",
+        "delete": "Elimina",
+        "edit": "Modifica",
+        "view": "Vedi",
+        "search": "Cerca",
+        "loading": "Caricamento",
+        "no_results": "Nessun risultato",
+        "confirm": "Conferma",
+        "success": "Successo",
+        "error": "Errore"
+    }
+}

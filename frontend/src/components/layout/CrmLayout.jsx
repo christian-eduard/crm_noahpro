@@ -7,6 +7,7 @@ import AdminChatWidget from '../admin/chat/AdminChatWidget';
 import ProfileModal from '../profile/ProfileModal';
 import WebSoftphone from '../voice/WebSoftphone';
 import SalesCopilotHUD from '../voice/SalesCopilotHUD';
+import LanguageSelector from '../common/LanguageSelector';
 
 import { usePusher } from '../../contexts/PusherContext';
 import { useToast } from '../../contexts/ToastContext';
@@ -343,6 +344,9 @@ const CrmLayout = ({ children, onLogout, activeSection = 'leads', onSectionChang
                             </button>
 
                             <NotificationBell />
+
+                            {/* Language Selector */}
+                            <LanguageSelector variant="compact" />
 
                             {/* Theme Toggle */}
                             <button
