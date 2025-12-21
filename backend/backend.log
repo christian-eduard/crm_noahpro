@@ -8,3 +8,94 @@
 [AutomationEngine] Loaded 0 active rules
 [WebhookService] Loaded 0 active webhooks
 [EmailAutomation] Cron job scheduled (every 5 minutes)
+2025-12-21T07:14:35.710Z [INFO]: GET /api/settings/public 
+Fetching public settings...
+Query result: [
+  {
+    demo_url: 'https://noahpro.es/crm/login',
+    chat_title: 'Soporte NoahPro',
+    chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+    chat_primary_color: '#e74f0d',
+    chat_enabled: true,
+    pusher_key: '0815d25ee2bae406d7d9',
+    pusher_cluster: 'eu',
+    pusher_app_id: '2086108'
+  }
+]
+Returning settings: {
+  demo_url: 'https://noahpro.es/crm/login',
+  chat_title: 'Soporte NoahPro',
+  chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+  chat_primary_color: '#e74f0d',
+  chat_enabled: true,
+  pusher_key: '0815d25ee2bae406d7d9',
+  pusher_cluster: 'eu',
+  pusher_app_id: '2086108'
+}
+2025-12-21T07:14:35.727Z [INFO]: GET /api/settings/public 
+Fetching public settings...
+Query result: [
+  {
+    demo_url: 'https://noahpro.es/crm/login',
+    chat_title: 'Soporte NoahPro',
+    chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+    chat_primary_color: '#e74f0d',
+    chat_enabled: true,
+    pusher_key: '0815d25ee2bae406d7d9',
+    pusher_cluster: 'eu',
+    pusher_app_id: '2086108'
+  }
+]
+Returning settings: {
+  demo_url: 'https://noahpro.es/crm/login',
+  chat_title: 'Soporte NoahPro',
+  chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+  chat_primary_color: '#e74f0d',
+  chat_enabled: true,
+  pusher_key: '0815d25ee2bae406d7d9',
+  pusher_cluster: 'eu',
+  pusher_app_id: '2086108'
+}
+2025-12-21T07:14:35.753Z [INFO]: GET /api/notifications 
+2025-12-21T07:14:35.755Z [INFO]: GET /api/chat/conversations 
+2025-12-21T07:14:35.758Z [INFO]: GET /api/leads 
+2025-12-21T07:14:35.763Z [INFO]: GET /api/notifications/unread-count 
+2025-12-21T07:14:35.763Z [INFO]: GET /api/chat/conversations 
+2025-12-21T07:14:35.764Z [INFO]: GET /api/tasks 
+2025-12-21T07:14:35.766Z [INFO]: GET /api/settings/lead-statuses 
+2025-12-21T07:14:35.769Z [INFO]: GET /api/notifications 
+2025-12-21T07:14:35.771Z [INFO]: GET /api/notifications/unread-count 
+2025-12-21T07:14:35.771Z [INFO]: GET /api/calendar/events 
+2025-12-21T07:14:35.777Z [INFO]: GET /api/settings/lead-statuses 
+2025-12-21T07:14:35.781Z [INFO]: GET /api/tasks 
+2025-12-21T07:14:35.800Z [INFO]: GET /api/calendar/events 
+2025-12-21T07:14:35.802Z [INFO]: GET /api/leads 
+2025-12-21T07:14:35.808Z [INFO]: GET /api/leads 
+2025-12-21T07:14:35.810Z [INFO]: GET /api/leads 
+2025-12-21T07:14:35.872Z [INFO]: GET /api/activities 
+2025-12-21T07:14:35.875Z [INFO]: GET /api/activities 
+2025-12-21T07:14:37.506Z [INFO]: GET /api/hunter/access 
+2025-12-21T07:14:37.509Z [INFO]: GET /api/hunter/stats 
+2025-12-21T07:14:37.512Z [INFO]: GET /api/business-types 
+2025-12-21T07:14:37.513Z [INFO]: GET /api/hunter/searches 
+[Searches] Fetching history for userId: 4
+2025-12-21T07:14:37.514Z [INFO]: GET /api/hunter-strategies 
+2025-12-21T07:14:37.514Z [INFO]: GET /api/hunter/access 
+[Searches] Found 3 entries
+2025-12-21T07:14:37.517Z [INFO]: GET /api/business-types 
+2025-12-21T07:14:37.518Z [INFO]: GET /api/hunter/searches 
+[Searches] Fetching history for userId: 4
+2025-12-21T07:14:37.518Z [INFO]: GET /api/hunter-strategies 
+[Searches] Found 3 entries
+2025-12-21T07:14:37.526Z [INFO]: GET /api/hunter/stats 
+2025-12-21T07:14:37.540Z [INFO]: GET /api/hunter/access 
+2025-12-21T07:14:37.541Z [INFO]: GET /api/hunter/stats 
+2025-12-21T07:14:37.541Z [INFO]: GET /api/business-types 
+2025-12-21T07:14:37.542Z [INFO]: GET /api/hunter/searches 
+[Searches] Fetching history for userId: 4
+2025-12-21T07:14:37.543Z [INFO]: GET /api/hunter-strategies 
+[Searches] Found 3 entries
+2025-12-21T07:14:42.219Z [INFO]: GET /api/settings 
+2025-12-21T07:14:42.225Z [INFO]: GET /api/settings 
+2025-12-21T07:14:44.132Z [INFO]: GET /api/users 
+2025-12-21T07:14:44.137Z [INFO]: GET /api/users 
