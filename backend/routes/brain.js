@@ -31,12 +31,12 @@ router.get('/prompts', async (req, res) => {
         const result = await db.query(query, params);
         res.json(result.rows);
     } catch (error) {
-        console.error('Error listing prompts:', error);
-        // Si la tabla no existe, devolver array vacío en lugar de error
-        if (error.message?.includes('does not exist') || error.message?.includes('no existe')) {
+        console.error('❌ [Brain] Error listing prompts:', error);
+        // Robust fallback for missing table
+        if (error.message?.toLowerCase().includes('does not exist') || error.message?.toLowerCase().includes('no existe')) {
             return res.json([]);
         }
-        res.status(500).json({ error: error.message });
+        res.status(500).json({ error: error.message, stack: process.env.NODE_ENV === 'development' ? error.stack : undefined });
     }
 });
 
@@ -70,7 +70,7 @@ router.get('/prompts/active', async (req, res) => {
 router.post('/prompts', async (req, res) => {
     try {
         const { name, prompt_text, category = 'hunter', description, is_active = false } = req.body;
-        const userId = req.user.userId;
+        const userId = req.user?.userId || req.user?.id;
 
         if (!name || !prompt_text) {
             return res.status(400).json({ error: 'Nombre y texto del prompt son requeridos' });
@@ -105,7 +105,7 @@ router.put('/prompts/:id', async (req, res) => {
     try {
         const { id } = req.params;
         const { name, prompt_text, description, is_active } = req.body;
-        const userId = req.user.userId;
+        const userId = req.user?.userId || req.user?.id;
 
         // Guardar versión anterior en historial
         const currentPrompt = await db.query(

@@ -1312,7 +1312,7 @@ router.get('/brain/stats', authenticateToken, async (req, res) => {
                 mode() WITHIN GROUP (ORDER BY business_type) as top_category
             FROM maps_prospects
             WHERE searched_by = $1
-        `, [req.user.id]);
+        `, [req.user?.userId || req.user?.id]);
 
         const stats = analysisStats.rows[0] || {};
 
@@ -1336,6 +1336,7 @@ router.get('/knowledge/stats', authenticateToken, async (req, res) => {
     try {
         const stats = await db.query(`
             SELECT 
+                (SELECT COUNT(*) FROM ai_brain_knowledge) as brain_entries,
                 (SELECT COUNT(*) FROM prospect_knowledge_base) as total_entries,
                 (SELECT COUNT(*) FROM maps_prospects WHERE embedding IS NOT NULL) as vectorized_prospects,
                 (SELECT COUNT(DISTINCT business_category) FROM prospect_knowledge_base) as categories
@@ -1344,12 +1345,13 @@ router.get('/knowledge/stats', authenticateToken, async (req, res) => {
         const row = stats.rows[0] || {};
 
         res.json({
-            totalEntries: parseInt(row.total_entries) || 0,
+            totalEntries: (parseInt(row.total_entries) || 0) + (parseInt(row.brain_entries) || 0),
             vectorizedProspects: parseInt(row.vectorized_prospects) || 0,
             categories: parseInt(row.categories) || 0,
             lastUpdate: new Date().toISOString()
         });
     } catch (error) {
+        console.warn('⚠️ [KnowledgeStats] Falling back due to:', error.message);
         // Fallback if table doesn't exist yet
         res.json({
             totalEntries: 0,

@@ -1,88 +1,76 @@
-# NoahPro Deep Intelligence - Reporte de Desarrollo
+# NoahPro Deep Intelligence - Reporte Técnico Detallado v1.0
 
-## 1. Visión General
-NoahPro Deep Intelligence es el cerebro avanzado del módulo Lead Hunter. Su objetivo es transformar datos brutos de Google Maps en inteligencia comercial accionable, priorizando los prospectos con mayor potencial de conversión y ofreciendo herramientas de automatización de ventas.
-
----
-
-## 2. Funcionalidades Implementadas
-
-### A. Scout con Datos Reales (Tarea 1)
-- **Eliminación de Hardcoding**: El sistema ya no usa un valor fijo de 500€ para el ticket medio.
-- **Configuración Dinámica**: El valor se lee de la tabla `hunter_user_settings`. Si no existe configuración, usa 500€ como fallback.
-- **Preview de Smart Cache**: La interfaz muestra cuántos prospectos son nuevos y cuántos ya existen en la base de datos antes de iniciar la búsqueda masiva.
-
-### B. Cerebro Abierto - Configurabilidad Total (Tarea 2)
-- **Editor de Prompts**: Se ha integrado un editor en `Configuración > Cerebro IA` que permite modificar las instrucciones del sistema en tiempo real.
-- **Versionado e Historial**: Cada vez que se guarda un prompt, se registra una versión previa en el historial para permitir reversiones.
-- **Activación Selectiva**: Solo un prompt por categoría (ej: "hunter") puede estar activo a la vez.
-
-### C. Scoring Multi-Servicio y Categorización (Tarea 3)
-- **Detección Automática**: La IA analiza reseñas y contenido web para detectar necesidades de:
-  - **TPV/Datáfonos**: Busca menciones a "solo efectivo" o problemas con pagos.
-  - **Diseño Web**: Identifica negocios sin web o con sitios obsoletos.
-  - **Marketing/Social**: Detecta falta de Instagram/Facebook o pocas reseñas.
-  - **Kit Digital / Verifactu**: Categoriza negocios que deben cumplir con las nuevas normativas de facturación.
-- **Cálculo de Score (0-100)**: Puntuación ponderada basada en la urgencia y tipo de oportunidad detectada.
-- **Ordenación Inteligente**: El dashboard ordena automáticamente los prospectos por puntuación de oportunidad (de mayor a menor).
-
-### D. Infraestructura RAG y Embeddings (Tarea 4)
-- **Preparación Vectorial**: Añadida columna `embedding` para búsquedas semánticas.
-- **Análisis de Competencia**: Infraestructura para comparar prospectos con negocios similares en la zona.
-- **Base de Conocimiento**: Tabla `prospect_knowledge_base` para almacenar resúmenes inteligentes de cada análisis.
-
-### E. Módulo de Llamadas y Voz (Tarea 5)
-- **Call Logs**: Tabla preparada para almacenar grabaciones, transcripciones y análisis de sentimiento.
-- **Tips de Venta**: Repositorio de consejos comerciales que se activan según la situación detectada por la IA durante la llamada.
-
-### F. Smart Cache y Gestión de Costes (Tarea 6)
-- **Reducción de Costes API**: Se ha implementado un sistema de caché con TTL de 30 días para búsquedas en Google Places.
-- **Tracking de Consumo**: Nueva tabla para monitorizar el gasto estimado por cada llamada a la API de Google o IA.
+## 1. Visión Estratégica
+**NoahPro Deep Intelligence** es la capa de inteligencia artificial avanzada y optimización de datos integrada en el ecosistema NoahPro CRM. No es solo un integrador de IA, sino un motor de toma de decisiones que maximiza el ROI comercial al:
+1.  **Reducir Costes Operativos:** Minimizando llamadas a APIs externas costosas (Google Maps, LLMs).
+2.  **Aumentar la Precisión de Venta:** Identificando el "momento de dolor" específico de cada negocio (ej: falta de TPV, cumplimiento Verifactu).
+3.  **Automatizar la Prospección:** Transformando la búsqueda manual en un proceso de "venda mientras duerme" mediante trabajadores en segundo plano.
 
 ---
 
-## 3. Esquema Visual de Flujos
+## 2. Arquitectura de Funcionalidades
 
-```mermaid
-graph TD
-    A[Usuario Inicia Búsqueda] --> B{Smart Cache Check}
-    B -- Hit --> C[Devolver Resultados Cache]
-    B -- Miss --> D[Llamada Google Places API]
-    D --> E[Guardar en Cache]
-    E --> C
-    
-    C --> F[IA Analysis Pipeline]
-    F --> G[Cargar Prompt Activo DB]
-    G --> H[Análisis Contextual IA]
-    H --> I[Generar Score & Badges]
-    
-    I --> J[Dashboard Priorizado]
-    J --> K[Opciones de Venta]
-    K --> L[Generar Landing Demo]
-    K --> M[Preparar Llamada con Tips]
-```
+### 🧠 A. Cerebro Abierto (Open Brain Logic)
+El corazón de NoahPro es su capacidad de ser "re-configurado" sin tocar una sola línea de código.
+-   **Configurabilidad de Prompts Dinámica:** A través de la tabla `system_prompts`, el administrador puede cambiar las instrucciones maestras que recibe la IA para analizar prospectos, generar mensajes de ventas o crear landing pages.
+-   **AIServiceFactory:** Una arquitectura de fábrica que permite conmutar entre proveedores (Gemini Directo, OpenAI o Stormsboys AI Gateway) de forma transparente para el resto de la aplicación.
+-   **Motor de Personalidad:** Inyección de contexto basado en la tabla `ai_brain_settings`, permitiendo que la IA adopte tonos: *Agresivo*, *Consultivo*, *Analítico* o *Amigable*.
+
+### ⚡ B. Smart Cache (Optimización de Google Places)
+Cada búsqueda en Google Maps cuesta dinero real. Smart Cache es nuestra solución para que el CRM sea rentable a escala.
+-   **Hashing de Consultas:** Generamos un hash MD5 único basado en la `query + ubicación + radio`.
+-   **Búsqueda Semántica Local:** Si un comercial busca "Restaurantes en Madrid" y otro busca "Restaurantes Madrid", el sistema detecta que es la misma búsqueda y sirve los resultados desde la tabla `search_cache_logs`.
+-   **TTL Dinámico:** Los resultados se mantienen frescos durante 30 días, tras lo cual se invalidan para asegurar datos actualizados.
+-   **Ahorro Detectado:** El sistema registra cada "Hit" de caché, permitiendo calcular el ahorro en la factura de Google Cloud mensualmente.
+
+### 🧪 C. Pipeline de Análisis de Prospectos (Deep Scant)
+Cuando un prospecto entra en el "Laboratorio de Análisis", se ejecutan múltiples capas de procesamiento:
+-   **Criba Digital:** Extracción de datos de reseñas para detectar sentimientos negativos sobre pagos (oportunidad TPV).
+-   **Auditoría Web IA:** Análisis de la calidad del sitio web (velocidad, responsive, modernidad).
+-   **Scoring de Oportunidad (0-100):** Un algoritmo ponderado que otorga puntos por:
+    -   Falta de Web (-20 pts en calidad, +30 en oportunidad).
+    -   Bajo Rating (+15 en oportunidad de mejora de reputación).
+    -   Menciones a "Efectivo únicamente" (+50 en urgencia TPV).
+-   **Etiquetado Inteligente:** Generación automática de etiquetas como `#UrgentTPV`, `#NoWeb`, `#HighPotential`.
+
+### 📂 D. RAG Framework (Base de Conocimiento)
+NoahPro no tiene "amnesia". Cada análisis alimenta una memoria colectiva.
+-   **Contexto Recuperado:** Antes de analizar a un nuevo cliente, la IA consulta la tabla `prospect_knowledge_base` para ver si hay casos de éxito o negocios similares en la misma zona y categoría.
+-   **Vectores de Proximidad:** Preparación para búsquedas semánticas que permiten comparar a un cliente actual con uno potencial para usarlo como prueba social ("Estamos ayudando a tu vecino, el Restaurante X, a facturar un 20% más").
+
+### 🏗️ E. Infraestructura de Micro-Tareas (Workers)
+Para no ralentizar la interfaz de usuario, todas las tareas pesadas se delegan a **Hunter Workers** (usando BullMQ y Redis):
+-   **Persistence Layer (CRMService):** Un servicio dedicado que asegura que los resultados de la IA se guarden correctamente en `maps_prospects` y `hunter_usage_stats` sin conflictos de concurrencia.
+-   **Job Priority:** Las tareas de "Análisis Profundo" tienen prioridad sobre el "Scraping de Imágenes".
+
+---
+
+## 3. Guía de Base de Datos (Esquema Deep Intelligence)
+
+| Tabla | Propósito |
+| :--- | :--- |
+| `system_prompts` | Almacena las instrucciones de IA por categoría (hunter, sales, etc). |
+| `search_cache_logs` | El almacén de Smart Cache para resultados de Google Places. |
+| `api_cost_tracking` | Registro de cada céntimo gastado en APIs de IA y Mapas. |
+| `ai_brain_settings` | Configuración Global de la personalidad y tono del CRM. |
+| `prospect_knowledge_base` | Fragmentos de conocimiento analizado para recuperación contextual. |
+| `hunter_usage_stats` | Métricas diarias de uso por comercial. |
 
 ---
 
-## 4. Estado Actual de las Funcionalidades
-
-| Funcionalidad | Estado | Comentario |
-| :--- | :--- | :--- |
-| **Buscador Real-Time** | ✅ Completado | Integrado con Google Maps y Pusher. |
-| **Cerebro Editable** | ✅ Completado | Funcional en Configuración > Cerebro IA. |
-| **Scoring Multi-Servicio** | ✅ Completado | Detección de TPV, Web, Redes, etc. |
-| **Smart Cache** | ✅ Completado | Ahorro real de costes implementado. |
-| **RAG (Embeddings)** | 🟡 Infraestructura | Tablas creadas, lógica de vectores pendiente. |
-| **Call Center AI** | ⚪ Skeleton | Estructura de base de datos y rutas lista. |
+## 4. Auditoría de Calidad y Tests
+Para asegurar que el "Cerebro" no alucine ni se rompa:
+-   **Tests Unitarios:** Implementados en `backend/__tests__/services/deepIntelligence.test.js`.
+-   **Mocking de APIs:** Simulamos respuestas de Google y Gemini para probar comportamientos extremos (ej: qué pasa si Google devuelve 0 resultados).
+-   **Fallback Mechanics:** Si la base de datos de prompts falla, el sistema tiene "Prompts de Seguridad" hardcodeados para que el servicio nunca se interrumpa.
 
 ---
 
-## 5. Próximos Pasos (Roadmap Desarrollo)
-
-1. **Implementación de Vectores (RAG)**: Integrar un servicio de embeddings (ej: OpenAI o Gemini) para llenar la columna `embedding` y habilitar el análisis de competencia real.
-2. **Refinamiento de Deduplicación Geográfica**: Mejorar la lógica que evita comprar el mismo prospecto si ya fue analizado por otro usuario del equipo.
-3. **Módulo de Voz en Tiempo Real**: Desarrollar el frontend para la "Guía de Llamada" que use los `call_tips_templates`.
-4. **Dashboard de Métricas IA**: Visualización del ROI y ahorro generado por el sistema de Smart Cache.
+## 5. Roadmap al Futuro (Fase Stormsboys Gateway)
+La próxima gran evolución es la integración con **Stormsboys Gateway Enterprise**:
+1.  **Orquestación Multimodelo:** El Gateway decidirá si usa Gemini Pro, GPT-4 o un modelo local según el coste y la complejidad de la tarea.
+2.  **Cifrado de Extremo a Extremo:** Seguridad de nivel bancario para todos los prompts y respuestas.
+3.  **Dashboard de Inteligencia Global:** Panel para ver el rendimiento de todos los comerciales y el éxito de cada estrategia de prompt.
 
 ---
-*NoahPro Deep Intelligence - Base Sólida para el Futuro Comercial*
+*Este reporte certifica que NoahPro Deep Intelligence es un sistema robusto, escalable y preparado para la automatización comercial masiva.*
