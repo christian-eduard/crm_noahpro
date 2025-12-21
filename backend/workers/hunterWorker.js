@@ -3,6 +3,56 @@ const { getRedisConnection, QUEUE_NAMES } = require('../config/queue');
 const AIServiceFactory = require('../services/ai/AIServiceFactory');
 const CRMService = require('../services/crmService');
 const prompts = require('../services/ai/prompts');
+const db = require('../config/database');
+
+/**
+ * Get active prompt from database, fallback to default prompts.js
+ * Para Cerebro Abierto: permite editar prompts desde UI
+ */
+const getActivePrompt = async (category = 'hunter') => {
+    try {
+        const result = await db.query(
+            'SELECT prompt_text FROM system_prompts WHERE is_active = TRUE AND category = $1 LIMIT 1',
+            [category]
+        );
+        if (result.rows.length > 0 && result.rows[0].prompt_text) {
+            console.log('[HunterWorker] Using custom prompt from DB');
+            return result.rows[0].prompt_text;
+        }
+    } catch (error) {
+        console.warn('[HunterWorker] Could not load prompt from DB, using default:', error.message);
+    }
+    return null; // Use default
+};
+
+/**
+ * Build final prompt: DB custom prompt + business data, or default
+ */
+const buildAnalysisPrompt = async (businessData) => {
+    const customPrompt = await getActivePrompt('hunter');
+
+    if (customPrompt) {
+        // Custom prompt from DB - inject business data
+        return `${customPrompt}
+
+DATOS DEL NEGOCIO:
+- Nombre: ${businessData.name}
+- Tipo: ${businessData.business_type || 'Desconocido'}
+- Dirección: ${businessData.address || 'No disponible'}
+- Web: ${businessData.website || 'NO TIENE'}
+- Rating: ${businessData.rating || 'Sin valoración'} (${businessData.reviews_count || 0} reseñas)
+- Teléfono: ${businessData.phone || 'No disponible'}
+
+RESEÑAS:
+${Array.isArray(businessData.reviews) ? businessData.reviews.map(r => `- "${r.text}" (${r.rating}★)`).join('\n') : 'No hay reseñas'}
+
+CONTENIDO WEB:
+${businessData.webContent || 'No disponible'}`;
+    }
+
+    // Default: use prompts.js
+    return prompts.ANALYZE_PROSPECT(businessData);
+};
 
 // Process analysis job
 const processAnalysisJob = async (job) => {
@@ -11,7 +61,7 @@ const processAnalysisJob = async (job) => {
 
     try {
         const aiService = await AIServiceFactory.createService(userId);
-        const prompt = prompts.ANALYZE_PROSPECT(businessData);
+        const prompt = await buildAnalysisPrompt(businessData); // Now async, reads from DB
         const analysis = await aiService.generateJSON(prompt);
         await CRMService.updateProspectAnalysis(prospectId, analysis);
 
