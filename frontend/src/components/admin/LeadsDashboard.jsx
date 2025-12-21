@@ -22,6 +22,7 @@ import CommercialsManager from './CommercialsManager';
 import BulkActionsBar from '../shared/BulkActionsBar';
 import LeadHunterDashboard from '../hunter/LeadHunterDashboard';
 import AIBrainDashboard from '../brain/AIBrainDashboard';
+import RecruitmentDashboard from '../recruitment/RecruitmentDashboard';
 
 const LeadsDashboard = ({ activeSection }) => {
     const [leads, setLeads] = useState([]);
@@ -597,6 +598,10 @@ const LeadsDashboard = ({ activeSection }) => {
 
     if (activeSection === 'brain') {
         return <AIBrainDashboard />;
+    }
+
+    if (activeSection === 'recruitment') {
+        return <RecruitmentDashboard />;
     }
 
     return (

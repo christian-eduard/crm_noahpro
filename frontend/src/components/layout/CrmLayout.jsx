@@ -105,6 +105,13 @@ const CrmLayout = ({ children, onLogout, activeSection = 'leads', onSectionChang
             description: 'Prospección con IA'
         },
         {
+            id: 'recruitment',
+            label: 'Talent Hunter',
+            icon: <UserPlus className="w-5 h-5" />,
+            description: 'Reclutamiento IA',
+            roles: ['admin']
+        },
+        {
             id: 'brain',
             label: 'Cerebro IA',
             icon: <Brain className="w-5 h-5" />,

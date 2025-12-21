@@ -13,6 +13,8 @@ import InvoicePublic from './components/invoices/InvoicePublic';
 import CommercialDashboard from './components/commercial/CommercialDashboard';
 
 import PublicDemoViewer from './components/hunter/PublicDemoViewer';
+import CareersApply from './components/recruitment/CareersApply';
+import InterviewRoom from './components/recruitment/InterviewRoom';
 
 function App() {
     const [currentRoute, setCurrentRoute] = useState('/');
@@ -85,9 +87,18 @@ function App() {
             return <PublicProposal />;
         }
 
-        // Demo Pública de Lead Hunter
         if (currentRoute.startsWith('/demo/')) {
             return <PublicDemoViewer />;
+        }
+
+        // Landing de Empleo (AI Talent Hunter)
+        if (currentRoute === '/careers/apply') {
+            return <CareersApply />;
+        }
+
+        // Sala de Entrevista IA
+        if (currentRoute.startsWith('/interview-room/')) {
+            return <InterviewRoom />;
         }
 
         // Login CRM
