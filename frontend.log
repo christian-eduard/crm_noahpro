@@ -1,0 +1,217 @@
+
+> crm-app-tpv-frontend@1.0.0 dev
+> vite --port 5174 --port 5174
+
+
+  VITE v5.4.21  ready in 145 ms
+
+  ➜  Local:   http://localhost:5174/
+  ➜  Network: use --host to expose
+  ➜  press h + enter to show help
+4:00:22 AM [vite] page reload src/__mocks__/lucide-react.js
+4:07:20 AM [vite] page reload index.html
+4:07:51 AM [vite] page reload index.html
+4:07:51 AM [vite] page reload playwright-report/index.html
+4:07:51 AM [vite] hmr update /src/App.jsx, /src/index.css
+4:07:51 AM [vite] page reload src/__mocks__/lucide-react.js
+4:07:51 AM [vite] hmr update /src/components/admin/CommercialsManager.jsx, /src/index.css
+4:07:51 AM [vite] hmr update /src/components/admin/LeadsDashboard.jsx, /src/index.css
+4:07:51 AM [vite] hmr update /src/components/admin/chat/AdminChatWidget.jsx, /src/index.css
+4:07:51 AM [vite] hmr update /src/components/admin/chat/ChatAdmin.jsx, /src/index.css
+4:07:51 AM [vite] page reload src/components/admin/settings/TemplatesManager.jsx
+4:07:51 AM [vite] hmr update /src/components/analytics/AnalyticsDashboard.jsx, /src/index.css
+4:07:51 AM [vite] hmr update /src/components/analytics/AnalyticsTracker.jsx, /src/index.css
+4:07:51 AM [vite] hmr update /src/components/auth/CrmLogin.jsx, /src/index.css
+4:07:51 AM [vite] hmr update /src/components/admin/LeadsDashboard.jsx, /src/index.css
+4:07:51 AM [vite] hmr update /src/components/clients/ClientDetailView.jsx, /src/index.css
+4:07:51 AM [vite] hmr update /src/components/clients/ClientInvoices.jsx, /src/index.css
+4:07:51 AM [vite] hmr update /src/components/clients/ClientsListView.jsx, /src/index.css
+4:07:51 AM [vite] hmr update /src/components/commercial/CommercialDashboard.jsx, /src/index.css
+4:07:51 AM [vite] hmr update /src/components/admin/LeadsDashboard.jsx, /src/index.css
+4:07:51 AM [vite] hmr update /src/components/email/EmailTemplatesView.jsx, /src/index.css
+4:07:51 AM [vite] page reload src/components/email/__tests__/EmailTemplatesView.test.jsx
+4:07:51 AM [vite] hmr update /src/components/commercial/CommercialDashboard.jsx, /src/index.css, /src/components/admin/LeadsDashboard.jsx
+4:07:51 AM [vite] page reload src/components/hunter/LeadHunterMap.jsx
+4:07:51 AM [vite] page reload src/components/hunter/ProspectCard.jsx
+4:07:51 AM [vite] page reload src/components/hunter/ProspectDetailModal.jsx
+4:07:51 AM [vite] hmr update /src/components/hunter/PublicDemoViewer.jsx, /src/index.css
+4:07:51 AM [vite] page reload src/components/hunter/SearchGroupList.jsx
+4:07:51 AM [vite] page reload src/components/hunter/TeamDashboard.jsx
+4:07:51 AM [vite] hmr update /src/components/invoices/InvoiceDetail.jsx, /src/index.css
+4:07:51 AM [vite] hmr update /src/App.jsx, /src/index.css, /src/components/invoices/InvoicesView.jsx
+4:07:51 AM [vite] page reload src/components/invoices/InvoiceItems.jsx
+4:07:51 AM [vite] hmr update /src/App.jsx, /src/index.css
+4:07:51 AM [vite] hmr update /src/components/invoices/InvoicesView.jsx, /src/index.css
+4:07:51 AM [vite] hmr update /src/components/invoices/PaymentForm.jsx, /src/index.css
+4:07:51 AM [vite] hmr update /src/components/invoices/PaymentHistory.jsx, /src/index.css
+4:07:51 AM [vite] hmr update /src/components/landing/ChatWidget.jsx, /src/index.css
+4:07:51 AM [vite] hmr update /src/components/landing/ContactForm.jsx, /src/index.css
+4:07:51 AM [vite] hmr update /src/components/landing/LandingPage.jsx, /src/index.css
+4:07:51 AM [vite] page reload src/components/landing/LandingPage.jsx.jsx
+4:07:51 AM [vite] hmr update /src/components/layout/CrmLayout.jsx, /src/index.css
+4:07:51 AM [vite] page reload src/components/layout/CrmLayout.jsx.jsx
+4:07:51 AM [vite] page reload src/components/layout/__tests__/CrmLayout.test.jsx
+4:07:51 AM [vite] hmr update /src/components/leads/LeadInvoices.jsx, /src/index.css
+4:07:51 AM [vite] hmr update /src/components/admin/LeadsDashboard.jsx, /src/index.css
+4:07:51 AM [vite] hmr update /src/components/leads/LeadsKanbanView.jsx, /src/index.css
+4:07:51 AM [vite] hmr update /src/components/leads/LeadsListView.jsx, /src/index.css
+4:07:51 AM [vite] page reload src/components/leads/__tests__/LeadsListView.test.jsx
+4:07:51 AM [vite] page reload src/components/modals/EventModal.jsx
+4:07:51 AM [vite] page reload src/components/modals/TaskModal.jsx
+4:07:51 AM [vite] hmr update /src/components/notifications/NotificationBell.jsx, /src/index.css
+4:07:51 AM [vite] hmr update /src/components/profile/ProfileModal.jsx, /src/index.css
+4:07:51 AM [vite] hmr update /src/components/proposals/ProposalsView.jsx, /src/index.css
+4:07:51 AM [vite] page reload src/components/proposals/__tests__/ProposalsView.test.jsx
+4:07:51 AM [vite] hmr update /src/components/public/PublicProposal.jsx, /src/index.css
+4:07:51 AM [vite] page reload src/components/public/__tests__/PublicProposal.test.jsx
+4:07:51 AM [vite] page reload src/components/settings/AutomationSettings.jsx
+4:07:51 AM [vite] page reload src/components/settings/BusinessTypesSettings.jsx
+4:07:51 AM [vite] page reload src/components/settings/GoogleCalendarSettings.jsx
+4:07:51 AM [vite] page reload src/components/settings/HTMLEmailTemplatesEditor.jsx
+4:07:51 AM [vite] page reload src/components/settings/HunterStrategiesSettings.jsx
+4:07:51 AM [vite] page reload src/components/settings/InvoiceSettings.jsx
+4:07:51 AM [vite] page reload src/components/settings/LeadHunterSettings.jsx
+4:07:51 AM [vite] page reload src/components/settings/LeadStatusSettings.jsx
+4:07:51 AM [vite] page reload src/components/settings/SMTPSettings.jsx
+4:07:52 AM [vite] hmr update /src/components/admin/LeadsDashboard.jsx, /src/index.css
+4:07:52 AM [vite] page reload src/components/settings/UsersSettings.jsx
+4:07:52 AM [vite] page reload src/components/settings/WebhooksSettings.jsx
+4:07:52 AM [vite] page reload src/components/settings/__tests__/HTMLEmailTemplatesEditor.test.jsx
+4:07:52 AM [vite] page reload src/components/settings/__tests__/UsersSettings.test.jsx
+4:07:52 AM [vite] hmr update /src/components/shared/BulkActionsBar.jsx, /src/index.css
+4:07:52 AM [vite] hmr update /src/components/shared/Button.jsx, /src/index.css
+4:07:52 AM [vite] hmr update /src/components/shared/ConfirmModal.jsx, /src/index.css
+4:07:52 AM [vite] page reload src/components/shared/Icons.jsx
+4:07:52 AM [vite] hmr update /src/components/shared/Input.jsx, /src/index.css
+4:07:52 AM [vite] hmr update /src/components/shared/Modal.jsx, /src/index.css
+4:07:52 AM [vite] page reload src/components/shared/QRCodeGenerator.jsx
+4:07:52 AM [vite] page reload src/components/shared/Select.jsx
+4:07:52 AM [vite] hmr update /src/components/shared/SignatureModal.jsx, /src/index.css
+4:07:52 AM [vite] page reload src/components/shared/SkeletonLoader.jsx
+4:07:52 AM [vite] hmr update /src/components/shared/TagBadge.jsx, /src/index.css
+4:07:52 AM [vite] page reload src/components/shared/TagManager.jsx
+4:07:52 AM [vite] page reload src/components/shared/ThemeToggle.jsx
+4:07:52 AM [vite] page reload src/components/shared/__tests__/SkeletonLoader.test.jsx
+4:07:52 AM [vite] page reload src/components/shared/__tests__/TagBadge.test.jsx
+4:07:52 AM [vite] hmr update /src/contexts/PusherContext.jsx, /src/index.css, /src/components/auth/CrmLogin.jsx, /src/components/public/PublicProposal.jsx, /src/components/landing/LandingPage.jsx, /src/components/commercial/CommercialDashboard.jsx, /src/components/admin/LeadsDashboard.jsx, /src/components/invoices/InvoicesView.jsx, /src/components/invoices/InvoiceDetail.jsx, /src/components/invoices/PaymentForm.jsx, /src/components/invoices/PaymentHistory.jsx, /src/components/leads/LeadInvoices.jsx, /src/components/landing/ContactForm.jsx, /src/components/landing/ChatWidget.jsx, /src/components/analytics/AnalyticsTracker.jsx, /src/components/notifications/NotificationBell.jsx, /src/components/admin/chat/AdminChatWidget.jsx, /src/components/profile/ProfileModal.jsx, /src/components/leads/LeadsListView.jsx, /src/components/clients/ClientsListView.jsx, /src/components/analytics/AnalyticsDashboard.jsx, /src/components/admin/chat/ChatAdmin.jsx, /src/components/clients/ClientDetailView.jsx, /src/components/proposals/ProposalsView.jsx, /src/components/leads/LeadsKanbanView.jsx, /src/components/admin/CommercialsManager.jsx, /src/components/settings/AIBrainSettings.jsx, /src/components/clients/ClientInvoices.jsx, /src/components/shared/UserSelect.jsx
+4:07:52 AM [vite] hmr update /src/contexts/PusherContext.jsx, /src/index.css
+4:07:52 AM [vite] hmr update /src/contexts/ToastContext.jsx, /src/index.css
+4:07:52 AM [vite] hmr update /src/index.css
+4:07:52 AM [vite] page reload src/main.jsx
+4:07:52 AM [vite] page reload src/services/clientService.js
+4:07:52 AM [vite] hmr update /src/components/invoices/InvoicesView.jsx, /src/index.css, /src/components/invoices/InvoiceDetail.jsx, /src/components/invoices/PaymentForm.jsx, /src/components/invoices/PaymentHistory.jsx, /src/components/leads/LeadInvoices.jsx
+4:07:52 AM [vite] page reload src/setupTests.js
+4:07:52 AM [vite] page reload src/utils/testUtils.jsx
+4:07:52 AM [vite] page reload tailwind.config.js
+4:07:52 AM [vite] vite.config.js changed, restarting server...
+Re-optimizing dependencies because lockfile has changed
+4:07:52 AM [vite] server restarted.
+4:07:53 AM [vite] page reload src/components/hunter/LeadHunterDashboard.jsx
+Error: The following dependencies are imported but could not be resolved:
+
+  socket.io-client (imported by /Users/cex/Desktop/Crm App Tpv/frontend/src/components/admin/chat/ChatAdmin.jsx)
+  moment (imported by /Users/cex/Desktop/Crm App Tpv/frontend/src/components/leads/LeadsCalendarView.jsx)
+  chart.js (imported by /Users/cex/Desktop/Crm App Tpv/frontend/src/components/analytics/AnalyticsDashboard.jsx)
+  react-chartjs-2 (imported by /Users/cex/Desktop/Crm App Tpv/frontend/src/components/analytics/AnalyticsDashboard.jsx)
+  react-grid-layout (imported by /Users/cex/Desktop/Crm App Tpv/frontend/src/components/dashboard/DashboardHome.jsx)
+  react-grid-layout/css/styles.css (imported by /Users/cex/Desktop/Crm App Tpv/frontend/src/components/dashboard/DashboardHome.jsx)
+  react-resizable/css/styles.css (imported by /Users/cex/Desktop/Crm App Tpv/frontend/src/components/dashboard/DashboardHome.jsx)
+
+Are they installed?
+    at file:///Users/cex/Desktop/Crm%20App%20Tpv/frontend/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:50669:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/cex/Desktop/Crm%20App%20Tpv/frontend/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:50174:26
+4:07:53 AM [vite] Pre-transform error: Failed to resolve import "socket.io-client" from "src/components/admin/chat/ChatAdmin.jsx". Does the file exist?
+4:07:53 AM [vite] Pre-transform error: Failed to resolve import "react-grid-layout" from "src/components/dashboard/DashboardHome.jsx". Does the file exist?
+4:07:53 AM [vite] Pre-transform error: Failed to resolve import "chart.js" from "src/components/analytics/AnalyticsDashboard.jsx". Does the file exist?
+4:07:53 AM [vite] Pre-transform error: Failed to resolve import "moment" from "src/components/leads/LeadsCalendarView.jsx". Does the file exist?
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/pusher-js/dist/web/pusher.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/pusher-js/dist/web/pusher.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/pusher-js/dist/web/pusher.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/pusher-js/dist/web/pusher.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/lucide-react/dist/esm/lucide-react.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/lucide-react/dist/esm/lucide-react.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/lucide-react/dist/esm/lucide-react.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/lucide-react/dist/esm/lucide-react.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/lucide-react/dist/esm/lucide-react.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/lucide-react/dist/esm/lucide-react.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/lucide-react/dist/esm/lucide-react.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/lucide-react/dist/esm/lucide-react.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/lucide-react/dist/esm/lucide-react.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/lucide-react/dist/esm/lucide-react.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/lucide-react/dist/esm/lucide-react.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/lucide-react/dist/esm/lucide-react.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/lucide-react/dist/esm/lucide-react.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/lucide-react/dist/esm/lucide-react.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/lucide-react/dist/esm/lucide-react.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/lucide-react/dist/esm/lucide-react.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/lucide-react/dist/esm/lucide-react.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/lucide-react/dist/esm/lucide-react.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/lucide-react/dist/esm/lucide-react.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/lucide-react/dist/esm/lucide-react.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/lucide-react/dist/esm/lucide-react.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/lucide-react/dist/esm/lucide-react.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/lucide-react/dist/esm/lucide-react.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/lucide-react/dist/esm/lucide-react.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/lucide-react/dist/esm/lucide-react.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/lucide-react/dist/esm/lucide-react.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/lucide-react/dist/esm/lucide-react.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/lucide-react/dist/esm/lucide-react.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/lucide-react/dist/esm/lucide-react.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/lucide-react/dist/esm/lucide-react.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/lucide-react/dist/esm/lucide-react.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/lucide-react/dist/esm/lucide-react.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/lucide-react/dist/esm/lucide-react.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/lucide-react/dist/esm/lucide-react.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/lucide-react/dist/esm/lucide-react.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/lucide-react/dist/esm/lucide-react.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/lucide-react/dist/esm/lucide-react.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/lucide-react/dist/esm/lucide-react.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/lucide-react/dist/esm/lucide-react.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/lucide-react/dist/esm/lucide-react.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/lucide-react/dist/esm/lucide-react.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/lucide-react/dist/esm/lucide-react.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/lucide-react/dist/esm/lucide-react.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/lucide-react/dist/esm/lucide-react.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/lucide-react/dist/esm/lucide-react.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/lucide-react/dist/esm/lucide-react.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/lucide-react/dist/esm/lucide-react.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/lucide-react/dist/esm/lucide-react.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/lucide-react/dist/esm/lucide-react.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/lucide-react/dist/esm/lucide-react.js'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/react-icons/fi/index.mjs'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/react-icons/fi/index.mjs'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/react-icons/fi/index.mjs'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/react-icons/fi/index.mjs'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/react-icons/fi/index.mjs'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/react-icons/fi/index.mjs'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/react-icons/fi/index.mjs'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/react-icons/fi/index.mjs'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/react-icons/fi/index.mjs'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/react-icons/fi/index.mjs'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/react-icons/fi/index.mjs'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/react-icons/fi/index.mjs'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/react-icons/fi/index.mjs'
+4:07:53 AM [vite] Pre-transform error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/react-signature-canvas/dist/index.mjs'
+4:07:53 AM [vite] error while updating dependencies:
+Error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/pusher-js/dist/web/pusher.js'
+    at async open (node:internal/fs/promises:634:25)
+    at async Object.readFile (node:internal/fs/promises:1238:14)
+    at async extractExportsData (file:///Users/cex/Desktop/Crm%20App%20Tpv/frontend/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:51156:24)
+4:08:47 AM [vite] page reload src/setupTests.js
+4:08:48 AM [vite] Pre-transform error: Failed to resolve import "react/jsx-dev-runtime" from "src/contexts/PusherContext.jsx". Does the file exist?
+node:internal/fs/promises:634
+  return new FileHandle(await PromisePrototypeThen(
+                        ^
+
+Error: ENOENT: no such file or directory, open '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/pusher-js/dist/web/pusher.js'
+    at async open (node:internal/fs/promises:634:25)
+    at async Object.readFile (node:internal/fs/promises:1238:14)
+    at async extractExportsData (file:///Users/cex/Desktop/Crm%20App%20Tpv/frontend/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:51156:24) {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/cex/Desktop/Crm App Tpv/frontend/node_modules/pusher-js/dist/web/pusher.js'
+}
+
+Node.js v23.10.0

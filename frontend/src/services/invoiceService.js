@@ -8,165 +8,163 @@ const getAuthHeaders = () => {
     };
 };
 
-// Invoices
 export const getInvoices = async (params = {}) => {
-    const queryString = new URLSearchParams(params).toString();
-    const url = `${API_URL}/invoices${queryString ? `?${queryString}` : ''}`;
-
-    const response = await fetch(url, {
-        headers: getAuthHeaders()
-    });
-
-    if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.error || 'Error al obtener facturas');
+    try {
+        const queryParams = new URLSearchParams();
+        Object.keys(params).forEach(key => {
+            if (params[key] !== undefined && params[key] !== null) {
+                queryParams.append(key, params[key]);
+            }
+        });
+        const response = await fetch(`${API_URL}/invoices?${queryParams.toString()}`, { headers: getAuthHeaders() });
+        if (!response.ok) throw new Error('Error fetching invoices');
+        return await response.json();
+    } catch (error) {
+        console.error('getInvoices error:', error);
+        throw error;
     }
-
-    return response.json();
 };
 
 export const getInvoiceById = async (id) => {
-    const response = await fetch(`${API_URL}/invoices/${id}`, {
-        headers: getAuthHeaders()
-    });
-
-    if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.error || 'Error al obtener factura');
+    try {
+        const response = await fetch(`${API_URL}/invoices/${id}`, { headers: getAuthHeaders() });
+        if (!response.ok) throw new Error('Error fetching invoice');
+        return await response.json();
+    } catch (error) {
+        console.error('getInvoiceById error:', error);
+        throw error;
     }
-
-    return response.json();
 };
 
 export const createInvoice = async (data) => {
-    const response = await fetch(`${API_URL}/invoices`, {
-        method: 'POST',
-        headers: getAuthHeaders(),
-        body: JSON.stringify(data)
-    });
-
-    if (!response.ok) {
-        let errorData;
-        try {
-            errorData = await response.json();
-        } catch (e) {
-            console.error('Non-JSON response:', await response.text());
-            throw new Error(`Error ${response.status}: ${response.statusText}`);
+    try {
+        const response = await fetch(`${API_URL}/invoices`, {
+            method: 'POST', headers: getAuthHeaders(), body: JSON.stringify(data)
+        });
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.message || 'Error creating invoice');
         }
-        throw new Error(errorData.error || 'Error al crear factura');
+        return await response.json();
+    } catch (error) {
+        console.error('createInvoice error:', error);
+        throw error;
     }
-
-    return response.json();
 };
 
 export const updateInvoice = async (id, data) => {
-    const response = await fetch(`${API_URL}/invoices/${id}`, {
-        method: 'PUT',
-        headers: getAuthHeaders(),
-        body: JSON.stringify(data)
-    });
-
-    if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.error || 'Error al actualizar factura');
+    try {
+        const response = await fetch(`${API_URL}/invoices/${id}`, {
+            method: 'PUT', headers: getAuthHeaders(), body: JSON.stringify(data)
+        });
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.message || 'Error updating invoice');
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('updateInvoice error:', error);
+        throw error;
     }
-
-    return response.json();
 };
 
 export const deleteInvoice = async (id) => {
-    const response = await fetch(`${API_URL}/invoices/${id}`, {
-        method: 'DELETE',
-        headers: getAuthHeaders()
-    });
-
-    if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.error || 'Error al eliminar factura');
+    try {
+        const response = await fetch(`${API_URL}/invoices/${id}`, { method: 'DELETE', headers: getAuthHeaders() });
+        if (!response.ok) throw new Error('Error deleting invoice');
+        return await response.json();
+    } catch (error) {
+        console.error('deleteInvoice error:', error);
+        throw error;
     }
-
-    return response.json();
 };
 
-export const resendInvoiceEmail = async (id) => {
-    const response = await fetch(`${API_URL}/invoices/${id}/resend-email`, {
-        method: 'POST',
-        headers: getAuthHeaders()
-    });
-
-    if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.error || 'Error al enviar email');
-    }
-
-    return response.json();
-};
-
-// Payments
+// Alias registerPayment
 export const registerPayment = async (invoiceId, data) => {
-    const response = await fetch(`${API_URL}/invoices/${invoiceId}/payments`, {
-        method: 'POST',
-        headers: getAuthHeaders(),
-        body: JSON.stringify(data)
-    });
-
-    if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.error || 'Error al registrar pago');
+    try {
+        const response = await fetch(`${API_URL}/invoices/${invoiceId}/payments`, {
+            method: 'POST', headers: getAuthHeaders(), body: JSON.stringify(data)
+        });
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.error || 'Error al registrar pago');
+        }
+        return response.json();
+    } catch (error) {
+        console.error('registerPayment error:', error);
+        throw error;
     }
-
-    return response.json();
 };
+export const addPayment = registerPayment;
 
 export const getPayments = async (invoiceId) => {
-    const response = await fetch(`${API_URL}/invoices/${invoiceId}/payments`, {
-        headers: getAuthHeaders()
-    });
-
-    if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.error || 'Error al obtener pagos');
+    try {
+        const response = await fetch(`${API_URL}/invoices/${invoiceId}/payments`, { headers: getAuthHeaders() });
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.error || 'Error al obtener pagos');
+        }
+        return response.json();
+    } catch (error) {
+        console.error('getPayments error:', error);
+        throw error;
     }
-
-    return response.json();
 };
 
 export const deletePayment = async (paymentId) => {
-    const response = await fetch(`${API_URL}/invoices/payments/${paymentId}`, {
-        method: 'DELETE',
-        headers: getAuthHeaders()
-    });
-
-    if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.error || 'Error al eliminar pago');
+    try {
+        const response = await fetch(`${API_URL}/invoices/payments/${paymentId}`, { method: 'DELETE', headers: getAuthHeaders() });
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.error || 'Error al eliminar pago');
+        }
+        return response.json();
+    } catch (error) {
+        console.error('deletePayment error:', error);
+        throw error;
     }
-
-    return response.json();
 };
 
 export const resendReceipt = async (paymentId) => {
-    const response = await fetch(`${API_URL}/invoices/payments/${paymentId}/resend-receipt`, {
-        method: 'POST',
-        headers: getAuthHeaders()
-    });
-
-    if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.error || 'Error al enviar recibo');
+    try {
+        const response = await fetch(`${API_URL}/invoices/payments/${paymentId}/resend-receipt`, {
+            method: 'POST', headers: getAuthHeaders()
+        });
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.error || 'Error al enviar recibo');
+        }
+        return response.json();
+    } catch (error) {
+        console.error('resendReceipt error:', error);
+        throw error;
     }
-
-    return response.json();
 };
 
-// Public
-export const getPublicInvoice = async (token) => {
-    const response = await fetch(`${API_URL}/invoices/public/${token}`);
-
-    if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.error || 'Error al obtener factura pública');
+export const resendInvoiceEmail = async (id) => {
+    try {
+        const response = await fetch(`${API_URL}/invoices/${id}/send`, { method: 'POST', headers: getAuthHeaders() });
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.message || 'Error al enviar la factura por email');
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('resendInvoiceEmail error:', error);
+        throw error;
     }
+};
 
-    return response.json();
+export const getPublicInvoice = async (token) => {
+    try {
+        const response = await fetch(`${API_URL}/invoices/public/${token}`);
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.error || 'Error al obtener factura pública');
+        }
+        return response.json();
+    } catch (error) {
+        console.error('getPublicInvoice error:', error);
+        throw error;
+    }
 };

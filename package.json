@@ -11,5 +11,11 @@
   "license": "ISC",
   "devDependencies": {
     "@playwright/test": "^1.57.0"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "bullmq": "^5.66.2",
+    "openai": "^6.15.0",
+    "redis": "^5.10.0"
   }
 }

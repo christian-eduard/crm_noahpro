@@ -15,6 +15,40 @@ const db = require('../config/database');
 // RUTAS PÚBLICAS (SIN AUTENTICACIÓN) - DEBEN IR PRIMERO
 // =====================================================
 
+// ... public routes ...
+
+// =====================================================
+// RUTAS PROTEGIDAS (REQUIEREN TOKEN)
+// =====================================================
+
+// Check access to Lead Hunter
+router.get('/access', authenticateToken, async (req, res) => {
+    try {
+        // Here you can add logic to check if user has subscription/permission
+        // For now, allow all authenticated users or check specific role
+        res.json({ hasAccess: true, role: req.user.role });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// Get recent searches (History)
+router.get('/searches', authenticateToken, async (req, res) => {
+    try {
+        const result = await db.query(
+            `SELECT * FROM hunter_search_history 
+             WHERE user_id = $1 
+             ORDER BY created_at DESC 
+             LIMIT 50`,
+            [req.user.id]
+        );
+        res.json(result.rows);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+
 // View Public Demo (NO AUTH)
 router.get('/public/demo/:token', async (req, res) => {
     try {

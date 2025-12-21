@@ -1,0 +1,12 @@
+[0;33mParando servicios...[0m
+[0;32mServicios parados[0m
+[0;33mIniciando backend...[0m
+[0;32m✓ Backend OK en http://localhost:3002[0m
+[0;33mIniciando frontend...[0m
+[0;32m✓ Frontend OK en http://localhost:5174[0m
+
+[0;33mEstado de servicios:[0m
+[0;32m✓ Backend: RUNNING (port 3002)[0m
+[0;32m✓ Frontend: RUNNING (port 5174)[0m
+
+[0;32mAplicación lista en: http://localhost:5174[0m
