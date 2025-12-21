@@ -8,3 +8,53 @@
 [AutomationEngine] Loaded 0 active rules
 [WebhookService] Loaded 0 active webhooks
 [EmailAutomation] Cron job scheduled (every 5 minutes)
+2025-12-21T07:34:35.761Z [INFO]: GET /api/settings 
+2025-12-21T07:34:35.810Z [INFO]: GET /api/settings 
+2025-12-21T07:34:39.738Z [INFO]: GET /api/hunter/admin/config 
+2025-12-21T07:34:39.744Z [INFO]: GET /api/hunter/admin/users 
+2025-12-21T07:34:39.750Z [INFO]: GET /api/hunter/admin/stats 
+2025-12-21T07:34:39.756Z [INFO]: GET /api/hunter/admin/config 
+2025-12-21T07:34:39.766Z [INFO]: GET /api/hunter/admin/users 
+2025-12-21T07:34:39.768Z [INFO]: GET /api/hunter/admin/stats 
+2025-12-21T07:37:53.258Z [INFO]: GET /api/hunter/access 
+2025-12-21T07:37:53.261Z [INFO]: GET /api/hunter/access 
+2025-12-21T07:37:53.262Z [INFO]: GET /api/business-types 
+2025-12-21T07:37:53.263Z [INFO]: GET /api/hunter/stats 
+2025-12-21T07:37:53.264Z [INFO]: GET /api/hunter/searches 
+[Searches] Fetching history for userId: 4
+2025-12-21T07:37:53.264Z [INFO]: GET /api/hunter-strategies 
+[Searches] Found 3 entries
+2025-12-21T07:37:53.282Z [INFO]: GET /api/business-types 
+2025-12-21T07:37:53.284Z [INFO]: GET /api/hunter-strategies 
+2025-12-21T07:37:53.286Z [INFO]: GET /api/hunter/searches 
+[Searches] Fetching history for userId: 4
+2025-12-21T07:37:53.287Z [INFO]: GET /api/hunter/access 
+2025-12-21T07:37:53.292Z [INFO]: GET /api/hunter/access 
+2025-12-21T07:37:53.293Z [INFO]: GET /api/business-types 
+2025-12-21T07:37:53.293Z [INFO]: GET /api/hunter-strategies 
+2025-12-21T07:37:53.298Z [INFO]: GET /api/hunter-strategies 
+2025-12-21T07:37:53.299Z [INFO]: GET /api/business-types 
+[Searches] Found 3 entries
+2025-12-21T07:37:53.306Z [INFO]: GET /api/hunter/searches 
+[Searches] Fetching history for userId: 4
+[Searches] Found 3 entries
+2025-12-21T07:37:53.313Z [INFO]: GET /api/hunter/searches 
+[Searches] Fetching history for userId: 4
+[Searches] Found 3 entries
+2025-12-21T07:37:53.333Z [INFO]: GET /api/hunter/stats 
+2025-12-21T07:37:53.336Z [INFO]: GET /api/hunter/stats 
+2025-12-21T07:37:53.339Z [INFO]: GET /api/hunter/stats 
+2025-12-21T07:37:55.498Z [INFO]: GET /api/hunter/prospects 
+2025-12-21T07:37:57.098Z [INFO]: GET /api/hunter/searches/25/prospects 
+2025-12-21T07:38:28.446Z [INFO]: GET /api/hunter/searches/25/prospects 
+2025-12-21T07:38:29.061Z [INFO]: GET /api/hunter/searches/25/prospects 
+2025-12-21T07:39:48.407Z [INFO]: GET /api/settings 
+2025-12-21T07:39:48.415Z [INFO]: GET /api/settings 
+2025-12-21T07:39:51.057Z [INFO]: GET /api/hunter/admin/config 
+2025-12-21T07:39:51.059Z [INFO]: GET /api/hunter/admin/users 
+2025-12-21T07:39:51.066Z [INFO]: GET /api/hunter/admin/stats 
+2025-12-21T07:39:51.068Z [INFO]: GET /api/hunter/config/gateway 
+2025-12-21T07:39:51.072Z [INFO]: GET /api/hunter/admin/config 
+2025-12-21T07:39:51.083Z [INFO]: GET /api/hunter/admin/users 
+2025-12-21T07:39:51.085Z [INFO]: GET /api/hunter/config/gateway 
+2025-12-21T07:39:51.086Z [INFO]: GET /api/hunter/admin/stats 

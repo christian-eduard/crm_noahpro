@@ -12,7 +12,7 @@ import {
     Settings, Key, Globe, Sparkles, MessageSquare, Users,
     Check, X, RefreshCw, Eye, EyeOff, AlertCircle, TrendingUp,
     Search, Zap, Shield, LayoutTemplate, Utensils, Plus, Store,
-    Briefcase, ShoppingBag, Coffee, Hotel, Dumbbell, Scissors, Stethoscope, Trash2
+    Briefcase, ShoppingBag, Coffee, Hotel, Dumbbell, Scissors, Stethoscope, Trash2, CloudLightning, Server, Lock
 } from 'lucide-react';
 
 const LeadHunterSettings = () => {
@@ -25,6 +25,7 @@ const LeadHunterSettings = () => {
     const [savingApi, setSavingApi] = useState(null);
     const [showKeys, setShowKeys] = useState({});
     const [editingConfig, setEditingConfig] = useState({});
+    const [gatewayConfig, setGatewayConfig] = useState({ enabled: false, url: '', apiKey: '', mode: 'direct' });
     const [adminLoading, setAdminLoading] = useState(false);
     const [confirmModal, setConfirmModal] = useState({ isOpen: false, title: '', message: '', onConfirm: () => { } });
     const toast = useToast();
@@ -34,7 +35,21 @@ const LeadHunterSettings = () => {
         fetchApiConfigs();
         fetchUsers();
         fetchGlobalStats();
+        fetchGatewayConfig();
     }, []);
+
+    const fetchGatewayConfig = async () => {
+        try {
+            const response = await fetch(`${API_URL}/hunter/config/gateway`, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            if (response.ok) {
+                setGatewayConfig(await response.json());
+            }
+        } catch (error) {
+            console.error('Error fetching gateway config:', error);
+        }
+    };
 
     const fetchApiConfigs = async () => {
         try {
@@ -167,6 +182,31 @@ const LeadHunterSettings = () => {
         }
     };
 
+    const handleSaveGatewayConfig = async () => {
+        setSavingApi('gateway');
+        try {
+            const response = await fetch(`${API_URL}/hunter/config/gateway`, {
+                method: 'PUT',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(gatewayConfig)
+            });
+
+            if (response.ok) {
+                toast.success('Configuración del Gateway guardada');
+                fetchGatewayConfig();
+            } else {
+                toast.error('Error al guardar configuración del Gateway');
+            }
+        } catch (error) {
+            toast.error('Error de conexión');
+        } finally {
+            setSavingApi(null);
+        }
+    };
+
     const getApiIcon = (apiName) => {
         switch (apiName) {
             case 'google_places': return <Globe className="w-5 h-5 text-blue-500" />;
@@ -224,6 +264,7 @@ const LeadHunterSettings = () => {
             <div className="flex gap-2 border-b border-gray-200 dark:border-gray-700 pb-2">
                 {[
                     { id: 'apis', label: 'APIs', icon: Key },
+                    { id: 'gateway', label: 'Integración Gateway', icon: CloudLightning },
                     { id: 'demos', label: 'Demos Avanzado', icon: LayoutTemplate },
                     { id: 'users', label: 'Control de Acceso', icon: Users },
                     { id: 'stats', label: 'Estadísticas', icon: TrendingUp }
@@ -531,6 +572,137 @@ const LeadHunterSettings = () => {
                                         Próximamente
                                     </button>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* Tab: Gateway Integration */}
+            {activeTab === 'gateway' && (
+                <div className="space-y-6">
+                    <div className="bg-gradient-to-br from-indigo-900 via-purple-900 to-slate-900 rounded-xl p-8 text-white shadow-xl relative overflow-hidden">
+                        {/* Background Effect */}
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+                        <div className="absolute -bottom-8 -left-8 w-64 h-64 bg-indigo-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+
+                        <div className="relative z-10 flex items-start justify-between">
+                            <div>
+                                <h3 className="text-2xl font-bold flex items-center gap-3 mb-2">
+                                    <CloudLightning className="w-8 h-8 text-yellow-400" />
+                                    Stormsboys AI Gateway
+                                </h3>
+                                <p className="text-indigo-200 max-w-xl">
+                                    Conecta NoahPro a la infraestructura de supercomputación Stormsboys.
+                                    Esto permitirá orquestación multimodelo (GPT-4, Gemini Ultra, Claude 3)
+                                    y procesamiento de datos masivos con cifrado de grado militar.
+                                </p>
+                            </div>
+                            <div className={`px-4 py-2 rounded-full font-bold flex items-center gap-2 ${gatewayConfig.enabled
+                                    ? 'bg-green-500/20 text-green-300 border border-green-500/50'
+                                    : 'bg-gray-700/50 text-gray-400 border border-gray-600'
+                                }`}>
+                                <div className={`w-3 h-3 rounded-full ${gatewayConfig.enabled ? 'bg-green-400 animate-pulse' : 'bg-gray-500'}`}></div>
+                                {gatewayConfig.enabled ? 'CONECTADO' : 'DESCONECTADO'}
+                            </div>
+                        </div>
+
+                        <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
+                            <div className="space-y-4">
+                                <div>
+                                    <label className="block text-sm font-medium text-indigo-200 mb-1">Gateway Endpoint URL</label>
+                                    <div className="relative">
+                                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                            <Server className="h-5 w-5 text-indigo-400" />
+                                        </div>
+                                        <input
+                                            type="text"
+                                            value={gatewayConfig.url}
+                                            onChange={(e) => setGatewayConfig({ ...gatewayConfig, url: e.target.value })}
+                                            className="block w-full pl-10 pr-3 py-2 border border-indigo-500/30 rounded-lg bg-indigo-900/50 text-white placeholder-indigo-400 focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                                            placeholder="https://api.stormsboys-gateway.com/v1"
+                                        />
+                                    </div>
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-indigo-200 mb-1">API Key Maestra</label>
+                                    <div className="relative">
+                                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                            <Lock className="h-5 w-5 text-indigo-400" />
+                                        </div>
+                                        <input
+                                            type="password"
+                                            value={gatewayConfig.apiKey}
+                                            onChange={(e) => setGatewayConfig({ ...gatewayConfig, apiKey: e.target.value })}
+                                            className="block w-full pl-10 pr-3 py-2 border border-indigo-500/30 rounded-lg bg-indigo-900/50 text-white placeholder-indigo-400 focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                                            placeholder="sk-stormsboys-..."
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="bg-white/5 rounded-xl p-6 border border-white/10">
+                                <h4 className="font-semibold text-white mb-4">Estado de la Integración</h4>
+                                <div className="space-y-3 text-sm">
+                                    <div className="flex justify-between items-center text-indigo-200">
+                                        <span>Modo Actual:</span>
+                                        <span className="font-mono bg-indigo-900/50 px-2 py-1 rounded">
+                                            {gatewayConfig.enabled ? 'GATEWAY (Remoto)' : 'DIRECTO (Local/Gemini)'}
+                                        </span>
+                                    </div>
+                                    <div className="flex justify-between items-center text-indigo-200">
+                                        <span>Latencia Estimada:</span>
+                                        <span className="text-gray-400">-- ms</span>
+                                    </div>
+                                    <div className="mt-4 pt-4 border-t border-white/10">
+                                        <label className="flex items-center gap-3 cursor-pointer">
+                                            <div className="relative">
+                                                <input
+                                                    type="checkbox"
+                                                    className="sr-only peer"
+                                                    checked={gatewayConfig.enabled}
+                                                    onChange={(e) => setGatewayConfig({ ...gatewayConfig, enabled: e.target.checked })}
+                                                />
+                                                <div className="w-11 h-6 bg-gray-700 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-indigo-800 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-500"></div>
+                                            </div>
+                                            <span className="text-white font-medium">
+                                                Habilitar Gateway
+                                            </span>
+                                        </label>
+                                        <p className="text-xs text-indigo-300 mt-2">
+                                            Al activar, todo el tráfico de IA será enrutado a través del Gateway.
+                                            Asegúrate de que la API Key sea válida.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="mt-8 flex justify-end">
+                            <Button
+                                onClick={handleSaveGatewayConfig}
+                                disabled={savingApi === 'gateway'}
+                                className="bg-indigo-600 hover:bg-indigo-700 text-white border-0"
+                            >
+                                {savingApi === 'gateway' && <RefreshCw className="w-4 h-4 animate-spin mr-2" />}
+                                Guardar Configuración
+                            </Button>
+                        </div>
+                    </div>
+
+                    {/* Placeholder Info */}
+                    <div className="bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800 rounded-xl p-6">
+                        <div className="flex gap-4">
+                            <div className="p-3 bg-orange-100 dark:bg-orange-900/40 rounded-lg h-fit">
+                                <AlertCircle className="w-6 h-6 text-orange-600 dark:text-orange-400" />
+                            </div>
+                            <div>
+                                <h4 className="font-bold text-orange-800 dark:text-orange-300 mb-2">Desarrollo en Progreso</h4>
+                                <p className="text-orange-700 dark:text-orange-200 text-sm">
+                                    La integración con Stormsboys Gateway está preparada pero a la espera del despliegue final del servicio.
+                                    Por el momento, el sistema seguirá utilizando la configuración de <strong>IA Directa</strong> (Gemini API) definida en la pestaña "APIs".
+                                    Una vez el Gateway esté operativo, introduce aquí tu API Key maestra para escalar la capacidad de procesamiento.
+                                </p>
                             </div>
                         </div>
                     </div>
