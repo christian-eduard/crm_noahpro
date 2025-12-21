@@ -35,15 +35,20 @@ router.get('/access', authenticateToken, async (req, res) => {
 // Get recent searches (History)
 router.get('/searches', authenticateToken, async (req, res) => {
     try {
+        // Usar realUserId para consistencia con POST /search
+        const userId = req.user.userId || req.user.id;
+        console.log('[Searches] Fetching history for userId:', userId);
         const result = await db.query(
             `SELECT * FROM hunter_search_history 
              WHERE user_id = $1 
              ORDER BY created_at DESC 
              LIMIT 50`,
-            [req.user.id]
+            [userId]
         );
+        console.log('[Searches] Found', result.rows.length, 'entries');
         res.json(result.rows);
     } catch (error) {
+        console.error('[Searches] Error:', error.message);
         res.status(500).json({ error: error.message });
     }
 });
@@ -186,23 +191,88 @@ router.post('/estimate', async (req, res) => {
             return res.status(400).json({ error: 'Se requiere query y location' });
         }
 
-        // Use limitOnePage=true to minimize cost and latency
-        // We use the service directly OR via leadHunterService if we want to add any other logic
-        // But for estimation, directly calling googlePlacesService is strictly for "how many results"
-        // However, leadHunterService.searchProspects calls googlePlacesService.searchAndSave.
-        // We don't want to SAVE, we just want to COUNT.
-        const places = await googlePlacesService.searchPlaces(query, location, radius, true);
+        // Use maxResults=20 for quick estimation (1 page)
+        const places = await googlePlacesService.searchPlaces(query, location, radius, 20);
 
         // Google Places returns up to 20 results per page.
-        // If we get 20, it's likely "20+"
         const count = places.length;
         const displayCount = count >= 20 ? "20+" : count.toString();
 
-        res.json({ count, displayCount, results: places.map(p => p.name).slice(0, 3) });
+        // Calculate potential revenue (ticket medio por tipo de negocio)
+        const TICKET_MEDIO = {
+            'restaurante': 250,
+            'bar': 180,
+            'cafetería': 150,
+            'peluquería': 120,
+            'tienda': 200,
+            'taller': 300,
+            'hotel': 500,
+            'default': 200
+        };
+
+        const queryLower = query.toLowerCase();
+        let ticketMedio = TICKET_MEDIO.default;
+        for (const [tipo, valor] of Object.entries(TICKET_MEDIO)) {
+            if (queryLower.includes(tipo)) {
+                ticketMedio = valor;
+                break;
+            }
+        }
+
+        const potentialRevenue = count * ticketMedio;
+        const potentialRevenueText = potentialRevenue >= 1000
+            ? `${(potentialRevenue / 1000).toFixed(1)}K€`
+            : `${potentialRevenue}€`;
+
+        res.json({
+            count,
+            displayCount,
+            potentialRevenue,
+            potentialRevenueText,
+            ticketMedio,
+            results: places.map(p => p.name).slice(0, 3)
+        });
     } catch (error) {
         console.error('Error en estimación:', error);
-        // Don't fail the UI hard, just return 0
-        res.json({ count: 0, displayCount: "0" });
+        res.json({ count: 0, displayCount: "0", potentialRevenue: 0, potentialRevenueText: "0€" });
+    }
+});
+
+/**
+ * POST /api/hunter/scout
+ * Alias de /estimate con misma lógica - Panel de Oportunidad Pre-Búsqueda
+ */
+router.post('/scout', async (req, res) => {
+    try {
+        const { query, location, radius } = req.body;
+
+        if (!query || !location) {
+            return res.status(400).json({ error: 'Se requiere query y location' });
+        }
+
+        const places = await googlePlacesService.searchPlaces(query, location, radius, 20);
+        const count = places.length;
+        const displayCount = count >= 20 ? "20+" : count.toString();
+
+        // Ticket medio calculation
+        const TICKET_MEDIO = { 'restaurante': 250, 'bar': 180, 'cafetería': 150, 'peluquería': 120, 'tienda': 200, 'taller': 300, 'hotel': 500, 'default': 200 };
+        const queryLower = query.toLowerCase();
+        let ticketMedio = TICKET_MEDIO.default;
+        for (const [tipo, valor] of Object.entries(TICKET_MEDIO)) {
+            if (queryLower.includes(tipo)) { ticketMedio = valor; break; }
+        }
+
+        const potentialRevenue = count * ticketMedio;
+
+        res.json({
+            count_text: `${displayCount} prospectos`,
+            potential_revenue: potentialRevenue,
+            potential_revenue_text: potentialRevenue >= 1000 ? `${(potentialRevenue / 1000).toFixed(1)}K€` : `${potentialRevenue}€`,
+            preview: places.slice(0, 3).map(p => ({ name: p.name, rating: p.rating }))
+        });
+    } catch (error) {
+        console.error('Error en scout:', error);
+        res.json({ count_text: "0 prospectos", potential_revenue: 0, potential_revenue_text: "0€" });
     }
 });
 
@@ -307,7 +377,17 @@ router.get('/prospects/:id', async (req, res) => {
 router.post('/analyze/:id', async (req, res) => {
     try {
         const userId = req.realUserId;
-        const result = await leadHunterService.analyzeProspect(req.params.id, userId);
+        const prospectId = req.params.id;
+        const result = await leadHunterService.analyzeProspect(prospectId, userId);
+
+        // Emitir evento Pusher para actualización en tiempo real
+        const pusherService = require('../services/pusherService');
+        await pusherService.trigger('hunter', 'prospect-analyzed', {
+            prospectId: parseInt(prospectId),
+            analysis: result.ai_analysis || result,
+            analyzedAt: new Date().toISOString()
+        });
+
         res.json(result);
     } catch (error) {
         console.error('Error en análisis:', error);
@@ -1103,6 +1183,136 @@ router.get('/prospects/:id/contact-requests', authenticateToken, async (req, res
         if (error.code === '42P01') {
             return res.json([]);
         }
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// =====================================================
+// RUTAS DE CONFIGURACIÓN AI GATEWAY
+// =====================================================
+
+const aiRouter = require('../services/ai/AIRouter');
+
+/**
+ * GET /api/hunter/config/gateway
+ * Obtener configuración actual del AI Gateway
+ */
+router.get('/config/gateway', authenticateToken, async (req, res) => {
+    try {
+        const result = await db.query(`
+            SELECT setting_key, setting_value 
+            FROM system_settings 
+            WHERE setting_key IN ('ai_provider_mode', 'gateway_url', 'gateway_api_key')
+        `);
+
+        const config = {
+            mode: 'direct',
+            enabled: false,
+            url: 'https://api.stormsboys-gateway.com/v1',
+            apiKey: ''
+        };
+
+        for (const row of result.rows) {
+            if (row.setting_key === 'ai_provider_mode') {
+                config.mode = row.setting_value;
+                config.enabled = row.setting_value === 'stormsboys_gateway';
+            }
+            if (row.setting_key === 'gateway_url') {
+                config.url = row.setting_value;
+            }
+            if (row.setting_key === 'gateway_api_key') {
+                config.apiKey = row.setting_value ? '••••••••' : ''; // Masked
+            }
+        }
+
+        res.json(config);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+/**
+ * PUT /api/hunter/config/gateway
+ * Actualizar configuración del AI Gateway
+ */
+router.put('/config/gateway', authenticateToken, async (req, res) => {
+    try {
+        // Solo admin puede cambiar configuración
+        if (req.user.role !== 'admin') {
+            return res.status(403).json({ error: 'Solo administradores pueden cambiar esta configuración' });
+        }
+
+        const { mode, enabled, url, apiKey } = req.body;
+        const resolvedMode = enabled ? 'stormsboys_gateway' : 'direct';
+
+        // Guardar configuraciones
+        const settings = [
+            { key: 'ai_provider_mode', value: resolvedMode },
+            { key: 'gateway_url', value: url || 'https://api.stormsboys-gateway.com/v1' }
+        ];
+
+        // Solo guardar API key si se proporcionó una nueva (no enmascarada)
+        if (apiKey && !apiKey.includes('•')) {
+            settings.push({ key: 'gateway_api_key', value: apiKey });
+        }
+
+        for (const setting of settings) {
+            await db.query(`
+                INSERT INTO system_settings (setting_key, setting_value, setting_type, created_at, updated_at)
+                VALUES ($1, $2, 'string', NOW(), NOW())
+                ON CONFLICT (setting_key) 
+                DO UPDATE SET setting_value = $2, updated_at = NOW()
+            `, [setting.key, setting.value]);
+        }
+
+        // Actualizar AIRouter
+        await aiRouter.setMode(resolvedMode);
+
+        res.json({ success: true, mode: resolvedMode });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+/**
+ * GET /api/hunter/config/test-providers
+ * Probar conexión de todos los proveedores de IA
+ */
+router.get('/config/test-providers', authenticateToken, async (req, res) => {
+    try {
+        const results = await aiRouter.testAllProviders();
+        res.json(results);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+/**
+ * GET /api/hunter/brain/stats
+ * Obtener estadísticas del Cerebro IA
+ */
+router.get('/brain/stats', authenticateToken, async (req, res) => {
+    try {
+        // Obtener estadísticas de análisis
+        const analysisStats = await db.query(`
+            SELECT 
+                COUNT(*) FILTER (WHERE ai_analysis IS NOT NULL) as total_analyses,
+                AVG(CASE WHEN rating IS NOT NULL THEN rating * 20 ELSE 50 END)::int as avg_score,
+                mode() WITHIN GROUP (ORDER BY business_type) as top_category
+            FROM maps_prospects
+            WHERE searched_by = $1
+        `, [req.user.id]);
+
+        const stats = analysisStats.rows[0] || {};
+
+        res.json({
+            totalAnalyses: parseInt(stats.total_analyses) || 0,
+            avgScore: stats.avg_score || 50,
+            topCategory: stats.top_category || 'General',
+            successRate: 68, // Por ahora hardcoded, calcular después
+            learningProgress: Math.min(100, parseInt(stats.total_analyses) * 2) || 0
+        });
+    } catch (error) {
         res.status(500).json({ error: error.message });
     }
 });

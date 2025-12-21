@@ -21,6 +21,7 @@ import InvoicesView from '../invoices/InvoicesView';
 import CommercialsManager from './CommercialsManager';
 import BulkActionsBar from '../shared/BulkActionsBar';
 import LeadHunterDashboard from '../hunter/LeadHunterDashboard';
+import AIBrainDashboard from '../brain/AIBrainDashboard';
 
 const LeadsDashboard = ({ activeSection }) => {
     const [leads, setLeads] = useState([]);
@@ -592,6 +593,10 @@ const LeadsDashboard = ({ activeSection }) => {
 
     if (activeSection === 'hunter') {
         return <LeadHunterDashboard />;
+    }
+
+    if (activeSection === 'brain') {
+        return <AIBrainDashboard />;
     }
 
     return (

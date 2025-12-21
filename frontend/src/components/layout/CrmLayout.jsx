@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Home, Users, MessageSquare, BarChart3, Settings, FileText, Mail, LogOut, User, Moon, Sun, ChevronDown, BookOpen, HeadphonesIcon, Menu, X, UserPlus, CalendarPlus, Search } from 'lucide-react';
+import { Home, Users, MessageSquare, BarChart3, Settings, FileText, Mail, LogOut, User, Moon, Sun, ChevronDown, BookOpen, HeadphonesIcon, Menu, X, UserPlus, CalendarPlus, Search, Brain } from 'lucide-react';
 import NotificationBell from '../notifications/NotificationBell';
 import AdminChatWidget from '../admin/chat/AdminChatWidget';
 import ProfileModal from '../profile/ProfileModal';
@@ -103,6 +103,13 @@ const CrmLayout = ({ children, onLogout, activeSection = 'leads', onSectionChang
             label: 'Lead Hunter',
             icon: <Search className="w-5 h-5" />,
             description: 'Prospección con IA'
+        },
+        {
+            id: 'brain',
+            label: 'Cerebro IA',
+            icon: <Brain className="w-5 h-5" />,
+            description: 'Estado e inteligencia',
+            roles: ['admin']
         },
         {
             id: 'training',

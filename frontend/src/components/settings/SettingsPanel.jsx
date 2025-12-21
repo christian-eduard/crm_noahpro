@@ -1,6 +1,6 @@
 import { API_URL, SOCKET_URL } from '../../config';
 import React, { useState, useEffect } from 'react';
-import { Settings, BarChart3, Bot, Plug, Mail, Bell, Save, MessageSquare, Radio, Key, Server, Globe, FileText, User, Building2, Phone, MapPin, CreditCard, Search, Store } from 'lucide-react';
+import { Settings, BarChart3, Bot, Plug, Mail, Bell, Save, MessageSquare, Radio, Key, Server, Globe, FileText, User, Building2, Phone, MapPin, CreditCard, Search, Store, Brain } from 'lucide-react';
 import Button from '../shared/Button';
 import Input from '../shared/Input';
 import TemplatesManager from '../admin/settings/TemplatesManager';
@@ -15,6 +15,7 @@ import WebhooksSettings from './WebhooksSettings';
 import LeadHunterSettings from './LeadHunterSettings';
 import BusinessTypesSettings from './BusinessTypesSettings';
 import HunterStrategiesSettings from './HunterStrategiesSettings';
+import AIBrainDashboard from '../brain/AIBrainDashboard';
 
 const SettingsPanel = () => {
     const [activeTab, setActiveTab] = useState('general');
@@ -29,6 +30,7 @@ const SettingsPanel = () => {
         { id: 'lead_hunter', label: 'Lead Hunter', icon: <Search className="w-5 h-5" /> },
         { id: 'business_types', label: 'Tipos de Negocio', icon: <Store className="w-5 h-5" /> },
         { id: 'strategy_ia', label: 'Estrategia IA', icon: <Bot className="w-5 h-5" /> },
+        { id: 'brain', label: 'Cerebro IA', icon: <Brain className="w-5 h-5" /> },
         { id: 'invoices', label: 'Facturación', icon: <FileText className="w-5 h-5" /> },
         { id: 'integrations', label: 'Integraciones', icon: <Plug className="w-5 h-5" /> },
         { id: 'email_templates', label: 'Plantillas Email', icon: <Mail className="w-5 h-5" /> },
@@ -210,6 +212,7 @@ const SettingsPanel = () => {
                         {activeTab === 'lead_hunter' && <LeadHunterSettings />}
                         {activeTab === 'business_types' && <BusinessTypesSettings />}
                         {activeTab === 'strategy_ia' && <HunterStrategiesSettings />}
+                        {activeTab === 'brain' && <AIBrainDashboard />}
                         {activeTab === 'invoices' && <InvoiceSettings />}
                         {activeTab === 'integrations' && <GoogleCalendarSettings />}
                         {activeTab === 'email_templates' && <HTMLEmailTemplatesEditor />}
