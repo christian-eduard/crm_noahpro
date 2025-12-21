@@ -5,8 +5,8 @@
  */
 
 const db = require('../../config/database');
-const DirectGeminiProvider = require('./DirectGeminiProvider');
-const StormsboysGatewayProvider = require('./StormsboysGatewayProvider');
+const DirectGeminiProvider = require('./providers/DirectGeminiProvider');
+const StormsboysGatewayProvider = require('./providers/StormsboysGatewayProvider');
 
 // Cache the provider instance to avoid repeated DB lookups
 let cachedProvider = null;

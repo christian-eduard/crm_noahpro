@@ -1,47 +1,10 @@
-2025-12-21T03:15:01.129Z [INFO]: 🚀 Leads Backend running on port 3002
-2025-12-21T03:15:01.139Z [INFO]: 📊 Database: Not configured
-2025-12-21T03:15:01.141Z [INFO]: 💬 Socket.io initialized
+2025-12-21T03:21:24.429Z [INFO]: 🚀 Leads Backend running on port 3002
+2025-12-21T03:21:24.432Z [INFO]: 📊 Database: Not configured
+2025-12-21T03:21:24.432Z [INFO]: 💬 Socket.io initialized
 [AutomationEngine] Loaded 0 active rules
 [WebhookService] Loaded 0 active webhooks
 [EmailAutomation] Cron job scheduled (every 5 minutes)
-2025-12-21T03:15:12.386Z [INFO]: HEAD /api/hunter/access 
-❌ No token provided for: /access
-2025-12-21T03:15:12.403Z [INFO]: HEAD /api/business-types 
-❌ No token provided for: /
-2025-12-21T03:15:38.660Z [INFO]: GET /api/settings/public 
-Fetching public settings...
-2025-12-21T03:15:38.666Z [INFO]: GET /api/notifications 
-2025-12-21T03:15:38.668Z [INFO]: GET /api/notifications/unread-count 
-2025-12-21T03:15:38.668Z [INFO]: GET /api/chat/conversations 
-2025-12-21T03:15:38.669Z [INFO]: GET /api/leads 
-2025-12-21T03:15:38.672Z [INFO]: GET /api/settings/lead-statuses 
-2025-12-21T03:15:38.674Z [INFO]: GET /api/tasks 
-Query result: [
-  {
-    demo_url: 'https://noahpro.es/crm/login',
-    chat_title: 'Soporte NoahPro',
-    chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
-    chat_primary_color: '#e74f0d',
-    chat_enabled: true,
-    pusher_key: '0815d25ee2bae406d7d9',
-    pusher_cluster: 'eu',
-    pusher_app_id: '2086108'
-  }
-]
-Returning settings: {
-  demo_url: 'https://noahpro.es/crm/login',
-  chat_title: 'Soporte NoahPro',
-  chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
-  chat_primary_color: '#e74f0d',
-  chat_enabled: true,
-  pusher_key: '0815d25ee2bae406d7d9',
-  pusher_cluster: 'eu',
-  pusher_app_id: '2086108'
-}
-2025-12-21T03:15:38.682Z [INFO]: GET /api/chat/conversations 
-2025-12-21T03:15:38.683Z [INFO]: GET /api/notifications/unread-count 
-2025-12-21T03:15:38.683Z [INFO]: GET /api/notifications 
-2025-12-21T03:15:38.683Z [INFO]: GET /api/settings/public 
+2025-12-21T03:25:10.828Z [INFO]: GET /api/settings/public 
 Fetching public settings...
 Query result: [
   {
@@ -65,96 +28,73 @@ Returning settings: {
   pusher_cluster: 'eu',
   pusher_app_id: '2086108'
 }
-2025-12-21T03:15:38.687Z [INFO]: GET /api/settings/lead-statuses 
-2025-12-21T03:15:38.688Z [INFO]: GET /api/tasks 
-2025-12-21T03:15:38.690Z [INFO]: GET /api/leads 
-2025-12-21T03:15:38.696Z [INFO]: GET /api/leads 
-2025-12-21T03:15:38.696Z [INFO]: GET /api/calendar/events 
-2025-12-21T03:15:38.699Z [INFO]: GET /api/leads 
-2025-12-21T03:15:38.699Z [INFO]: GET /api/calendar/events 
-2025-12-21T03:15:38.717Z [INFO]: GET /api/activities 
-2025-12-21T03:15:38.720Z [INFO]: GET /api/activities 
-2025-12-21T03:15:39.992Z [INFO]: GET /api/clients 
-2025-12-21T03:15:39.996Z [INFO]: GET /api/clients 
-2025-12-21T03:15:42.096Z [INFO]: GET /api/hunter/access 
-2025-12-21T03:15:42.098Z [INFO]: GET /api/hunter-strategies 
-2025-12-21T03:15:42.099Z [INFO]: GET /api/hunter/stats 
-2025-12-21T03:15:42.102Z [INFO]: GET /api/business-types 
-2025-12-21T03:15:42.103Z [INFO]: GET /api/hunter/searches 
-2025-12-21T03:15:42.105Z [INFO]: GET /api/hunter/access 
-2025-12-21T03:15:42.108Z [INFO]: GET /api/hunter-strategies 
-2025-12-21T03:15:42.110Z [INFO]: GET /api/hunter/searches 
-2025-12-21T03:15:42.114Z [INFO]: GET /api/business-types 
-2025-12-21T03:15:42.129Z [INFO]: GET /api/hunter/stats 
-2025-12-21T03:15:42.165Z [INFO]: GET /api/hunter/access 
-2025-12-21T03:15:42.167Z [INFO]: GET /api/hunter/stats 
-2025-12-21T03:15:42.168Z [INFO]: GET /api/business-types 
-2025-12-21T03:15:42.168Z [INFO]: GET /api/hunter/searches 
-2025-12-21T03:15:42.169Z [INFO]: GET /api/hunter-strategies 
-2025-12-21T03:15:52.138Z [INFO]: GET /api/hunter/prospects 
-2025-12-21T03:15:53.397Z [INFO]: GET /api/hunter/prospects 
-2025-12-21T03:15:57.431Z [INFO]: POST /api/hunter/stats/reset 
-2025-12-21T03:15:57.496Z [INFO]: GET /api/hunter/access 
-2025-12-21T03:15:57.498Z [INFO]: GET /api/hunter/stats 
-2025-12-21T03:15:57.503Z [INFO]: GET /api/hunter/stats 
-2025-12-21T03:15:59.449Z [INFO]: GET /api/clients 
-2025-12-21T03:15:59.453Z [INFO]: GET /api/clients 
-2025-12-21T03:15:59.925Z [INFO]: GET /api/hunter/access 
-2025-12-21T03:15:59.928Z [INFO]: GET /api/hunter/stats 
-2025-12-21T03:15:59.930Z [INFO]: GET /api/hunter/access 
-2025-12-21T03:15:59.932Z [INFO]: GET /api/business-types 
-2025-12-21T03:15:59.933Z [INFO]: GET /api/hunter-strategies 
-2025-12-21T03:15:59.934Z [INFO]: GET /api/hunter/searches 
-2025-12-21T03:15:59.939Z [INFO]: GET /api/hunter-strategies 
-2025-12-21T03:15:59.941Z [INFO]: GET /api/business-types 
-2025-12-21T03:15:59.944Z [INFO]: GET /api/hunter/stats 
-2025-12-21T03:15:59.945Z [INFO]: GET /api/hunter/searches 
-2025-12-21T03:15:59.951Z [INFO]: GET /api/hunter/access 
-2025-12-21T03:15:59.952Z [INFO]: GET /api/business-types 
-2025-12-21T03:15:59.953Z [INFO]: GET /api/hunter/searches 
-2025-12-21T03:15:59.953Z [INFO]: GET /api/hunter-strategies 
-2025-12-21T03:15:59.957Z [INFO]: GET /api/hunter/stats 
-2025-12-21T03:16:01.079Z [INFO]: GET /api/hunter/prospects 
-2025-12-21T03:16:01.506Z [INFO]: GET /api/hunter/prospects 
-2025-12-21T03:16:06.682Z [INFO]: POST /api/hunter/estimate 
-2025-12-21T03:16:09.559Z [INFO]: POST /api/hunter/search 
+2025-12-21T03:25:11.016Z [INFO]: GET /api/chat/conversations 
+2025-12-21T03:25:11.029Z [INFO]: GET /api/notifications/unread-count 
+2025-12-21T03:25:11.042Z [INFO]: GET /api/leads 
+2025-12-21T03:25:11.058Z [INFO]: GET /api/notifications 
+2025-12-21T03:25:11.059Z [INFO]: GET /api/settings/public 
+Fetching public settings...
+2025-12-21T03:25:11.060Z [INFO]: GET /api/tasks 
+2025-12-21T03:25:11.060Z [INFO]: GET /api/settings/lead-statuses 
+2025-12-21T03:25:11.064Z [INFO]: GET /api/calendar/events 
+2025-12-21T03:25:11.086Z [INFO]: GET /api/chat/conversations 
+2025-12-21T03:25:11.089Z [INFO]: GET /api/notifications/unread-count 
+2025-12-21T03:25:11.093Z [INFO]: GET /api/calendar/events 
+Query result: [
+  {
+    demo_url: 'https://noahpro.es/crm/login',
+    chat_title: 'Soporte NoahPro',
+    chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+    chat_primary_color: '#e74f0d',
+    chat_enabled: true,
+    pusher_key: '0815d25ee2bae406d7d9',
+    pusher_cluster: 'eu',
+    pusher_app_id: '2086108'
+  }
+]
+Returning settings: {
+  demo_url: 'https://noahpro.es/crm/login',
+  chat_title: 'Soporte NoahPro',
+  chat_welcome_message: '¡Hola! ¿En qué podemos ayudarte hoy?',
+  chat_primary_color: '#e74f0d',
+  chat_enabled: true,
+  pusher_key: '0815d25ee2bae406d7d9',
+  pusher_cluster: 'eu',
+  pusher_app_id: '2086108'
+}
+2025-12-21T03:25:11.113Z [INFO]: GET /api/notifications 
+2025-12-21T03:25:11.113Z [INFO]: GET /api/settings/lead-statuses 
+2025-12-21T03:25:11.114Z [INFO]: GET /api/tasks 
+2025-12-21T03:25:11.128Z [INFO]: GET /api/leads 
+2025-12-21T03:25:11.134Z [INFO]: GET /api/activities 
+2025-12-21T03:25:11.139Z [INFO]: GET /api/leads 
+2025-12-21T03:25:11.143Z [INFO]: GET /api/activities 
+2025-12-21T03:25:11.155Z [INFO]: GET /api/leads 
+2025-12-21T03:25:12.173Z [INFO]: GET /api/business-types 
+2025-12-21T03:25:12.176Z [INFO]: GET /api/hunter/access 
+2025-12-21T03:25:12.182Z [INFO]: GET /api/hunter/stats 
+2025-12-21T03:25:12.187Z [INFO]: GET /api/hunter/access 
+2025-12-21T03:25:12.187Z [INFO]: GET /api/hunter/searches 
+2025-12-21T03:25:12.189Z [INFO]: GET /api/hunter-strategies 
+2025-12-21T03:25:12.194Z [INFO]: GET /api/business-types 
+2025-12-21T03:25:12.199Z [INFO]: GET /api/hunter/searches 
+2025-12-21T03:25:12.202Z [INFO]: GET /api/hunter-strategies 
+2025-12-21T03:25:12.255Z [INFO]: GET /api/hunter/access 
+2025-12-21T03:25:12.260Z [INFO]: GET /api/business-types 
+2025-12-21T03:25:12.261Z [INFO]: GET /api/hunter/searches 
+2025-12-21T03:25:12.263Z [INFO]: GET /api/hunter-strategies 
+2025-12-21T03:25:12.279Z [INFO]: GET /api/hunter/stats 
+2025-12-21T03:25:12.379Z [INFO]: GET /api/hunter/stats 
+2025-12-21T03:25:13.339Z [INFO]: GET /api/hunter/prospects 
+2025-12-21T03:25:19.619Z [INFO]: POST /api/hunter/estimate 
+2025-12-21T03:25:22.559Z [INFO]: POST /api/hunter/search 
 Instagram scraping error: Scraping failed: 400
 Instagram scraping error: Scraping failed: 400
-Instagram scraping error: Scraping failed: 400
-Instagram scraping error: Scraping failed: 400
-Instagram scraping error: Scraping failed: 400
-Instagram scraping error: Scraping failed: 400
-Instagram scraping error: Scraping failed: 400
-Instagram scraping error: Scraping failed: 400
-Instagram scraping error: Scraping failed: 400
-2025-12-21T03:16:17.561Z [INFO]: GET /api/hunter/access 
-2025-12-21T03:16:17.563Z [INFO]: GET /api/hunter/searches 
-2025-12-21T03:16:17.569Z [INFO]: GET /api/hunter/prospects 
-2025-12-21T03:16:21.562Z [INFO]: GET /api/hunter/prospects 
-2025-12-21T03:16:30.469Z [INFO]: GET /api/settings 
-2025-12-21T03:16:30.471Z [INFO]: GET /api/settings 
-2025-12-21T03:16:32.169Z [INFO]: GET /api/hunter/admin/users 
-2025-12-21T03:16:32.172Z [INFO]: GET /api/hunter/admin/stats 
-2025-12-21T03:16:32.175Z [INFO]: GET /api/hunter/admin/config 
-2025-12-21T03:16:32.177Z [INFO]: GET /api/hunter/admin/users 
-2025-12-21T03:16:32.181Z [INFO]: GET /api/hunter/admin/config 
-2025-12-21T03:16:32.189Z [INFO]: GET /api/hunter/admin/stats 
-2025-12-21T03:16:36.049Z [INFO]: GET /api/hunter/access 
-2025-12-21T03:16:36.050Z [INFO]: GET /api/business-types 
-2025-12-21T03:16:36.051Z [INFO]: GET /api/hunter/access 
-2025-12-21T03:16:36.052Z [INFO]: GET /api/hunter/stats 
-2025-12-21T03:16:36.053Z [INFO]: GET /api/hunter/searches 
-2025-12-21T03:16:36.054Z [INFO]: GET /api/hunter-strategies 
-2025-12-21T03:16:36.058Z [INFO]: GET /api/business-types 
-2025-12-21T03:16:36.060Z [INFO]: GET /api/hunter/searches 
-2025-12-21T03:16:36.063Z [INFO]: GET /api/hunter/stats 
-2025-12-21T03:16:36.065Z [INFO]: GET /api/hunter-strategies 
-2025-12-21T03:16:36.076Z [INFO]: GET /api/hunter/access 
-2025-12-21T03:16:36.078Z [INFO]: GET /api/hunter/stats 
-2025-12-21T03:16:36.078Z [INFO]: GET /api/business-types 
-2025-12-21T03:16:36.079Z [INFO]: GET /api/hunter/searches 
-2025-12-21T03:16:36.079Z [INFO]: GET /api/hunter-strategies 
-2025-12-21T03:17:19.740Z [INFO]: GET /api/hunter/prospects 
-2025-12-21T03:17:20.691Z [INFO]: GET /api/hunter/prospects 
-2025-12-21T03:17:21.466Z [INFO]: GET /api/hunter/prospects 
-2025-12-21T03:18:13.443Z [INFO]: GET /api/hunter/prospects 
+2025-12-21T03:25:26.204Z [INFO]: GET /api/hunter/searches 
+2025-12-21T03:25:26.220Z [INFO]: GET /api/hunter/prospects 
+2025-12-21T03:25:26.226Z [INFO]: GET /api/hunter/access 
+2025-12-21T03:25:27.159Z [INFO]: GET /api/hunter/prospects 
+2025-12-21T03:25:30.996Z [INFO]: GET /api/hunter/prospects 
+2025-12-21T03:25:31.727Z [INFO]: GET /api/hunter/prospects 
+2025-12-21T03:25:32.371Z [INFO]: GET /api/hunter/prospects 
+2025-12-21T03:25:32.898Z [INFO]: GET /api/hunter/prospects 

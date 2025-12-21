@@ -595,6 +595,17 @@ const LeadHunterDashboard = ({ onNavigateSettings }) => {
 
             if (response.ok) {
                 toast.success(`Encontrados ${data.saved?.length || 0} nuevos prospectos`);
+
+                // CRITICAL FIX: Update state immediately with results
+                if (data.saved && data.saved.length > 0) {
+                    setSavedProspects(prev => {
+                        // Merge new results with existing, avoiding duplicates by ID
+                        const newIds = new Set(data.saved.map(p => p.id));
+                        const uniqueExisting = prev.filter(p => !newIds.has(p.id));
+                        return [...data.saved, ...uniqueExisting];
+                    });
+                }
+
                 fetchSearches(); // Update groups
                 checkAccess(); // Refresh daily limits counter
 

@@ -583,7 +583,7 @@ const LeadHunterSettings = () => {
                                     <div className="flex items-center gap-3 mb-2">
                                         <div className="p-2 bg-white dark:bg-gray-800 rounded-lg shadow-sm text-indigo-600 dark:text-indigo-400">
                                             {(() => {
-                                                const Icon = type.icon || type.iconComponent || Zap;
+                                                const Icon = (typeof type.icon === 'function' ? type.icon : null) || type.iconComponent || Zap;
                                                 return <Icon className="w-5 h-5" />;
                                             })()}
                                         </div>
