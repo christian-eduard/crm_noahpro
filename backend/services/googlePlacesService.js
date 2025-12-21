@@ -30,14 +30,120 @@ class GooglePlacesService {
     }
 
     /**
+     * Generar hash único para la búsqueda (keyword + location)
+     */
+    generateCacheHash(query, location) {
+        const crypto = require('crypto');
+        const normalized = `${query.toLowerCase().trim()}-${location.toLowerCase().trim()}`;
+        return crypto.createHash('md5').update(normalized).digest('hex');
+    }
+
+    /**
+     * Verificar si existe caché válido para esta búsqueda
+     * @returns {Object|null} - Resultados cacheados o null
+     */
+    async checkCache(query, location) {
+        try {
+            const hash = this.generateCacheHash(query, location);
+            const result = await db.query(
+                `SELECT google_response_json, place_ids_found, hit_count 
+                 FROM search_cache_logs 
+                 WHERE query_hash = $1 AND expires_at > NOW()`,
+                [hash]
+            );
+
+            if (result.rows.length > 0) {
+                // Actualizar hit count
+                await db.query(
+                    `UPDATE search_cache_logs SET hit_count = hit_count + 1, last_hit_at = NOW() WHERE query_hash = $1`,
+                    [hash]
+                );
+                console.log(`[GooglePlacesService] Cache HIT para "${query}" en "${location}" (hits: ${result.rows[0].hit_count + 1})`);
+                return result.rows[0].google_response_json;
+            }
+        } catch (error) {
+            console.warn('[GooglePlacesService] Cache check failed:', error.message);
+        }
+        return null;
+    }
+
+    /**
+     * Guardar resultados en caché
+     */
+    async saveCache(query, location, results, radius = 5000) {
+        try {
+            const hash = this.generateCacheHash(query, location);
+            const placeIds = results.map(r => r.place_id).filter(Boolean);
+            const expiresAt = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000); // 30 días
+
+            await db.query(
+                `INSERT INTO search_cache_logs 
+                 (query_hash, keyword, location, radius, google_response_json, place_ids_found, results_count, expires_at, ttl_days)
+                 VALUES ($1, $2, $3, $4, $5, $6, $7, $8, 30)
+                 ON CONFLICT (query_hash) DO UPDATE SET
+                    google_response_json = $5,
+                    place_ids_found = $6,
+                    results_count = $7,
+                    expires_at = $8,
+                    updated_at = NOW()`,
+                [hash, query, location, radius, JSON.stringify(results), placeIds, results.length, expiresAt]
+            );
+            console.log(`[GooglePlacesService] Cache SAVED para "${query}" en "${location}" (${results.length} results)`);
+        } catch (error) {
+            console.warn('[GooglePlacesService] Cache save failed:', error.message);
+        }
+    }
+
+    /**
+     * Obtener place_ids ya existentes en DB para evitar re-análisis
+     */
+    async getExistingPlaceIds(location) {
+        try {
+            const result = await db.query(
+                `SELECT google_place_id FROM maps_prospects WHERE address ILIKE $1 AND google_place_id IS NOT NULL`,
+                [`%${location}%`]
+            );
+            return result.rows.map(r => r.google_place_id);
+        } catch (error) {
+            return [];
+        }
+    }
+
+    /**
+     * Track API cost
+     */
+    async trackApiCost(operation, wasCached = false) {
+        try {
+            await db.query(
+                `INSERT INTO api_cost_tracking (api_name, operation, was_cached, estimated_cost)
+                 VALUES ('google_places', $1, $2, $3)`,
+                [operation, wasCached, wasCached ? 0 : 0.032] // ~$0.032 por textsearch
+            );
+        } catch (error) {
+            // Ignore tracking errors
+        }
+    }
+
+    /**
      * Buscar negocios por texto y ubicación
      * @param {string} query - Término de búsqueda (ej: "restaurantes")
      * @param {string} location - Ubicación (ej: "Madrid, España")
      * @param {number} radius - Radio en metros (default: 5000)
      * @param {number} maxResults - Cantidad máxima de resultados deseados (20, 40, 60)
+     * @param {boolean} useCache - Si usar caché (default: true)
      * @returns {Array} Lista de lugares encontrados
      */
-    async searchPlaces(query, location, radius = 5000, maxResults = 20) {
+    async searchPlaces(query, location, radius = 5000, maxResults = 20, useCache = true) {
+        // SMART CACHE: Verificar caché primero
+        if (useCache) {
+            const cachedResults = await this.checkCache(query, location);
+            if (cachedResults) {
+                await this.trackApiCost('search', true);
+                return Array.isArray(cachedResults) ? cachedResults.slice(0, maxResults) : [];
+            }
+        }
+
+        await this.trackApiCost('search', false);
         const apiKey = await this.getApiKey();
         let lat, lng;
 
@@ -103,7 +209,14 @@ class GooglePlacesService {
 
         } while (nextPageToken && fetchedPages < pagesToFetch && allResults.length < maxResults);
 
-        return allResults.slice(0, maxResults);
+        const finalResults = allResults.slice(0, maxResults);
+
+        // SMART CACHE: Guardar resultados para futuras búsquedas
+        if (useCache && finalResults.length > 0) {
+            await this.saveCache(query, location, finalResults, radius);
+        }
+
+        return finalResults;
     }
 
     /**
