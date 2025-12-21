@@ -1,67 +1,57 @@
 {
+    "app_name": "NoahPro",
+    "app_subtitle": "CRM Pro",
     "sidebar": {
-        "dashboard": "Dashboard",
+        "home": "Dashboard",
+        "home_desc": "Main panel",
         "leads": "Leads",
-        "comerciales": "Comercials",
-        "recruitment": "Recruitment",
+        "leads_desc": "Lead management",
+        "clients": "Clients",
+        "clients_desc": "Client portfolio",
+        "hunter": "Lead Hunter",
+        "hunter_desc": "AI prospecting",
+        "recruitment": "Talent Hunter",
+        "recruitment_desc": "AI recruitment",
+        "brain": "AI Brain",
+        "brain_desc": "Status & intelligence",
+        "dojo": "Sales Dojo",
+        "dojo_desc": "AI training",
+        "training": "Training",
+        "training_desc": "Educational material",
+        "support": "Support",
+        "support_desc": "Help & tickets",
+        "proposals": "Proposals",
+        "proposals_desc": "Proposal management",
+        "invoices": "Invoices",
+        "invoices_desc": "Billing & payments",
+        "chat": "Chat",
+        "chat_desc": "Conversations",
+        "analytics": "Analytics",
+        "analytics_desc": "Metrics & reports",
+        "commercials": "Sales Reps",
+        "commercials_desc": "Team management",
         "settings": "Settings",
-        "reports": "Reports",
-        "ai_tools": "AI Tools",
-        "logout": "Logout"
+        "settings_desc": "System settings"
     },
-    "dashboard": {
-        "welcome": "Welcome back",
-        "overview": "Overview",
-        "quick_actions": "Quick Actions",
-        "recent_activity": "Recent Activity",
-        "stats": {
-            "total_leads": "Total Leads",
-            "active_comerciales": "Active Sales Reps",
-            "conversion_rate": "Conversion Rate",
-            "revenue": "Revenue"
-        }
+    "topbar": {
+        "search_placeholder": "Search leads, proposals, contacts...",
+        "help": "Help",
+        "theme_light": "Dark Mode",
+        "theme_dark": "Light Mode",
+        "new_action": "+ New"
     },
-    "leads": {
-        "title": "Lead Management",
+    "quick_actions": {
         "new_lead": "New Lead",
-        "import": "Import",
-        "export": "Export",
-        "filters": "Filters",
-        "status": {
-            "new": "New",
-            "contacted": "Contacted",
-            "qualified": "Qualified",
-            "proposal": "Proposal",
-            "won": "Won",
-            "lost": "Lost"
-        },
-        "columns": {
-            "name": "Name",
-            "company": "Company",
-            "email": "Email",
-            "phone": "Phone",
-            "status": "Status",
-            "assigned_to": "Assigned to",
-            "created": "Created",
-            "actions": "Actions"
-        }
+        "new_lead_desc": "Create manual contact",
+        "new_proposal": "New Proposal",
+        "new_proposal_desc": "Create commercial offer",
+        "new_meeting": "New Meeting",
+        "new_meeting_desc": "Schedule video call"
     },
-    "recruitment": {
-        "title": "Recruitment",
-        "candidates": "Candidates",
-        "interviews": "Interviews",
-        "templates": "Templates",
-        "new_candidate": "New Candidate",
-        "schedule_interview": "Schedule Interview"
-    },
-    "settings": {
-        "title": "Settings",
-        "general": "General",
-        "users": "Users",
-        "integrations": "Integrations",
-        "billing": "Billing",
-        "notifications": "Notifications",
-        "security": "Security"
+    "user_menu": {
+        "view_profile": "View Profile",
+        "logout": "Log Out",
+        "no_email": "No email"
     },
     "common": {
         "save": "Save",

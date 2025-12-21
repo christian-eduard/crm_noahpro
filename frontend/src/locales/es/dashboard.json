@@ -1,67 +1,57 @@
 {
+    "app_name": "NoahPro",
+    "app_subtitle": "CRM Pro",
     "sidebar": {
-        "dashboard": "Dashboard",
+        "home": "Dashboard",
+        "home_desc": "Panel principal",
         "leads": "Leads",
-        "comerciales": "Comerciales",
-        "recruitment": "Reclutamiento",
+        "leads_desc": "Gestión de leads",
+        "clients": "Clientes",
+        "clients_desc": "Cartera de clientes",
+        "hunter": "Lead Hunter",
+        "hunter_desc": "Prospección con IA",
+        "recruitment": "Talent Hunter",
+        "recruitment_desc": "Reclutamiento IA",
+        "brain": "Cerebro IA",
+        "brain_desc": "Estado e inteligencia",
+        "dojo": "Sales Dojo",
+        "dojo_desc": "Entrenamiento IA",
+        "training": "Formación",
+        "training_desc": "Material educativo",
+        "support": "Soporte",
+        "support_desc": "Ayuda y tickets",
+        "proposals": "Propuestas",
+        "proposals_desc": "Gestión de propuestas",
+        "invoices": "Facturas",
+        "invoices_desc": "Facturación y pagos",
+        "chat": "Chat",
+        "chat_desc": "Conversaciones",
+        "analytics": "Analytics",
+        "analytics_desc": "Métricas y reportes",
+        "commercials": "Comerciales",
+        "commercials_desc": "Gestión de equipo",
         "settings": "Configuración",
-        "reports": "Informes",
-        "ai_tools": "Herramientas IA",
-        "logout": "Cerrar Sesión"
+        "settings_desc": "Ajustes del sistema"
     },
-    "dashboard": {
-        "welcome": "Bienvenido de vuelta",
-        "overview": "Vista General",
-        "quick_actions": "Acciones Rápidas",
-        "recent_activity": "Actividad Reciente",
-        "stats": {
-            "total_leads": "Total Leads",
-            "active_comerciales": "Comerciales Activos",
-            "conversion_rate": "Tasa Conversión",
-            "revenue": "Ingresos"
-        }
+    "topbar": {
+        "search_placeholder": "Buscar leads, propuestas, contactos...",
+        "help": "Ayuda",
+        "theme_light": "Modo Oscuro",
+        "theme_dark": "Modo Claro",
+        "new_action": "+ Nuevo"
     },
-    "leads": {
-        "title": "Gestión de Leads",
+    "quick_actions": {
         "new_lead": "Nuevo Lead",
-        "import": "Importar",
-        "export": "Exportar",
-        "filters": "Filtros",
-        "status": {
-            "new": "Nuevo",
-            "contacted": "Contactado",
-            "qualified": "Calificado",
-            "proposal": "Propuesta",
-            "won": "Ganado",
-            "lost": "Perdido"
-        },
-        "columns": {
-            "name": "Nombre",
-            "company": "Empresa",
-            "email": "Email",
-            "phone": "Teléfono",
-            "status": "Estado",
-            "assigned_to": "Asignado a",
-            "created": "Creado",
-            "actions": "Acciones"
-        }
+        "new_lead_desc": "Crear contacto manual",
+        "new_proposal": "Nueva Propuesta",
+        "new_proposal_desc": "Crear oferta comercial",
+        "new_meeting": "Nueva Reunión",
+        "new_meeting_desc": "Agendar videollamada"
     },
-    "recruitment": {
-        "title": "Reclutamiento",
-        "candidates": "Candidatos",
-        "interviews": "Entrevistas",
-        "templates": "Plantillas",
-        "new_candidate": "Nuevo Candidato",
-        "schedule_interview": "Programar Entrevista"
-    },
-    "settings": {
-        "title": "Configuración",
-        "general": "General",
-        "users": "Usuarios",
-        "integrations": "Integraciones",
-        "billing": "Facturación",
-        "notifications": "Notificaciones",
-        "security": "Seguridad"
+    "user_menu": {
+        "view_profile": "Ver Perfil",
+        "logout": "Cerrar Sesión",
+        "no_email": "Sin email"
     },
     "common": {
         "save": "Guardar",

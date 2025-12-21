@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Home, Users, MessageSquare, BarChart3, Settings, FileText, Mail, LogOut, User, Moon, Sun, ChevronDown, BookOpen, HeadphonesIcon, Menu, X, UserPlus, CalendarPlus, Search, Brain, Swords } from 'lucide-react';
 import NotificationBell from '../notifications/NotificationBell';
 import AdminChatWidget from '../admin/chat/AdminChatWidget';
@@ -11,6 +12,7 @@ import { usePusher } from '../../contexts/PusherContext';
 import { useToast } from '../../contexts/ToastContext';
 
 const CrmLayout = ({ children, onLogout, activeSection = 'leads', onSectionChange, onQuickAction }) => {
+    const { t } = useTranslation('dashboard');
     const [theme, setTheme] = useState('light');
     const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
     const [showQuickActions, setShowQuickActions] = useState(false);
@@ -84,103 +86,102 @@ const CrmLayout = ({ children, onLogout, activeSection = 'leads', onSectionChang
     const menuItems = [
         {
             id: 'home',
-            label: 'Dashboard',
+            label: t('sidebar.home'),
             icon: <Home className="w-5 h-5" />,
-            description: 'Panel principal'
+            description: t('sidebar.home_desc')
         },
         {
             id: 'leads',
-            label: 'Leads',
+            label: t('sidebar.leads'),
             icon: <Users className="w-5 h-5" />,
-            description: 'Gestión de leads'
+            description: t('sidebar.leads_desc')
         },
         {
             id: 'clients',
-            label: 'Clientes',
+            label: t('sidebar.clients'),
             icon: <Users className="w-5 h-5" />,
-            description: 'Cartera de clientes'
+            description: t('sidebar.clients_desc')
         },
         {
             id: 'hunter',
-            label: 'Lead Hunter',
+            label: t('sidebar.hunter'),
             icon: <Search className="w-5 h-5" />,
-            description: 'Prospección con IA'
+            description: t('sidebar.hunter_desc')
         },
         {
             id: 'recruitment',
-            label: 'Talent Hunter',
+            label: t('sidebar.recruitment'),
             icon: <UserPlus className="w-5 h-5" />,
-            description: 'Reclutamiento IA',
+            description: t('sidebar.recruitment_desc'),
             roles: ['admin']
         },
         {
             id: 'brain',
-            label: 'Cerebro IA',
+            label: t('sidebar.brain'),
             icon: <Brain className="w-5 h-5" />,
-            description: 'Estado e inteligencia',
+            description: t('sidebar.brain_desc'),
             roles: ['admin']
         },
         {
             id: 'dojo',
-            label: 'Sales Dojo',
+            label: t('sidebar.dojo'),
             icon: <Swords className="w-5 h-5" />,
-            description: 'Entrenamiento IA',
-            // roles: ['admin', 'commercial'] // Disponible para todos
+            description: t('sidebar.dojo_desc')
         },
         {
             id: 'training',
-            label: 'Formación',
+            label: t('sidebar.training'),
             icon: <BookOpen className="w-5 h-5" />,
-            description: 'Material educativo',
+            description: t('sidebar.training_desc'),
             roles: ['commercial']
         },
         {
             id: 'support',
-            label: 'Soporte',
+            label: t('sidebar.support'),
             icon: <HeadphonesIcon className="w-5 h-5" />,
-            description: 'Ayuda y tickets',
+            description: t('sidebar.support_desc'),
             roles: ['commercial']
         },
         {
             id: 'proposals',
-            label: 'Propuestas',
+            label: t('sidebar.proposals'),
             icon: <FileText className="w-5 h-5" />,
-            description: 'Gestión de propuestas',
+            description: t('sidebar.proposals_desc'),
             roles: ['admin']
         },
         {
             id: 'invoices',
-            label: 'Facturas',
+            label: t('sidebar.invoices'),
             icon: <FileText className="w-5 h-5" />,
-            description: 'Facturación y pagos',
+            description: t('sidebar.invoices_desc'),
             roles: ['admin']
         },
         {
             id: 'chat',
-            label: 'Chat',
+            label: t('sidebar.chat'),
             icon: <MessageSquare className="w-5 h-5" />,
-            description: 'Conversaciones',
+            description: t('sidebar.chat_desc'),
             roles: ['admin']
         },
         {
             id: 'analytics',
-            label: 'Analytics',
+            label: t('sidebar.analytics'),
             icon: <BarChart3 className="w-5 h-5" />,
-            description: 'Métricas y reportes',
+            description: t('sidebar.analytics_desc'),
             roles: ['admin']
         },
         {
             id: 'commercials',
-            label: 'Comerciales',
+            label: t('sidebar.commercials'),
             icon: <Users className="w-5 h-5" />,
-            description: 'Gestión de equipo',
+            description: t('sidebar.commercials_desc'),
             roles: ['admin']
         },
         {
             id: 'settings',
-            label: 'Configuración',
+            label: t('sidebar.settings'),
             icon: <Settings className="w-5 h-5" />,
-            description: 'Ajustes del sistema',
+            description: t('sidebar.settings_desc'),
             roles: ['admin']
         }
     ];
@@ -208,8 +209,8 @@ const CrmLayout = ({ children, onLogout, activeSection = 'leads', onSectionChang
                                 <span className="text-white font-bold text-lg">N</span>
                             </div>
                             <div>
-                                <h1 className="text-sm font-bold text-gray-900 dark:text-white">NoahPro</h1>
-                                <p className="text-xs text-gray-500 dark:text-gray-400">CRM Pro</p>
+                                <h1 className="text-sm font-bold text-gray-900 dark:text-white">{t('app_name')}</h1>
+                                <p className="text-xs text-gray-500 dark:text-gray-400">{t('app_subtitle')}</p>
                             </div>
                         </div>
                     )}
@@ -267,8 +268,8 @@ const CrmLayout = ({ children, onLogout, activeSection = 'leads', onSectionChang
                             <span className="text-white font-bold text-lg">N</span>
                         </div>
                         <div>
-                            <h1 className="text-sm font-bold text-gray-900 dark:text-white">NoahPro</h1>
-                            <p className="text-xs text-gray-500 dark:text-gray-400">CRM Pro</p>
+                            <h1 className="text-sm font-bold text-gray-900 dark:text-white">{t('app_name')}</h1>
+                            <p className="text-xs text-gray-500 dark:text-gray-400">{t('app_subtitle')}</p>
                         </div>
                     </div>
                     <button
@@ -323,7 +324,7 @@ const CrmLayout = ({ children, onLogout, activeSection = 'leads', onSectionChang
                             <div className="relative">
                                 <input
                                     type="text"
-                                    placeholder="Buscar leads, propuestas, contactos..."
+                                    placeholder={t('topbar.search_placeholder')}
                                     className="w-full pl-10 pr-4 py-2 bg-gray-100 dark:bg-gray-700 border-0 rounded-xl text-sm focus:ring-2 focus:ring-orange-500 dark:text-white placeholder-gray-500 transition-all"
                                 />
                                 <svg className="absolute left-3 top-2.5 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -335,7 +336,7 @@ const CrmLayout = ({ children, onLogout, activeSection = 'leads', onSectionChang
                         {/* Right Actions */}
                         <div className="flex items-center space-x-4 ml-6">
                             {/* Help Button */}
-                            <button className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors" title="Ayuda">
+                            <button className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors" title={t('topbar.help')}>
                                 <svg className="w-5 h-5 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
@@ -347,7 +348,7 @@ const CrmLayout = ({ children, onLogout, activeSection = 'leads', onSectionChang
                             <button
                                 onClick={toggleTheme}
                                 className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors text-gray-600 dark:text-gray-300"
-                                title={theme === 'light' ? 'Modo Oscuro' : 'Modo Claro'}
+                                title={theme === 'light' ? t('topbar.theme_light') : t('topbar.theme_dark')}
                             >
                                 {theme === 'light' ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
                             </button>
@@ -359,7 +360,7 @@ const CrmLayout = ({ children, onLogout, activeSection = 'leads', onSectionChang
                                         onClick={() => setShowQuickActions(!showQuickActions)}
                                         className="px-4 py-2 bg-gradient-to-r from-orange-500 to-red-600 text-white rounded-xl hover:shadow-lg hover:shadow-orange-500/30 transition-all font-medium text-sm flex items-center space-x-1"
                                     >
-                                        <span>+ Nuevo</span>
+                                        <span>{t('topbar.new_action')}</span>
                                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                                         </svg>
@@ -384,8 +385,8 @@ const CrmLayout = ({ children, onLogout, activeSection = 'leads', onSectionChang
                                                             <UserPlus className="w-5 h-5 text-orange-600 dark:text-orange-400" />
                                                         </div>
                                                         <div>
-                                                            <p className="font-medium text-gray-900 dark:text-white">Nuevo Lead</p>
-                                                            <p className="text-xs text-gray-500 dark:text-gray-400">Crear contacto manual</p>
+                                                            <p className="font-medium text-gray-900 dark:text-white">{t('quick_actions.new_lead')}</p>
+                                                            <p className="text-xs text-gray-500 dark:text-gray-400">{t('quick_actions.new_lead_desc')}</p>
                                                         </div>
                                                     </button>
                                                     <button
@@ -399,8 +400,8 @@ const CrmLayout = ({ children, onLogout, activeSection = 'leads', onSectionChang
                                                             <FileText className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                                                         </div>
                                                         <div>
-                                                            <p className="font-medium text-gray-900 dark:text-white">Nueva Propuesta</p>
-                                                            <p className="text-xs text-gray-500 dark:text-gray-400">Crear oferta comercial</p>
+                                                            <p className="font-medium text-gray-900 dark:text-white">{t('quick_actions.new_proposal')}</p>
+                                                            <p className="text-xs text-gray-500 dark:text-gray-400">{t('quick_actions.new_proposal_desc')}</p>
                                                         </div>
                                                     </button>
                                                     <button
@@ -414,8 +415,8 @@ const CrmLayout = ({ children, onLogout, activeSection = 'leads', onSectionChang
                                                             <CalendarPlus className="w-5 h-5 text-green-600 dark:text-green-400" />
                                                         </div>
                                                         <div>
-                                                            <p className="font-medium text-gray-900 dark:text-white">Nueva Reunión</p>
-                                                            <p className="text-xs text-gray-500 dark:text-gray-400">Agendar videollamada</p>
+                                                            <p className="font-medium text-gray-900 dark:text-white">{t('quick_actions.new_meeting')}</p>
+                                                            <p className="text-xs text-gray-500 dark:text-gray-400">{t('quick_actions.new_meeting_desc')}</p>
                                                         </div>
                                                     </button>
                                                 </div>
@@ -440,7 +441,7 @@ const CrmLayout = ({ children, onLogout, activeSection = 'leads', onSectionChang
                                     )}
                                     <div className="hidden md:block text-left">
                                         <p className="text-sm font-medium text-gray-900 dark:text-white leading-none">{user.full_name || user.username || 'Usuario'}</p>
-                                        <p className="text-xs text-gray-500 dark:text-gray-400">{user.email || 'Sin email'}</p>
+                                        <p className="text-xs text-gray-500 dark:text-gray-400">{user.email || t('user_menu.no_email')}</p>
                                     </div>
                                     <ChevronDown className={`w-4 h-4 text-gray-500 transition-transform ${showUserMenu ? 'rotate-180' : ''}`} />
                                 </button>
@@ -456,7 +457,7 @@ const CrmLayout = ({ children, onLogout, activeSection = 'leads', onSectionChang
                                                 className="w-full text-left px-4 py-2 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors flex items-center space-x-2 text-gray-700 dark:text-gray-300"
                                             >
                                                 <User className="w-4 h-4" />
-                                                <span>Ver Perfil</span>
+                                                <span>{t('user_menu.view_profile')}</span>
                                             </button>
                                             <div className="border-t border-gray-100 dark:border-gray-700 my-1"></div>
                                             <button
@@ -467,7 +468,7 @@ const CrmLayout = ({ children, onLogout, activeSection = 'leads', onSectionChang
                                                 className="w-full text-left px-4 py-2 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors flex items-center space-x-2 text-red-600 dark:text-red-400"
                                             >
                                                 <LogOut className="w-4 h-4" />
-                                                <span>Cerrar Sesión</span>
+                                                <span>{t('user_menu.logout')}</span>
                                             </button>
                                         </div>
                                     </div>
