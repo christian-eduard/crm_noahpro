@@ -22,7 +22,15 @@ import {
     Award,
     Clock,
     CheckCircle,
-    AlertTriangle
+    AlertTriangle,
+    Edit3,
+    Save,
+    Plus,
+    Trash2,
+    Settings,
+    ToggleLeft,
+    ToggleRight,
+    FileText
 } from 'lucide-react';
 import { useToast } from '../../contexts/ToastContext';
 
@@ -31,13 +39,86 @@ const AIBrainDashboard = () => {
     const [stats, setStats] = useState(null);
     const [recentAnalyses, setRecentAnalyses] = useState([]);
     const [knowledgeStats, setKnowledgeStats] = useState(null);
+
+    // Prompt Editor States
+    const [prompts, setPrompts] = useState([]);
+    const [activePrompt, setActivePrompt] = useState(null);
+    const [editingPrompt, setEditingPrompt] = useState(null);
+    const [promptText, setPromptText] = useState('');
+    const [savingPrompt, setSavingPrompt] = useState(false);
+    const [showPromptEditor, setShowPromptEditor] = useState(false);
+
     const toast = useToast();
 
     const token = localStorage.getItem('crm_token') || localStorage.getItem('token');
 
     useEffect(() => {
         loadDashboardData();
+        loadPrompts();
     }, []);
+
+    // Load system prompts
+    const loadPrompts = async () => {
+        try {
+            const res = await fetch(`${API_URL}/brain/prompts?category=hunter`, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            if (res.ok) {
+                const data = await res.json();
+                setPrompts(data);
+                const active = data.find(p => p.is_active);
+                if (active) {
+                    setActivePrompt(active);
+                    setPromptText(active.prompt_text);
+                }
+            }
+        } catch (error) {
+            console.error('Error loading prompts:', error);
+        }
+    };
+
+    // Save prompt changes
+    const savePrompt = async () => {
+        if (!activePrompt) return;
+        setSavingPrompt(true);
+        try {
+            const res = await fetch(`${API_URL}/brain/prompts/${activePrompt.id}`, {
+                method: 'PUT',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ prompt_text: promptText })
+            });
+            if (res.ok) {
+                toast.success('Prompt guardado correctamente');
+                loadPrompts();
+            } else {
+                toast.error('Error al guardar el prompt');
+            }
+        } catch (error) {
+            toast.error('Error de conexión');
+        } finally {
+            setSavingPrompt(false);
+        }
+    };
+
+    // Toggle prompt active status
+    const togglePromptActive = async (promptId) => {
+        try {
+            const res = await fetch(`${API_URL}/brain/prompts/${promptId}/activate`, {
+                method: 'PUT',
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            if (res.ok) {
+                toast.success('Prompt activado');
+                loadPrompts();
+            }
+        } catch (error) {
+            toast.error('Error al activar prompt');
+        }
+    };
+
 
     const loadDashboardData = async () => {
         setLoading(true);
@@ -295,8 +376,8 @@ const AIBrainDashboard = () => {
                                 </div>
                                 <div className="flex items-center gap-3">
                                     <span className={`px-3 py-1 rounded-full text-sm font-medium ${(analysis.opportunity_score || 70) >= 70
-                                            ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400'
-                                            : 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400'
+                                        ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400'
+                                        : 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400'
                                         }`}>
                                         {analysis.opportunity_score || 70}%
                                     </span>
@@ -312,6 +393,105 @@ const AIBrainDashboard = () => {
                         </div>
                     )}
                 </div>
+            </div>
+
+            {/* Prompt Editor Section - CEREBRO ABIERTO */}
+            <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700">
+                <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-3">
+                        <Settings className="w-6 h-6 text-purple-500" />
+                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                            Configuración del Cerebro
+                        </h3>
+                    </div>
+                    <button
+                        onClick={() => setShowPromptEditor(!showPromptEditor)}
+                        className="text-sm text-purple-600 hover:text-purple-700 font-medium flex items-center gap-1"
+                    >
+                        {showPromptEditor ? 'Ocultar' : 'Editar Prompt'} <Edit3 className="w-4 h-4" />
+                    </button>
+                </div>
+
+                {/* Prompt List */}
+                <div className="space-y-2 mb-4">
+                    {prompts.map(prompt => (
+                        <div
+                            key={prompt.id}
+                            className={`flex items-center justify-between p-3 rounded-xl transition-all ${prompt.is_active
+                                    ? 'bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-700'
+                                    : 'bg-gray-50 dark:bg-gray-700/50 border border-transparent'
+                                }`}
+                        >
+                            <div className="flex items-center gap-3">
+                                <FileText className={`w-5 h-5 ${prompt.is_active ? 'text-purple-600' : 'text-gray-400'}`} />
+                                <div>
+                                    <p className="font-medium text-gray-900 dark:text-white">{prompt.name}</p>
+                                    <p className="text-xs text-gray-500 dark:text-gray-400">
+                                        v{prompt.version} · {new Date(prompt.updated_at).toLocaleDateString()}
+                                    </p>
+                                </div>
+                            </div>
+                            <button
+                                onClick={() => togglePromptActive(prompt.id)}
+                                className="flex items-center gap-2"
+                            >
+                                {prompt.is_active ? (
+                                    <ToggleRight className="w-8 h-8 text-purple-600" />
+                                ) : (
+                                    <ToggleLeft className="w-8 h-8 text-gray-400 hover:text-purple-500" />
+                                )}
+                            </button>
+                        </div>
+                    ))}
+                    {prompts.length === 0 && (
+                        <p className="text-center text-gray-500 py-4">No hay prompts configurados</p>
+                    )}
+                </div>
+
+                {/* Prompt Editor Textarea */}
+                {showPromptEditor && activePrompt && (
+                    <div className="space-y-4 pt-4 border-t border-gray-200 dark:border-gray-600">
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                Instrucciones para la IA ({activePrompt.name})
+                            </label>
+                            <textarea
+                                value={promptText}
+                                onChange={(e) => setPromptText(e.target.value)}
+                                className="w-full h-64 p-4 border border-gray-300 dark:border-gray-600 rounded-xl 
+                                           bg-white dark:bg-gray-700 text-gray-900 dark:text-white
+                                           focus:ring-2 focus:ring-purple-500 focus:border-transparent
+                                           font-mono text-sm resize-y"
+                                placeholder="Escribe las instrucciones que le darás a la IA para analizar prospectos..."
+                            />
+                            <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
+                                Este prompt se usará para todos los análisis de Lead Hunter.
+                                Puedes personalizarlo para priorizar ciertos tipos de negocio o servicios.
+                            </p>
+                        </div>
+                        <div className="flex justify-end gap-3">
+                            <button
+                                onClick={() => setPromptText(activePrompt.prompt_text)}
+                                className="px-4 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+                            >
+                                Descartar cambios
+                            </button>
+                            <button
+                                onClick={savePrompt}
+                                disabled={savingPrompt}
+                                className="flex items-center gap-2 px-6 py-2 bg-purple-600 hover:bg-purple-700 
+                                           text-white rounded-lg transition-colors disabled:opacity-50"
+                            >
+                                {savingPrompt ? (
+                                    <RefreshCw className="w-4 h-4 animate-spin" />
+                                ) : (
+                                    <Save className="w-4 h-4" />
+                                )}
+                                Guardar Prompt
+                            </button>
+                        </div>
+                    </div>
+                )}
             </div>
 
             {/* Quick Actions */}
