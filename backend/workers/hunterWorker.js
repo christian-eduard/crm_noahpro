@@ -60,7 +60,7 @@ const processAnalysisJob = async (job) => {
     console.log(`[HunterWorker] Analyzing prospect ${prospectId}...`);
 
     try {
-        const aiService = await AIServiceFactory.createService(userId);
+        const aiService = await AIServiceFactory.getProvider();
         const prompt = await buildAnalysisPrompt(businessData); // Now async, reads from DB
         const analysis = await aiService.generateJSON(prompt);
         await CRMService.updateProspectAnalysis(prospectId, analysis);
@@ -84,7 +84,7 @@ const processDemoJob = async (job) => {
     console.log(`[HunterWorker] Generating demo for ${prospectId}...`);
 
     try {
-        const aiService = await AIServiceFactory.createService(userId);
+        const aiService = await AIServiceFactory.getProvider();
         const prompt = prompts.GENERATE_LANDING(businessData, demoType);
         const htmlContent = await aiService.generateText(prompt);
         await CRMService.saveProspectDemo(prospectId, demoType, htmlContent);
