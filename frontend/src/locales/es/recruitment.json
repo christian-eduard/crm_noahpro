@@ -1,0 +1,49 @@
+{
+    "tagline": "Top 1% Talento Solo",
+    "hero_badge": "Buscamos Closers",
+    "hero_title_1": "¿Sabes vender",
+    "hero_title_2": "lo invendible?",
+    "hero_desc": "Únete al equipo comercial que usa el <strong>CRM con IA más avanzado del mundo</strong>. Te damos los leads calificados, tú solo tienes que cerrar. Comisiones sin techo.",
+    "benefits": [
+        {
+            "title": "Leads Ilimitados",
+            "desc": "Nuestro Lead Hunter AI llena tu agenda automáticamente."
+        },
+        {
+            "title": "Comisiones Agresivas",
+            "desc": "Gana en función de tu talento, no de tu antigüedad."
+        },
+        {
+            "title": "Tecnología Punta",
+            "desc": "Venderás un producto que se vende (casi) solo."
+        }
+    ],
+    "form_title": "Demuestra tu Valor",
+    "form_subtitle": "Sube tu CV. Si eres bueno, te llamaremos.",
+    "labels": {
+        "name": "Nombre Completo",
+        "email": "Email Profesional",
+        "position": "Puesto a Aplicar",
+        "linkedin": "LinkedIn (Opcional)",
+        "cv": "CV / Hoja de Vida"
+    },
+    "placeholders": {
+        "name": "Tu Nombre",
+        "email": "tu@email.com",
+        "linkedin": "https://linkedin.com/in/..."
+    },
+    "positions": {
+        "sdr": "SDR - Lead Hunter (Entry Level)",
+        "ae": "Account Executive (Closer)",
+        "manager": "Sales Team Lead",
+        "enterprise": "Enterprise Sales (Corporate)"
+    },
+    "upload_ready": "Listo para subir",
+    "upload_cta": "Arrastra o haz clic para subir",
+    "upload_hint": "PDF, DOCX, TXT (Max 5MB)",
+    "cta_button": "Aplicar Ahora",
+    "success_title": "¡Candidatura Recibida!",
+    "success_msg": "Gracias <strong>{name}</strong>. Hemos recibido tu CV.<br /><br />Nuestra IA está analizando tu perfil ahora mismo. Si detectamos madera de líder, recibirás una invitación para una <strong>entrevista inmediata</strong>.",
+    "success_speed_title": "Velocidad de Rayo",
+    "success_speed_desc": "No esperamos semanas. Si encajas, te contactaremos en menos de 24 horas. Mantente atento a tu email."
+}

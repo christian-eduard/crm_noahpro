@@ -4,6 +4,32 @@ const db = require('../config/database');
 const { protect } = require('../middleware/authMiddleware');
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
+const multer = require('multer');
+const path = require('path');
+const fs = require('fs');
+
+// Configuración de subida de archivos (CVs)
+const uploadDir = path.join(__dirname, '../uploads/cvs');
+if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir, { recursive: true });
+}
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => cb(null, uploadDir),
+    filename: (req, file, cb) => {
+        const unique = Date.now() + '-' + Math.round(Math.random() * 1E9);
+        cb(null, 'cv-' + unique + path.extname(file.originalname));
+    }
+});
+
+const upload = multer({
+    storage,
+    limits: { fileSize: 10 * 1024 * 1024 }, // 10MB limite
+    fileFilter: (req, file, cb) => {
+        // Aceptar PDF y Docs básicos, y tambien genéricos si mime falla
+        cb(null, true);
+    }
+});
 
 /**
  * RUTAS PÚBLICAS (sin autenticación)
@@ -13,9 +39,12 @@ const jwt = require('jsonwebtoken');
  * POST /api/recruitment/apply
  * Formulario público de postulación
  */
-router.post('/apply', async (req, res) => {
+router.post('/apply', upload.single('cv'), async (req, res) => {
     try {
-        const { full_name, email, phone, linkedin_url, years_experience, current_company, cv_url } = req.body;
+        const { full_name, email, phone, linkedin_url, years_experience, current_company, position } = req.body;
+
+        // Si se subió archivo, guardar path local. Si no, quizas mandaron URL string (fallback)
+        const cv_url = req.file ? `/uploads/cvs/${req.file.filename}` : req.body.cv_url;
 
         if (!full_name || !email) {
             return res.status(400).json({ error: 'Nombre y email son requeridos' });
@@ -27,13 +56,19 @@ router.post('/apply', async (req, res) => {
             return res.status(400).json({ error: 'Ya existe una postulación con este email' });
         }
 
-        // Crear candidato
+        // Crear candidato (Incluyendo position en metadata o columna si existiera, aqui lo guardare en source info por ahora o asumiendo que el modelo DB lo soporte, si no solo CV y datos basicos)
+        // Como no tengo columna 'position' en el INSERT anterior, la añadiré a 'current_company' provisionalmente o mejor:
+        // Si la tabla no tiene 'position', usaré 'source' para guardar algo tipo "web_form - [position]" o actualizar schema.
+        // Por simplicidad, concatenare position a source.
+
+        const source = `web_form${position ? ': ' + position : ''}`;
+
         const result = await db.query(
             `INSERT INTO candidates 
                 (full_name, email, phone, linkedin_url, years_experience, current_company, cv_url, source, status)
-             VALUES ($1, $2, $3, $4, $5, $6, $7, 'web_form', 'pending')
+             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, 'pending')
              RETURNING id, full_name, email, status`,
-            [full_name, email, phone, linkedin_url, years_experience, current_company, cv_url]
+            [full_name, email, phone, linkedin_url, years_experience, current_company, cv_url, source]
         );
 
         res.json({
@@ -181,10 +216,7 @@ router.use(protect);
 router.get('/templates', async (req, res) => {
     try {
         const result = await db.query(
-            `SELECT id, name, description, duration_minutes, difficulty_level, is_active, created_at
-             FROM interview_templates
-             WHERE is_active = true
-             ORDER BY difficulty_level, name`
+            `SELECT * FROM interview_templates ORDER BY difficulty_level, name`
         );
 
         res.json({ templates: result.rows });
@@ -223,6 +255,43 @@ router.post('/templates', async (req, res) => {
         });
     } catch (error) {
         console.error('Error creating template:', error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+/**
+ * PUT /api/recruitment/templates/:id
+ * Editar plantilla de entrevista
+ */
+router.put('/templates/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { name, description, system_prompt, duration_minutes, questions, evaluation_criteria, difficulty_level, is_active } = req.body;
+
+        const result = await db.query(
+            `UPDATE interview_templates
+             SET name = $1, description = $2, system_prompt = $3, duration_minutes = $4,
+                 questions = $5, evaluation_criteria = $6, difficulty_level = $7, is_active = $8, updated_at = NOW()
+             WHERE id = $9
+             RETURNING *`,
+            [
+                name, description, system_prompt, duration_minutes,
+                JSON.stringify(questions), JSON.stringify(evaluation_criteria),
+                difficulty_level, is_active !== undefined ? is_active : true, id
+            ]
+        );
+
+        if (result.rows.length === 0) {
+            return res.status(404).json({ error: 'Plantilla no encontrada' });
+        }
+
+        res.json({
+            success: true,
+            message: 'Plantilla actualizada correctamente',
+            template: result.rows[0]
+        });
+    } catch (error) {
+        console.error('Error updating template:', error);
         res.status(500).json({ error: error.message });
     }
 });

@@ -1,0 +1,47 @@
+{
+    "dashboard": {
+        "welcome": "Welcome",
+        "my_leads": "My Leads",
+        "my_stats": "My Stats",
+        "today_tasks": "Today's Tasks",
+        "pipeline": "Pipeline",
+        "leaderboard": "Leaderboard"
+    },
+    "stats": {
+        "assigned_leads": "Assigned Leads",
+        "contacted_today": "Contacted Today",
+        "qualified": "Qualified",
+        "closed_deals": "Closed Deals",
+        "commission": "Commission",
+        "conversion_rate": "Conversion Rate"
+    },
+    "leads": {
+        "title": "My Leads",
+        "contact": "Contact",
+        "qualify": "Qualify",
+        "send_proposal": "Send Proposal",
+        "mark_won": "Mark Won",
+        "mark_lost": "Mark Lost",
+        "add_note": "Add Note",
+        "view_history": "View History"
+    },
+    "tasks": {
+        "title": "Pending Tasks",
+        "call": "Call",
+        "email": "Email",
+        "meeting": "Meeting",
+        "follow_up": "Follow-up",
+        "complete": "Complete",
+        "snooze": "Snooze"
+    },
+    "common": {
+        "save": "Save",
+        "cancel": "Cancel",
+        "submit": "Submit",
+        "search": "Search",
+        "filter": "Filter",
+        "loading": "Loading",
+        "success": "Success",
+        "error": "Error"
+    }
+}

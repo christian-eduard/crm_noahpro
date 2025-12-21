@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ToastProvider } from './contexts/ToastContext';
 import { PusherProvider } from './contexts/PusherContext';
+import { ThemeProvider } from './contexts/ThemeContext';
 import LandingPage from './components/landing/LandingPage';
 import PublicProposal from './components/public/PublicProposal';
 import CrmLogin from './components/auth/CrmLogin';
@@ -159,11 +160,13 @@ function App() {
     };
 
     return (
-        <PusherProvider>
-            <ToastProvider>
-                {renderContent()}
-            </ToastProvider>
-        </PusherProvider>
+        <ThemeProvider>
+            <PusherProvider>
+                <ToastProvider>
+                    {renderContent()}
+                </ToastProvider>
+            </PusherProvider>
+        </ThemeProvider>
     );
 }
 

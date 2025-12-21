@@ -9,6 +9,7 @@ import {
     Delete, GripHorizontal, Brain, Sparkles, Volume2
 } from 'lucide-react';
 import { useToast } from '../../contexts/ToastContext';
+import { API_URL } from '../../config';
 
 const WebSoftphone = ({ onCallStart, onCallEnd }) => {
     const [isOpen, setIsOpen] = useState(false); // Widget expandido o colapsado
@@ -18,12 +19,31 @@ const WebSoftphone = ({ onCallStart, onCallEnd }) => {
     const [duration, setDuration] = useState(0);
     const [isMuted, setIsMuted] = useState(false);
     const [copilotActive, setCopilotActive] = useState(false);
+    const [sipConfig, setSipConfig] = useState(null);
 
     const timerRef = useRef(null);
     const toast = useToast();
+    const token = localStorage.getItem('crm_token');
 
     // Keypad numbers
     const keys = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '*', '0', '#'];
+
+    useEffect(() => {
+        const fetchConfig = async () => {
+            try {
+                const res = await fetch(`${API_URL}/config/voice`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data.sip_server) setSipConfig(data);
+                }
+            } catch (err) {
+                console.error('Error loading SIP config', err);
+            }
+        };
+        fetchConfig();
+    }, []);
 
     useEffect(() => {
         if (status === 'connected') {
@@ -96,8 +116,10 @@ const WebSoftphone = ({ onCallStart, onCallEnd }) => {
             {/* Header */}
             <div className="bg-slate-900 p-3 flex justify-between items-center text-white shrink-0">
                 <div className="flex items-center gap-2">
-                    <div className={`w-2 h-2 rounded-full ${status === 'connected' ? 'bg-green-500 animate-pulse' : 'bg-gray-400'}`}></div>
-                    <span className="font-semibold text-sm">SIP Phone</span>
+                    <div className={`w-2 h-2 rounded-full ${status === 'connected' ? 'bg-green-500 animate-pulse' : sipConfig ? 'bg-green-500' : 'bg-red-500'}`}></div>
+                    <span className="font-semibold text-sm">
+                        {sipConfig ? `${sipConfig.sip_username}@${sipConfig.sip_server}` : 'SIP Offline'}
+                    </span>
                 </div>
                 <div className="flex gap-2">
                     <button onClick={() => setIsMinimized(!isMinimized)} className="hover:text-gray-300">

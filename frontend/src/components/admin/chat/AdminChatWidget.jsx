@@ -118,7 +118,7 @@ const AdminChatWidget = () => {
         return (
             <button
                 onClick={() => setIsOpen(true)}
-                className="fixed bottom-6 right-6 w-14 h-14 bg-gradient-to-r from-orange-500 to-red-600 text-white rounded-full shadow-lg hover:shadow-orange-500/40 hover:scale-105 transition-all flex items-center justify-center z-50"
+                className="fixed bottom-24 right-6 w-14 h-14 bg-gradient-to-r from-orange-500 to-red-600 text-white rounded-full shadow-lg hover:shadow-orange-500/40 hover:scale-105 transition-all flex items-center justify-center z-50"
             >
                 <MessageSquare className="w-6 h-6" />
                 {unreadCount > 0 && (
@@ -131,7 +131,7 @@ const AdminChatWidget = () => {
     }
 
     return (
-        <div className={`fixed bottom-6 right-6 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden z-50 flex flex-col transition-all duration-300 ${isMinimized ? 'w-72 h-14' : 'w-80 md:w-96 h-[500px]'}`}>
+        <div className={`fixed bottom-24 right-6 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden z-50 flex flex-col transition-all duration-300 ${isMinimized ? 'w-72 h-14' : 'w-80 md:w-96 h-[500px]'}`}>
             {/* Header */}
             <div className="p-4 bg-gradient-to-r from-orange-500 to-red-600 text-white flex justify-between items-center cursor-pointer" onClick={() => setIsMinimized(!isMinimized)}>
                 <div className="flex items-center space-x-2">

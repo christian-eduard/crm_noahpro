@@ -1,0 +1,79 @@
+{
+    "sidebar": {
+        "dashboard": "Dashboard",
+        "leads": "Leads",
+        "comerciales": "Comercials",
+        "recruitment": "Recruitment",
+        "settings": "Settings",
+        "reports": "Reports",
+        "ai_tools": "AI Tools",
+        "logout": "Logout"
+    },
+    "dashboard": {
+        "welcome": "Welcome back",
+        "overview": "Overview",
+        "quick_actions": "Quick Actions",
+        "recent_activity": "Recent Activity",
+        "stats": {
+            "total_leads": "Total Leads",
+            "active_comerciales": "Active Sales Reps",
+            "conversion_rate": "Conversion Rate",
+            "revenue": "Revenue"
+        }
+    },
+    "leads": {
+        "title": "Lead Management",
+        "new_lead": "New Lead",
+        "import": "Import",
+        "export": "Export",
+        "filters": "Filters",
+        "status": {
+            "new": "New",
+            "contacted": "Contacted",
+            "qualified": "Qualified",
+            "proposal": "Proposal",
+            "won": "Won",
+            "lost": "Lost"
+        },
+        "columns": {
+            "name": "Name",
+            "company": "Company",
+            "email": "Email",
+            "phone": "Phone",
+            "status": "Status",
+            "assigned_to": "Assigned to",
+            "created": "Created",
+            "actions": "Actions"
+        }
+    },
+    "recruitment": {
+        "title": "Recruitment",
+        "candidates": "Candidates",
+        "interviews": "Interviews",
+        "templates": "Templates",
+        "new_candidate": "New Candidate",
+        "schedule_interview": "Schedule Interview"
+    },
+    "settings": {
+        "title": "Settings",
+        "general": "General",
+        "users": "Users",
+        "integrations": "Integrations",
+        "billing": "Billing",
+        "notifications": "Notifications",
+        "security": "Security"
+    },
+    "common": {
+        "save": "Save",
+        "cancel": "Cancel",
+        "delete": "Delete",
+        "edit": "Edit",
+        "view": "View",
+        "search": "Search",
+        "loading": "Loading",
+        "no_results": "No results",
+        "confirm": "Confirm",
+        "success": "Success",
+        "error": "Error"
+    }
+}

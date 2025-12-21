@@ -8,10 +8,11 @@ import { API_URL } from '../../config';
 import { useToast } from '../../contexts/ToastContext';
 import Button from '../shared/Button';
 import Modal from '../shared/Modal';
+
 import {
     Settings, Key, Globe, Sparkles, MessageSquare, Users,
     Check, X, RefreshCw, Eye, EyeOff, AlertCircle, TrendingUp,
-    Search, Zap, Shield, LayoutTemplate, Utensils, Plus, Store,
+    Search, Zap, Shield, LayoutTemplate, Utensils, Plus, Store, Phone,
     Briefcase, ShoppingBag, Coffee, Hotel, Dumbbell, Scissors, Stethoscope, Trash2, CloudLightning, Server, Lock
 } from 'lucide-react';
 
@@ -599,8 +600,8 @@ const LeadHunterSettings = () => {
                                 </p>
                             </div>
                             <div className={`px-4 py-2 rounded-full font-bold flex items-center gap-2 ${gatewayConfig.enabled
-                                    ? 'bg-green-500/20 text-green-300 border border-green-500/50'
-                                    : 'bg-gray-700/50 text-gray-400 border border-gray-600'
+                                ? 'bg-green-500/20 text-green-300 border border-green-500/50'
+                                : 'bg-gray-700/50 text-gray-400 border border-gray-600'
                                 }`}>
                                 <div className={`w-3 h-3 rounded-full ${gatewayConfig.enabled ? 'bg-green-400 animate-pulse' : 'bg-gray-500'}`}></div>
                                 {gatewayConfig.enabled ? 'CONECTADO' : 'DESCONECTADO'}
@@ -708,6 +709,8 @@ const LeadHunterSettings = () => {
                     </div>
                 </div>
             )}
+
+
 
             {/* Tab: Demos Avanzado */}
             {activeTab === 'demos' && (

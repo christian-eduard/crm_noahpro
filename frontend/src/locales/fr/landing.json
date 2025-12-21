@@ -1,0 +1,174 @@
+{
+    "nav": {
+        "benefits": "Avantages",
+        "verifactu": "Conformité",
+        "how": "Comment ça marche",
+        "demo": "Accès Démo",
+        "cta": "Demander Info"
+    },
+    "hero": {
+        "badge": "✓ Verifactu reporté à 2027",
+        "title1": "Le Logiciel dont votre Entreprise",
+        "title2": "A Besoin pour Croître",
+        "desc": "Vendez plus, contrôlez mieux. <strong>Toute votre entreprise sur une plateforme</strong>.",
+        "cta1": "Demander Proposition",
+        "cta2": "Essayer Démo"
+    },
+    "benefits": {
+        "title": "Gestion Professionnelle",
+        "subtitle": "NoahPro vous donne les outils pour facturer et croître.",
+        "image_title": "Contrôle Total",
+        "b1": {
+            "title": "Vente Agile",
+            "desc": "TPV rapide pour comptoir ou tables."
+        },
+        "b2": {
+            "title": "Gestion Clients",
+            "desc": "Historique et fidélisation."
+        },
+        "b3": {
+            "title": "Contrôle 360º",
+            "desc": "Stock et facturation en un lieu."
+        }
+    },
+    "sectors": {
+        "title": "Système Flexible",
+        "subtitle": "NoahPro s'adapte à votre workflow.",
+        "s1": {
+            "title": "Restauration",
+            "desc": "Restaurants, bars.",
+            "f1": "Contrôle tables",
+            "f2": "Commande mobile"
+        },
+        "s2": {
+            "title": "Commerce",
+            "desc": "Boutiques, stock.",
+            "f1": "Gestion stock",
+            "f2": "Scanner codes"
+        },
+        "s3": {
+            "title": "Santé & Beauté",
+            "desc": "Cliniques, spas.",
+            "f1": "Réservations",
+            "f2": "Historique client"
+        },
+        "s4": {
+            "title": "Services",
+            "desc": "Consulting, ateliers.",
+            "f1": "Devis digitaux",
+            "f2": "Facturation récurrente"
+        },
+        "cta": "Parler à un Expert",
+        "custom": "Votre entreprise est différente? <strong>On personnalise NoahPro.</strong>"
+    },
+    "verifactu": {
+        "badge": "⚠️ ÉVITEZ AMENDES",
+        "title": "Conformité sans effort",
+        "desc": "Règlementation anti-fraude: amendes jusqu'à <strong>50.000€</strong>.",
+        "steps": {
+            "s1": {
+                "title": "Vente Complétée",
+                "desc": "Ticket fermé au TPV."
+            },
+            "s2": {
+                "title": "Empreinte Digitale",
+                "desc": "Hash unique."
+            },
+            "s3": {
+                "title": "Envoyé Autorités",
+                "desc": "Enregistrement immédiat."
+            }
+        },
+        "alert_title": "Bonne nouvelle: Reporté à 2027",
+        "alert_desc": "Vous avez du temps, mais changez maintenant.",
+        "features": [
+            "Certifié Verifactu",
+            "TicketBAI",
+            "E-Facturation",
+            "Sauvegardes Auto"
+        ],
+        "cta": "Expert Conformité"
+    },
+    "quote": {
+        "text": "\"La technologie doit propulser votre entreprise.\""
+    },
+    "steps": {
+        "title": "Démarrer en 3 Étapes",
+        "subtitle": "Sans tracas technique.",
+        "s1": {
+            "title": "Demander Info",
+            "desc": "On analyse vos besoins."
+        },
+        "s2": {
+            "title": "Configuration",
+            "desc": "On importe vos données."
+        },
+        "s3": {
+            "title": "Commencer",
+            "desc": "Profitez du système."
+        },
+        "cta": "Je Veux Commencer"
+    },
+    "mobility": {
+        "title": "Contrôle Total de Partout",
+        "desc": "Accédez aux métriques depuis mobile.",
+        "l1": "Ventes en temps réel",
+        "l2": "Gestion stock",
+        "l3": "Rapports performance"
+    },
+    "testimonials": {
+        "title": "Confiance en NoahPro",
+        "subtitle": "500+ entreprises satisfaites.",
+        "t1": "Depuis NoahPro, on a doublé le chiffre d'affaires.",
+        "t2": "J'étais inquiet pour la conformité. NoahPro l'a automatisé.",
+        "t3": "Support incroyable. Opérationnels en un après-midi."
+    },
+    "final_cta": {
+        "title": "Parlons affaires?",
+        "desc": "Proposition sur mesure pour digitaliser votre entreprise.",
+        "button": "Demander Proposition",
+        "note": "* Réponse garantie < 24h."
+    },
+    "footer": {
+        "desc": "Logiciel TPV professionnel.",
+        "product": "Produit",
+        "company": "Entreprise",
+        "legal": "Légal",
+        "careers": "On Recrute",
+        "about": "À Propos",
+        "contact": "Contact",
+        "privacy": "Confidentialité",
+        "terms": "Termes",
+        "rights": "Tous droits réservés."
+    },
+    "contact_form": {
+        "title": "Demandez Démo",
+        "subtitle": "Remplissez le formulaire.",
+        "success_title": "Demande Reçue!",
+        "success_message": "Un conseiller vous contactera bientôt.",
+        "success_email": "📧 Vérifiez votre boîte",
+        "success_email_sub": "Détails d'accès envoyés",
+        "labels": {
+            "name": "Nom Complet",
+            "email": "Email Professionnel",
+            "phone": "Téléphone",
+            "business": "Nom Entreprise",
+            "ref_code": "Code Référence",
+            "optional": "(optionnel)",
+            "message": "Comment pouvons-nous aider?"
+        },
+        "placeholders": {
+            "name": "Votre nom",
+            "email": "vous@email.com",
+            "phone": "+33 6 00 00 00 00",
+            "business": "Ex. Restaurant La Place",
+            "ref_code": "Ex. COM-1-1234",
+            "message": "Parlez-nous de votre entreprise..."
+        },
+        "ref_help": "Si référé par un commercial, entrez son code",
+        "submit": "Demander Information →",
+        "submitting": "Envoi...",
+        "error": "Erreur d'envoi. Réessayez.",
+        "gdpr": "Vos données sont sécurisées. Conforme RGPD."
+    }
+}

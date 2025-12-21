@@ -1,0 +1,47 @@
+{
+    "dashboard": {
+        "welcome": "Bienvenido",
+        "my_leads": "Mis Leads",
+        "my_stats": "Mis Estadísticas",
+        "today_tasks": "Tareas de Hoy",
+        "pipeline": "Pipeline",
+        "leaderboard": "Ranking"
+    },
+    "stats": {
+        "assigned_leads": "Leads Asignados",
+        "contacted_today": "Contactados Hoy",
+        "qualified": "Calificados",
+        "closed_deals": "Ventas Cerradas",
+        "commission": "Comisión",
+        "conversion_rate": "Tasa Conversión"
+    },
+    "leads": {
+        "title": "Mis Leads",
+        "contact": "Contactar",
+        "qualify": "Calificar",
+        "send_proposal": "Enviar Propuesta",
+        "mark_won": "Marcar Ganado",
+        "mark_lost": "Marcar Perdido",
+        "add_note": "Añadir Nota",
+        "view_history": "Ver Historial"
+    },
+    "tasks": {
+        "title": "Tareas Pendientes",
+        "call": "Llamar",
+        "email": "Email",
+        "meeting": "Reunión",
+        "follow_up": "Seguimiento",
+        "complete": "Completar",
+        "snooze": "Posponer"
+    },
+    "common": {
+        "save": "Guardar",
+        "cancel": "Cancelar",
+        "submit": "Enviar",
+        "search": "Buscar",
+        "filter": "Filtrar",
+        "loading": "Cargando",
+        "success": "Éxito",
+        "error": "Error"
+    }
+}

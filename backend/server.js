@@ -122,6 +122,7 @@ app.use('/api/brain', require('./routes/brain'));
 app.use('/api/voice', require('./routes/voice')); // Ecosistema de Voz
 app.use('/api/recruitment', require('./routes/recruitment')); // AI Talent Hunter
 app.use('/api/calls', require('./routes/calls'));
+app.use('/api/config', require('./routes/config')); // Deep Intelligence Config (SIP, etc)
 
 // Initialize automation engine and services
 const automationEngine = require('./services/automationEngine');

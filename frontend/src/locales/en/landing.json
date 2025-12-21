@@ -1,0 +1,174 @@
+{
+    "nav": {
+        "benefits": "Benefits",
+        "verifactu": "Compliance",
+        "how": "How it Works",
+        "demo": "Demo Access",
+        "cta": "Get Info"
+    },
+    "hero": {
+        "badge": "✓ Verifactu Delayed to 2027 - Adapt Now Stress-Free",
+        "title1": "The Software Your Business",
+        "title2": "Needs to Grow",
+        "desc": "Sell more, control better, forget paperwork. <strong>Your entire business on a single platform</strong>. Legal, fast, and professional.",
+        "cta1": "Request Proposal",
+        "cta2": "Try Live Demo"
+    },
+    "benefits": {
+        "title": "Professional Management for Any Business",
+        "subtitle": "Whatever you sell, NoahPro gives you tools to invoice, control, and grow.",
+        "image_title": "Total Business Control",
+        "b1": {
+            "title": "Agile & Universal Sales",
+            "desc": "Fast POS for counters, services, or tables. You decide how to sell."
+        },
+        "b2": {
+            "title": "Customer Management",
+            "desc": "Register customers, purchase history, and build loyalty."
+        },
+        "b3": {
+            "title": "360º Business Control",
+            "desc": "Stock, invoicing, quotes, and expenses in one place."
+        }
+    },
+    "sectors": {
+        "title": "A Flexible System for Any Industry",
+        "subtitle": "NoahPro adapts to your workflow, not the other way around.",
+        "s1": {
+            "title": "Hospitality",
+            "desc": "Restaurants, bars. Table and kitchen management.",
+            "f1": "Table control",
+            "f2": "Mobile ordering"
+        },
+        "s2": {
+            "title": "Retail",
+            "desc": "Shops, boutiques. Stock and barcode scanning.",
+            "f1": "Inventory mgmt",
+            "f2": "Barcode scanner"
+        },
+        "s3": {
+            "title": "Health & Beauty",
+            "desc": "Clinics, spas. Appointments and treatments.",
+            "f1": "Booking system",
+            "f2": "Client history"
+        },
+        "s4": {
+            "title": "Services",
+            "desc": "Consulting, workshops. Recurring billing.",
+            "f1": "Digital quotes",
+            "f2": "Recurring invoices"
+        },
+        "cta": "Talk to an Expert",
+        "custom": "Is your business different? <strong>We customize NoahPro for you.</strong>"
+    },
+    "verifactu": {
+        "badge": "⚠️ AVOID FINES",
+        "title": "Comply with the law effortlessly",
+        "desc": "Anti-fraud regulations carry fines up to <strong>€50,000</strong>. With NoahPro, peace of mind is standard.",
+        "steps": {
+            "s1": {
+                "title": "Sale Completed",
+                "desc": "Ticket closed at POS."
+            },
+            "s2": {
+                "title": "Digital Fingerprint",
+                "desc": "Unique hash generation."
+            },
+            "s3": {
+                "title": "Sent to Tax Authority",
+                "desc": "Immediate registration."
+            }
+        },
+        "alert_title": "Good News: Delayed until 2027",
+        "alert_desc": "You have time, but switch now to avoid last-minute rush.",
+        "features": [
+            "Verifactu Certified",
+            "TicketBAI Ready",
+            "E-Invoicing",
+            "Auto Backups"
+        ],
+        "cta": "Talk to Compliance Expert"
+    },
+    "quote": {
+        "text": "\"Technology should drive your business, not complicate it.\""
+    },
+    "steps": {
+        "title": "Start in 3 Simple Steps",
+        "subtitle": "No technical hassle. We handle everything.",
+        "s1": {
+            "title": "Request Info",
+            "desc": "We analyze your needs."
+        },
+        "s2": {
+            "title": "Configuration",
+            "desc": "We import data and train your team."
+        },
+        "s3": {
+            "title": "Start Billing",
+            "desc": "Enjoy a secure system."
+        },
+        "cta": "I Want to Start Now"
+    },
+    "mobility": {
+        "title": "Total Control from Anywhere",
+        "desc": "Access metrics from mobile or tablet. Freedom in the cloud.",
+        "l1": "Real-time sales",
+        "l2": "Stock management",
+        "l3": "Performance reports"
+    },
+    "testimonials": {
+        "title": "Trusted by NoahPro",
+        "subtitle": "500+ businesses sleep soundly.",
+        "t1": "Since installing NoahPro, we doubled revenue and comply with laws worry-free.",
+        "t2": "I was worried about regulations. NoahPro made it automatic.",
+        "t3": "Support is amazing. We were up and running in an afternoon."
+    },
+    "final_cta": {
+        "title": "Let's talk business?",
+        "desc": "Tailored proposal to digitize your company.",
+        "button": "Request Proposal",
+        "note": "* Guaranteed response in < 24h."
+    },
+    "footer": {
+        "desc": "Professional POS software for growing businesses.",
+        "product": "Product",
+        "company": "Company",
+        "legal": "Legal",
+        "careers": "We're Hiring",
+        "about": "About Us",
+        "contact": "Contact",
+        "privacy": "Privacy",
+        "terms": "Terms",
+        "rights": "All rights reserved."
+    },
+    "contact_form": {
+        "title": "Request Your Demo",
+        "subtitle": "Fill out the form and start using NoahPro today.",
+        "success_title": "Request Received!",
+        "success_message": "A specialized advisor will contact you shortly to activate your demo.",
+        "success_email": "📧 Check your inbox",
+        "success_email_sub": "We've sent you the access details",
+        "labels": {
+            "name": "Full Name",
+            "email": "Business Email",
+            "phone": "Phone",
+            "business": "Business Name",
+            "ref_code": "Referral Code",
+            "optional": "(optional)",
+            "message": "How can we help you?"
+        },
+        "placeholders": {
+            "name": "Your name",
+            "email": "you@email.com",
+            "phone": "+1 234 567 890",
+            "business": "Ex. La Plaza Restaurant",
+            "ref_code": "Ex. COM-1-1234",
+            "message": "Tell us about your business..."
+        },
+        "ref_help": "If you were referred by a sales rep, enter their code here",
+        "submit": "Request Information →",
+        "submitting": "Sending...",
+        "error": "Error sending form. Please try again.",
+        "gdpr": "Your data is secure. We comply with GDPR."
+    }
+}

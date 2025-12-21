@@ -1,0 +1,49 @@
+{
+    "tagline": "Nur Top 1% Talente",
+    "hero_badge": "Wir stellen Closer ein",
+    "hero_title_1": "Chönd Si ds",
+    "hero_title_2": "Unverchoufbare verchoufe?",
+    "hero_desc": "Werd Teil vom Vertriebs-Team mit em <strong>fortschrittlichste AI-CRM vo de Wält</strong>. Mir gänd dir qualifizierti Leads, du machsch dr Deal. Unbeschränkti Provisione.",
+    "benefits": [
+        {
+            "title": "Unbeschränkti Leads",
+            "desc": "Öise Lead Hunter AI füllt automatisch dini Agenda."
+        },
+        {
+            "title": "Aggressivi Provisione",
+            "desc": "Verdien basierend uf Talent, nöd Seniorität."
+        },
+        {
+            "title": "Edge-Technologie",
+            "desc": "Verchouf es Produkt wo sich (fast) selber verchouft."
+        }
+    ],
+    "form_title": "Bewis Din Wärt",
+    "form_subtitle": "Lad din CV ue. Wenn du guet bisch, rüefe mir aa.",
+    "labels": {
+        "name": "Vollständige Name",
+        "email": "Gschäfts-E-Mail",
+        "position": "Position",
+        "linkedin": "LinkedIn (Optional)",
+        "cv": "Läbenslauf"
+    },
+    "placeholders": {
+        "name": "Din Name",
+        "email": "du@email.com",
+        "linkedin": "https://linkedin.com/in/..."
+    },
+    "positions": {
+        "sdr": "SDR - Lead Hunter (Iistiegslevel)",
+        "ae": "Account Executive (Closer)",
+        "manager": "Vertriebs-Teamleiter",
+        "enterprise": "Enterprise Sales (Corporate)"
+    },
+    "upload_ready": "Bereit zum Uelade",
+    "upload_cta": "Zieh oder klick zum Uelade",
+    "upload_hint": "PDF, DOCX, TXT (Max 5MB)",
+    "cta_button": "Jetzt Bewerbe",
+    "success_title": "Bewärbig Empfange!",
+    "success_msg": "Merci <strong>{name}</strong>. Mir händ din CV empfange.<br /><br />Öisi KI analysiert jetzt dis Profil. Wenn mir en Füehrer erkenne, bechunsch e Iiladig für es <strong>sofortigs Interview</strong>.",
+    "success_speed_title": "Blitzschnäll",
+    "success_speed_desc": "Mir warte nöd wochelang. Wenn du passch, kontaktiere mir dich in weniger als 24 Stunde. Lueg i dini E-Mails."
+}

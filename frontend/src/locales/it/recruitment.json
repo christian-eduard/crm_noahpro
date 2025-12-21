@@ -1,0 +1,49 @@
+{
+    "tagline": "Solo Top 1% Talento",
+    "hero_badge": "Stiamo Assumendo Closer",
+    "hero_title_1": "Sai vendere",
+    "hero_title_2": "l'invendibile?",
+    "hero_desc": "Unisciti al team di vendita con il <strong>CRM AI più avanzato al mondo</strong>. Ti diamo lead qualificati, tu chiudi. Commissioni illimitate.",
+    "benefits": [
+        {
+            "title": "Lead Illimitati",
+            "desc": "Il nostro Lead Hunter AI riempie la tua agenda automaticamente."
+        },
+        {
+            "title": "Commissioni Aggressive",
+            "desc": "Guadagna in base al talento, non all'anzianità."
+        },
+        {
+            "title": "Tecnologia Edge",
+            "desc": "Vendi un prodotto che si vende (quasi) da solo."
+        }
+    ],
+    "form_title": "Dimostra il Tuo Valore",
+    "form_subtitle": "Carica il CV. Se sei bravo, ti chiamiamo.",
+    "labels": {
+        "name": "Nome Completo",
+        "email": "Email Lavoro",
+        "position": "Posizione",
+        "linkedin": "LinkedIn (Opzionale)",
+        "cv": "Curriculum"
+    },
+    "placeholders": {
+        "name": "Il Tuo Nome",
+        "email": "tu@email.com",
+        "linkedin": "https://linkedin.com/in/..."
+    },
+    "positions": {
+        "sdr": "SDR - Lead Hunter (Entry Level)",
+        "ae": "Account Executive (Closer)",
+        "manager": "Sales Team Lead",
+        "enterprise": "Enterprise Sales (Corporate)"
+    },
+    "upload_ready": "Pronto per caricare",
+    "upload_cta": "Trascina o clicca per caricare",
+    "upload_hint": "PDF, DOCX, TXT (Max 5MB)",
+    "cta_button": "Candidati Ora",
+    "success_title": "Candidatura Ricevuta!",
+    "success_msg": "Grazie <strong>{name}</strong>. Abbiamo ricevuto il tuo CV.<br /><br />La nostra IA sta analizzando il tuo profilo ora. Se individuiamo un leader, riceverai un invito per un <strong>colloquio immediato</strong>.",
+    "success_speed_title": "Velocità Fulminea",
+    "success_speed_desc": "Non aspettiamo settimane. Se sei adatto, ti contattiamo in meno di 24h. Controlla la tua email."
+}

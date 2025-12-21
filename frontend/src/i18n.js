@@ -1,0 +1,80 @@
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+
+// Importar traducciones ES
+import landingES from './locales/es/landing.json';
+import recruitmentES from './locales/es/recruitment.json';
+import dashboardES from './locales/es/dashboard.json';
+import comercialES from './locales/es/comercial.json';
+
+// Importar traducciones EN
+import landingEN from './locales/en/landing.json';
+import recruitmentEN from './locales/en/recruitment.json';
+import dashboardEN from './locales/en/dashboard.json';
+import comercialEN from './locales/en/comercial.json';
+
+// Importar traducciones FR
+import landingFR from './locales/fr/landing.json';
+
+// Importar traducciones IT
+import recruitmentIT from './locales/it/recruitment.json';
+
+// Importar traducciones DE
+import recruitmentDE from './locales/de/recruitment.json';
+
+// Importar traducciones CH
+import recruitmentCH from './locales/ch/recruitment.json';
+
+const resources = {
+    es: {
+        landing: landingES,
+        recruitment: recruitmentES,
+        dashboard: dashboardES,
+        comercial: comercialES
+    },
+    en: {
+        landing: landingEN,
+        recruitment: recruitmentEN,
+        dashboard: dashboardEN,
+        comercial: comercialEN
+    },
+    fr: {
+        landing: landingFR,
+        recruitment: recruitmentES, // Fallback a ES hasta tener FR
+        dashboard: dashboardES,
+        comercial: comercialES
+    },
+    it: {
+        landing: landingEN, // Fallback a EN hasta tener IT
+        recruitment: recruitmentIT,
+        dashboard: dashboardEN,
+        comercial: comercialEN
+    },
+    de: {
+        landing: landingEN, // Fallback a EN hasta tener DE
+        recruitment: recruitmentDE,
+        dashboard: dashboardEN,
+        comercial: comercialEN
+    },
+    ch: {
+        landing: landingEN, // Fallback a EN
+        recruitment: recruitmentCH,
+        dashboard: dashboardEN,
+        comercial: comercialEN
+    }
+};
+
+i18n
+    .use(initReactI18next)
+    .init({
+        resources,
+        lng: 'es',
+        fallbackLng: 'es',
+        interpolation: {
+            escapeValue: false
+        },
+        ns: ['landing', 'recruitment', 'dashboard', 'comercial'],
+        defaultNS: 'landing'
+    });
+
+export default i18n;

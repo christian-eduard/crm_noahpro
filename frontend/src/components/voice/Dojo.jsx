@@ -6,7 +6,7 @@
 import React, { useState, useEffect } from 'react';
 import {
     Swords, Play, Mic, MicOff, Volume2, Trophy, AlertCircle,
-    RefreshCcw, SkipForward, BarChart
+    RefreshCcw, SkipForward, BarChart, Sparkles
 } from 'lucide-react';
 import { useToast } from '../../contexts/ToastContext';
 import Button from '../shared/Button';
@@ -144,8 +144,8 @@ const Dojo = () => {
                         <h3 className="text-xl font-bold mb-2">{scenario.title}</h3>
                         <div className="flex items-center gap-2 mb-4">
                             <span className={`px-2 py-0.5 rounded text-xs font-bold uppercase ${scenario.difficulty === 'Hard' ? 'bg-orange-100 text-orange-600' :
-                                    scenario.difficulty === 'Extreme' ? 'bg-red-100 text-red-600' :
-                                        'bg-blue-100 text-blue-600'
+                                scenario.difficulty === 'Extreme' ? 'bg-red-100 text-red-600' :
+                                    'bg-blue-100 text-blue-600'
                                 }`}>
                                 {scenario.difficulty}
                             </span>
@@ -181,8 +181,8 @@ const Dojo = () => {
                 {transcript.map((msg, i) => (
                     <div key={i} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
                         <div className={`max-w-[70%] rounded-2xl px-5 py-3 ${msg.sender === 'user'
-                                ? 'bg-orange-500 text-white rounded-tr-sm'
-                                : 'bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 border border-gray-200 dark:border-gray-700 rounded-tl-sm shadow-sm'
+                            ? 'bg-orange-500 text-white rounded-tr-sm'
+                            : 'bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 border border-gray-200 dark:border-gray-700 rounded-tl-sm shadow-sm'
                             }`}>
                             <p>{msg.text}</p>
                         </div>
@@ -200,8 +200,8 @@ const Dojo = () => {
             <div className="flex items-center justify-center gap-4 py-4">
                 <button
                     className={`w-20 h-20 rounded-full flex items-center justify-center transition-all shadow-xl ${isListening
-                            ? 'bg-red-500 hover:bg-red-600 scale-110 ring-4 ring-red-500/30'
-                            : 'bg-orange-500 hover:bg-orange-600'
+                        ? 'bg-red-500 hover:bg-red-600 scale-110 ring-4 ring-red-500/30'
+                        : 'bg-orange-500 hover:bg-orange-600'
                         }`}
                     onClick={toggleMic}
                 >

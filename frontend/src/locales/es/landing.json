@@ -1,0 +1,174 @@
+{
+    "nav": {
+        "benefits": "Beneficios",
+        "verifactu": "Ley Antifraude",
+        "how": "Cómo Funciona",
+        "demo": "Acceso Demo",
+        "cta": "Solicitar Información"
+    },
+    "hero": {
+        "badge": "✓ Verifactu Aplazado hasta 2027 - Adáptate sin Prisas",
+        "title1": "El Software que tu Negocio",
+        "title2": "Necesita para Crecer",
+        "desc": "Vende más, controla mejor y olvídate del papeleo. <strong>Todo tu negocio en una sola plataforma</strong> que se adapta a ti. Legal, rápido y profesional.",
+        "cta1": "Solicitar Propuesta",
+        "cta2": "Probar Demo Online"
+    },
+    "benefits": {
+        "title": "Gestión Profesional para Cualquier Negocio",
+        "subtitle": "Vendas lo que vendas, NoahPro te da las herramientas para facturar, controlar y crecer.",
+        "image_title": "Control Total de tu Negocio",
+        "b1": {
+            "title": "Venta Ágil y Universal",
+            "desc": "Un TPV rápido para mostrador, servicios o mesas. Tú decides cómo vendes."
+        },
+        "b2": {
+            "title": "Gestión de Clientes",
+            "desc": "Registra clientes, historial de compras y fideliza."
+        },
+        "b3": {
+            "title": "Control de Negocio 360º",
+            "desc": "Stock, facturación, presupuestos y gastos en un solo lugar."
+        }
+    },
+    "sectors": {
+        "title": "Un Sistema Flexible para Cualquier Negocio",
+        "subtitle": "No importa tu sector. NoahPro se adapta a tu forma de trabajar.",
+        "s1": {
+            "title": "Hostelería",
+            "desc": "Restaurantes, bares. Gestión de mesas y cocina.",
+            "f1": "Control de mesas",
+            "f2": "Comanda móvil"
+        },
+        "s2": {
+            "title": "Retail",
+            "desc": "Tiendas, boutiques. Stock y códigos de barras.",
+            "f1": "Gestión de inventario",
+            "f2": "Lector de códigos"
+        },
+        "s3": {
+            "title": "Salud y Belleza",
+            "desc": "Clínicas, spas. Citas y tratamientos.",
+            "f1": "Agenda de citas",
+            "f2": "Historial clinico"
+        },
+        "s4": {
+            "title": "Servicios",
+            "desc": "Consultorías, talleres. Facturación recurrente.",
+            "f1": "Presupuestos digitales",
+            "f2": "Facturación recurrente"
+        },
+        "cta": "Hablar con un Experto",
+        "custom": "¿Tu negocio es diferente? <strong>Personalizamos NoahPro.</strong>"
+    },
+    "verifactu": {
+        "badge": "⚠️ EVITA SANCIONES",
+        "title": "Cumple la ley sin mover un dedo",
+        "desc": "La normativa Antifraude supone multas de hasta <strong>50.000€</strong>. Con NoahPro, la tranquilidad viene de serie.",
+        "steps": {
+            "s1": {
+                "title": "Venta Realizada",
+                "desc": "Cierre de ticket en TPV."
+            },
+            "s2": {
+                "title": "Huella Digital",
+                "desc": "Hash único encadenado."
+            },
+            "s3": {
+                "title": "Envío a Hacienda",
+                "desc": "Registro inmediato AEAT."
+            }
+        },
+        "alert_title": "Buenas noticias: Aplazado hasta 2027",
+        "alert_desc": "Tienes tiempo, pero adelántate para evitar saturación.",
+        "features": [
+            "Certificado Verifactu",
+            "TicketBAI Compatible",
+            "Factura Electrónica",
+            "Backups Automáticos"
+        ],
+        "cta": "Hablar con experto en normativa"
+    },
+    "quote": {
+        "text": "\"La tecnología debe impulsar tu empresa, no complicarla.\""
+    },
+    "steps": {
+        "title": "Empieza en 3 pasos sencillos",
+        "subtitle": "Sin complicaciones técnicas.",
+        "s1": {
+            "title": "Solicita Información",
+            "desc": "Analizamos tus necesidades."
+        },
+        "s2": {
+            "title": "Configuración",
+            "desc": "Importamos tus datos y formamos al equipo."
+        },
+        "s3": {
+            "title": "Empieza a Facturar",
+            "desc": "Disfruta de un sistema seguro."
+        },
+        "cta": "Quiero Empezar Ahora"
+    },
+    "mobility": {
+        "title": "Control total desde cualquier lugar",
+        "desc": "Accede a las métricas desde tu móvil. Libertad total en la nube.",
+        "l1": "Ventas en tiempo real",
+        "l2": "Gestión de stock",
+        "l3": "Informes de rendimiento"
+    },
+    "testimonials": {
+        "title": "Confían en NoahPro",
+        "subtitle": "Más de 500 negocios duermen tranquilos.",
+        "t1": "Desde que instalamos NoahPro, facturamos el doble y cumplimos con la ley.",
+        "t2": "Me preocupaba la normativa. Con NoahPro me he olvidado del tema.",
+        "t3": "El soporte es increíble. Nos configuraron todo en una tarde."
+    },
+    "final_cta": {
+        "title": "¿Hablamos de tu negocio?",
+        "desc": "Propuesta a medida para digitalizar tu empresa.",
+        "button": "Solicitar Propuesta",
+        "note": "* Respuesta garantizada en < 24h."
+    },
+    "footer": {
+        "desc": "Software TPV profesional para empresas que quieren crecer seguras.",
+        "product": "Producto",
+        "company": "Empresa",
+        "legal": "Legal",
+        "careers": "Estamos Contratando",
+        "about": "Sobre Nosotros",
+        "contact": "Contacto",
+        "privacy": "Privacidad",
+        "terms": "Términos",
+        "rights": "Todos los derechos reservados."
+    },
+    "contact_form": {
+        "title": "Solicita tu Demo",
+        "subtitle": "Completa el formulario y empieza a usar NoahPro hoy mismo.",
+        "success_title": "¡Solicitud Recibida!",
+        "success_message": "Un asesor especializado te contactará en breve para activar tu demo.",
+        "success_email": "📧 Revisa tu bandeja de entrada",
+        "success_email_sub": "Te hemos enviado los detalles de acceso",
+        "labels": {
+            "name": "Nombre Completo",
+            "email": "Email Corporativo",
+            "phone": "Teléfono",
+            "business": "Nombre del Negocio",
+            "ref_code": "Referencia Comercial",
+            "optional": "(opcional)",
+            "message": "¿En qué podemos ayudarte?"
+        },
+        "placeholders": {
+            "name": "Tu nombre",
+            "email": "tu@email.com",
+            "phone": "+34 600 000 000",
+            "business": "Ej. Restaurante La Plaza",
+            "ref_code": "Ej. COM-1-1234",
+            "message": "Cuéntanos un poco sobre tu local..."
+        },
+        "ref_help": "Si vienes de parte de un comercial, introduce su código aquí",
+        "submit": "Solicitar Información →",
+        "submitting": "Enviando...",
+        "error": "Error al enviar el formulario. Por favor, inténtalo de nuevo.",
+        "gdpr": "Tus datos están seguros. Cumplimos con el RGPD."
+    }
+}

@@ -1,0 +1,79 @@
+{
+    "sidebar": {
+        "dashboard": "Dashboard",
+        "leads": "Leads",
+        "comerciales": "Comerciales",
+        "recruitment": "Reclutamiento",
+        "settings": "Configuración",
+        "reports": "Informes",
+        "ai_tools": "Herramientas IA",
+        "logout": "Cerrar Sesión"
+    },
+    "dashboard": {
+        "welcome": "Bienvenido de vuelta",
+        "overview": "Vista General",
+        "quick_actions": "Acciones Rápidas",
+        "recent_activity": "Actividad Reciente",
+        "stats": {
+            "total_leads": "Total Leads",
+            "active_comerciales": "Comerciales Activos",
+            "conversion_rate": "Tasa Conversión",
+            "revenue": "Ingresos"
+        }
+    },
+    "leads": {
+        "title": "Gestión de Leads",
+        "new_lead": "Nuevo Lead",
+        "import": "Importar",
+        "export": "Exportar",
+        "filters": "Filtros",
+        "status": {
+            "new": "Nuevo",
+            "contacted": "Contactado",
+            "qualified": "Calificado",
+            "proposal": "Propuesta",
+            "won": "Ganado",
+            "lost": "Perdido"
+        },
+        "columns": {
+            "name": "Nombre",
+            "company": "Empresa",
+            "email": "Email",
+            "phone": "Teléfono",
+            "status": "Estado",
+            "assigned_to": "Asignado a",
+            "created": "Creado",
+            "actions": "Acciones"
+        }
+    },
+    "recruitment": {
+        "title": "Reclutamiento",
+        "candidates": "Candidatos",
+        "interviews": "Entrevistas",
+        "templates": "Plantillas",
+        "new_candidate": "Nuevo Candidato",
+        "schedule_interview": "Programar Entrevista"
+    },
+    "settings": {
+        "title": "Configuración",
+        "general": "General",
+        "users": "Usuarios",
+        "integrations": "Integraciones",
+        "billing": "Facturación",
+        "notifications": "Notificaciones",
+        "security": "Seguridad"
+    },
+    "common": {
+        "save": "Guardar",
+        "cancel": "Cancelar",
+        "delete": "Eliminar",
+        "edit": "Editar",
+        "view": "Ver",
+        "search": "Buscar",
+        "loading": "Cargando",
+        "no_results": "No hay resultados",
+        "confirm": "Confirmar",
+        "success": "Éxito",
+        "error": "Error"
+    }
+}

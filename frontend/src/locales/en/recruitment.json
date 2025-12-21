@@ -1,0 +1,49 @@
+{
+    "tagline": "Top 1% Talent Only",
+    "hero_badge": "We are hiring Closers",
+    "hero_title_1": "Can you sell",
+    "hero_title_2": "the unsellable?",
+    "hero_desc": "Join the sales team powered by the <strong>world's most advanced AI CRM</strong>. We give you qualified leads, you just close them. Uncapped commissions.",
+    "benefits": [
+        {
+            "title": "Unlimited Leads",
+            "desc": "Our Lead Hunter AI fills your calendar automatically."
+        },
+        {
+            "title": "Aggressive Commissions",
+            "desc": "Earn based on talent, not seniority."
+        },
+        {
+            "title": "Edge Technology",
+            "desc": "Sell a product that (almost) sells itself."
+        }
+    ],
+    "form_title": "Prove Your Worth",
+    "form_subtitle": "Upload your CV. If you're good, we'll call.",
+    "labels": {
+        "name": "Full Name",
+        "email": "Work Email",
+        "position": "Position",
+        "linkedin": "LinkedIn (Optional)",
+        "cv": "Resume / CV"
+    },
+    "placeholders": {
+        "name": "Your Name",
+        "email": "you@email.com",
+        "linkedin": "https://linkedin.com/in/..."
+    },
+    "positions": {
+        "sdr": "SDR - Lead Hunter (Entry Level)",
+        "ae": "Account Executive (Closer)",
+        "manager": "Sales Team Lead",
+        "enterprise": "Enterprise Sales (Corporate)"
+    },
+    "upload_ready": "Ready to upload",
+    "upload_cta": "Drag or click to upload",
+    "upload_hint": "PDF, DOCX, TXT (Max 5MB)",
+    "cta_button": "Apply Now",
+    "success_title": "Application Received!",
+    "success_msg": "Thanks <strong>{name}</strong>. We got your CV.<br /><br />Our AI is analyzing your profile right now. If we spot a leader, you'll get an invite for an <strong>immediate interview</strong>.",
+    "success_speed_title": "Lightning Speed",
+    "success_speed_desc": "We don't wait weeks. If you fit, we contact you in less than 24h. Watch your email."
+}

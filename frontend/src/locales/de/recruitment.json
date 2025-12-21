@@ -1,0 +1,49 @@
+{
+    "tagline": "Nur Top 1% Talent",
+    "hero_badge": "Wir stellen Closer ein",
+    "hero_title_1": "Kannst du das",
+    "hero_title_2": "Unverkäufliche verkaufen?",
+    "hero_desc": "Tritt dem Verkaufsteam bei, das das <strong>fortschrittlichste AI-CRM der Welt</strong> nutzt. Wir geben dir qualifizierte Leads, du schließt ab. Unbegrenzte Provisionen.",
+    "benefits": [
+        {
+            "title": "Unbegrenzte Leads",
+            "desc": "Unser Lead Hunter AI füllt automatisch deinen Kalender."
+        },
+        {
+            "title": "Aggressive Provisionen",
+            "desc": "Verdiene basierend auf Talent, nicht Seniorität."
+        },
+        {
+            "title": "Edge-Technologie",
+            "desc": "Verkaufe ein Produkt, das sich (fast) selbst verkauft."
+        }
+    ],
+    "form_title": "Beweise Deinen Wert",
+    "form_subtitle": "Lade deinen CV hoch. Wenn du gut bist, rufen wir an.",
+    "labels": {
+        "name": "Vollständiger Name",
+        "email": "Geschäfts-E-Mail",
+        "position": "Position",
+        "linkedin": "LinkedIn (Optional)",
+        "cv": "Lebenslauf"
+    },
+    "placeholders": {
+        "name": "Dein Name",
+        "email": "du@email.com",
+        "linkedin": "https://linkedin.com/in/..."
+    },
+    "positions": {
+        "sdr": "SDR - Lead Hunter (Einstiegslevel)",
+        "ae": "Account Executive (Closer)",
+        "manager": "Vertriebsteamleiter",
+        "enterprise": "Enterprise Sales (Corporate)"
+    },
+    "upload_ready": "Bereit zum Hochladen",
+    "upload_cta": "Ziehen oder klicken zum Hochladen",
+    "upload_hint": "PDF, DOCX, TXT (Max 5MB)",
+    "cta_button": "Jetzt Bewerben",
+    "success_title": "Bewerbung Empfangen!",
+    "success_msg": "Danke <strong>{name}</strong>. Wir haben deinen CV erhalten.<br /><br />Unsere KI analysiert jetzt dein Profil. Wenn wir einen Anführer erkennen, erhältst du eine Einladung für ein <strong>sofortiges Interview</strong>.",
+    "success_speed_title": "Blitzschnell",
+    "success_speed_desc": "Wir warten nicht wochenlang. Wenn du passt, kontaktieren wir dich in weniger als 24 Stunden. Schau in deine E-Mails."
+}

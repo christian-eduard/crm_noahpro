@@ -5,7 +5,7 @@
  */
 import React, { useState, useEffect, useRef } from 'react';
 import {
-    Brain, X, Sparkles, MessageSquare, AlertTriangle, check,
+    Brain, X, Sparkles, MessageSquare, AlertTriangle, Check,
     ThumbsUp, ThumbsDown, Activity
 } from 'lucide-react';
 import { useToast } from '../../contexts/ToastContext';
