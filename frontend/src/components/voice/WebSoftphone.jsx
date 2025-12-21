@@ -91,7 +91,7 @@ const WebSoftphone = ({ onCallStart, onCallEnd }) => {
     }
 
     return (
-        <div className={`fixed bottom-6 right-6 w-80 bg-white dark:bg-slate-800 rounded-2xl shadow-2xl border border-gray-200 dark:border-slate-700 overflow-hidden transition-all z-50 flex flex-col ${isMinimized ? 'h-16' : 'h-[500px]'}`}>
+        <div className={`fixed bottom-20 md:bottom-6 right-4 left-4 md:left-auto md:right-6 md:w-80 bg-white dark:bg-slate-800 rounded-2xl shadow-2xl border border-gray-200 dark:border-slate-700 overflow-hidden transition-all z-50 flex flex-col ${isMinimized ? 'h-16' : 'h-[500px]'}`}>
 
             {/* Header */}
             <div className="bg-slate-900 p-3 flex justify-between items-center text-white shrink-0">

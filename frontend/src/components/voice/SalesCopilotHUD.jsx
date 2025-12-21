@@ -112,7 +112,7 @@ const SalesCopilotHUD = () => {
     if (!isVisible) return null;
 
     return (
-        <div className="fixed top-20 right-6 w-96 z-40 flex flex-col gap-4 pointer-events-none">
+        <div className="fixed top-20 right-4 left-4 md:left-auto md:right-6 md:w-96 z-40 flex flex-col gap-4 pointer-events-none">
             {/* Main HUD Panel */}
             <div className="bg-slate-900/90 backdrop-blur-md rounded-2xl shadow-2xl border border-indigo-500/30 overflow-hidden pointer-events-auto">
                 <div className="p-3 bg-indigo-900/50 border-b border-indigo-500/30 flex justify-between items-center">
@@ -142,8 +142,8 @@ const SalesCopilotHUD = () => {
                     {transcript.map((line, i) => (
                         <div key={i} className={`flex ${line.speaker === 'sales' ? 'justify-end' : 'justify-start'}`}>
                             <div className={`max-w-[85%] rounded-lg px-3 py-2 text-sm ${line.speaker === 'sales'
-                                    ? 'bg-indigo-600/20 text-indigo-100 border border-indigo-500/20 rounded-tr-none'
-                                    : 'bg-slate-700/50 text-gray-100 border border-slate-600/30 rounded-tl-none'
+                                ? 'bg-indigo-600/20 text-indigo-100 border border-indigo-500/20 rounded-tr-none'
+                                : 'bg-slate-700/50 text-gray-100 border border-slate-600/30 rounded-tl-none'
                                 }`}>
                                 <span className="text-xs font-bold opacity-50 block mb-1">
                                     {line.speaker === 'sales' ? 'TÚ' : 'CLIENTE'}
