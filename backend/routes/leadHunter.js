@@ -1403,35 +1403,67 @@ router.get('/user-settings', async (req, res) => {
  * PUT /api/hunter/user-settings
  * Actualizar configuración del usuario
  */
-router.put('/user-settings', async (req, res) => {
+router.put('/user-settings', authenticateToken, async (req, res) => {
     try {
-        const userId = req.realUserId;
+        const userId = req.user?.userId || req.user?.id;
         const {
             average_ticket_value,
             default_radius,
             max_results_per_search,
             auto_analyze_new,
-            ignore_existing_prospects
+            ignore_existing_prospects,
+            scoring_weights,
+            daily_salary_cost
         } = req.body;
 
         const result = await db.query(
             `INSERT INTO hunter_user_settings 
-             (user_id, average_ticket_value, default_radius, max_results_per_search, auto_analyze_new, ignore_existing_prospects, updated_at)
-             VALUES ($1, $2, $3, $4, $5, $6, NOW())
+             (user_id, average_ticket_value, default_radius, max_results_per_search, auto_analyze_new, ignore_existing_prospects, scoring_weights, daily_salary_cost, updated_at)
+             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, NOW())
              ON CONFLICT (user_id) DO UPDATE SET
                 average_ticket_value = COALESCE($2, hunter_user_settings.average_ticket_value),
                 default_radius = COALESCE($3, hunter_user_settings.default_radius),
                 max_results_per_search = COALESCE($4, hunter_user_settings.max_results_per_search),
                 auto_analyze_new = COALESCE($5, hunter_user_settings.auto_analyze_new),
                 ignore_existing_prospects = COALESCE($6, hunter_user_settings.ignore_existing_prospects),
+                scoring_weights = COALESCE($7, hunter_user_settings.scoring_weights),
+                daily_salary_cost = COALESCE($8, hunter_user_settings.daily_salary_cost),
                 updated_at = NOW()
              RETURNING *`,
-            [userId, average_ticket_value, default_radius, max_results_per_search, auto_analyze_new, ignore_existing_prospects]
+            [userId, average_ticket_value, default_radius, max_results_per_search, auto_analyze_new, ignore_existing_prospects, scoring_weights, daily_salary_cost]
         );
 
         res.json({ success: true, settings: result.rows[0] });
     } catch (error) {
         console.error('Error updating user settings:', error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// GET user settings (New Endpoint)
+router.get('/user-settings', authenticateToken, async (req, res) => {
+    try {
+        const userId = req.user?.userId || req.user?.id;
+        const result = await db.query('SELECT * FROM hunter_user_settings WHERE user_id = $1', [userId]);
+
+        if (result.rows.length === 0) {
+            // Return defaults if not found
+            return res.json({
+                average_ticket_value: 500,
+                default_radius: 5000,
+                scoring_weights: {
+                    web_weight: 20,
+                    rating_weight: 15,
+                    tpv_weight: 30,
+                    social_weight: 15,
+                    ads_weight: 10
+                },
+                daily_salary_cost: 100
+            });
+        }
+        res.json(result.rows[0]);
+    } catch (error) {
+        console.error('Error fetching user settings:', error);
         res.status(500).json({ error: error.message });
     }
 });

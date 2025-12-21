@@ -649,8 +649,48 @@ class LeadHunterService {
                 whatsapp_sent: parseInt(usageData.whatsapp_sent) || 0
             },
             today: todayResult.rows[0] || { prospects_searched: 0, leads_created: 0 },
-            limits: accessResult.rows[0] || { hunter_daily_limit: 50, hunter_prospects_today: 0 }
+            limits: accessResult.rows[0] || { hunter_daily_limit: 50, hunter_prospects_today: 0 },
+            settings: (await db.query('SELECT * FROM hunter_user_settings WHERE user_id = $1', [userId])).rows[0] || {}
         };
+    }
+
+    /**
+     * Calculate opportunity score based on dynamic weights
+     */
+    async calculateOpportunityScore(prospect, userId) {
+        // Default Weights
+        let weights = {
+            web_weight: 20,
+            rating_weight: 15,
+            tpv_weight: 30,
+            social_weight: 15,
+            ads_weight: 10
+        };
+
+        // Fetch User Weights
+        const settings = await db.query('SELECT scoring_weights FROM hunter_user_settings WHERE user_id = $1', [userId]);
+        if (settings.rows.length > 0 && settings.rows[0].scoring_weights) {
+            weights = { ...weights, ...settings.rows[0].scoring_weights };
+        }
+
+        let score = 50; // Base Score
+
+        // Web Check
+        if (prospect.website && !prospect.website.includes('business.site')) score += weights.web_weight;
+
+        // Rating Check
+        if (prospect.rating) {
+            if (prospect.rating >= 4.5) score += weights.rating_weight;
+            else if (prospect.rating < 3.5) score -= 10;
+        }
+
+        // Social Check
+        if (prospect.social_media && (prospect.social_media.instagram || prospect.social_media.facebook)) {
+            score += weights.social_weight;
+        }
+
+        // Cap at 100
+        return Math.min(100, Math.max(0, score));
     }
 
     /**

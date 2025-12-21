@@ -21,7 +21,8 @@ const ProspectCard = ({
     onAnalyze,
     onConvertToLead,
     isFirstResult = false,
-    isLoading = false
+    isLoading = false,
+    averageTicket = 500 // Default value
 }) => {
     const [isHovered, setIsHovered] = useState(false);
 
@@ -232,6 +233,23 @@ const ProspectCard = ({
                     {prospect.address}
                 </p>
 
+                {/* Financial Potential Badge */}
+                <div className="flex items-center gap-2 mb-3">
+                    <div className="px-2 py-1 bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 rounded-lg text-xs font-medium border border-green-100 dark:border-green-800 flex items-center gap-1">
+                        <span className="font-bold">{(Math.round((prospect.opportunity_score || 50) / 100 * averageTicket)).toLocaleString()}€</span>
+                        <span className="text-[10px] opacity-80">Potencial</span>
+                    </div>
+                    {/* Score Badge */}
+                    <div className={`px-2 py-1 rounded-lg text-xs font-bold border flex items-center gap-1 ${(prospect.opportunity_score || 50) >= 70
+                        ? 'bg-green-50 text-green-700 border-green-200'
+                        : (prospect.opportunity_score || 50) >= 40
+                            ? 'bg-yellow-50 text-yellow-700 border-yellow-200'
+                            : 'bg-red-50 text-red-700 border-red-200'
+                        }`}>
+                        <span>{prospect.opportunity_score || 50}/100</span>
+                    </div>
+                </div>
+
                 {/* Tags Row - Sin Web, Verifactu, Kit Digital, Reseñas Negativas */}
                 {tags.length > 0 && (
                     <div className="flex flex-wrap gap-1.5 mb-3">
@@ -329,18 +347,20 @@ const ProspectCard = ({
             </div>
 
             {/* Hover: Convert to Lead */}
-            {isHovered && !prospect.processed && (
-                <div className="absolute bottom-20 right-3">
-                    <button
-                        onClick={(e) => { e.stopPropagation(); onConvertToLead?.(prospect); }}
-                        className="p-2 bg-green-500 hover:bg-green-600 text-white rounded-lg shadow-lg transition-transform hover:scale-110"
-                        title="Convertir a Lead"
-                    >
-                        <UserPlus className="w-4 h-4" />
-                    </button>
-                </div>
-            )}
-        </div>
+            {
+                isHovered && !prospect.processed && (
+                    <div className="absolute bottom-20 right-3">
+                        <button
+                            onClick={(e) => { e.stopPropagation(); onConvertToLead?.(prospect); }}
+                            className="p-2 bg-green-500 hover:bg-green-600 text-white rounded-lg shadow-lg transition-transform hover:scale-110"
+                            title="Convertir a Lead"
+                        >
+                            <UserPlus className="w-4 h-4" />
+                        </button>
+                    </div>
+                )
+            }
+        </div >
     );
 };
 

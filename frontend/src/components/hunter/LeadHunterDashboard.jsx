@@ -1798,8 +1798,10 @@ const LeadHunterDashboard = ({ onNavigateSettings }) => {
                                             searchEstimate={searchEstimate}
                                             location={searchLocation}
                                             businessType={searchQuery}
+                                            averageTicket={stats?.settings?.average_ticket_value}
+                                            dailyCost={stats?.settings?.daily_salary_cost}
                                             onSearch={handleSearch}
-                                            isSearching={loading}
+                                            isSearching={searching}
                                             isEstimating={estimating}
                                         />
                                     )}
@@ -2046,6 +2048,7 @@ const LeadHunterDashboard = ({ onNavigateSettings }) => {
                                                 key={prospect.id}
                                                 prospect={prospect}
                                                 isFirstResult={index === 0 && !selectedSearchId}
+                                                averageTicket={stats?.settings?.average_ticket_value}
                                                 onClick={() => { setSelectedProspect(prospect); setIsDetailModalOpen(true); }}
                                                 onAnalyze={handleAnalyze}
                                                 onConvertToLead={handleConvertToLead}

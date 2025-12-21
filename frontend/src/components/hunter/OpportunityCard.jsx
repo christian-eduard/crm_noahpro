@@ -13,8 +13,18 @@ const OpportunityCard = ({
     businessType,
     onSearch,
     isSearching,
-    isEstimating
+    isEstimating,
+    averageTicket,
+    dailyCost
 }) => {
+    // Calculate potential based on provided settings or defaults
+    const count = searchEstimate?.displayCount || 20;
+    const ticket = averageTicket ? parseFloat(averageTicket) : 500;
+
+    // Estimate: 10% conversion rate * ticket
+    const potentialValue = Math.round(parseInt(count) * 0.1 * ticket);
+    const potentialText = `${potentialValue.toLocaleString()}€`;
+
     if (isEstimating) {
         return (
             <div className="bg-gradient-to-r from-orange-500/10 to-red-500/10 dark:from-orange-900/20 dark:to-red-900/20 
@@ -66,9 +76,14 @@ const OpportunityCard = ({
                 <div className="bg-white/15 backdrop-blur-sm rounded-xl p-4 text-center">
                     <div className="flex items-center justify-center gap-1">
                         <DollarSign className="w-6 h-6 text-green-300" />
-                        <p className="text-3xl font-bold">{searchEstimate.potentialRevenueText || '0€'}</p>
+                        <p className="text-3xl font-bold">{potentialText}</p>
                     </div>
                     <p className="text-sm text-white/80">potencial estimado</p>
+                    {averageTicket && (
+                        <p className="text-[10px] text-white/60 mt-1">
+                            Basado en ticket medio de {ticket}€
+                        </p>
+                    )}
                 </div>
             </div>
 

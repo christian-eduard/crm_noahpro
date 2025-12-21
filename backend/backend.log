@@ -2,13 +2,136 @@
 > leads-backend@1.0.0 start
 > node server.js
 
-2025-12-21T06:32:58.052Z [INFO]: 🚀 Leads Backend running on port 3002
-2025-12-21T06:32:58.053Z [INFO]: 📊 Database: Not configured
-2025-12-21T06:32:58.053Z [INFO]: 💬 Socket.io initialized
+2025-12-21T06:53:34.030Z [INFO]: 🚀 Leads Backend running on port 3002
+2025-12-21T06:53:34.031Z [INFO]: 📊 Database: Not configured
+2025-12-21T06:53:34.031Z [INFO]: 💬 Socket.io initialized
 [AutomationEngine] Loaded 0 active rules
 [WebhookService] Loaded 0 active webhooks
 [EmailAutomation] Cron job scheduled (every 5 minutes)
-2025-12-21T06:33:02.358Z [INFO]: GET /api/settings 
-2025-12-21T06:33:02.377Z [INFO]: GET /api/settings 
-2025-12-21T06:33:12.318Z [INFO]: GET /api/brain/prompts 
-❌ No token provided for: /prompts
+2025-12-21T06:53:37.013Z [INFO]: GET /api/hunter/access 
+2025-12-21T06:53:37.021Z [INFO]: GET /api/hunter/stats 
+2025-12-21T06:53:37.027Z [INFO]: GET /api/business-types 
+2025-12-21T06:53:37.028Z [INFO]: GET /api/hunter/searches 
+[Searches] Fetching history for userId: 4
+2025-12-21T06:53:37.031Z [INFO]: GET /api/hunter-strategies 
+2025-12-21T06:53:37.045Z [INFO]: GET /api/hunter/access 
+[Searches] Found 5 entries
+2025-12-21T06:53:37.063Z [INFO]: GET /api/hunter/searches 
+[Searches] Fetching history for userId: 4
+2025-12-21T06:53:37.068Z [INFO]: GET /api/hunter-strategies 
+2025-12-21T06:53:37.075Z [INFO]: GET /api/business-types 
+2025-12-21T06:53:37.076Z [INFO]: GET /api/hunter/access 
+[Searches] Found 5 entries
+2025-12-21T06:53:37.081Z [INFO]: GET /api/hunter/access 
+2025-12-21T06:53:37.083Z [INFO]: GET /api/hunter/stats 
+2025-12-21T06:53:37.085Z [INFO]: GET /api/hunter/searches 
+[Searches] Fetching history for userId: 4
+2025-12-21T06:53:37.086Z [INFO]: GET /api/business-types 
+2025-12-21T06:53:37.088Z [INFO]: GET /api/hunter-strategies 
+[Searches] Found 5 entries
+2025-12-21T06:53:37.094Z [INFO]: GET /api/business-types 
+2025-12-21T06:53:37.095Z [INFO]: GET /api/hunter/searches 
+[Searches] Fetching history for userId: 4
+2025-12-21T06:53:37.097Z [INFO]: GET /api/hunter-strategies 
+[Searches] Found 5 entries
+2025-12-21T06:53:37.110Z [INFO]: GET /api/hunter/stats 
+2025-12-21T06:53:37.113Z [INFO]: GET /api/hunter/stats 
+2025-12-21T06:53:41.315Z [INFO]: GET /api/hunter/prospects 
+2025-12-21T06:53:42.311Z [INFO]: GET /api/hunter/prospects 
+2025-12-21T06:53:44.810Z [INFO]: GET /api/hunter/searches/21/prospects 
+2025-12-21T06:53:46.331Z [INFO]: GET /api/hunter/prospects 
+2025-12-21T06:53:47.170Z [INFO]: GET /api/hunter/searches/22/prospects 
+2025-12-21T06:53:49.043Z [INFO]: GET /api/hunter/prospects 
+2025-12-21T06:53:50.082Z [INFO]: GET /api/hunter/prospects 
+2025-12-21T06:53:54.198Z [INFO]: GET /api/hunter/admin/team 
+2025-12-21T06:53:54.205Z [INFO]: GET /api/hunter/admin/team 
+2025-12-21T06:54:14.815Z [INFO]: GET /api/clients 
+2025-12-21T06:54:14.825Z [INFO]: GET /api/clients 
+2025-12-21T06:54:16.149Z [INFO]: GET /api/leads 
+2025-12-21T06:54:16.150Z [INFO]: GET /api/leads/stats 
+2025-12-21T06:54:16.945Z [INFO]: GET /api/leads 
+2025-12-21T06:54:16.948Z [INFO]: GET /api/tasks 
+2025-12-21T06:54:16.952Z [INFO]: GET /api/tasks 
+2025-12-21T06:54:16.954Z [INFO]: GET /api/leads 
+2025-12-21T06:54:16.962Z [INFO]: GET /api/leads 
+2025-12-21T06:54:16.963Z [INFO]: GET /api/calendar/events 
+2025-12-21T06:54:16.965Z [INFO]: GET /api/leads 
+2025-12-21T06:54:16.966Z [INFO]: GET /api/calendar/events 
+2025-12-21T06:54:16.978Z [INFO]: GET /api/activities 
+2025-12-21T06:54:16.983Z [INFO]: GET /api/activities 
+2025-12-21T06:54:21.536Z [INFO]: GET /api/hunter/access 
+2025-12-21T06:54:21.540Z [INFO]: GET /api/business-types 
+2025-12-21T06:54:21.541Z [INFO]: GET /api/hunter-strategies 
+2025-12-21T06:54:21.541Z [INFO]: GET /api/hunter/searches 
+[Searches] Fetching history for userId: 4
+2025-12-21T06:54:21.543Z [INFO]: GET /api/hunter/stats 
+2025-12-21T06:54:21.546Z [INFO]: GET /api/hunter/access 
+2025-12-21T06:54:21.547Z [INFO]: GET /api/hunter-strategies 
+2025-12-21T06:54:21.547Z [INFO]: GET /api/business-types 
+[Searches] Found 5 entries
+2025-12-21T06:54:21.552Z [INFO]: GET /api/hunter/searches 
+[Searches] Fetching history for userId: 4
+[Searches] Found 5 entries
+2025-12-21T06:54:21.563Z [INFO]: GET /api/hunter/access 
+2025-12-21T06:54:21.565Z [INFO]: GET /api/business-types 
+2025-12-21T06:54:21.566Z [INFO]: GET /api/hunter/searches 
+[Searches] Fetching history for userId: 4
+2025-12-21T06:54:21.567Z [INFO]: GET /api/hunter-strategies 
+[Searches] Found 5 entries
+2025-12-21T06:54:21.569Z [INFO]: GET /api/hunter/stats 
+2025-12-21T06:54:21.572Z [INFO]: GET /api/hunter/stats 
+2025-12-21T06:54:32.291Z [INFO]: GET /api/hunter/access 
+2025-12-21T06:54:32.293Z [INFO]: GET /api/hunter/stats 
+2025-12-21T06:54:32.294Z [INFO]: GET /api/business-types 
+2025-12-21T06:54:32.294Z [INFO]: GET /api/hunter/searches 
+[Searches] Fetching history for userId: 4
+2025-12-21T06:54:32.295Z [INFO]: GET /api/hunter-strategies 
+[Searches] Found 5 entries
+2025-12-21T06:55:39.333Z [INFO]: GET /api/hunter/brain/stats 
+2025-12-21T06:55:39.336Z [INFO]: GET /api/brain/prompts 
+2025-12-21T06:55:39.339Z [INFO]: GET /api/hunter/prospects 
+2025-12-21T06:55:39.342Z [INFO]: GET /api/hunter/user-settings 
+2025-12-21T06:55:39.359Z [INFO]: GET /api/brain/prompts 
+2025-12-21T06:55:39.359Z [INFO]: GET /api/hunter/user-settings 
+2025-12-21T06:55:39.362Z [INFO]: GET /api/hunter/brain/stats 
+2025-12-21T06:55:39.384Z [INFO]: GET /api/hunter/prospects 
+2025-12-21T06:55:39.386Z [INFO]: GET /api/hunter/knowledge/stats 
+2025-12-21T06:55:39.389Z [INFO]: GET /api/hunter/knowledge/stats 
+2025-12-21T06:57:24.499Z [INFO]: PUT /api/brain/prompts/1 
+2025-12-21T06:57:24.520Z [INFO]: GET /api/brain/prompts 
+2025-12-21T06:57:30.896Z [INFO]: PUT /api/hunter/user-settings 
+2025-12-21T06:57:30.903Z [INFO]: GET /api/hunter/user-settings 
+2025-12-21T06:57:33.734Z [INFO]: GET /api/hunter/access 
+2025-12-21T06:57:33.738Z [INFO]: GET /api/hunter/stats 
+2025-12-21T06:57:33.740Z [INFO]: GET /api/business-types 
+2025-12-21T06:57:33.742Z [INFO]: GET /api/hunter/searches 
+[Searches] Fetching history for userId: 4
+2025-12-21T06:57:33.743Z [INFO]: GET /api/hunter-strategies 
+2025-12-21T06:57:33.745Z [INFO]: GET /api/hunter/access 
+[Searches] Found 5 entries
+2025-12-21T06:57:33.758Z [INFO]: GET /api/hunter/searches 
+[Searches] Fetching history for userId: 4
+2025-12-21T06:57:33.758Z [INFO]: GET /api/hunter-strategies 
+2025-12-21T06:57:33.759Z [INFO]: GET /api/business-types 
+[Searches] Found 5 entries
+2025-12-21T06:57:33.765Z [INFO]: GET /api/hunter/stats 
+2025-12-21T06:57:33.769Z [INFO]: GET /api/hunter/access 
+2025-12-21T06:57:33.769Z [INFO]: GET /api/business-types 
+2025-12-21T06:57:33.770Z [INFO]: GET /api/hunter/searches 
+[Searches] Fetching history for userId: 4
+2025-12-21T06:57:33.770Z [INFO]: GET /api/hunter-strategies 
+[Searches] Found 5 entries
+2025-12-21T06:57:33.775Z [INFO]: GET /api/hunter/stats 
+2025-12-21T06:57:34.761Z [INFO]: GET /api/hunter/prospects 
+2025-12-21T06:57:34.914Z [INFO]: GET /api/hunter/prospects 
+2025-12-21T06:57:35.711Z [INFO]: GET /api/hunter/searches/22/prospects 
+2025-12-21T06:57:49.201Z [INFO]: GET /api/hunter/brain/stats 
+2025-12-21T06:57:49.202Z [INFO]: GET /api/brain/prompts 
+2025-12-21T06:57:49.204Z [INFO]: GET /api/hunter/prospects 
+2025-12-21T06:57:49.206Z [INFO]: GET /api/hunter/user-settings 
+2025-12-21T06:57:49.208Z [INFO]: GET /api/hunter/brain/stats 
+2025-12-21T06:57:49.210Z [INFO]: GET /api/brain/prompts 
+2025-12-21T06:57:49.212Z [INFO]: GET /api/hunter/user-settings 
+2025-12-21T06:57:49.218Z [INFO]: GET /api/hunter/prospects 
+2025-12-21T06:57:49.220Z [INFO]: GET /api/hunter/knowledge/stats 
+2025-12-21T06:57:49.225Z [INFO]: GET /api/hunter/knowledge/stats 
