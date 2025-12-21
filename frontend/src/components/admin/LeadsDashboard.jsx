@@ -23,6 +23,7 @@ import BulkActionsBar from '../shared/BulkActionsBar';
 import LeadHunterDashboard from '../hunter/LeadHunterDashboard';
 import AIBrainDashboard from '../brain/AIBrainDashboard';
 import RecruitmentDashboard from '../recruitment/RecruitmentDashboard';
+import Dojo from '../voice/Dojo';
 
 const LeadsDashboard = ({ activeSection }) => {
     const [leads, setLeads] = useState([]);
@@ -602,6 +603,10 @@ const LeadsDashboard = ({ activeSection }) => {
 
     if (activeSection === 'recruitment') {
         return <RecruitmentDashboard />;
+    }
+
+    if (activeSection === 'dojo') {
+        return <Dojo />;
     }
 
     return (

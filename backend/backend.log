@@ -504,3 +504,13 @@ Returning settings: {
 }
 2025-12-21T07:50:17.176Z [INFO]: GET /api/settings 
 2025-12-21T07:50:17.180Z [INFO]: GET /api/settings 
+2025-12-21T07:53:30.984Z [INFO]: GET /api/leads 
+2025-12-21T07:53:30.987Z [INFO]: GET /api/tasks 
+2025-12-21T07:53:30.995Z [INFO]: GET /api/calendar/events 
+2025-12-21T07:53:31.008Z [INFO]: GET /api/calendar/events 
+2025-12-21T07:53:31.029Z [INFO]: GET /api/tasks 
+2025-12-21T07:53:31.052Z [INFO]: GET /api/leads 
+2025-12-21T07:53:31.055Z [INFO]: GET /api/activities 
+2025-12-21T07:53:31.057Z [INFO]: GET /api/leads 
+2025-12-21T07:53:31.065Z [INFO]: GET /api/leads 
+2025-12-21T07:53:31.067Z [INFO]: GET /api/activities 

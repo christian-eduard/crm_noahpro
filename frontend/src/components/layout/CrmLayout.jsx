@@ -1,9 +1,11 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Home, Users, MessageSquare, BarChart3, Settings, FileText, Mail, LogOut, User, Moon, Sun, ChevronDown, BookOpen, HeadphonesIcon, Menu, X, UserPlus, CalendarPlus, Search, Brain } from 'lucide-react';
+import { Home, Users, MessageSquare, BarChart3, Settings, FileText, Mail, LogOut, User, Moon, Sun, ChevronDown, BookOpen, HeadphonesIcon, Menu, X, UserPlus, CalendarPlus, Search, Brain, Swords } from 'lucide-react';
 import NotificationBell from '../notifications/NotificationBell';
 import AdminChatWidget from '../admin/chat/AdminChatWidget';
 import ProfileModal from '../profile/ProfileModal';
+import WebSoftphone from '../voice/WebSoftphone';
+import SalesCopilotHUD from '../voice/SalesCopilotHUD';
 
 import { usePusher } from '../../contexts/PusherContext';
 import { useToast } from '../../contexts/ToastContext';
@@ -117,6 +119,13 @@ const CrmLayout = ({ children, onLogout, activeSection = 'leads', onSectionChang
             icon: <Brain className="w-5 h-5" />,
             description: 'Estado e inteligencia',
             roles: ['admin']
+        },
+        {
+            id: 'dojo',
+            label: 'Sales Dojo',
+            icon: <Swords className="w-5 h-5" />,
+            description: 'Entrenamiento IA',
+            // roles: ['admin', 'commercial'] // Disponible para todos
         },
         {
             id: 'training',
@@ -475,6 +484,10 @@ const CrmLayout = ({ children, onLogout, activeSection = 'leads', onSectionChang
             </div>
             {/* Floating Chat Widget */}
             {user.role === 'admin' && <AdminChatWidget />}
+
+            {/* Web Softphone (Voice Ecosystem) */}
+            <WebSoftphone />
+            <SalesCopilotHUD />
 
             {/* Profile Modal */}
             <ProfileModal
