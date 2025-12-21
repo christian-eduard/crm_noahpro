@@ -1188,32 +1188,405 @@ if (remaining === 0) {
 
 ---
 
-## 9. CONCLUSIONES TÉCNICAS
+## 9. SISTEMA DE INTERNACIONALIZACIÓN (i18n)
 
-### 9.1 Arquitectura Lograda
+### 9.1 Arquitectura i18n
+
+**Actualizado:** 21 Diciembre 2025
+
+El sistema NoahPro ahora soporta **6 idiomas completos** con persistencia automática y selección dinámica.
+
+#### Idiomas Soportados
+
+| Código | Idioma | Coverage Landing | Coverage Dashboard | Coverage Recruitment |
+|--------|--------|------------------|-------------------|---------------------|
+| 🇪🇸 ES | Español | 100% | 100% | 100% |
+| 🇺🇸 EN | English | 100% | 100% | 100% |
+| 🇫🇷 FR | Français | 100% | 100% | Fallback ES |
+| 🇮🇹 IT | Italiano | Fallback EN | 100% | 100% |
+| 🇩🇪 DE | Deutsch | Fallback EN | 100% | 100% |
+| 🇨🇭 CH | Schweiz (Swiss German) | Fallback EN | 100% | 100% |
+
+**Total claves traducidas:** ~400+  
+**Archivos JSON:** 24 (4 namespaces × 6 idiomas)
+
+#### Estructura de Archivos
+
+```
+frontend/src/
+├── i18n.js (configuración central)
+├── locales/
+│   ├── es/
+│   │   ├── landing.json
+│   │   ├── recruitment.json
+│   │   ├── dashboard.json
+│   │   └── comercial.json
+│   ├── en/ (misma estructura)
+│   ├── fr/ (misma estructura)
+│   ├── it/ (misma estructura)
+│   ├── de/ (misma estructura)
+│   └── ch/ (misma estructura)
+└── components/
+    └── common/
+        └── LanguageSelector.jsx ⭐ NUEVO
+```
+
+### 9.2 Implementación Técnica
+
+#### Configuración i18next
+
+```javascript
+// frontend/src/i18n.js
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+
+// Importar todos los recursos
+import landingES from './locales/es/landing.json';
+import dashboardES from './locales/es/dashboard.json';
+// ... (24 imports totales)
+
+const resources = {
+  es: { landing: landingES, dashboard: dashboardES, ... },
+  en: { landing: landingEN, dashboard: dashboardEN, ... },
+  fr: { landing: landingFR, dashboard: dashboardFR, ... },
+  it: { landing: landingIT, dashboard: dashboardIT, ... },
+  de: { landing: landingDE, dashboard: dashboardDE, ... },
+  ch: { landing: landingCH, dashboard: dashboardCH, ... }
+};
+
+i18n
+  .use(initReactI18next)
+  .init({
+    resources,
+    lng: 'es', // idioma por defecto
+    fallbackLng: 'es',
+    ns: ['landing', 'recruitment', 'dashboard', 'comercial'],
+    defaultNS: 'landing',
+    interpolation: { escapeValue: false }
+  });
+```
+
+#### Uso en Componentes
+
+```javascript
+import { useTranslation } from 'react-i18next';
+
+const LeadHunterDashboard = () => {
+    const { t, i18n } = useTranslation('dashboard');
+    
+    return (
+        <div>
+            <h1>{t('sidebar.hunter')}</h1>
+            <p>{t('sidebar.hunter_desc')}</p>
+            
+            {/* Cambio de idioma */}
+            <button onClick={() => i18n.changeLanguage('en')}>
+                English
+            </button>
+        </div>
+    );
+};
+```
+
+#### Componente LanguageSelector
+
+```javascript
+// frontend/src/components/common/LanguageSelector.jsx
+
+const LanguageSelector = ({ variant = 'default' }) => {
+    const { i18n } = useTranslation();
+    
+    const languages = [
+        { code: 'es', label: 'Español', flag: 'es' },
+        { code: 'en', label: 'English', flag: 'us' },
+        { code: 'fr', label: 'Français', flag: 'fr' },
+        { code: 'it', label: 'Italiano', flag: 'it' },
+        { code: 'de', label: 'Deutsch', flag: 'de' },
+        { code: 'ch', label: 'Schweiz', flag: 'ch' }
+    ];
+    
+    const changeLanguage = (code) => {
+        i18n.changeLanguage(code);
+        localStorage.setItem('preferred_language', code);
+    };
+    
+    // Variantes: 'compact' para dashboard, 'default' para landings
+    // ...
+};
+```
+
+**Características:**
+- ✅ Banderas SVG reales desde `flagcdn.com`
+- ✅ Persistencia en `localStorage`
+- ✅ Variante compacta para dashboard
+- ✅ Variante destacada para landings
+- ✅ Dropdown animado con `ChevronDown`
+
+### 9.3 Persistencia y Auto-carga
+
+```javascript
+// frontend/src/contexts/ThemeContext.jsx
+
+export const ThemeProvider = ({ children }) => {
+    const { i18n } = useTranslation();
+    
+    useEffect(() => {
+        const savedLanguage = localStorage.getItem('preferred_language');
+        
+        if (savedLanguage && i18n.language !== savedLanguage) {
+            i18n.changeLanguage(savedLanguage);
+        }
+    }, [i18n]);
+    
+    // ... resto del código de tema
+};
+```
+
+**Flujo:**
+1. Usuario selecciona idioma → `i18n.changeLanguage('de')`
+2. Se guarda en `localStorage.setItem('preferred_language', 'de')`
+3. Al recargar página → `ThemeProvider` lee localStorage
+4. Aplica idioma guardado automáticamente
+
+### 9.4 Componentes Traducidos
+
+#### CrmLayout (Dashboard Principal)
+
+```javascript
+// frontend/src/components/layout/CrmLayout.jsx
+
+const menuItems = [
+    {
+        id: 'hunter',
+        label: t('sidebar.hunter'),
+        icon: <Search className="w-5 h-5" />,
+        description: t('sidebar.hunter_desc')
+    },
+    {
+        id: 'recruitment',
+        label: t('sidebar.recruitment'),
+        icon: <UserPlus className="w-5 h-5" />,
+        description: t('sidebar.recruitment_desc'),
+        roles: ['admin']
+    },
+    // ... 13 items más
+];
+
+// Quick Actions
+<p>{t('quick_actions.new_lead')}</p>
+<p>{t('quick_actions.new_lead_desc')}</p>
+
+// User Menu
+<span>{t('user_menu.view_profile')}</span>
+<span>{t('user_menu.logout')}</span>
+```
+
+**Total traducciones en CrmLayout:**
+- 15 items de sidebar (label + descripción)
+- 3 quick actions (título + descripción)
+- Topbar (search placeholder, help, theme labels)
+- User menu (2 opciones)
+
+#### Landing Page Principal
+
+```json
+// locales/es/landing.json
+{
+  "nav": {
+    "benefits": "Beneficios",
+    "verifactu": "Compliance",
+    "demo": "Acceso Demo"
+  },
+  "hero": {
+    "title1": "El Software que tu Empresa",
+    "title2": "Necesita para Crecer",
+    "cta1": "Solicitar Propuesta"
+  },
+  "contact_form": {
+    "title": "Solicita tu Demo",
+    "labels": {
+      "name": "Nombre Completo",
+      "email": "Email Corporativo",
+      ...
+    }
+  }
+}
+```
+
+#### Recruitment Landing (/careers/apply)
+
+```javascript
+// frontend/src/components/recruitment/CareersApply.jsx
+
+const { t, i18n } = useTranslation('recruitment');
+
+<h1>{t('hero_title_1')} <br />
+    <span className="gradient">{t('hero_title_2')}</span>
+</h1>
+
+{benefits.map((_, i) => (
+    <div key={i}>
+        <h4>{t(`benefits.${i}.title`)}</h4>
+        <p>{t(`benefits.${i}.desc`)}</p>
+    </div>
+))}
+
+// Selector de idiomas visible en nav
+<LanguageSelector variant="default" />
+```
+
+**Características especiales:**
+- ✅ Modo oscuro por defecto
+- ✅ Gradientes animados
+- ✅ Selectores con mejor contraste (border-2, drop-shadow)
+
+### 9.5 Mejoras de UX/UI con i18n
+
+#### Footer con Link a Careers
+
+```javascript
+// footer.json
+{
+  "footer": {
+    "company": "Empresa",
+    "careers": "Estamos Contratando",
+    "about": "Sobre Nosotros",
+    "contact": "Contacto"
+  }
+}
+
+// LandingPage.jsx
+<div>
+    <h4>{t('footer.company')}</h4>
+    <ul>
+        <li>
+            <a href="/careers/apply">
+                {t('footer.careers')} 
+                <span className="text-green-500">●</span>
+            </a>
+        </li>
+    </ul>
+</div>
+```
+
+#### ContactForm Modal
+
+```javascript
+// Traducción completa del formulario
+{
+  "contact_form": {
+    "title": "Solicita tu Demo",
+    "success_title": "¡Solicitud Recibida!",
+    "labels": {
+      "name": "Nombre Completo",
+      "email": "Email Corporativo",
+      "phone": "Teléfono",
+      "ref_code": "Referencia Comercial"
+    },
+    "placeholders": {
+      "name": "Tu nombre",
+      "email": "tu@email.com",
+      ...
+    }
+  }
+}
+```
+
+### 9.6 Estadísticas del Sistema i18n
+
+| Métrica | Valor |
+|---------|-------|
+| **Idiomas totales** | 6 |
+| **Namespaces** | 4 |
+| **Archivos JSON** | 24 |
+| **Claves de traducción** | ~400+ |
+| **Componentes traducidos** | 5 principales |
+| **Cobertura ES/EN** | 100% |
+| **Cobertura FR/IT/DE/CH** | 75% (fallbacks activos) |
+
+### 9.7 Integración con ThemeContext
+
+```javascript
+// El ThemeContext ahora también maneja idioma
+export const ThemeProvider = ({ children }) => {
+    const { i18n } = useTranslation();
+    const [theme, setTheme] = useState('light');
+    
+    useEffect(() => {
+        // Cargar idioma preferido
+        const savedLanguage = localStorage.getItem('preferred_language');
+        if (savedLanguage) {
+            i18n.changeLanguage(savedLanguage);
+        }
+        
+        // Cargar tema preferido
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            setTheme(savedTheme);
+        }
+    }, [i18n]);
+    
+    // ...
+};
+```
+
+**Ventajas:**
+- Un solo contexto para tema + idioma
+- Inicialización centralizada
+- Persistencia unificada
+
+### 9.8 Roadmap i18n
+
+**Completado ✅:**
+- [x] Sistema base i18next
+- [x] 6 idiomas configurados
+- [x] LanguageSelector reutilizable
+- [x] Persistencia localStorage
+- [x] Dashboard completo traducido
+- [x] Landings traducidas
+- [x] Recruitment traducido
+
+**Pendiente 🔄:**
+- [ ] Completar FR landing
+- [ ] Completar IT/DE/CH landing
+- [ ] Traducir modales de Leads
+- [ ] Traducir Settings completo
+- [ ] Añadir PT (Português)
+- [ ] Lazy loading de traducciones
+- [ ] Tests E2E multi-idioma
+
+---
+
+## 10. CONCLUSIONES TÉCNICAS
+
+### 10.1 Arquitectura Lograda
 
 ✅ **Backend modular**: Servicios independientes (Google Places, Gemini, Lead Hunter)  
 ✅ **Frontend reactivo**: Estados optimizados con `useCallback` y `useMemo`  
 ✅ **Base de datos normalizada**: Sin redundancia, con constraints y relaciones FK claras  
 ✅ **Seguridad**: API keys en DB, autenticación JWT, middleware de roles  
 ✅ **Escalabilidad**: Preparado para agregar nuevas estrategias sin modificar código  
+✅ **Internacionalización**: 6 idiomas con persistencia y selección dinámica
 
-### 9.2 Puntos de Integración
+### 10.2 Puntos de Integración
 
 El sistema se integra perfectamente con:
 - **Módulo Leads**: Conversión directa con mapeo de tags
 - **Módulo Emails**: Preparado para campaña automatizada
 - **Módulo Calendar**: Listo para agendar follow-ups
 - **Admin Panel**: Control total de permisos y configuraciones
+- **i18n System**: Multi-idioma en toda la plataforma
 
-### 9.3 Dependencias Críticas
+### 10.3 Dependencias Críticas
 
 - **Google Places API**: Requiere facturación activa (costo variable por consulta)
-- **Gemini 2.0 Flash**: Límite de 50 requests/min en tier gratuito
+- **Gemini 2.0 Flash**: Límite de 50 requests/min en tier gratuito  
 - **PostgreSQL 14+**: Funciones JSONB obligatorias
+- **i18next**: v23+ para React 18 compatibility
 
 ---
 
 **Documento generado:** 19 Diciembre 2025  
-**Versión:** 1.0.0  
-**Próxima revisión:** Tras implementar WhatsApp/Email real
+**Actualizado:** 21 Diciembre 2025 (Sección i18n añadida)  
+**Versión:** 1.1.0  
+**Próxima revisión:** Tras completar todas las traducciones
