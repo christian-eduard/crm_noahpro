@@ -22508,3 +22508,12 @@
 {"level":"info","message":"GET /api/settings ","timestamp":"2025-12-21T07:14:42.225Z"}
 {"level":"info","message":"GET /api/users ","timestamp":"2025-12-21T07:14:44.132Z"}
 {"level":"info","message":"GET /api/users ","timestamp":"2025-12-21T07:14:44.137Z"}
+{"level":"info","message":"GET /api/hunter/admin/users ","timestamp":"2025-12-21T07:18:25.103Z"}
+{"level":"info","message":"GET /api/hunter/admin/config ","timestamp":"2025-12-21T07:18:25.107Z"}
+{"level":"info","message":"GET /api/hunter/admin/stats ","timestamp":"2025-12-21T07:18:25.109Z"}
+{"level":"info","message":"GET /api/hunter/admin/config ","timestamp":"2025-12-21T07:18:25.127Z"}
+{"level":"info","message":"GET /api/hunter/admin/stats ","timestamp":"2025-12-21T07:18:25.132Z"}
+{"level":"info","message":"GET /api/hunter/admin/users ","timestamp":"2025-12-21T07:18:25.132Z"}
+{"level":"info","message":"🚀 Leads Backend running on port 3002","timestamp":"2025-12-21T07:19:42.953Z"}
+{"level":"info","message":"📊 Database: Not configured","timestamp":"2025-12-21T07:19:42.954Z"}
+{"level":"info","message":"💬 Socket.io initialized","timestamp":"2025-12-21T07:19:42.954Z"}
