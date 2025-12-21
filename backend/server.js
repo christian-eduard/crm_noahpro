@@ -120,6 +120,7 @@ app.use('/api/business-types', require('./routes/businessTypes'));
 app.use('/api/hunter-strategies', require('./routes/hunterStrategies'));
 app.use('/api/brain', require('./routes/brain'));
 app.use('/api/voice', require('./routes/voice')); // Ecosistema de Voz
+app.use('/api/recruitment', require('./routes/recruitment')); // AI Talent Hunter
 app.use('/api/calls', require('./routes/calls'));
 
 // Initialize automation engine and services
