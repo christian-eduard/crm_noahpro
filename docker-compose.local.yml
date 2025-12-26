@@ -1,0 +1,93 @@
+# ========================================
+# NoahPro CRM - Docker Compose LOCAL
+# Para pruebas en tu PC antes de subir a PaaS
+# ========================================
+
+version: '3.8'
+
+services:
+  # =====================
+  # PostgreSQL Database
+  # =====================
+  db:
+    image: postgres:15-alpine
+    container_name: noahpro_db_local
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: noahpro
+      POSTGRES_PASSWORD: noahpro_local_2024
+      POSTGRES_DB: noahpro_crm
+    volumes:
+      - noahpro_db_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U noahpro -d noahpro_crm" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # =====================
+  # Redis Cache
+  # =====================
+  redis:
+    image: redis:7-alpine
+    container_name: noahpro_redis_local
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # =====================
+  # Backend API
+  # =====================
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: noahpro_be_local
+    restart: unless-stopped
+    ports:
+      - "4000:4000"
+    environment:
+      NODE_ENV: development
+      PORT: 4000
+      DATABASE_URL: postgresql://noahpro:noahpro_local_2024@db:5432/noahpro_crm
+      REDIS_URL: redis://redis:6379
+      JWT_SECRET: local_jwt_secret_change_in_production
+      # Add your API keys here for local testing
+      # GEMINI_API_KEY: your_key_here
+      # OPENAI_API_KEY: your_key_here
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  # =====================
+  # Frontend (React + Nginx)
+  # =====================
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_URL: http://localhost:4000/api
+    container_name: noahpro_fe_local
+    restart: unless-stopped
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+volumes:
+  noahpro_db_data:
+
+
+networks:
+  default:
+    name: noahpro_local_network

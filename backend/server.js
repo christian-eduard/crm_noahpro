@@ -33,7 +33,7 @@ socketInstance.initSocketIO(io);
 const chatHandler = require('./socket/chatHandler');
 chatHandler(io);
 
-const PORT = process.env.PORT || 3002;
+const PORT = process.env.PORT || 4000;
 
 // Trust proxy for production (behind Nginx/load balancer)
 if (process.env.NODE_ENV === 'production') {
@@ -82,9 +82,12 @@ app.use((req, res, next) => {
     next();
 });
 
-// Health check
+// Health check (both endpoints for compatibility)
 app.get('/health', (req, res) => {
-    res.json({ status: 'ok', service: 'leads-backend', timestamp: new Date().toISOString() });
+    res.json({ status: 'ok', service: 'noahpro-crm-backend', timestamp: new Date().toISOString() });
+});
+app.get('/api/health', (req, res) => {
+    res.json({ status: 'ok', service: 'noahpro-crm-backend', timestamp: new Date().toISOString() });
 });
 
 // Routes
