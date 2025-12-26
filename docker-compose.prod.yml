@@ -1,0 +1,98 @@
+# ========================================
+# NoahPro CRM - Docker Compose PRODUCTION
+# StormsBoys PaaS Standard
+# ========================================
+
+version: '3.8'
+
+services:
+  # =====================
+  # PostgreSQL Database
+  # =====================
+  db:
+    image: postgres:15-alpine
+    container_name: noahpro_db_prod
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER:-tpv}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-Zeta10zeta@}
+      POSTGRES_DB: ${DB_NAME:-crm_tpv}
+    volumes:
+      - noahpro_db_prod_data:/var/lib/postgresql/data
+    ports:
+      - "5437:5432"
+    networks:
+      - noahpro_network
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U ${DB_USER:-tpv} -d ${DB_NAME:-crm_tpv}" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # =====================
+  # Redis Cache
+  # =====================
+  redis:
+    image: redis:7-alpine
+    container_name: noahpro_redis_prod
+    restart: always
+    networks:
+      - noahpro_network
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # =====================
+  # Backend API
+  # =====================
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: noahpro_be_prod
+    restart: always
+    ports:
+      - "4007:4000"
+    environment:
+      NODE_ENV: production
+      PORT: 4000
+      DATABASE_URL: postgresql://${DB_USER:-tpv}:${DB_PASSWORD:-Zeta10zeta@}@db:5432/${DB_NAME:-crm_tpv}
+      REDIS_URL: redis://redis:6379
+      JWT_SECRET: ${JWT_SECRET:-your-super-secret-jwt-key}
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-AIzaSyCq9nBOZXo7ZEVIbYGh_TruGy3PqrXKejk}
+      # Other keys should be provided via .env on server
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - noahpro_network
+
+  # =====================
+  # Frontend (React + Nginx)
+  # =====================
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        # We use the public IP and port 4007 for the API
+        VITE_API_URL: http://217.154.191.3:4007/api
+    container_name: noahpro_fe_prod
+    restart: always
+    ports:
+      - "3007:80"
+    depends_on:
+      - backend
+    networks:
+      - noahpro_network
+
+networks:
+  noahpro_network:
+    driver: bridge
+
+volumes:
+  noahpro_db_prod_data:
